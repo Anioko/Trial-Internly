@@ -1,0 +1,17 @@
+{% extends 'company/base.html' %}
+
+{% from 'company/common.html' import detail %}
+
+{% block title %}{{ appt.company_name }} or '(untitled)'{% endblock title %}
+
+{% block main %}
+<div class="container">
+
+<div class="row">
+  <div class="span12">
+    {{ detail(appt) }}
+  </div>
+</div>
+</div>
+
+{% endblock main %}

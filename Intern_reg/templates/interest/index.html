@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% from 'interest/common.html' import detail %}
+
+{% block title %} Interests from students{% endblock title %}
+
+{% block main %}
+<div class="row">
+  {% for appt in appts %}
+    <div class="span12">
+      {{ detail(appt, link_title=true, show_edit=false, show_description=true) }}
+    </div>
+  {% else %}
+    <h3 class="span12">No interest available now.</h3>
+  {% endfor %}
+</div>
+<style>
+.navbar-inner {
+    background-color: #4E5D6C;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+</style>
+{% endblock main %}

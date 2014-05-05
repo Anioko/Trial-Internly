@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}{{ deal.title }} {% endblock title %}
+{% block elevator %}{{ deal.elevator }} {% endblock elevator %}
+{% block pub_date %}{{ deal.pub_date }} {% endblock pub_date %}
+
+{% block main %}
+<div class="row">
+  <div class="span12">
+	<h1>{{ deal.title }}</h1> 
+	<h6>{{ deal.elevator }}</h6>
+	<h5> Published on {{ deal.pub_date }}</h5>
+  </div>
+</div>
+{% endblock main %}

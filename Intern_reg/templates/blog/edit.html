@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% from 'blog/common.html' import edit_field %}
+
+{% if request.endpoint.endswith('edit') %}
+  {% set title = 'Edit Blog' %}
+{% else %}
+  {% set title = 'Add Blog' %}
+{% endif %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block main %}
+<div class="row">
+  <div class="appointment-edit well offset2 span8">
+    <form method="post" class="form-horizontal">
+      <legend>{{ title }}</legend>
+      {{ edit_field(form.title, maxlength=255, class="span3",
+                    placeholder="Title of Internship Position") }}
+      {{ edit_field(form.pub_date, class="span3", type="datetime",
+                    placeholder="yyyy-mm-dd hh:mm:ss") }}
+      {{ edit_field(form.author, maxlength=255, class="span3",
+                    placeholder="The Office") }}
+      {{ edit_field(form.description, rows="5", class="span5",
+                    placeholder="Write your blog post here .") }}
+      <div class="form-actions">
+        <button type="submit" class="btn">Save</button>
+        or <a href="{{ url_for('blog_list') }}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+<style>
+.navbar-inner {
+    background-color: #4E5D6C;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+</style>
+{% endblock main %}

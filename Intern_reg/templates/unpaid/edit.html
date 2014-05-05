@@ -1,0 +1,59 @@
+{% extends 'company/base.html' %}
+
+{% from 'unpaid/common.html' import edit_field %}
+
+{% if request.endpoint.endswith('edit') %}
+  {% set title = 'Edit Unpaid Internship Opportunities' %}
+{% else %}
+  {% set title = 'Add Unpaid Internship Opportunities' %}
+{% endif %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block main %}
+
+</div>
+	<div class="container" style="margin-top: 90px;">
+    <div class="row vertical-offset-100">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			{% if error %}<p class="alert alert-error">{{ error }}</p>{% endif %}
+
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Add Unpaid Internship Opportunities here</h3>
+			 	</div>
+		  	  <div class="panel-body">
+			    	<form method="post" accept-charset="UTF-8">
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="Title" name="title" type="text">
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="Company Name" name="company" type="text" value="">
+			    		</div>
+						<div class="form-group">
+						<textarea cols="37" rows="5" placeholder="Description of the unpaid vacancy" name="description" type="text" value=""></textarea>
+			    		</div>
+						<div class="form-group">
+			    			<input class="form-control" placeholder="http://www.example.com" name="website" type="url" value="">
+			    		</div>
+						<div class="form-group">
+			    			<input class="form-control" placeholder="yyyy-mm-dd hh:mm:ss" name="pub_date" type="datetime" value="">
+			    		</div>
+
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="SAVE">
+			    	</fieldset>
+			      	</form>
+			    </div>
+			</div>
+		</div>
+	</div>
+		<style>
+	button, input, optgroup, select, textarea {
+	color:#000000;
+    font: inherit;
+    margin: 0;
+     }
+	</style>
+{% endblock main %}
+

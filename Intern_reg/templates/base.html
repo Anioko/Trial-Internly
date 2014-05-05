@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+		<link href="{{ url_for('static', filename='css/some.css') }}" rel="stylesheet" type="text/css">
+    <style>
+      .content {
+        margin-top: 60px;
+      }
+
+      .inline-pad {
+        padding-left: 10px;
+      }
+
+      .edit-controls {
+        margin: 1em 0;
+      }
+	  .navbar .nav > li > a {
+		color: #FFFFFF;
+		float: none;
+		padding: 10px 15px;
+		text-decoration: none;
+		text-shadow: 0 1px 0 #9E7EBF;
+	  }
+	
+	 .navbar-inner {
+    background-color: #000000;
+    background-repeat: repeat-x;
+    border: 1px solid #C64012;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+    </style>
+    <script>
+      $(function() {
+        $(".appointment-delete-link").on("click", function() {
+          var delete_url = $(this).attr('data-delete-url');
+          $.ajax({
+            url: delete_url,
+            type: 'DELETE',
+            success: function(response) {
+              if (response.status == 'OK') {
+                window.location = {{ url_for('login') }};
+              } else {
+                alert('Delete failed.')
+              }
+            }
+          });
+          return false;
+        });
+      });
+    </script>
+    {% block extra_head %}{% endblock extra_head %}
+  </head>
+  <body>
+    <div id="main">
+      <div class="utility-nav navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+		    <ul class="nav">
+		    <li><a href="{{ url_for('blog_list') }}">blog</A></li>
+		    <li><a href="{{ url_for('unpaid_list') }}">Jobs</A></li>
+		    <li><a href="{{ url_for('paid_list') }}">Paid Jobs</A></li>
+			<li><a href="{{ url_for('interest_create') }}">Interest Add</A></li>
+            </ul>
+
+            {% if current_user.is_authenticated() %}
+
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.name }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ url_for('company_logout') }}">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+            {% else %}
+            <ul class="nav pull-right">
+              <li><a href="{{ url_for('login') }}">Login</a></li>
+              <li><a href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="content container">
+        {% block main %}{% endblock main %}
+      </div>
+    </div>
+  </body>
+</html>

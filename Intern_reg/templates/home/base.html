@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/2.3.1/united/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <style>
+      .content {
+        margin-top: 60px;
+      }
+
+      .inline-pad {
+        padding-left: 10px;
+      }
+
+      .edit-controls {
+        margin: 1em 0;
+      }
+	  .navbar .nav > li > a {
+		color: #FFFFFF;
+		float: none;
+		padding: 10px 15px;
+		text-decoration: none;
+		text-shadow: 0 1px 0 #9E7EBF;
+	  }
+	  .navbar-inner {
+		background-color: #9E7EBF;
+		background-image: linear-gradient(to bottom, #9E7EBF, #9E7EBF);
+		background-repeat: repeat-x;
+		border: 1px solid #000000;
+		border-radius: 4px;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+		min-height: 40px;
+		padding-left: 20px;
+		padding-right: 20px;
+	 }
+
+    </style>
+    <script>
+      $(function() {
+        $(".appointment-delete-link").on("click", function() {
+          var delete_url = $(this).attr('data-delete-url');
+          $.ajax({
+            url: delete_url,
+            type: 'DELETE',
+            success: function(response) {
+              if (response.status == 'OK') {
+                window.location = {{ url_for('login') }};
+              } else {
+                alert('Delete failed.')
+              }
+            }
+          });
+          return false;
+        });
+      });
+    </script>
+    {% block extra_head %}{% endblock extra_head %}
+  </head>
+  <body>
+    <div id="main">
+      <div class="utility-nav navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+		    <ul class="nav">
+			<li><a href="/">Home</A></li>
+		    <li><a href="{{ url_for('blog_list') }}">Blog</A></li>
+			<li><a href="{{ url_for('event_list') }}">Events</A></li>
+			
+            </ul>
+
+            {% if current_user.is_authenticated() %}
+
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.name }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+            {% else %}
+            <ul class="nav pull-right">
+              <li><a href="{{ url_for('login') }}">Login</a></li>
+              <li><a href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="content container"style="margin-left: 200px;"> 
+        {% block main %}{% endblock main %}
+		{% if current_user.is_authenticated() %}
+		<h2> Welcome {{ current_user.name }} to Miraflo.com </h2>
+		<h5> Below are the links to tools and resources available on this network </h5>
+		 <ul>
+		    <li><a href="{{ url_for('blog_list') }}">Our blog</A></li>
+			<li><a href="{{ url_for('event_list') }}">Events</A></li>
+			<li><a href="{{ url_for('deal_list') }}">List of deals available</A></li>
+			
+         </ul>
+		{% endif %}
+
+      </div>
+    </div>
+  </body>
+</html>

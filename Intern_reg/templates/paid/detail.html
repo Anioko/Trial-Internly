@@ -1,0 +1,21 @@
+{% extends 'intern/base.html' %}
+
+{% from 'paid/common.html' import detail %}
+
+{% block title %}{{ appt.title }} or '(untitled)'{% endblock title %}
+
+{% block main %}
+<div class="row" style="margin-top: 100px;">
+  <div class="span12">
+    {{ detail(appt) }}
+  </div>
+</div>
+<style>
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+color:#000000;
+    font-family: inherit;
+    font-weight: 300;
+    line-height: 1.1;
+}
+</style>
+{% endblock main %}
