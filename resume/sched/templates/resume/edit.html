@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% from 'resume/common.html' import edit_field %}
+
+{% if request.endpoint.endswith('edit') %}
+  {% set title = 'Edit Resume' %}
+{% else %}
+  {% set title = 'Add Resume' %}
+{% endif %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block main %}
+<div class="row">
+  <div class="resume-edit well offset2 span8">
+  
+
+
+    <form method="post" class="form-horizontal">
+      <legend>{{ title }}</legend>
+	    <ul class="thumbnails">
+  <li class="span4">
+      {{ edit_field(form.name, maxlength=255, class="span3",
+                    placeholder="Your official name") }}
+      {{ edit_field(form.email, maxlength=100, class="span3",
+                    placeholder="e.g Johndoe@example.com") }}
+      {{ edit_field(form.phone, maxlength=255, class="span3",
+                    placeholder="+1234567890") }}
+      {{ edit_field(form.city, maxlength=100, class="span3",
+                    placeholder="e.g London") }}
+      {{ edit_field(form.zip, maxlength=50, class="span3",
+                    placeholder="e.g 00011 Helsinki") }}
+      {{ edit_field(form.country, maxlength=255, class="span3",
+                    placeholder="e.g Finland") }}
+      {{ edit_field(form.url, maxlength=255, class="span3",
+                    placeholder="e.g http://www.Linkedin.com/anioko or www.example.com") }}
+      {{ edit_field(form.citizenship, maxlength=255, class="span3",
+                    placeholder="e.g Italian") }}
+   </li>
+ </ul>
+  <ul class="thumbnails">
+  <li class="span4">
+      {{ edit_field(form.summary_title, maxlength=255, class="span3",
+                    placeholder="e.g Financial Analysis and Reporting") }}
+      {{ edit_field(form.summary_text, maxlength=500, class="span3",
+                    placeholder="e.g Some description of the way you do things.") }}
+  </li>
+</ul>
+
+
+<ul class="thumbnails">
+  <li class="span4">
+      {{ edit_field(form.company_name, maxlength=255, class="span3",
+                    placeholder="e.g Company ABC.") }}
+      {{ edit_field(form.company_summary, maxlength=255, class="span3",
+                    placeholder="e.g Brief description of Company ABC.") }}
+      {{ edit_field(form.role, maxlength=255, class="span3",
+                    placeholder="e.g Financial Analyst Assistant.") }}
+      {{ edit_field(form.role_description, rows="5", class="span5",
+                    placeholder="More explanation of what you did.") }}
+					
+      {{ edit_field(form.start, maxlength=255, class="span3",
+                    placeholder="e.g 11.12.2014.") }}
+      {{ edit_field(form.end, maxlength=255, class="span3",
+                    placeholder="e.g 11.12.2015.") }}
+      {{ edit_field(form.currently) }}
+      {{ edit_field(form.location, maxlength=255, class="span3",
+                    placeholder="Tel Aviv") }}
+  </li>
+</ul>
+
+<ul class="thumbnails">
+  <li class="span4">
+					
+      {{ edit_field(form.company_name_two, maxlength=255, class="span3",
+                    placeholder="e.g Company ABC.") }}
+      {{ edit_field(form.company_summary_two, maxlength=255, class="span3",
+                    placeholder="e.g Brief description of Company ABC.") }}
+      {{ edit_field(form.role_two, maxlength=255, class="span3",
+                    placeholder="e.g Financial Analyst Assistant.") }}
+      {{ edit_field(form.role_description_two, rows="5", class="span5",
+                    placeholder="More explanation of what you did.") }}
+					
+      {{ edit_field(form.start_date, maxlength=255, class="span3",
+                    placeholder="e.g 11.12.2014.") }}
+      {{ edit_field(form.end_date, maxlength=255, class="span3",
+                    placeholder="e.g 11.12.2015.") }}
+      {{ edit_field(form.currently_two) }}
+      {{ edit_field(form.location_two, maxlength=255, class="span3",
+                    placeholder="Tel Aviv") }}
+  </li>
+  ...
+</ul>
+					
+
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Save</button>
+        or <a href="{{ url_for('appointment_list') }}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock main %}
+

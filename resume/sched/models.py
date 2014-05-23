@@ -138,8 +138,8 @@ class Resume(Base):
     company_summary = Column(String(255))
     role = Column(String(255))
     role_description = Column(Text)
-    start = Column(Date, nullable=False)
-    end = Column(Date, nullable=False)
+    start = Column(String(255))
+    end = Column(String(255))
     currently = Column(Boolean, default=False)
     location = Column(String(255))
 
@@ -151,8 +151,8 @@ class Resume(Base):
     company_summary_two = Column(String(255))
     role_two = Column(String(255))
     role_description_two = Column(Text)
-    start_date = Column(DateTime, nullable=False)
-    end_date = Column(DateTime, nullable=False)
+    start_date = Column(String(255))
+    end_date = Column(String(255))
     currently_two = Column(Boolean, default=False)
     location_two = Column(String(255))
 

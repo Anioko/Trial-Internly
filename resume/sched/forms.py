@@ -27,7 +27,7 @@ class ResumeForm(Form):
     represents how to display a form in HTML & accept/reject the results.
     """
     name = TextField('Name', [Length(max=255)])
-    email = EmailField('Email', [Length(max=100)])
+    email = TextField('Email', [Length(max=100)])
     phone = TextField('Phone', [Length(max=255)])
     city = TextField('City', [Length(max=100)])
     zip = TextField('Zip', [Length(max=50)])
@@ -44,12 +44,22 @@ class ResumeForm(Form):
     role_description = TextAreaField('Role Description')
     
     
-    start = DateField('Start')
-    end = DateField('End')
+    start = TextField('Start')
+    end = TextField('End')
     currently = BooleanField('Currently')
     location = TextField('Location', [Length(max=255)])
 
 
+    company_name_two = TextField('Company Name', [Length(max=255)])
+    company_summary_two = TextField('Company Summary', [Length(max=255)])
+    role_two = TextField('Role', [Length(max=255)])
+    role_description_two = TextAreaField('Role Description')
+    
+    
+    start_date = TextField('Start')
+    end_date = TextField('End')
+    currently_two = BooleanField('Currently')
+    location_two = TextField('Location', [Length(max=255)])
 
 
 class LoginForm(Form):

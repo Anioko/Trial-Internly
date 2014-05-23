@@ -41,7 +41,7 @@
     </script>
     {% block extra_head %}{% endblock extra_head %}
   </head>
-  <body>
+  <body style="width: 1135px; height: 1900px;">
 
 	
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -58,6 +58,8 @@
             <ul class="nav">
               <li><a href="{{ url_for('appointment_list') }}">My Appointments</a></li>
 			  <li><a href="{{ url_for('appointment_create') }}">Create an Appointment</a></li>
+			  <li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
+			  <li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
             </ul>
 			            <ul class="nav pull-right">
               <li class="dropdown">

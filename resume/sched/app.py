@@ -9,8 +9,8 @@ from flask.ext.login import login_user, login_required, logout_user
 from flask.ext.sqlalchemy import SQLAlchemy
 
 from sched import config, filters
-from sched.forms import AppointmentForm, LoginForm
-from sched.models import Appointment, Base, User
+from sched.forms import AppointmentForm, LoginForm, ResumeForm
+from sched.models import Appointment, Base, User, Resume
 
 
 app = Flask(__name__)
@@ -129,6 +129,85 @@ def appointment_delete(appointment_id):
     db.session.commit()
     return jsonify({'status': 'OK'})
 
+#########Views for Resume#######
+
+@app.route('/resumes/')
+@login_required
+def resumes_list():
+    """Provide HTML page listing all resumes in the database."""
+    # Query: Get all Resume objects, sorted by the resume date.
+    appts = (db.session.query(Resume)
+             .filter_by(user_id=current_user.id)
+             .order_by(Resume.start.asc()).all())
+    return render_template('resume/index.html', appts=appts)
+
+
+@app.route('/resumes/<int:resume_id>/')
+@login_required
+def resume_detail(resume_id):
+    """Provide HTML page with all details on a given resume."""
+    # Query: get Resume object by ID.
+    appt = db.session.query(Resume).get(resume_id)
+    if appt is None or appt.user_id != current_user.id:
+        # Abort with Not Found.
+        abort(404)
+    return render_template('resume/detail.html', appt=appt)
+
+
+@app.route('/resumes/create/', methods=['GET', 'POST'])
+@login_required
+def resume_create():
+    """Provide HTML form to create a new resume record."""
+    form = ResumeForm(request.form)
+    if request.method == 'POST' and form.validate():
+        appt = Resume(user_id=current_user.id)
+        form.populate_obj(appt)
+        db.session.add(appt)
+        db.session.commit()
+        # Success. Send the user back to the full resumes list.
+        return redirect(url_for('resumes_list'))
+    # Either first load or validation error at this point.
+    return render_template('resume/edit.html', form=form)
+
+
+@app.route('/resumes/<int:resume_id>/edit/', methods=['GET', 'POST'])
+@login_required
+def resume_edit(resume_id):
+    """Provide HTML form to edit a given appointment."""
+    appt = db.session.query(Resume).get(resume_id)
+    if appt is None:
+        abort(404)
+    if appt.user_id != current_user.id:
+        abort(403)
+    form = ResumeForm(request.form, appt)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(appt)
+        db.session.commit()
+        # Success. Send the user back to the detail view of that resume.
+        return redirect(url_for('resume_detail', resume_id=appt.id))
+    return render_template('resume/edit.html', form=form)
+
+
+@app.route('/resumes/<int:resume_id>/delete/', methods=['DELETE'])
+@login_required
+def resume_delete(resume_id):
+    """Delete a record using HTTP DELETE, respond with JSON for JavaScript."""
+    appt = db.session.query(Resume).get(resume_id)
+    if appt is None:
+        # Abort with simple response indicating appointment not found.
+        response = jsonify({'status': 'Not Found'})
+        response.status_code = 404
+        return response
+    if appt.user_id != current_user.id:
+        # Abort with simple response indicating forbidden.
+        response = jsonify({'status': 'Forbidden'})
+        response.status_code = 403
+        return response
+    db.session.delete(appt)
+    db.session.commit()
+    return jsonify({'status': 'OK'})
+
+#Views for Login ###########
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():

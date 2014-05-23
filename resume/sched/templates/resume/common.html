@@ -1,0 +1,79 @@
+{% macro detail(appt, link_title=false, show_edit=true, show_description=true) %}
+  <div class="resume-detail">
+    {% if link_title %}
+      <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3>
+    {% else %}
+      <h1>{{ appt.name or '(No Name)' }}</h1>
+	    <h6>{{ appt.city or '(No Location)' }}</h6>
+	        <h6>{{ appt.email }}</h6>
+	        <h6>{{ appt.phone }}</h6>
+	        <h6>{{ appt.zip }}</h6>
+	        <h6>{{ appt.url }}</h6>
+	   <hr>
+	      <h1>{{ appt.summary_title }}</h1>
+	      <h6>{{ appt.summary_text }}</h6>
+	   <hr>
+	   <h1> Experience</h1>
+	      <h4>{{ appt.company_name }}</h4>
+	      <h4>{{ appt.company_summary}}</h4>
+	      <h4>{{ appt.role}}</h4>
+	      <h4>{{ appt.role_description}}</h4>
+	      <h4>{{ appt.start}}</h4>
+	      <h4>{{ appt.end}}</h4>
+	       {% if appt.currently %}
+          <p><i class="icon-calendar"></i> {{ appt.start}}</p>
+           {% else %}
+          <p><i class="icon-calendar"></i> {{ appt.start}} </p>
+           {% endif %}
+
+	      <h4>{{ appt.company_name_two }}</h4>
+	      <h4>{{ appt.company_summary_two}}</h4>
+	      <h4>{{ appt.role_two}}</h4>
+	      <h4>{{ appt.role_description_two}}</h4>
+	      <h4>{{ appt.start_date}}</h4>
+	      <h4>{{ appt.end_date}}</h4>
+	       {% if appt.currently_two %}
+          <p><i class="icon-calendar"></i> {{ appt.start_date}}</p>
+           {% else %}
+          <p><i class="icon-calendar"></i> {{ appt.start_date}} </p>
+           {% endif %}
+	   		   
+	   
+	   
+	   
+	  
+    {% endif %}
+    {% if appt.location %}<p><i class="icon-home"></i> {{ appt.location }}</p>{% endif %}
+    {% if appt.currently %}
+      <p><i class="icon-calendar"></i> {{ appt.start}}</p>
+    {% else %}
+      <p><i class="icon-calendar"></i> {{ appt.start}} </p>
+    {% endif %}
+    {% if show_edit %}
+      <div class="edit-controls">
+        <i class="icon-pencil"></i>
+        <a href="{{ url_for('resume_edit', resume_id=appt.id) }}">Edit</a>
+        <span class="inline-pad"></span>
+        <i class="icon-trash"></i>
+        <a class="resume-delete-link" href="#" data-delete-url="{{ url_for('resume_delete', resume_id=appt.id) }}">Delete</a>
+      </div>
+    {% endif %}
+    {% if show_description and appt.role_description %}
+      <div class="row">
+        <p class="span5">
+          {{ appt.role_description | nl2br }}
+        </p>
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+{% macro edit_field(field, catch_kwargs=true) %}
+  <div class="control-group{% if field.errors %} error{% endif%}">
+    {{ field.label(class="control-label") }}
+    <div class="controls">
+      {{ field(**kwargs) }}
+      {% for error in field.errors %}<span class="help-inline">{{ error }}</span>{% endfor %}
+    </div>
+  </div>
+{% endmacro %}
