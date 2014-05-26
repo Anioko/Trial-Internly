@@ -156,6 +156,38 @@ class Resume(Base):
     currently_two = Column(Boolean, default=False)
     location_two = Column(String(255))
 
+    school_name_one = Column(String(255))
+    degree_description = Column(String(255))
+    grading = Column(String(255))
+    start_date_school = Column(String(255))
+    end_date_graduation = Column(String(255))
+    currently_three = Column(Boolean, default=False)
+    location_school = Column(String(255))
+    city_school = Column(String(255))
+    country_school = Column(String(255))
+
+    school_name_two = Column(String(255))
+    degree_description_two = Column(String(255))
+    grading_two = Column(String(255))
+    start_date_one = Column(String(255))
+    end_date_two = Column(String(255))
+    currently_four = Column(Boolean, default=False)
+    location_school_two = Column(String(255))
+    city_school_two = Column(String(255))
+    country_school_two = Column(String(255))
+
+    skills_one = Column(String(255))
+    skills_two = Column(String(255))
+    skills_three = Column(String(255))
+    skills_four = Column(String(255))
+    skills_five = Column(String(255))
+    skills_six = Column(String(255))
+    skills_seven = Column(String(255))
+    skills_eight = Column(String(255))
+    skills_nine = Column(String(255))
+    skills_ten = Column(String(255))
+
+
     def __repr__(self):
         return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)
 

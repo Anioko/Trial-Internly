@@ -2,24 +2,28 @@
 <html lang="en">
   <head>
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
-    <link href="http://netdna.bootstrapcdn.com/bootswatch/2.3.2/united/bootstrap.min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <style>
-      .content {
-        margin-top: 60px;
-      }
 
-      .inline-pad {
-        padding-left: 10px;
-      }
+	
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-      .edit-controls {
-        margin: 1em 0;
-      }
-    </style>
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<style>
+
+.navbar-inverse{
+    background-color: #2C3E50;
+    border-color: #080808;
+}
+.navbar-inverse {
+    background-image: linear-gradient(to bottom, #3C3C3C 0px, #2C3E50 100%);
+    background-repeat: repeat-x;
+}
+</style>
+
     <script>
       $(function() {
         $(".appointment-delete-link").on("click", function() {
@@ -41,27 +45,32 @@
     </script>
     {% block extra_head %}{% endblock extra_head %}
   </head>
-  <body style="width: 1135px; height: 1900px;">
 
-	
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
-          <div class="nav-collapse collapse">
-		  {% if current_user.is_authenticated() %}
-            <ul class="nav">
-              <li><a href="{{ url_for('appointment_list') }}">My Appointments</a></li>
-			  <li><a href="{{ url_for('appointment_create') }}">Create an Appointment</a></li>
-			  <li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
-			  <li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
-            </ul>
-			            <ul class="nav pull-right">
+          <a class="navbar-brand" href="#">Internly</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+          </ul>
+		  		{% if current_user.is_authenticated() %}
+          <ul class="nav navbar-nav">
+            <li><a href="{{ url_for('appointment_list') }}">My Appointments</a></li>
+			<li><a href="{{ url_for('appointment_create') }}">Create an Appointment</a></li>
+			<li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
+			<li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
+          </ul>
+		    <ul class="nav pull-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.email }} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -74,12 +83,24 @@
               <li><a href="{{ url_for('login') }}">Login</a></li>
             </ul>
             {% endif %}
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-	 <div class="content container">
-        {% block main %}{% endblock main %}
+        </div><!--/.nav-collapse -->
       </div>
     </div>
+	  	
+    <div class="container" style="width: 600px; margin-top: 100px;">
+    {% block main %}{% endblock main %}
+      <div class="starter-template">
+
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
   </body>
 </html>
+

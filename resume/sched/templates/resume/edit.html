@@ -11,9 +11,6 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block main %}
-<div class="row">
-  <div class="resume-edit well offset2 span8">
-  
 
 
     <form method="post" class="form-horizontal">
@@ -88,8 +85,67 @@
       {{ edit_field(form.currently_two) }}
       {{ edit_field(form.location_two, maxlength=255, class="span3",
                     placeholder="Tel Aviv") }}
+					
+     {{ edit_field(form.school_name_one, maxlength=255, class="span3",
+                    placeholder="e.g Stanford University .") }}
+	 {{ edit_field(form.degree_description, maxlength=255, class="span3",
+                    placeholder="e.g Bachelor of Business Administration .") }}
+     {{ edit_field(form.grading, maxlength=255, class="span3",
+                    placeholder="e.g Distinction .") }}
+	 {{ edit_field(form.start_date_school, maxlength=255, class="span3",
+                    placeholder="e.g 25.08.2010.") }}
+     {{ edit_field(form.end_date_graduation, maxlength=255, class="span3",
+                    placeholder="e.g 24.10.2013.") }}
+	 {{ edit_field(form.currently_three) }}
+	 {{ edit_field(form.location_school, maxlength=255, class="span3",
+                    placeholder="e.g London.") }}
+	{{ edit_field(form.city_school, maxlength=255, class="span3",
+                    placeholder="e.g Maryland.") }}
+	{{ edit_field(form.country_school, maxlength=255, class="span3",
+                    placeholder="e.g Estonia.") }}
+	
+     {{ edit_field(form.school_name_two, maxlength=255, class="span3",
+                    placeholder="e.g Stanford University .") }}
+	 {{ edit_field(form.degree_description_two, maxlength=255, class="span3",
+                    placeholder="e.g Bachelor of Business Administration .") }}
+     {{ edit_field(form.grading_two, maxlength=255, class="span3",
+                    placeholder="e.g Distinction .") }}
+	 {{ edit_field(form.start_date_one, maxlength=255, class="span3",
+                    placeholder="e.g 25.08.2010.") }}
+     {{ edit_field(form.end_date_two, maxlength=255, class="span3",
+                    placeholder="e.g 24.10.2013.") }}
+	 {{ edit_field(form.currently_four) }}
+	 {{ edit_field(form.location_school_two, maxlength=255, class="span3",
+                    placeholder="e.g London.") }}
+	{{ edit_field(form.city_school_two, maxlength=255, class="span3",
+                    placeholder="e.g Maryland.") }}
+	{{ edit_field(form.country_school_two, maxlength=255, class="span3",
+                    placeholder="e.g Finland.") }}
+	
+	{{ edit_field(form.skills_one, maxlength=255, class="span3",
+                    placeholder="e.g Java Programming.") }}
+					
+	{{ edit_field(form.skills_two, maxlength=255, class="span3",
+                    placeholder="e.g C++ Programming.") }}
+    {{ edit_field(form.skills_three, maxlength=255, class="span3",
+                    placeholder="e.g Finnish Language.") }}
+	{{ edit_field(form.skills_four, maxlength=255, class="span3",
+                    placeholder="e.g Estonian Language.") }}
+	{{ edit_field(form.skills_five, maxlength=255, class="span3",
+                    placeholder="e.g Internet Marketing.") }}
+	{{ edit_field(form.skills_six, maxlength=255, class="span3",
+                    placeholder="e.g Blogging.") }}
+	{{ edit_field(form.skills_seven, maxlength=255, class="span3",
+                    placeholder="e.g Python Programming.") }}
+	{{ edit_field(form.skills_eight, maxlength=255, class="span3",
+                    placeholder="e.g PHP Programming.") }}
+	{{ edit_field(form.skills_nine, maxlength=255, class="span3",
+                    placeholder="e.g Java Programming.") }}
+	{{ edit_field(form.skills_ten, maxlength=255, class="span3",
+                    placeholder="e.g Social Media Marketing.") }}
+					
+	
   </li>
-  ...
 </ul>
 					
 
@@ -99,7 +155,5 @@
         or <a href="{{ url_for('appointment_list') }}">Cancel</a>
       </div>
     </form>
-  </div>
-</div>
 {% endblock main %}
 

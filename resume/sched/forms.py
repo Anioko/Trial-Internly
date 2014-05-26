@@ -61,6 +61,39 @@ class ResumeForm(Form):
     currently_two = BooleanField('Currently')
     location_two = TextField('Location', [Length(max=255)])
 
+    school_name_one = TextField('School Name One')
+    degree_description = TextField('Degree Description')
+    grading = TextField('Grading')
+    start_date_school = TextField('Start')
+    end_date_graduation = TextField('End')
+    currently_three = BooleanField('Currently')
+    location_school = TextField('Location School')
+    city_school = TextField('City')
+    country_school = TextField('Country')
+
+    school_name_two = TextField('School')
+    degree_description_two = TextField('Degree Description')
+    grading_two = TextField('Grading')
+    start_date_one = TextField('Start')
+    end_date_two = TextField('End')
+    currently_four = BooleanField('Currently')
+    location_school_two = TextField('Location')
+    city_school_two = TextField('City')
+    country_school_two = TextField('Country')
+
+    skills_one = TextField('Skills')
+    skills_two = TextField('Skills')
+    skills_three = TextField('Skills')
+    skills_four = TextField('Skills')
+    skills_five = TextField('Skills')
+    skills_six = TextField('Skills')
+    skills_seven = TextField('Skills')
+    skills_eight = TextField('Skills')
+    skills_nine = TextField('Skills')
+    skills_ten = TextField('Skills')
+
+    
+
 
 class LoginForm(Form):
     """Render HTML input for user login form.
