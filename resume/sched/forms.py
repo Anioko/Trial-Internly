@@ -2,22 +2,31 @@
 
 from wtforms import Form, BooleanField, DateTimeField, PasswordField
 from wtforms import TextAreaField, TextField
-from wtforms.validators import Length, required
+from wtforms.validators import Length, required, Required, EqualTo
 
 
-class AppointmentForm(Form):
-    """Render HTML input for Appointment model & validate submissions.
 
-    This matches the models.Appointment class very closely. Where
-    models.Appointment represents the domain and its persistence, this class
-    represents how to display a form in HTML & accept/reject the results.
-    """
-    title = TextField('Title', [Length(max=255)])
-    start = DateTimeField('Start', [required()])
-    end = DateTimeField('End')
-    allday = BooleanField('All Day')
-    location = TextField('Location', [Length(max=255)])
-    description = TextAreaField('Description')
+
+
+
+# Custom validators to check if user or email already exists
+def validate_user(form, field):
+  if db.session.query(User).filter_by(username=form.username.data).count() > 0:
+    raise validators.ValidationError('Username already exists')
+
+def validate_email(form, field):
+  if db.session.query(User).filter_by(email=form.email.data).count() > 0:
+    raise validators.ValidationError('Email already in use')
+
+
+class SignupForm(Form):
+  username = TextField('username', validators = [Required(), validate_user])
+  password = PasswordField('password', [
+    Required(message='Password cannot be empty'),
+    EqualTo('confirm', message='Passwords did not match'),
+    Length(min=8, max=100, message='Password too short')
+  ])
+  confirm = PasswordField('Repeat password', validators = [Required()])
 
 class ResumeForm(Form):
     """Render HTML input for Resume model & validate submissions.

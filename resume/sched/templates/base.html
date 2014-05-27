@@ -26,14 +26,14 @@
 
     <script>
       $(function() {
-        $(".appointment-delete-link").on("click", function() {
+        $(".resume-delete-link").on("click", function() {
           var delete_url = $(this).attr('data-delete-url');
           $.ajax({
             url: delete_url,
             type: 'DELETE',
             success: function(response) {
               if (response.status == 'OK') {
-                window.location = {{ url_for('appointment_list') }};
+                window.location = {{ url_for('resumes_list') }};
               } else {
                 alert('Delete failed.')
               }
@@ -65,10 +65,9 @@
           </ul>
 		  		{% if current_user.is_authenticated() %}
           <ul class="nav navbar-nav">
-            <li><a href="{{ url_for('appointment_list') }}">My Appointments</a></li>
-			<li><a href="{{ url_for('appointment_create') }}">Create an Appointment</a></li>
 			<li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
 			<li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
+			<li><a href="{{ url_for('all_resumes') }}">All Resumes</a></li>
           </ul>
 		    <ul class="nav pull-right">
               <li class="dropdown">

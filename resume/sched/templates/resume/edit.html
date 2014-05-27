@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'candidates_base.html' %}
 
 {% from 'resume/common.html' import edit_field %}
 
@@ -13,12 +13,13 @@
 {% block main %}
 
 
-    <form method="post" class="form-horizontal">
+
+
+    <form method="post" class="form-control">
       <legend>{{ title }}</legend>
-	    <ul class="thumbnails">
-  <li class="span4">
+
       {{ edit_field(form.name, maxlength=255, class="span3",
-                    placeholder="Your official name") }}
+                    placeholder="Your official name e.g Mark Zukerberg") }}
       {{ edit_field(form.email, maxlength=100, class="span3",
                     placeholder="e.g Johndoe@example.com") }}
       {{ edit_field(form.phone, maxlength=255, class="span3",
@@ -33,20 +34,19 @@
                     placeholder="e.g http://www.Linkedin.com/anioko or www.example.com") }}
       {{ edit_field(form.citizenship, maxlength=255, class="span3",
                     placeholder="e.g Italian") }}
-   </li>
- </ul>
-  <ul class="thumbnails">
-  <li class="span4">
+
+
+
+					<p>
       {{ edit_field(form.summary_title, maxlength=255, class="span3",
                     placeholder="e.g Financial Analysis and Reporting") }}
       {{ edit_field(form.summary_text, maxlength=500, class="span3",
                     placeholder="e.g Some description of the way you do things.") }}
-  </li>
-</ul>
+					</p>
 
 
-<ul class="thumbnails">
-  <li class="span4">
+					<p>
+
       {{ edit_field(form.company_name, maxlength=255, class="span3",
                     placeholder="e.g Company ABC.") }}
       {{ edit_field(form.company_summary, maxlength=255, class="span3",
@@ -63,11 +63,8 @@
       {{ edit_field(form.currently) }}
       {{ edit_field(form.location, maxlength=255, class="span3",
                     placeholder="Tel Aviv") }}
-  </li>
-</ul>
-
-<ul class="thumbnails">
-  <li class="span4">
+					</p>
+                    <p> 
 					
       {{ edit_field(form.company_name_two, maxlength=255, class="span3",
                     placeholder="e.g Company ABC.") }}
@@ -85,7 +82,7 @@
       {{ edit_field(form.currently_two) }}
       {{ edit_field(form.location_two, maxlength=255, class="span3",
                     placeholder="Tel Aviv") }}
-					
+					</p>
      {{ edit_field(form.school_name_one, maxlength=255, class="span3",
                     placeholder="e.g Stanford University .") }}
 	 {{ edit_field(form.degree_description, maxlength=255, class="span3",
@@ -145,14 +142,10 @@
                     placeholder="e.g Social Media Marketing.") }}
 					
 	
-  </li>
-</ul>
-					
-
 
       <div class="form-actions">
-        <button type="submit" class="btn">Save</button>
-        or <a href="{{ url_for('appointment_list') }}">Cancel</a>
+        <button type="submit" class="btn btn-default">Save</button>
+        or <a href="{{ url_for('resumes_list') }}">Cancel</a>
       </div>
     </form>
 {% endblock main %}

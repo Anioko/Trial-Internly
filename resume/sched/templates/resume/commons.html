@@ -1,4 +1,4 @@
-{% macro detail(appt, link_title=false, show_edit=true, show_summary=true) %}
+{% macro detail(appt, link_title=false, show_edit=false, show_summary=false) %}
   <div class="resume-detail">
       {% if show_edit %}
       <div class="edit-controls"  align="right">
@@ -9,14 +9,11 @@
         <a class="resume-delete-link" href="#" data-delete-url="{{ url_for('resume_delete', resume_id=appt.id) }}">Delete</a>
       </div>
     {% endif %}
-
     {% if link_title %} 
-      <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
+      <h3><a href="{{ url_for('resume_details', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
     {% else %}
       <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
-	        <h6>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h6>
-	      
-			
+	    <h6>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h6>
 	   <hr>
 	      <h1 align="center">{{ appt.summary_title }}</h1>
 	      <h6>{{ appt.summary_text }}</h6>
@@ -29,13 +26,11 @@
 
  <h4>{{ appt.company_name_two }}, {{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }}    {% if appt.currently %}<p> Present</p>{% else %} {{ appt.start}} {% endif %} </h4>
 		  
-           
-        
-		
-     <h6>{{ appt.company_summary_two}}</h6>
-	    <h4>{{ appt.role_two}}</h4>
+	      <h6>{{ appt.company_summary_two}}</h6>
+	      <h4>{{ appt.role_two}}</h4>
 	      <h6>{{ appt.role_description_two}}</h6>
-		   <hr>
+		  
+	 <hr>
 	     <h2 align="center"> Education</h2>
 		 {{ appt.school_name_one}}
 		 {{ appt.degree_description}}
@@ -72,15 +67,17 @@
 
 	  
     {% endif %}
-	
-   {% if show_summary and appt.summary_title %}
 
-          {{ appt.summary_title | nl2br }}
-
-    {% endif %}
 
 		 
-
+	   {% if show_summary and appt.summary_title %}
+      <!---<div class="row">
+        <p class="span5">----->
+          {{ appt.summary_title | nl2br }}
+        <!------</p>
+      </div>--------->
+       {% endif %}
+		 
     {% if show_edit %}
       <div class="edit-controls"  align="right">
         <i class="icon-pencil"></i>

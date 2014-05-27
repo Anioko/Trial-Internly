@@ -12,6 +12,16 @@ from werkzeug import check_password_hash, generate_password_hash
 Base = declarative_base()
 
 
+#ROLE_USER = 0
+#ROLE_COMPANY_SILVER = 1
+#ROLE_COMPANY_FREE = 2
+#ROLE_COMPANY_PREMIUM = 3
+#ROLE_COMPANY_PREMIUM_PRO = 4
+#ROLE_SCHOOL = 5
+ROLE_CANDIDATE = 6
+
+
+
 class User(Base):
     """A user login, with credentials and authentication."""
     __tablename__ = 'user'
@@ -23,6 +33,7 @@ class User(Base):
     name = Column('name', String(200))
     email = Column(String(100), unique=True, nullable=False)
     active = Column(Boolean, default=True)
+    role = Column(Integer, default=ROLE_CANDIDATE)
 
     _password = Column('password', String(100))
 
@@ -77,38 +88,6 @@ class User(Base):
     def __repr__(self):
         return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)
 
-
-class Appointment(Base):
-    """An appointment on the calendar."""
-    __tablename__ = 'appointment'
-
-    id = Column(Integer, primary_key=True)
-    created = Column(DateTime, default=datetime.now)
-    modified = Column(DateTime, default=datetime.now, onupdate=datetime.now)
-
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
-    user = relationship(User, lazy='joined', join_depth=1, viewonly=True)
-
-    title = Column(String(255))
-    start = Column(DateTime, nullable=False)
-    end = Column(DateTime, nullable=False)
-    allday = Column(Boolean, default=False)
-    location = Column(String(255))
-    description = Column(Text)
-
-    @property
-    def duration(self):
-        # If the datetime type were supported natively on all database
-        # management systems (is not on SQLite), then this could be a
-        # hybrid_property, where filtering clauses could compare
-        # Appointment.duration. Without that support, we leave duration as an
-        # instance property, where appt.duration is calculated for us.
-        delta = self.end - self.start
-        return delta.days * 24 * 60 * 60 + delta.seconds
-
-    def __repr__(self):
-        return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)
-    
 
 class Resume(Base):
     """CV's."""
