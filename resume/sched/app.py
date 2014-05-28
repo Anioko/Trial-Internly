@@ -18,9 +18,19 @@ from flask import send_from_directory
 from werkzeug import secure_filename
 
 
+from flask.ext.admin import Admin, BaseView, expose
+from flask.ext.admin.contrib.sqla import ModelView
+
+
+
+
+
+
 
 app = Flask(__name__)
 app.config.from_object(config)
+
+
 
 
 # Use Flask-SQLAlchemy for its engine and session configuration. Load the
@@ -29,12 +39,17 @@ app.config.from_object(config)
 db = SQLAlchemy(app)
 db.Model = Base
 
+admin = Admin(app, name='Internly')
+# Add administrative views here
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Resume, db.session))
+
 
 # Use Flask-Login to track the current user in Flask's session.
 login_manager = LoginManager()
 login_manager.setup_app(app)
 login_manager.login_view = 'login'
-login_manager.login_message = 'Please log in to see your appointments.'
+login_manager.login_message = 'Please log in .'
 
 
 @login_manager.user_loader
@@ -82,7 +97,7 @@ def resume_details(resume_id):
     return render_template('resume/details.html', appt=appt)
 
 
-@app.route('/resumes/')
+@app.route('/dashboard/')
 @login_required
 def resumes_list():
     """Provide HTML page listing all resumes in the database."""
@@ -90,6 +105,7 @@ def resumes_list():
     appts = (db.session.query(Resume)
              .filter_by(user_id=current_user.id)
              .order_by(Resume.start.asc()).all())
+
     return render_template('resume/index.html', appts=appts)
 
 
@@ -163,6 +179,107 @@ def resume_delete(resume_id):
     return jsonify({'status': 'OK'})
 
 
+#########Views for Positions#######
+
+@app.route('/positions/')
+@login_required
+def all_positionss():
+    """Provide HTML page listing all resumes in the database."""
+    # Query: Get all Resume objects, sorted by the resume date.
+    appts = db.session.query(Position).all()
+    return render_template('position/all.html', appts=appts)
+
+@app.route('/positions/<int:position_id>/')
+@login_required
+def position_details(position_id):
+    """Provide HTML page with all details on a given resume."""
+    # Query: get Position object by ID.
+    appt = db.session.query(Position).get(position_id)
+    return render_template('position/details.html', appt=appt)
+
+
+@app.route('/dashboard/')
+@login_required
+def position_list():
+    """Provide HTML page listing all resumes in the database."""
+    # Query: Get all Position objects, sorted by the position date.
+    appts = (db.session.query(Position)
+             .filter_by(user_id=current_user.id)
+             .order_by(Position.start.asc()).all())
+
+    return render_template('position/index.html', appts=appts)
+
+
+@app.route('/positions/<int:position_id>/')
+@login_required
+def position_detail(position_id):
+    """Provide HTML page with all details on a given resume."""
+    # Query: get Position object by ID.
+    appt = db.session.query(Position).get(position_id)
+    if appt is None or appt.user_id != current_user.id:
+        # Abort with Not Found.
+        abort(404)
+    return render_template('position/detail.html', appt=appt)
+
+
+
+
+
+
+@app.route('/positions/create/', methods=['GET', 'POST'])
+@login_required
+def position_create():
+    """Provide HTML form to create a new resume record."""
+    form = PositionForm(request.form)
+    if request.method == 'POST' and form.validate():
+        appt = Position(user_id=current_user.id)
+        form.populate_obj(appt)
+        db.session.add(appt)
+        db.session.commit()
+        # Success. Send the user back to the full resumes list.
+        return redirect(url_for('positions_list'))
+    # Either first load or validation error at this point.
+    return render_template('position/edit.html', form=form)
+
+
+@app.route('/positions/<int:position_id>/edit/', methods=['GET', 'POST'])
+@login_required
+def position_edit(resume_id):
+    """Provide HTML form to edit a given position."""
+    appt = db.session.query(Position).get(position_id)
+    if appt is None:
+        abort(404)
+    if appt.user_id != current_user.id:
+        abort(403)
+    form = PositionForm(request.form, appt)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(appt)
+        db.session.commit()
+        # Success. Send the user back to the detail view of that resume.
+        return redirect(url_for('position_detail', position_id=appt.id))
+    return render_template('position/edit.html', form=form)
+
+
+@app.route('/positions/<int:position_id>/delete/', methods=['DELETE'])
+@login_required
+def position_delete(resume_id):
+    """Delete a record using HTTP DELETE, respond with JSON for JavaScript."""
+    appt = db.session.query(Position).get(position_id)
+    if appt is None:
+        # Abort with simple response indicating position not found.
+        response = jsonify({'status': 'Not Found'})
+        response.status_code = 404
+        return response
+    if appt.user_id != current_user.id:
+        # Abort with simple response indicating forbidden.
+        response = jsonify({'status': 'Forbidden'})
+        response.status_code = 403
+        return response
+    db.session.delete(appt)
+    db.session.commit()
+    return jsonify({'status': 'OK'})
+
+
 ###Public Views
 
 @app.route('/')
@@ -199,7 +316,7 @@ def signup():
                 role=6)
     db.session.add(user)
     db.session.commit()
-    flash('User successfully registered')
+    flash('User successfully registered. Please Login with your details')
     return redirect(url_for('login'))
 
 
@@ -214,6 +331,7 @@ def login():
     if request.method == 'POST' and form.validate():
         email = form.username.data.lower().strip()
         password = form.password.data.strip()
+        role = 3
         user, authenticated = \
             User.authenticate(db.session.query, email, password)
         if authenticated:
@@ -223,6 +341,40 @@ def login():
             error = 'Incorrect username or password. Try again.'
     return render_template('user/login.html', form=form, error=error)
 
+
+
+
+
+##
+##@app.route("/login", methods=["GET", "POST"])
+##def login():
+##    form = LoginForm(request.form)
+##    if request.method == 'POST' and form.validate():
+##        if role = 3
+##        
+##        user = User.select.filter_by(username = user, role = 3).first()
+##        # login and validate the user...
+##        
+##        login_user(user)
+##        flash("Logged in successfully.")
+##        return redirect(request.args.get("next") or url_for("index"))
+##    return render_template("user/login.html", form=form)
+
+##
+##@app.route('/login/', methods=['GET', 'POST'])
+##def login():
+##    
+##    if current_user.is_authenticated():
+##        
+##        return redirect(url_for('resumes_list'))
+##    
+##    form = LoginForm()
+##    if form.validate_on_submit():
+##        user = User.query.filter_by(username = user, role = 3).first()
+##        login_user(user)
+##        
+##        return redirect(url_for('resumes_list')
+            
 
 @app.route('/logout/')
 def logout():

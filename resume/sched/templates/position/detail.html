@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+
+
+{% block traniee_position_title %}{{ position.traniee_position_title }} {% endblock traniee_position_title %}
+{% block description %}{{ position.description }} {% endblock description %}
+{% block pub_date %}{{ position.pub_date }} {% endblock pub_date %}
+{% block company_website %}{{ position.company_website }} {% endblock company_website %}
+{% block company_name %}{{ position.company_name }} {% endblock company_name %}
+{% block required_skill_one %}{{ position.required_skill_one }} {% endblock required_skill_one %}
+{% block required_skill_two %}{{ position.required_skill_two }} {% endblock required_skill_two %}
+{% block required_skill_three %}{{ position.required_skill_three }} {% endblock required_skill_three %}
+{% block required_skill_four %}{{ position.required_skill_four }} {% endblock required_skill_four %}
+{% block required_skill_five %}{{ position.required_skill_five }} {% endblock required_skill_five %}
+
+{% block main %}
+ <a href="{{ url_for('position_edit', position_id=position.id) }}">Edit</a>
+<div class="row">
+  <div class="span12">
+	<h1>{{ position.traniee_position_title }}</h1> by <h2>{{ position.company_name }}</h2>
+	<h6>{{ position.company_website }}</h6>
+	<h6>{{ position.description }}</h6>
+	<p> The following skills are required </p>
+	<h6>{{ position.required_skill_one }} </h6>
+	<h6>{{ position.required_skill_two }} </h6>
+	<h6>{{ position.required_skill_three }}</h6>
+	<h6>{{ position.required_skill_four }}</h6>
+	<h6>{{ position.required_skill_five }}</h6>
+	<h5> Published on {{ position.pub_date }}</h5>
+  </div>
+</div>
+{% endblock main %}
+
+
+    traniee_position_title = Column(String(255))
+     = Column(String(255))
+    required_skill_two = Column(String(255))
+    required_skill_three = Column(String(255))
+    required_skill_four = Column(String(255))
+    required_skill_five = Column(String(255))
+    description = Column(Text)
+    company_website = Column(String(255))
+    company_name = Column(String(255))
+    location = Column(String(255))
+    pub_date = Column(DateTime, nullable=False)

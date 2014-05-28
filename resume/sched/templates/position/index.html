@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% from 'position/common.html' import detail %}
+
+{% block title %}position Page{% endblock title %}
+
+{% block main %}
+
+  {% for position in position %}
+    <div class="span12">
+      {{ detail(position, link_title=true, show_edit=false, show_description=false) }}
+	  
+    </div>
+  {% else %}
+    <h3 class="span12">No positions Here.</h3>
+  {% endfor %}
+
+{% endblock main %}

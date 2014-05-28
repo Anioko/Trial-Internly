@@ -174,6 +174,42 @@ class Resume(Base):
 
 
 
+class Position(Base):
+    """An appointment on the calendar."""
+    __tablename__ = 'Positions'
+
+    id = Column(Integer, primary_key=True)
+    created = Column(DateTime, default=datetime.now)
+    modified = Column(DateTime, default=datetime.now, onupdate=datetime.now)
+
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user = relationship(User, lazy='joined', join_depth=1, viewonly=True)
+
+    company_website = Column(String(255))
+    company_name = Column(String(255))
+    location = Column(String(255))
+    pub_date = Column(DateTime, nullable=False)
+
+    traniee_position_title = Column(String(255))
+    required_skill_one = Column(String(255))
+    required_skill_two = Column(String(255))
+    required_skill_three = Column(String(255))
+    required_skill_four = Column(String(255))
+    required_skill_five = Column(String(255))
+    required_skill_six = Column(String(255))
+    required_skill_seven = Column(String(255))
+    required_skill_eight = Column(String(255))
+    required_skill_nine = Column(String(255))
+    required_skill_ten = Column(String(255))
+    description = Column(Text)
+
+    def __repr__(self):
+        return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)
+
+
+
+
+
 if __name__ == '__main__':
     from datetime import timedelta
 

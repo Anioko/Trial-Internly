@@ -29,6 +29,7 @@ class SignupForm(Form):
   confirm = PasswordField('Repeat password', validators = [Required()])
 
 class ResumeForm(Form):
+  
     """Render HTML input for Resume model & validate submissions.
 
     This matches the models.Resume class very closely. Where
@@ -100,6 +101,29 @@ class ResumeForm(Form):
     skills_eight = TextField('Skills')
     skills_nine = TextField('Skills')
     skills_ten = TextField('Skills')
+
+
+
+
+class PositionForm(Form):
+    trainee_position_title = TextField('trainee_position_title', [Length(max=255)])
+    company_name = TextField('company_name', [Length(max=255)])
+    location = TextField('location', [Length(max=255)])
+    company_website = TextField('company_website', [Length(max=255)])
+    description = TextAreaField('description')
+    required_skill_one = TextField('required_skill_one', [Length(max=255)])
+    required_skill_two = TextField('required_skill_two', [Length(max=255)])
+    required_skill_three = TextField('required_skill_three', [Length(max=255)])
+    required_skill_four = TextField('required_skill_four', [Length(max=255)])
+    required_skill_five = TextField('required_skill_five', [Length(max=255)])
+    required_skill_five = TextField('required_skill_six', [Length(max=255)])
+    required_skill_five = TextField('required_skill_seven', [Length(max=255)])
+    required_skill_five = TextField('required_skill_eight', [Length(max=255)])
+    required_skill_five = TextField('required_skill_nine', [Length(max=255)])
+    required_skill_five = TextField('required_skill_ten', [Length(max=255)])
+    pub_date = DateTimeField('pub_date')
+
+
 
     
 
