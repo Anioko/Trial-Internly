@@ -1,6 +1,6 @@
-{% extends 'layout.html' %}
+{% extends 'candidates_base.html' %}
 
-{% from 'blog/common.html' import edit_field %}
+{% from 'position/common.html' import edit_field %}
 
 {% if request.endpoint.endswith('edit') %}
   {% set title = 'Edit Openings' %}
@@ -8,15 +8,14 @@
   {% set title = 'Add Openings' %}
 {% endif %}
 
-{% block title %}{{ trainee_position_title }}{% endblock title %}
 
 {% block main %}
 
   <div class=" well offset2 span8">
     <form method="post" class="form-horizontal">
-      <span>{{ trainee_position_title }}</span>
-      {{ edit_field(form.trainee_position_title, maxlength=255, class="span3",
-                    placeholder=" Title of trainee position") }}
+      
+      {{ edit_field(form.position_title, maxlength=255, class="span3",
+                    placeholder=" Title of position") }}
       {{ edit_field(form.company_name, rows="5", class="span5",
                     placeholder="Your company's name.") }}
 	  {{ edit_field(form.company_website, maxlength=255, class="span3",
@@ -34,6 +33,16 @@
 	  {{ edit_field(form.required_skill_four, maxlength=255, class="span3",
                     placeholder="Name one skill needed") }}
 	   {{ edit_field(form.required_skill_five, maxlength=255, class="span3",
+                    placeholder="Name one skill needed") }}
+	   {{ edit_field(form.required_skill_six, maxlength=255, class="span3",
+                    placeholder="Name one skill needed") }}
+	   {{ edit_field(form.required_skill_seven, maxlength=255, class="span3",
+                    placeholder="Name one skill needed") }}
+	   {{ edit_field(form.required_skill_eight, maxlength=255, class="span3",
+                    placeholder="Name one skill needed") }}
+	   {{ edit_field(form.required_skill_nine, maxlength=255, class="span3",
+                    placeholder="Name one skill needed") }}
+	   {{ edit_field(form.required_skill_ten, maxlength=255, class="span3",
                     placeholder="Name one skill needed") }}
 	{{ edit_field(form.pub_date, class="span3", type="datetime",
                     placeholder="yyyy-mm-dd hh:mm:ss") }}

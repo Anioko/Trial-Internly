@@ -1,6 +1,6 @@
 {% extends 'candidates_base.html' %}
 
-{% from 'position/common.html' import detail %}
+{% from 'position/commons.html' import detail %}
 
 {% block title %}Position{% endblock title %}
 
@@ -12,7 +12,7 @@
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <div class="caption">
-        <h5>{{ detail(appt, link_title=true, show_edit=true) }}</h5>
+        <h5>{{ detail(appt, link_title=true, show_edit=false) }}</h5>
         <!---<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>----->
       </div>
     </div>

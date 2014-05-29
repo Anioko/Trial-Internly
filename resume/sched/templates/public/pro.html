@@ -1,0 +1,404 @@
+{% extends "public/public.html" %}
+{% block content %}
+
+        <!-- CSS code from Bootply.com editor -->
+        
+        <style type="text/css">
+            /* -- custom css for Bootstrap 3.x --*/
+
+/* move special fonts to HTML head for better performance */
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600');
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+/* fix bs3 horizontal scrollbar bug */
+.row { margin: 0; padding: 0 }
+
+h1 {
+  font-size:50px; 
+}
+
+img.grayscale {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+}
+
+.icon-bar {
+   background-color:#fff;
+}
+
+.scroll-down a, .scroll-top a {
+   color:#ffffff;
+}
+
+.scroll-down {
+   position:fixed;
+   bottom:20%;
+   right:0%;
+   color:#f9f9f9;
+}
+
+.scroll-top {
+  background-color:#33ee67;
+}
+
+.header .btn-lg {
+   font-size:28px;
+   border-color:#eeeeee;
+   padding:15px;
+   background-color:transparent;
+   color:#ffffff;
+}
+
+.header .btn-lg:hover {
+   background-color:#eeeeee;
+   color:#777777;
+}
+
+.navbar a {
+  color:#fff;
+}
+
+.navbar-bold.affix {
+  background-color:#33ee67;
+}
+
+.navbar-bold {
+  background-color:#11cc45;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.navbar-bold li a:hover {
+  background-color:#00bb34;
+}
+
+.navbar-bold li.active {
+  background-color:#00bb34;
+}
+
+.vert {
+  vertical-align: middle;
+  width:100%;
+  padding-top:4%;
+}
+
+.header h1 {
+  font-size:110px;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.1);
+  color:#431a6d;
+  color:#fff;
+  margin-left:-5px;
+  margin-bottom:5px;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.header .lead {
+  color:#eeeeee;
+  font-size:25px;
+}
+
+.header {
+  height: 80%;
+  background: #2B3E50;
+}
+
+.blurb {
+  padding: 120px 0;
+  background-color:#fefefe;
+}
+
+.blurb .panel {
+  background-color:transparent;
+}
+
+.bright {
+  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
+  color:#fff;
+}
+
+.featurette {
+  background: #545455;
+  padding: 50px 0;
+  color: #ffffff;
+}
+
+.featurette-item {
+  margin-bottom: 15px;
+}
+
+.featurette-item > i {
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 56px;
+  width: 140px;
+  height: 140px;
+  line-height: 136px;
+  vertical-align: middle; 
+  text-align: center;
+}
+
+.featurette-item > i:hover {
+  font-size: 68px;
+}
+
+.callout {
+  color: #ffffff;
+  padding-top:7%;
+  height: 100%;
+  width: 100%;
+  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.gallery {
+  padding: 50px 0;
+}
+
+.call-to-action {
+  background: #eeeeee;
+  padding: 50px 0;
+}
+
+.call-to-action .btn {
+  margin: 10px;
+}
+
+footer {
+  padding: 100px 0;
+}
+
+/* -- end custom css for Bootstrap 3.x --*/
+
+        </style>
+    </head>
+    
+    <!-- HTML code from Bootply.com editor -->
+    
+    <body  >
+        
+        
+
+
+<div class="header vert" style="height: 450px; padding-top: 55px;">
+  <div class="container">
+    
+    <h1>Premium Pro</h1>
+      <p class="lead">Call our dedicated account managers </p>
+      <div>&nbsp;</div>
+      <a href="#" class="btn btn-default btn-lg">+358443629957</a>
+  </div>
+</div>
+
+<div id="sec1" class="blurb">
+  <div class="container">
+    <div class="row">
+    <div class="row">
+      <div class="col-sm-4" style="color:#000000;">
+        
+        <h3>Entry Level Workers</h3>
+        <p>Find entry level workers, search based on skills, location. Contact them directly or create a vacancy.</p>
+		<p><a role="button" class="btn btn-primary btn-lg" href="/join">More</a></p>
+      </div>
+      <div class="col-sm-4" style="color:#000000;">
+        
+        <h3>Undergraduate & Graduate Trainees</h3> 
+        <p>Find paid and unpaid trainees, search based on skills, schools, location. Contact them directly or create a vacancy.</p>
+		<p><a role="button" class="btn btn-primary btn-lg" href="/join">More</a></p>
+      </div>
+      <div class="col-sm-4" style="color:#000000;">
+        
+        <h3>Research and Thesis Work</h3>
+        <p>Find researchers and thesis workers. Contact them directly or create a vacancy. </p>
+		<p><a role="button" class="btn btn-primary btn-lg" href="/join">More</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+         <div class="col-md-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        SUBMISSIONS</h4>
+                </div>
+                <ul class="list-group list-group-flush text-center" style="color:#FFFFFF;">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Get submissions directly</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Embed Submission link on your website</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i></li>
+                </ul>
+                <div class="panel-footer">
+                    <a class="btn btn-lg btn-block btn-danger" href="#"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        SEARCH</h4>
+                </div>
+                <ul class="list-group list-group-flush text-center" style="color:#FFFFFF;">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Filter by Country</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Filter by Languages and or Skills</li>
+					<li class="list-group-item"><i class="icon-ok text-danger"></i>Filter by Academic Levels</li>
+                </ul>
+                <div class="panel-footer">
+                    <a class="btn btn-lg btn-block btn-info" href="#"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        POST</h4>
+                </div>
+                <ul class="list-group list-group-flush text-center" style="color:#FFFFFF;">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited paid & unpaid trainee vacancies</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Post online for 60 days</li>
+					<li class="list-group-item"><i class="icon-ok text-danger"></i>Push notifications via inbox & email</li>
+                </ul>
+                <div class="panel-footer">
+                    <a class="btn btn-lg btn-block btn-success" href="#">
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        MESSAGING</h4>
+                </div>
+                <ul class="list-group list-group-flush text-center" style="color:#FFFFFF;">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Send Unlimited Mesaages</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Recieve Unlimited Messages</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i></li>
+                </ul>
+                <div class="panel-footer">
+                    <a class="btn btn-lg btn-block btn-primary" href="#">
+                  </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        OTHER BENEFITS</h4>
+                </div>
+                <ul class="list-group list-group-flush text-center" style="color:#FFFFFF;">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i> Add up to 5 team members</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Premium placements of vacancies on search results</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>27/7 support</li>
+                </ul>
+                <div class="panel-footer">
+                    <a class="btn btn-lg btn-block btn-warning" href="#">
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        RESUME ANALYTICS</h4>
+                </div>
+                <ul class="list-group list-group-flush text-center" style="color:#FFFFFF;">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i> Percentage match analysis</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Resume Comparisons</li>
+                </ul>
+                <div class="panel-footer">
+                    <a class="btn btn-lg btn-block btn-default" href="#">
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<hr>
+<div class="blurb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>Call Us </h1>
+        <p class="lead"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ <footer role="contentinfo" class="bs-docs-footer">
+  <div class="container">
+    <div class="bs-docs-social">
+  <ul class="bs-docs-social-buttons">
+  </ul>
+</div>
+
+
+    <!--<p>Designed and built with all the love in the world by <a target="_blank" href="http://twitter.com/mdo">@mdo</a> and <a target="_blank" href="http://twitter.com/fat">@fat</a>.</p>
+    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>----->
+    <p>Product of Konor Dev.co<a target="_blank" href="#"></a> Made in  Finland <a href="#">2014</a>.</p>
+    <!---<ul class="bs-docs-footer-links muted">
+      <li>Currently v3.1.1</li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Examples</a></li>
+      <li><a href="#">v2.3.2 docs</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Expo</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="">Issues</a></li>
+      <li><a href="">Releases</a></li>
+    </ul>----->
+  </div>
+</footer>
+
+<ul class="nav pull-right scroll-down">
+  <li><a href="#" title="Scroll down"><i class="icon-chevron-down icon-3x"></i></a></li>
+</ul>
+<ul class="nav pull-right scroll-top">
+  <li><a href="#" title="Scroll to top"><i class="icon-chevron-up icon-3x"></i></a></li>
+</ul>
+
+        
+        <!-- JavaScript jQuery code from Bootply.com editor -->
+        
+        <script type='text/javascript'>
+        
+        $(document).ready(function() {
+        
+            /* smooth scrolling for scroll to top */
+$('.scroll-top').click(function(){
+  $('body,html').animate({scrollTop:0},1000);
+})
+/* smooth scrolling for scroll down */
+$('.scroll-down').click(function(){
+  $('body,html').animate({scrollTop:$(window).scrollTop()+800},1000);
+})
+
+/* highlight the top nav as scrolling occurs */
+$('body').scrollspy({ target: '#navbar' })
+
+        
+        });
+        
+        </script>
+        
+ 
+{% endblock %}

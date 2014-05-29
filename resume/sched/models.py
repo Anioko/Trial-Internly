@@ -190,7 +190,7 @@ class Position(Base):
     location = Column(String(255))
     pub_date = Column(DateTime, nullable=False)
 
-    traniee_position_title = Column(String(255))
+    position_title = Column(String(255))
     required_skill_one = Column(String(255))
     required_skill_two = Column(String(255))
     required_skill_three = Column(String(255))

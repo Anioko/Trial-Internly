@@ -1,6 +1,4 @@
-
-
-{% macro detail(appt, link_title=false, show_edit=true, show_summary=false, show_skills=true) %}
+{% macro detail(appt, link_title=false, show_edit=false, show_skills=true) %}
   <div class="position-detail">
       {% if show_edit %}
       <div class="edit-controls"  align="right">
@@ -45,13 +43,6 @@
 
 
 		 
-	   {% if show_summary and appt.summary_title %}
-      <!---<div class="row">
-        <p class="span5">----->
-          {{ appt.summary_title | nl2br }}
-        <!------</p>
-      </div>--------->
-       {% endif %}
 		 
     {% if show_edit %}
       <div class="edit-controls"  align="right">

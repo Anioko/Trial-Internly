@@ -10,8 +10,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 
 from sched import config, filters
-from sched.forms import LoginForm, ResumeForm, SignupForm
-from sched.models import Base, User, Resume
+from sched.forms import LoginForm, ResumeForm, SignupForm, PositionForm
+from sched.models import Base, User, Resume, Position
 
 
 from flask import send_from_directory
@@ -183,29 +183,29 @@ def resume_delete(resume_id):
 
 @app.route('/positions/')
 @login_required
-def all_positionss():
-    """Provide HTML page listing all resumes in the database."""
-    # Query: Get all Resume objects, sorted by the resume date.
+def all_positions():
+    """Provide HTML page listing all positions in the database."""
+    # Query: Get all Position objects.
     appts = db.session.query(Position).all()
     return render_template('position/all.html', appts=appts)
 
 @app.route('/positions/<int:position_id>/')
 @login_required
 def position_details(position_id):
-    """Provide HTML page with all details on a given resume."""
+    """Provide HTML page with all details on a given position."""
     # Query: get Position object by ID.
     appt = db.session.query(Position).get(position_id)
     return render_template('position/details.html', appt=appt)
 
 
-@app.route('/dashboard/')
+@app.route('/position/')
 @login_required
 def position_list():
-    """Provide HTML page listing all resumes in the database."""
+    """Provide HTML page listing all rpositions in the database."""
     # Query: Get all Position objects, sorted by the position date.
     appts = (db.session.query(Position)
              .filter_by(user_id=current_user.id)
-             .order_by(Position.start.asc()).all())
+             .order_by(Position.pub_date.asc()).all())
 
     return render_template('position/index.html', appts=appts)
 
@@ -213,7 +213,7 @@ def position_list():
 @app.route('/positions/<int:position_id>/')
 @login_required
 def position_detail(position_id):
-    """Provide HTML page with all details on a given resume."""
+    """Provide HTML page with all details on a given positions."""
     # Query: get Position object by ID.
     appt = db.session.query(Position).get(position_id)
     if appt is None or appt.user_id != current_user.id:
@@ -229,7 +229,7 @@ def position_detail(position_id):
 @app.route('/positions/create/', methods=['GET', 'POST'])
 @login_required
 def position_create():
-    """Provide HTML form to create a new resume record."""
+    """Provide HTML form to create a new positions record."""
     form = PositionForm(request.form)
     if request.method == 'POST' and form.validate():
         appt = Position(user_id=current_user.id)
@@ -237,14 +237,14 @@ def position_create():
         db.session.add(appt)
         db.session.commit()
         # Success. Send the user back to the full resumes list.
-        return redirect(url_for('positions_list'))
+        return redirect(url_for('position_list'))
     # Either first load or validation error at this point.
     return render_template('position/edit.html', form=form)
 
 
 @app.route('/positions/<int:position_id>/edit/', methods=['GET', 'POST'])
 @login_required
-def position_edit(resume_id):
+def position_edit(position_id):
     """Provide HTML form to edit a given position."""
     appt = db.session.query(Position).get(position_id)
     if appt is None:
@@ -262,7 +262,7 @@ def position_edit(resume_id):
 
 @app.route('/positions/<int:position_id>/delete/', methods=['DELETE'])
 @login_required
-def position_delete(resume_id):
+def position_delete(position_id):
     """Delete a record using HTTP DELETE, respond with JSON for JavaScript."""
     appt = db.session.query(Position).get(position_id)
     if appt is None:
@@ -285,6 +285,25 @@ def position_delete(resume_id):
 @app.route('/')
 def landing_page():
 	return render_template('layout.html')
+
+@app.route('/premium')
+def premium():
+    return render_template('public/premium.html')
+
+
+@app.route('/pro')
+def pro():
+    return render_template('public/pro.html')
+
+@app.route('/about')
+def about_us():
+    return render_template('public/about.html')
+
+@app.route('/policy')
+def data_policy():
+    return render_template('public/data_policy.html')
+
+
 
 
 ##
