@@ -106,7 +106,7 @@ def resumes_list():
              .filter_by(user_id=current_user.id)
              .order_by(Resume.start.asc()).all())
 
-    return render_template('resume/index.html', appts=appts)
+    return render_template('resume/test.html', appts=appts)
 
 
 @app.route('/resumes/<int:resume_id>/')
@@ -301,7 +301,7 @@ def about_us():
 
 @app.route('/policy')
 def data_policy():
-    return render_template('public/data_policy.html')
+    return render_template('public/policy.html')
 
 
 
@@ -328,7 +328,7 @@ def data_policy():
 @app.route('/signup/' , methods=['GET','POST'])
 def signup():
     if request.method == 'GET':
-        return render_template('user/register.html')
+        return render_template('public/signup.html')
     user = User(name=request.form['name'],
                 email=request.form['email'],
                 password=request.form['password'],
@@ -358,7 +358,7 @@ def login():
             return redirect(url_for('resumes_list'))
         else:
             error = 'Incorrect username or password. Try again.'
-    return render_template('user/login.html', form=form, error=error)
+    return render_template('public/login.html', form=form, error=error)
 
 
 

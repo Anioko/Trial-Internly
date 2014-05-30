@@ -40,11 +40,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>          </button>
-          <a class="navbar-brand" href="#">Internly</a>
+          <a class="navbar-brand" href="/">Internly</a>
         </div>
+		{% if current_user.is_authenticated() %}
         <div class="navbar-collapse collapse">
-		  {% if current_user.is_authenticated() %}
+		  
 		   <ul class="nav navbar-nav">
+		   	<li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
+			<li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
+			<li><a href="{{ url_for('all_resumes') }}">All Resumes</a></li> <!------Only companies & Admin View--------->
+			<li><a href="{{ url_for('position_create') }}">Add Requirements </a></li>
+			<li><a href="{{ url_for('position_list') }}">Requirements Added </a></li>
+			<li><a href="{{ url_for('all_positions') }}">All Requirements </a></li><!-----Public View----->
           </ul>
 		      <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
@@ -56,8 +63,9 @@
             </ul>
 			{% else %}
 		 <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
+			<li><a href="/about">Policy</a></li>
             <!--<li><a href="#contact">Contact</a></li>--->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pricing <b class="caret"></b></a>
@@ -68,8 +76,8 @@
             </li>
           </ul>
 		  <ul class="nav navbar-nav navbar-right">
-            <li><a target="_blank" href="/company/signup">Signup</a></li>
-            <li><a target="_blank" href="company/login">Login</a></li>
+            <li><a target="_blank" href="/signup">Signup</a></li>
+            <li><a target="_blank" href="/login">Login</a></li>
           </ul>
 		  {% endif %}
         </div><!--/.nav-collapse -->

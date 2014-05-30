@@ -15,6 +15,13 @@ body {
   width: 100%;
   font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
+body {
+    background-color: #ffffff;
+    color: #EBEBEB;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.42857;
+}
 
 /* fix bs3 horizontal scrollbar bug */
 .row { margin: 0; padding: 0 }
@@ -182,6 +189,24 @@ img.grayscale {
   margin: 10px;
 }
 
+.btn {
+    -moz-user-select: none;
+    background-color: #C85E17;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 8px 16px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+	font-color: #000000;
+}
+
 footer {
   padding: 100px 0;
 }
@@ -198,60 +223,36 @@ footer {
         
 
 
-<div class="header vert" style="height: 450px; padding-top: 55px;">
-  <div class="container">
-    
-    <h1>About us</h1>
-      <p class="lead">Call our dedicated account managers </p>
-      <div>&nbsp;</div>
-      <a href="#" class="btn btn-default btn-lg">+358443629957</a>
-  </div>
-</div>
 
-<div id="sec1" class="blurb">
   <div class="container">
-    <!--------<div class="row">
-
-  <div class="col-sm-6 col-md-4" align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-     <!----------- <div class="caption">
-        <h3>Aniekan Okono</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+<div class="row">
+  <div class="login well offset2 span8" style="margin-top: 100px;">
+    <form method="post" class="form-horizontal">
+      <legend>Login</legend>
+      {% if error %}<p class="alert alert-error">{{ error }}</p>{% endif %}
+      <div class="control-group{% if form.username.errors %} error{% endif%}">
+        {{ form.username.label(class="control-label") }}
+        <div class="controls">
+          {{ form.username }}
+          {% for error in form.username.errors %}<span class="help-inline">{{ error }}</span>{% endfor %}
+        </div>
       </div>
-    </div>
-  </div>
-    <div class="col-sm-6 col-md-4"align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-      <!--------<div class="caption">
-        <h3>Jarmo Hakulinen</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      <div class="control-group{% if form.password.errors %} error{% endif%}">
+        {{ form.password.label(class="control-label") }}
+        <div class="controls">
+          {{ form.password }}
+          {% for error in form.password.errors %}<span class="help-inline">{{ error }}</span>{% endfor %}
+        </div>
       </div>
-    </div>
-    </div>
-    <div class="col-sm-6 col-md-4"align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-      <!---<div class="caption">
-        <h3>Friend</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      <div class="form-actions">
+        <button type="submit" class="btn">Log In</button>
       </div>
-    </div>
+    </form>
   </div>
-    </div>---------->
-	<h4>Aniekan Okono (Cofounder) </h4>
-      <p>Currently lives in Helsinki, Finland. He is enthusiastic about solving problems. He plays football during his spare time </p>
-	 <br>
-	
-	<h4>Jarmo Hakulinen(Cofounder) </h4>
-	 <p>A Finn, involved in several export companies and products. Always selling or providing solutions. He is an entrepreneur and a father. </p>
-	 <p><p/>
-  </div>
+  <li><a href="{{url_for('signup')}}"> Don't have an account yet? Click here to create one</a></li>
 </div>
+  </div>
+
 
 
 
@@ -282,36 +283,5 @@ footer {
   </div>
 </footer>
 
-<ul class="nav pull-right scroll-down">
-  <li><a href="#" title="Scroll down"><i class="icon-chevron-down icon-3x"></i></a></li>
-</ul>
-<ul class="nav pull-right scroll-top">
-  <li><a href="#" title="Scroll to top"><i class="icon-chevron-up icon-3x"></i></a></li>
-</ul>
-
-        
-        <!-- JavaScript jQuery code from Bootply.com editor -->
-        
-        <script type='text/javascript'>
-        
-        $(document).ready(function() {
-        
-            /* smooth scrolling for scroll to top */
-$('.scroll-top').click(function(){
-  $('body,html').animate({scrollTop:0},1000);
-})
-/* smooth scrolling for scroll down */
-$('.scroll-down').click(function(){
-  $('body,html').animate({scrollTop:$(window).scrollTop()+800},1000);
-})
-
-/* highlight the top nav as scrolling occurs */
-$('body').scrollspy({ target: '#navbar' })
-
-        
-        });
-        
-        </script>
-        
  
 {% endblock %}
