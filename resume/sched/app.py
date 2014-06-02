@@ -106,7 +106,7 @@ def resumes_list():
              .filter_by(user_id=current_user.id)
              .order_by(Resume.start.asc()).all())
 
-    return render_template('resume/test.html', appts=appts)
+    return render_template('resume/dashboard.html', appts=appts)
 
 
 @app.route('/resumes/<int:resume_id>/')
@@ -118,7 +118,7 @@ def resume_detail(resume_id):
     if appt is None or appt.user_id != current_user.id:
         # Abort with Not Found.
         abort(404)
-    return render_template('resume/detail.html', appt=appt)
+    return render_template('resume/resume_detail.html', appt=appt)
 
 
 
@@ -284,7 +284,12 @@ def position_delete(position_id):
 
 @app.route('/')
 def landing_page():
-	return render_template('layout.html')
+    
+    if current_user.is_authenticated():
+        
+        return redirect(url_for('resumes_list'))
+    else:
+        return render_template('layout.html')
 
 @app.route('/premium')
 def premium():
@@ -327,6 +332,11 @@ def data_policy():
 
 @app.route('/signup/' , methods=['GET','POST'])
 def signup():
+    
+    if current_user.is_authenticated():
+        
+        return redirect(url_for('resumes_list'))
+    
     if request.method == 'GET':
         return render_template('public/signup.html')
     user = User(name=request.form['name'],

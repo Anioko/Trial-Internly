@@ -1,18 +1,5 @@
-{% extends "public/public.html" %}       
-{% from 'resume/commons.html' import detail %}
-{% block main %}
-<div class="container" style="margin-top: 100px;">
-<div class="row">
-
-<div class="panel panel-default">
-  <div class="panel-heading">Resume</div>
-  <div class="panel-body">
-        {{ detail(appt) }}
-  </div>
-</div>
-</div>
-</div>
-
+{% extends "public/public.html" %}
+{% block content %}
 
         <!-- CSS code from Bootply.com editor -->
         
@@ -29,8 +16,8 @@ body {
   font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 body {
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #ffffff;
+    color: #EBEBEB;
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 15px;
     line-height: 1.42857;
@@ -224,16 +211,41 @@ footer {
   padding: 100px 0;
 }
 
-.panel {
-    background-color: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    margin-bottom: 21px;
-}
-
 /* -- end custom css for Bootstrap 3.x --*/
 
         </style>
+    </head>
+    
+    <!-- HTML code from Bootply.com editor -->
+    
+    <body  >
+        
+{% from 'resume/common.html' import detail %}
+<div class="container" style="margin-top: 100px;">
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+  {% for appt in appts %}
+    <h4>
+      {{ detail(appt, link_title=true, show_edit=false, show_summary=true) }}
+    </h4>
+  {% else %}
+  <div class="page-header">
+  <h1>Welcome. <small>In order to be applying for entry level jobs and internships through Internly you will need to create a one time resume to use to apply to various positions. You can always edit your CV to take out certain things or add certain things as needed. Please use this link <a href="{{ url_for('resume_create') }}"> to fill out your resume</a>.</small></h1>
+  </div>
+    <h3 class="span12"></h3>
+	</div>
+   <div class="col-md-3"></div>
+  {% endfor %}
+ </div>
+ 
+</div>
+</div>
 
-{% endblock main %}
+
+
+
+
+
+ 
+{% endblock %}

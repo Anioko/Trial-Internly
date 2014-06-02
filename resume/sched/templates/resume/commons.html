@@ -12,28 +12,32 @@
     {% if link_title %} 
       <h3><a href="{{ url_for('resume_details', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
     {% else %}
-      <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
-	    <h6>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h6>
+ <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
+	        <h5>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h5>
+	      
+			
 	   <hr>
 	      <h1 align="center">{{ appt.summary_title }}</h1>
-	      <h6>{{ appt.summary_text }}</h6>
+	      <h5>{{ appt.summary_text }}</h5>
 	   <hr>
-	   <h2 align="center"> Experience</h2>
-	      <h4>{{ appt.company_name }}, {{ appt.location }} , {{ appt.start}}-{{ appt.end or (currently)}} </h4>
-	      <h6>{{ appt.company_summary}}</h6>
-	      <h4>{{ appt.role}}</h4>
-	      <h6>{{ appt.role_description}}</h6>
+	   <h1 align="center"> Experience</h1>
+	      <h3>{{ appt.company_name }}, {{ appt.location }} , {{ appt.start}}-{{ appt.end or (currently)}} </h3>
+	      <h5>{{ appt.company_summary}}</h5>
+	      <h3>{{ appt.role}}</h3>
+	      <h5>{{ appt.role_description}}</h5>
 
  <h4>{{ appt.company_name_two }}, {{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }}    {% if appt.currently %}<p> Present</p>{% else %} {{ appt.start}} {% endif %} </h4>
 		  
-	      <h6>{{ appt.company_summary_two}}</h6>
-	      <h4>{{ appt.role_two}}</h4>
-	      <h6>{{ appt.role_description_two}}</h6>
-		  
-	 <hr>
-	     <h2 align="center"> Education</h2>
+           
+        
+		
+     <h6>{{ appt.company_summary_two}}</h6>
+	    <h3>{{ appt.role_two}}</h3>
+	      <h5>{{ appt.role_description_two}}</h5>
+		   <hr>
+	     <h1 align="center"> Education</h1>
 		 {{ appt.school_name_one}}
-		 {{ appt.degree_description}}
+		 <h5>{{ appt.degree_description}}</h5>
 		 {{ appt.grading}}
 		 From {{ appt.start_date_school}}
 		 To {{ appt.end_date_graduation}}
@@ -52,7 +56,7 @@
 		 {{ appt.city_school_two}}
 		 {{ appt.country_school_two}}		 
 		<hr>
-	     <h2 align="center"> Skills & Courses</h2>
+	     <h1 align="center"> Skills & Courses</h1>
 		 {{ appt.skills_one}},
 		 {{ appt.skills_two}},
 		 {{ appt.skills_three}},

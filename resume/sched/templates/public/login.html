@@ -16,8 +16,8 @@ body {
   font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 body {
-    background-color: #ffffff;
-    color: #EBEBEB;
+    background-color: #FFFFFF;
+    color: #000000;
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 15px;
     line-height: 1.42857;
@@ -224,9 +224,12 @@ footer {
 
 
 
-  <div class="container">
+<div class="container" style="margin-top: 100px;">
+
 <div class="row">
-  <div class="login well offset2 span8" style="margin-top: 100px;">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+  <div class="login well offset2 span8">
     <form method="post" class="form-horizontal">
       <legend>Login</legend>
       {% if error %}<p class="alert alert-error">{{ error }}</p>{% endif %}
@@ -250,6 +253,7 @@ footer {
     </form>
   </div>
   <li><a href="{{url_for('signup')}}"> Don't have an account yet? Click here to create one</a></li>
+  <div class="col-md-3">.</div>
 </div>
   </div>
 

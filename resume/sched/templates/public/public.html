@@ -42,9 +42,9 @@
             <span class="icon-bar"></span>          </button>
           <a class="navbar-brand" href="/">Internly</a>
         </div>
-		{% if current_user.is_authenticated() %}
+		
         <div class="navbar-collapse collapse">
-		  
+		  {% if current_user.is_authenticated() %}
 		   <ul class="nav navbar-nav">
 		   	<li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
 			<li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
