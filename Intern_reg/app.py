@@ -5,6 +5,7 @@ import logging
 
 
 from flask import Flask
+from filters import init_app
 from flask import abort, jsonify, redirect, render_template, request, url_for , flash, session
 from flask.ext.login import LoginManager, current_user
 from flask.ext.login import login_user, login_required, logout_user
@@ -59,7 +60,8 @@ def load_user(user_id):
 
 
 # Load custom Jinja filters from the `filters` module.
-filters.init_app(app)
+#filters.init_app(app)
+init_app(app)
 
 
 # Setup logging for production.
