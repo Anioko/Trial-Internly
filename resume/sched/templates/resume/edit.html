@@ -1,6 +1,6 @@
 {% extends 'public/public.html' %}
 
-{% from 'resume/common.html' import edit_field %}
+{% from 'resume/common.html' import edit_field, edit_field2 %}
 
 {% if request.endpoint.endswith('edit') %}
   {% set title = 'Edit Resume' %}
@@ -20,127 +20,127 @@
         <div class="col-md-6"><form method="post" class="form-control">
       <legend>{{ title }}</legend>
 
-      {{ edit_field(form.name, maxlength=255, class="span3",
+      {{ edit_field(form.name, maxlength=255,
                     placeholder="Your official name e.g Mark Zukerberg") }}
-      {{ edit_field(form.email, maxlength=100, class="span3",
+      {{ edit_field(form.email, maxlength=100,
                     placeholder="e.g Johndoe@example.com") }}
-      {{ edit_field(form.phone, maxlength=255, class="span3",
+      {{ edit_field(form.phone, maxlength=255,
                     placeholder="+1234567890") }}
-      {{ edit_field(form.city, maxlength=100, class="span3",
+      {{ edit_field(form.city, maxlength=100,
                     placeholder="e.g London") }}
-      {{ edit_field(form.zip, maxlength=50, class="span3",
+      {{ edit_field(form.zip, maxlength=50,
                     placeholder="e.g 00011 Helsinki") }}
-      {{ edit_field(form.country, maxlength=255, class="span3",
+      {{ edit_field(form.country, maxlength=255,
                     placeholder="e.g Finland") }}
-      {{ edit_field(form.url, maxlength=255, class="span3",
+      {{ edit_field(form.url, maxlength=255,
                     placeholder="e.g http://www.Linkedin.com/anioko or www.example.com") }}
-      {{ edit_field(form.citizenship, maxlength=255, class="span3",
+      {{ edit_field(form.citizenship, maxlength=255,
                     placeholder="e.g Italian") }}
 
 
 
 					<p>
-      {{ edit_field(form.summary_title, maxlength=255, class="span3",
+      {{ edit_field(form.summary_title, maxlength=255,
                     placeholder="e.g Financial Analysis and Reporting") }}
-      {{ edit_field(form.summary_text, maxlength=500, class="span3",
+      {{ edit_field(form.summary_text, maxlength=500,
                     placeholder="e.g Some description of the way you do things.") }}
 					</p>
 
 
 					<p>
 
-      {{ edit_field(form.company_name, maxlength=255, class="span3",
+      {{ edit_field(form.company_name, maxlength=255,
                     placeholder="e.g Company ABC.") }}
-      {{ edit_field(form.company_summary, maxlength=255, class="span3",
+      {{ edit_field(form.company_summary, maxlength=255,
                     placeholder="e.g Brief description of Company ABC.") }}
-      {{ edit_field(form.role, maxlength=255, class="span3",
+      {{ edit_field(form.role, maxlength=255,
                     placeholder="e.g Financial Analyst Assistant.") }}
-      {{ edit_field(form.role_description, rows="5", class="span5",
+      {{ edit_field(form.role_description,
                     placeholder="More explanation of what you did.") }}
 					
-      {{ edit_field(form.start, maxlength=255, class="span3",
+      {{ edit_field(form.start, maxlength=255,
                     placeholder="e.g 11.12.2014.") }}
-      {{ edit_field(form.end, maxlength=255, class="span3",
+      {{ edit_field(form.end, maxlength=255,
                     placeholder="e.g 11.12.2015.") }}
       {{ edit_field(form.currently) }}
-      {{ edit_field(form.location, maxlength=255, class="span3",
+      {{ edit_field(form.location, maxlength=255,
                     placeholder="Tel Aviv") }}
 					</p>
                     <p> 
 					
-      {{ edit_field(form.company_name_two, maxlength=255, class="span3",
+      {{ edit_field(form.company_name_two, maxlength=255,
                     placeholder="e.g Company ABC.") }}
-      {{ edit_field(form.company_summary_two, maxlength=255, class="span3",
+      {{ edit_field(form.company_summary_two, maxlength=255,
                     placeholder="e.g Brief description of Company ABC.") }}
-      {{ edit_field(form.role_two, maxlength=255, class="span3",
+      {{ edit_field(form.role_two, maxlength=255,
                     placeholder="e.g Financial Analyst Assistant.") }}
-      {{ edit_field(form.role_description_two, rows="5", class="span5",
+      {{ edit_field(form.role_description_two,
                     placeholder="More explanation of what you did.") }}
 					
-      {{ edit_field(form.start_date, maxlength=255, class="span3",
+      {{ edit_field(form.start_date, maxlength=255,
                     placeholder="e.g 11.12.2014.") }}
-      {{ edit_field(form.end_date, maxlength=255, class="span3",
+      {{ edit_field(form.end_date, maxlength=255,
                     placeholder="e.g 11.12.2015.") }}
       {{ edit_field(form.currently_two) }}
-      {{ edit_field(form.location_two, maxlength=255, class="span3",
+      {{ edit_field(form.location_two, maxlength=255,
                     placeholder="Tel Aviv") }}
 					</p>
-     {{ edit_field(form.school_name_one, maxlength=255, class="span3",
+     {{ edit_field(form.school_name_one, maxlength=255,
                     placeholder="e.g Stanford University .") }}
-	 {{ edit_field(form.degree_description, maxlength=255, class="span3",
+	 {{ edit_field(form.degree_description, maxlength=255,
                     placeholder="e.g Bachelor of Business Administration .") }}
-     {{ edit_field(form.grading, maxlength=255, class="span3",
+     {{ edit_field(form.grading, maxlength=255,
                     placeholder="e.g Distinction .") }}
-	 {{ edit_field(form.start_date_school, maxlength=255, class="span3",
+	 {{ edit_field(form.start_date_school, maxlength=255,
                     placeholder="e.g 25.08.2010.") }}
-     {{ edit_field(form.end_date_graduation, maxlength=255, class="span3",
+     {{ edit_field(form.end_date_graduation, maxlength=255,
                     placeholder="e.g 24.10.2013.") }}
 	 {{ edit_field(form.currently_three) }}
-	 {{ edit_field(form.location_school, maxlength=255, class="span3",
+	 {{ edit_field(form.location_school, maxlength=255,
                     placeholder="e.g London.") }}
-	{{ edit_field(form.city_school, maxlength=255, class="span3",
+	{{ edit_field(form.city_school, maxlength=255,
                     placeholder="e.g Maryland.") }}
-	{{ edit_field(form.country_school, maxlength=255, class="span3",
+	{{ edit_field(form.country_school, maxlength=255,
                     placeholder="e.g Estonia.") }}
 	
-     {{ edit_field(form.school_name_two, maxlength=255, class="span3",
+     {{ edit_field(form.school_name_two, maxlength=255,
                     placeholder="e.g Stanford University .") }}
-	 {{ edit_field(form.degree_description_two, maxlength=255, class="span3",
+	 {{ edit_field(form.degree_description_two, maxlength=255,
                     placeholder="e.g Bachelor of Business Administration .") }}
-     {{ edit_field(form.grading_two, maxlength=255, class="span3",
+     {{ edit_field(form.grading_two, maxlength=255,
                     placeholder="e.g Distinction .") }}
-	 {{ edit_field(form.start_date_one, maxlength=255, class="span3",
+	 {{ edit_field(form.start_date_one, maxlength=255,
                     placeholder="e.g 25.08.2010.") }}
-     {{ edit_field(form.end_date_two, maxlength=255, class="span3",
+     {{ edit_field(form.end_date_two, maxlength=255,
                     placeholder="e.g 24.10.2013.") }}
 	 {{ edit_field(form.currently_four) }}
-	 {{ edit_field(form.location_school_two, maxlength=255, class="span3",
+	 {{ edit_field(form.location_school_two, maxlength=255,
                     placeholder="e.g London.") }}
-	{{ edit_field(form.city_school_two, maxlength=255, class="span3",
+	{{ edit_field(form.city_school_two, maxlength=255,
                     placeholder="e.g Maryland.") }}
-	{{ edit_field(form.country_school_two, maxlength=255, class="span3",
+	{{ edit_field(form.country_school_two, maxlength=255,
                     placeholder="e.g Finland.") }}
 	
-	{{ edit_field(form.skills_one, maxlength=255, class="span3",
+	{{ edit_field(form.skills_one, maxlength=255,
                     placeholder="e.g Java Programming.") }}
 					
-	{{ edit_field(form.skills_two, maxlength=255, class="span3",
+	{{ edit_field(form.skills_two, maxlength=255,
                     placeholder="e.g C++ Programming.") }}
-    {{ edit_field(form.skills_three, maxlength=255, class="span3",
+    {{ edit_field(form.skills_three, maxlength=255,
                     placeholder="e.g Finnish Language.") }}
-	{{ edit_field(form.skills_four, maxlength=255, class="span3",
+	{{ edit_field(form.skills_four, maxlength=255,
                     placeholder="e.g Estonian Language.") }}
-	{{ edit_field(form.skills_five, maxlength=255, class="span3",
+	{{ edit_field(form.skills_five, maxlength=255,
                     placeholder="e.g Internet Marketing.") }}
-	{{ edit_field(form.skills_six, maxlength=255, class="span3",
+	{{ edit_field(form.skills_six, maxlength=255,
                     placeholder="e.g Blogging.") }}
-	{{ edit_field(form.skills_seven, maxlength=255, class="span3",
+	{{ edit_field(form.skills_seven, maxlength=255,
                     placeholder="e.g Python Programming.") }}
-	{{ edit_field(form.skills_eight, maxlength=255, class="span3",
+	{{ edit_field(form.skills_eight, maxlength=255,
                     placeholder="e.g PHP Programming.") }}
-	{{ edit_field(form.skills_nine, maxlength=255, class="span3",
+	{{ edit_field(form.skills_nine, maxlength=255,
                     placeholder="e.g Java Programming.") }}
-	{{ edit_field(form.skills_ten, maxlength=255, class="span3",
+	{{ edit_field(form.skills_ten, maxlength=255,
                     placeholder="e.g Social Media Marketing.") }}
 					
 	

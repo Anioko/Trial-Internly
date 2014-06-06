@@ -36,6 +36,7 @@ class ResumeForm(Form):
     models.Resume represents the domain and its persistence, this class
     represents how to display a form in HTML & accept/reject the results.
     """
+
     name = TextField('Name', [Length(max=255)])
     email = TextField('Email', [Length(max=100)])
     phone = TextField('Phone', [Length(max=255)])
