@@ -3,7 +3,7 @@
 import logging
 
 from flask import Flask
-from flask import abort, jsonify, redirect, render_template, request, url_for, flash, session
+from flask import abort, jsonify, redirect, render_template, request, url_for, flash, session, make_response
 from flask.ext.login import LoginManager, current_user
 from flask.ext.login import login_user, login_required, logout_user
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -21,7 +21,7 @@ from werkzeug import secure_filename
 from flask.ext.admin import Admin, BaseView, expose
 from flask.ext.admin.contrib.sqla import ModelView
 
-
+from pdfs import create_pdf
 
 
 
@@ -120,6 +120,23 @@ def resume_detail(resume_id):
         abort(404)
     return render_template('resume/resume_detail.html', appt=appt)
 
+
+@app.route('/resumes_pdf/<int:resume_id>/')
+@login_required
+def resume_detail_pdf(resume_id):
+    """Provide HTML page with all details on a given resume."""
+    # Query: get Resume object by ID.
+    appt = db.session.query(Resume).get(resume_id)
+    if appt is None or appt.user_id != current_user.id:
+        # Abort with Not Found.
+        abort(404)
+
+    pdf = create_pdf(render_template('resume/resume_detail_pdf.html', appt=appt))
+
+    response = make_response(pdf.getvalue())
+    response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
+    response.mimetype = 'application/pdf'
+    return response
 
 
 
@@ -409,3 +426,4 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+

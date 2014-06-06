@@ -640,10 +640,10 @@ def register():
 
 @app.route('/company/dashboard/')
 def company_dashboard():
-    appt = Interest.select()
-    appta = Unpaid.select()
-    apptb = Paid.select()
-    apptc = Thesis.select()
+    appt = db.session.query(Interest).limit(1).all() # Interest.select()
+    appta = db.session.query(Unpaid).limit(1).all() #Unpaid.select()
+    apptb = db.session.query(Paid).limit(1).all() #Paid.select()
+    apptc = db.session.query(Thesis).limit(1).all() #Thesis.select()
     return render_template('company/dashboard.html', appt=appt,appta=appta, apptb=apptb, apptc=apptc)
 
 @app.route('/login/')
