@@ -35,8 +35,6 @@ def drop_tables():
 def add_admin(id):
     user = user_datastore.get_user(id)
     role = user_datastore.find_role('ROLE_ADMIN')
-    print user
-    print role
     user_datastore.add_role_to_user(user, role)
     db.session.commit()
 
