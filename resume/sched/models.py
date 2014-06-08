@@ -2,94 +2,117 @@
 
 from datetime import datetime
 
-from sqlalchemy import Column, ForeignKey
+from flask.ext.security import UserMixin, RoleMixin
+
+from sqlalchemy import Column, ForeignKey, Table
 from sqlalchemy import Boolean, DateTime, Integer, String, Text
-from sqlalchemy.orm import relationship, synonym
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, synonym, backref
+from sqlalchemy.sql import select
+
 from werkzeug import check_password_hash, generate_password_hash
 
+from common import db
 
-Base = declarative_base()
+ROLE_ADMIN = 0
+ROLE_USER = 1
+ROLE_COMPANY_SILVER = 2
+ROLE_COMPANY_FREE = 3
+ROLE_COMPANY_PREMIUM = 4
+ROLE_COMPANY_PREMIUM_PRO = 5
+ROLE_SCHOOL = 6
+ROLE_CANDIDATE = 7
 
+roles_users = db.Table('roles_users',
+        db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+        db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
-#ROLE_USER = 0
-#ROLE_COMPANY_SILVER = 1
-#ROLE_COMPANY_FREE = 2
-#ROLE_COMPANY_PREMIUM = 3
-#ROLE_COMPANY_PREMIUM_PRO = 4
-#ROLE_SCHOOL = 5
-ROLE_CANDIDATE = 6
+class Role(db.Model, RoleMixin):
+    __tablename__ = 'role'
+    id = Column(Integer(), primary_key=True)
+    name = Column(String(80), unique=True)
+    description = Column(String(255))
 
+    def __str__(self):
+        return self.name
 
-
-class User(Base):
+class User(db.Model, UserMixin):
     """A user login, with credentials and authentication."""
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
+    email = Column(String(255), unique=True, nullable=False)
+    password = Column('password', String(255))
+
+    # Falsk-Security
+    active = Column(Boolean())
+    confirmed_at = Column(DateTime())
+    role_id = Column(Integer, ForeignKey('role.id'), )
+    roles = relationship('Role', secondary=roles_users,
+                            backref=backref('user', lazy='dynamic'))
+
+
     created = Column(DateTime, default=datetime.now)
     modified = Column(DateTime, default=datetime.now, onupdate=datetime.now)
 
     name = Column('name', String(200))
-    email = Column(String(100), unique=True, nullable=False)
-    active = Column(Boolean, default=True)
-    role = Column(Integer, default=ROLE_CANDIDATE)
 
-    _password = Column('password', String(100))
+    #def query(cls):
+#        return cls.mapper.get_session().query(cls)
+ #   query = classmethod(query)
 
-    def _get_password(self):
-        return self._password
-
-    def _set_password(self, password):
-        if password:
-            password = password.strip()
-        self._password = generate_password_hash(password)
-
-    password_descriptor = property(_get_password, _set_password)
-    password = synonym('_password', descriptor=password_descriptor)
-
-    def check_password(self, password):
-        if self.password is None:
-            return False
-        password = password.strip()
-        if not password:
-            return False
-        return check_password_hash(self.password, password)
-
-    @classmethod
-    def authenticate(cls, query, email, password):
-        email = email.strip().lower()
-        user = query(cls).filter(cls.email==email).first()
-        if user is None:
-            return None, False
-        if not user.active:
-            return user, False
-        return user, user.check_password(password)
-
-    # Hooks for Flask-Login.
+    #role = Column(Integer, default=ROLE_CANDIDATE)
+    # def _get_password(self):
+    #     return self.password
     #
-    # As methods, these are only valid for User instances, so the
-    # authentication will have already happened in the view functions.
+    # def _set_password(self, password):
+    #     if password:
+    #         password = password.strip()
+    #     self.password = generate_password_hash(password)
     #
-    # If you prefer, you can use Flask-Login's UserMixin to get these methods.
+    # password_descriptor = property(_get_password, _set_password)
+    # password = synonym('_password', descriptor=password_descriptor)
+    #
+    # def check_password(self, password):
+    #     if self.password is None:
+    #         return False
+    #     password = password.strip()
+    #     if not password:
+    #         return False
+    #     return check_password_hash(self.password, password)
+    #
+    # @classmethod
+    # def authenticate(cls, query, email, password):
+    #     email = email.strip().lower()
+    #     user = query(cls).filter(cls.email==email).first()
+    #     if user is None:
+    #         return None, False
+    #     if not user.active:
+    #         return user, False
+    #     return user, user.check_password(password)
+    #
+    # # Hooks for Flask-Login.
+    # #
+    # # As methods, these are only valid for User instances, so the
+    # # authentication will have already happened in the view functions.
+    # #
+    # # If you prefer, you can use Flask-Login's UserMixin to get these methods.
+    #
+    # def get_id(self):
+    #     return str(self.id)
+    #
+    # def is_active(self):
+    #     return True
+    #
+    # def is_anonymous(self):
+    #     return False
+    #
+    # def is_authenticated(self):
+    #     return True
+    #
+    # def __repr__(self):
+    #     return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)
 
-    def get_id(self):
-        return str(self.id)
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
-
-    def is_authenticated(self):
-        return True
-
-    def __repr__(self):
-        return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)
-
-
-class Resume(Base):
+class Resume(db.Model):
     """CV's."""
     __tablename__ = 'resumes'
 
@@ -174,7 +197,7 @@ class Resume(Base):
 
 
 
-class Position(Base):
+class Position(db.Model):
     """An appointment on the calendar."""
     __tablename__ = 'Positions'
 
@@ -316,3 +339,4 @@ if __name__ == '__main__':
 
     # Get the first appointment matching the filter query.
     appt = session.query(Appointment).filter(Appointment.start <= datetime(2013, 5, 1)).first()
+

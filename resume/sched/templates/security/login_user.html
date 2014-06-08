@@ -1,8 +1,12 @@
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% from "security/common.html" import edit_field %}
+
+{% include "security/_messages.html" %}
 {% extends "public/public.html" %}
 {% block content %}
 
         <!-- CSS code from Bootply.com editor -->
-        
+
         <style type="text/css">
             /* -- custom css for Bootstrap 3.x --*/
 
@@ -27,7 +31,7 @@ body {
 .row { margin: 0; padding: 0 }
 
 h1 {
-  font-size:50px; 
+  font-size:50px;
 }
 
 
@@ -134,7 +138,7 @@ img.grayscale {
 }
 
 .bright {
-  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
+  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
   color:#fff;
 }
 
@@ -156,7 +160,7 @@ img.grayscale {
   width: 140px;
   height: 140px;
   line-height: 136px;
-  vertical-align: middle; 
+  vertical-align: middle;
   text-align: center;
 }
 
@@ -169,7 +173,7 @@ img.grayscale {
   padding-top:7%;
   height: 100%;
   width: 100%;
-  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
+  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -215,12 +219,12 @@ footer {
 
         </style>
     </head>
-    
+
     <!-- HTML code from Bootply.com editor -->
-    
-    <body  >
-        
-        
+
+    <body>
+
+
 
 
 
@@ -230,32 +234,26 @@ footer {
   <div class="col-md-3"></div>
   <div class="col-md-6">
   <div class="login well offset2 span8">
-    <form method="post" class="form-horizontal">
+    <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form" >
+      {{ login_user_form.hidden_tag() }}
       <legend>Login</legend>
-      {% if error %}<p class="alert alert-error">{{ error }}</p>{% endif %}
-      <div class="control-group{% if form.username.errors %} error{% endif%}">
-        {{ form.username.label(class="control-label") }}
-        <div class="controls">
-          {{ form.username }}
-          {% for error in form.username.errors %}<span class="help-inline">{{ error }}</span>{% endfor %}
-        </div>
-      </div>
-      <div class="control-group{% if form.password.errors %} error{% endif%}">
-        {{ form.password.label(class="control-label") }}
-        <div class="controls">
-          {{ form.password }}
-          {% for error in form.password.errors %}<span class="help-inline">{{ error }}</span>{% endfor %}
-        </div>
-      </div>
+       {{ edit_field(login_user_form.email) }}
+        {{ edit_field(login_user_form.password) }}
+        {{ edit_field(login_user_form.remember) }}
       <div class="form-actions">
-        <button type="submit" class="btn">Log In</button>
+        {{ render_field(login_user_form.next) }}
+        {{ render_field(login_user_form.submit) }}
       </div>
     </form>
   </div>
-  <li><a href="{{url_for('signup')}}"> Don't have an account yet? Click here to create one</a></li>
+  <li><a href="{{url_for_security('register')}}"> Don't have an account yet? Click here to create one</a></li>
   <div class="col-md-3">.</div>
 </div>
   </div>
+</div>
+
+
+
 
 
 
@@ -287,5 +285,5 @@ footer {
   </div>
 </footer>
 
- 
+
 {% endblock %}

@@ -1,8 +1,13 @@
+{% include "security/_messages.html" %}
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% from "security/common.html" import edit_field %}
+
+
 {% extends "public/public.html" %}
 {% block content %}
 
         <!-- CSS code from Bootply.com editor -->
-        
+
         <style type="text/css">
             /* -- custom css for Bootstrap 3.x --*/
 
@@ -32,7 +37,7 @@ button, input, optgroup, select, textarea {
 .row { margin: 0; padding: 0 }
 
 h1 {
-  font-size:50px; 
+  font-size:50px;
 }
 
 
@@ -139,7 +144,7 @@ img.grayscale {
 }
 
 .bright {
-  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
+  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
   color:#fff;
 }
 
@@ -161,7 +166,7 @@ img.grayscale {
   width: 140px;
   height: 140px;
   line-height: 136px;
-  vertical-align: middle; 
+  vertical-align: middle;
   text-align: center;
 }
 
@@ -174,7 +179,7 @@ img.grayscale {
   padding-top:7%;
   height: 100%;
   width: 100%;
-  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
+  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -220,12 +225,12 @@ footer {
 
         </style>
     </head>
-    
+
     <!-- HTML code from Bootply.com editor -->
-    
+
     <body  >
-        
-        
+
+
 
 
 
@@ -234,37 +239,36 @@ footer {
 <div class="col-md-3"></div>
 <div class="col-md-6">
   <div class="login well offset2 span8">
-    <form action="" method=post class="form-horizontal">
+    <form action="{{ url_for_security('register') }}" method="POST" name="register_user_form" class="form-horizontal">
+    {{ register_user_form.hidden_tag() }}
     <h2>Sign up for Application </h2>
     <div class="control-group">
         <div class="controls">
-          <input type="email" id="email" name="email" class="input-xlarge"
-            placeholder="Enter Email" value="{{ request.form.username }}"
-            required>
-        </div>
-    </div>
-    
-    <div class="control-group">
-        <div class="controls">
-          <input type="text" id="name" name="name" class="input-xlarge"
-            placeholder="Enter your Full Name" value="{{ request.form.name }}"
-            required>
+            {{ edit_field(register_user_form.email) }}
         </div>
     </div>
 
     <div class="control-group">
         <div class="controls">
-          <input type="password" id="password" name="password" class="input-xlarge"
-            placeholder="Enter Password" value="{{ request.form.password }}"
-            required>
+            {{ edit_field(register_user_form.name) }}
         </div>
     </div>
 
-    
+    <div class="control-group">
+        <div class="controls">
+            {{ edit_field(register_user_form.password) }}
+            {% if register_user_form.password_confirm %}
+            {{ edit_field(register_user_form.password_confirm) }}
+            {% endif %}
+        </div>
+    </div>
+
+
 
     <div class="control-group">
         <div class="controls">
-          <button type="submit" class="btn btn-success">Signup</button>
+          <!--<button type="submit" class="btn btn-success">Signup</button>-->
+            {{ render_field(register_user_form.submit) }}
         </div>
     </div>
   </form>
@@ -304,5 +308,5 @@ footer {
   </div>
 </footer>
 
- 
+
 {% endblock %}

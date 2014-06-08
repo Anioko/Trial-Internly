@@ -1,62 +1,65 @@
 """The Flask app, with initialization and view functions."""
 
 import logging
+from functools import wraps
 
-from flask import Flask
+from flask import send_from_directory
 from flask import abort, jsonify, redirect, render_template, request, url_for, flash, session, make_response
 from flask.ext.login import LoginManager, current_user
 from flask.ext.login import login_user, login_required, logout_user
 from flask.ext.sqlalchemy import SQLAlchemy
-
-
-from sched import config, filters
-from sched.forms import LoginForm, ResumeForm, SignupForm, PositionForm
-from sched.models import Base, User, Resume, Position
-
-
-from flask import send_from_directory
-from werkzeug import secure_filename
-
-
-from flask.ext.admin import Admin, BaseView, expose
+from flask.ext.security import Security, SQLAlchemyUserDatastore
+from flask.ext.security.signals import user_registered
+from flask.ext.admin import Admin, BaseView, expose, AdminIndexView
 from flask.ext.admin.contrib.sqla import ModelView
 
-from pdfs import create_pdf
+from werkzeug import secure_filename
+
+from sched.config import DefaultConfig
+from sched import filters
+from sched.forms import ResumeForm, PositionForm, ExtendedRegisterForm
+from sched.models import User, Resume, Position, Role
+from sched.common import app, db, security
+from sched.pdfs import create_pdf
 
 
 
+app.config.from_object(DefaultConfig)
+
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+security.init_app(app, user_datastore, register_form=ExtendedRegisterForm)
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if current_user.has_role('ROLE_ADMIN') is False:
+            abort(404)
+        return f(*args, **kwargs)
+    return decorated_function
+
+class MyAdminIndexView(AdminIndexView):
+    @login_required
+    @admin_required
+    @expose('/')
+    def index(self):
+        return self.render('admin/index.html')
+
+class AdminView(ModelView):
+    def is_accessible(self):
+        return current_user.has_role('ROLE_ADMIN')
+
+# Flask-Admin
+admin = Admin(app, name='Internly', index_view=MyAdminIndexView())
+
+admin.add_view(AdminView(User, db.session))
+admin.add_view(AdminView(Resume, db.session))
 
 
-app = Flask(__name__)
-app.config.from_object(config)
-
-
-
-
-# Use Flask-SQLAlchemy for its engine and session configuration. Load the
-# extension, giving it the app object, and override its default Model class
-# with the pure SQLAlchemy declarative Base class.
-db = SQLAlchemy(app)
-db.Model = Base
-
-admin = Admin(app, name='Internly')
-# Add administrative views here
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Resume, db.session))
-
-
-# Use Flask-Login to track the current user in Flask's session.
-login_manager = LoginManager()
-login_manager.setup_app(app)
-login_manager.login_view = 'login'
-login_manager.login_message = 'Please log in .'
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    """Hook for Flask-Login to load a User instance from a user ID."""
-    return db.session.query(User).get(user_id)
-
+@user_registered.connect_via(app)
+def user_registered_sighandler(app, user, confirm_token):
+    default_role = user_datastore.find_role("ROLE_CANDIDATE")
+    user_datastore.add_role_to_user(user, default_role)
+    db.session.commit()
 
 # Load custom Jinja filters from the `filters` module.
 filters.init_app(app)
@@ -72,10 +75,6 @@ if not app.debug:
 def error_not_found(error):
     """Render a custom template when responding with 404 Not Found."""
     return render_template('error/not_found.html'), 404
-
-
-
-
 
 
 #########Views for Resume#######
@@ -324,106 +323,3 @@ def about_us():
 @app.route('/policy')
 def data_policy():
     return render_template('public/policy.html')
-
-
-
-
-##
-##@app.route('/signup/' , methods=['GET','POST'])
-##def register():
-##    if request.method == 'GET':
-##        return render_template('public/register.html')
-##    user = User(name=request.form['name'],
-##                email=request.form['email'],
-##                password=request.form['password'],
-##                role=6)
-##    db.session.add(user)
-##    db.session.commit()
-##    flash('User successfully registered')
-##    return redirect(url_for('login'))
-##
-
-
-
-
-
-@app.route('/signup/' , methods=['GET','POST'])
-def signup():
-    
-    if current_user.is_authenticated():
-        
-        return redirect(url_for('resumes_list'))
-    
-    if request.method == 'GET':
-        return render_template('public/signup.html')
-    user = User(name=request.form['name'],
-                email=request.form['email'],
-                password=request.form['password'],
-                role=6)
-    db.session.add(user)
-    db.session.commit()
-    flash('User successfully registered. Please Login with your details')
-    return redirect(url_for('login'))
-
-
-#Views for Login ###########
-
-@app.route('/login/', methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated():
-        return redirect(url_for('resumes_list'))
-    form = LoginForm(request.form)
-    error = None
-    if request.method == 'POST' and form.validate():
-        email = form.username.data.lower().strip()
-        password = form.password.data.strip()
-        role = 3
-        user, authenticated = \
-            User.authenticate(db.session.query, email, password)
-        if authenticated:
-            login_user(user)
-            return redirect(url_for('resumes_list'))
-        else:
-            error = 'Incorrect username or password. Try again.'
-    return render_template('public/login.html', form=form, error=error)
-
-
-
-
-
-##
-##@app.route("/login", methods=["GET", "POST"])
-##def login():
-##    form = LoginForm(request.form)
-##    if request.method == 'POST' and form.validate():
-##        if role = 3
-##        
-##        user = User.select.filter_by(username = user, role = 3).first()
-##        # login and validate the user...
-##        
-##        login_user(user)
-##        flash("Logged in successfully.")
-##        return redirect(request.args.get("next") or url_for("index"))
-##    return render_template("user/login.html", form=form)
-
-##
-##@app.route('/login/', methods=['GET', 'POST'])
-##def login():
-##    
-##    if current_user.is_authenticated():
-##        
-##        return redirect(url_for('resumes_list'))
-##    
-##    form = LoginForm()
-##    if form.validate_on_submit():
-##        user = User.query.filter_by(username = user, role = 3).first()
-##        login_user(user)
-##        
-##        return redirect(url_for('resumes_list')
-            
-
-@app.route('/logout/')
-def logout():
-    logout_user()
-    return redirect(url_for('login'))
-

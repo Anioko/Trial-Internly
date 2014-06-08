@@ -3,30 +3,31 @@
 from wtforms import Form, BooleanField, DateTimeField, PasswordField
 from wtforms import TextAreaField, TextField
 from wtforms.validators import Length, required, Required, EqualTo
+from flask_security.forms import RegisterForm
 
 
+class ExtendedRegisterForm(RegisterForm):
+    name = TextField('Name', [Required()])
 
 
-
-
-# Custom validators to check if user or email already exists
-def validate_user(form, field):
-  if db.session.query(User).filter_by(username=form.username.data).count() > 0:
-    raise validators.ValidationError('Username already exists')
-
-def validate_email(form, field):
-  if db.session.query(User).filter_by(email=form.email.data).count() > 0:
-    raise validators.ValidationError('Email already in use')
-
-
-class SignupForm(Form):
-  username = TextField('username', validators = [Required(), validate_user])
-  password = PasswordField('password', [
-    Required(message='Password cannot be empty'),
-    EqualTo('confirm', message='Passwords did not match'),
-    Length(min=8, max=100, message='Password too short')
-  ])
-  confirm = PasswordField('Repeat password', validators = [Required()])
+# # Custom validators to check if user or email already exists
+# def validate_user(form, field):
+#   if db.session.query(User).filter_by(username=form.username.data).count() > 0:
+#     raise validators.ValidationError('Username already exists')
+#
+# def validate_email(form, field):
+#   if db.session.query(User).filter_by(email=form.email.data).count() > 0:
+#     raise validators.ValidationError('Email already in use')
+#
+#
+# class SignupForm(Form):
+#   username = TextField('username', validators = [Required(), validate_user])
+#   password = PasswordField('password', [
+#     Required(message='Password cannot be empty'),
+#     EqualTo('confirm', message='Passwords did not match'),
+#     Length(min=8, max=100, message='Password too short')
+#   ])
+#   confirm = PasswordField('Repeat password', validators = [Required()])
 
 class ResumeForm(Form):
   
@@ -129,10 +130,10 @@ class PositionForm(Form):
     
 
 
-class LoginForm(Form):
-    """Render HTML input for user login form.
-
-    Authentication (i.e. password verification) happens in the view function.
-    """
-    username = TextField('Username', [required()])
-    password = PasswordField('Password', [required()])
+# class LoginForm(Form):
+#     """Render HTML input for user login form.
+#
+#     Authentication (i.e. password verification) happens in the view function.
+#     """
+#     username = TextField('Username', [required()])
+#     password = PasswordField('Password', [required()])
