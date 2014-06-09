@@ -1,14 +1,15 @@
 {% macro detail(appt, link_title=false, show_edit=true, show_summary=true) %}
   <div class="resume-detail">
-      {% if show_edit %}
-      <div class="edit-controls"  align="right">
-        <i class="icon-pencil"></i>
-        <a href="{{ url_for('resume_edit', resume_id=appt.id) }}">Edit</a>
+    {% if show_edit %}
+    <div class="edit-controls"  align="right">
+        <a href="{{ url_for('resume_edit', resume_id=appt.id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-pencil fa-lg"></i> Edit</button></a>
         <span class="inline-pad"></span>
-        <i class="icon-trash"></i>
-        <a class="resume-delete-link" href="#" data-delete-url="{{ url_for('resume_delete', resume_id=appt.id) }}">Delete</a>
-      </div>
+        <a class="resume-delete-link" href="{{ url_for('resume_delete', resume_id=appt.id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-trash-o fa-lg"></i> Delete</button></a>
+        <a href="{{ url_for('resume_detail_pdf', resume_id=appt.id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-file-pdf-o fa-lg"></i> Download as PDF</button></a>
+    </div>
     {% endif %}
+
+
 
     {% if link_title %} 
       <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
