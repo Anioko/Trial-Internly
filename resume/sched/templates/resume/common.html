@@ -41,9 +41,9 @@
 		 {{ appt.school_name_one}}
 		 <h5>{{ appt.degree_description}}</h5>
 		 {{ appt.grading}}
-		 From {{ appt.start_date_school}}
-		 To {{ appt.end_date_graduation}}
-		 {{ appt.currently_three}}
+		 From {{ appt.start_date_school|datefromstring}}
+		 To {{ appt.end_date_graduation|datefromstring if not appt.currently_three else '(now)' }}
+
 		 {{ appt.location_school}}
 		 {{ appt.city_school}}
 		 {{ appt.country_school}}
@@ -51,9 +51,8 @@
 		 {{ appt.school_name_two}}
 		 {{ appt.degree_description_two}}
 		 {{ appt.grading_two}}
-		 From {{ appt.start_date_one}}
-		 To {{ appt.end_date_two}}
-		 {{ appt.currently_four}}
+		 From {{ appt.start_date_one|datefromstring}}
+		 To {{ appt.end_date_two|datefromstring if not appt.currently_four  else '(now)' }}
 		 {{ appt.location_school_two}}
 		 {{ appt.city_school_two}}
 		 {{ appt.country_school_two}}		 

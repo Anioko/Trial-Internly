@@ -64,6 +64,11 @@ def user_registered_sighandler(app, user, confirm_token):
 # Load custom Jinja filters from the `filters` module.
 filters.init_app(app)
 
+def date_from_string(date):
+    return date if len(date)>0 else '-'
+
+app.jinja_env.filters['datefromstring'] = date_from_string
+
 
 # Setup logging for production.
 if not app.debug:
