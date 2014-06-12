@@ -26,6 +26,10 @@ roles_users = db.Table('roles_users',
         db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
         db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
+postions_users = db.Table('positions_users',
+        db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+        db.Column('position_id', db.Integer(), db.ForeignKey('Positions.id')))
+
 class Role(db.Model, RoleMixin):
     __tablename__ = 'role'
     id = Column(Integer(), primary_key=True)
@@ -55,62 +59,6 @@ class User(db.Model, UserMixin):
     modified = Column(DateTime, default=datetime.now, onupdate=datetime.now)
 
     name = Column('name', String(200))
-
-    #def query(cls):
-#        return cls.mapper.get_session().query(cls)
- #   query = classmethod(query)
-
-    #role = Column(Integer, default=ROLE_CANDIDATE)
-    # def _get_password(self):
-    #     return self.password
-    #
-    # def _set_password(self, password):
-    #     if password:
-    #         password = password.strip()
-    #     self.password = generate_password_hash(password)
-    #
-    # password_descriptor = property(_get_password, _set_password)
-    # password = synonym('_password', descriptor=password_descriptor)
-    #
-    # def check_password(self, password):
-    #     if self.password is None:
-    #         return False
-    #     password = password.strip()
-    #     if not password:
-    #         return False
-    #     return check_password_hash(self.password, password)
-    #
-    # @classmethod
-    # def authenticate(cls, query, email, password):
-    #     email = email.strip().lower()
-    #     user = query(cls).filter(cls.email==email).first()
-    #     if user is None:
-    #         return None, False
-    #     if not user.active:
-    #         return user, False
-    #     return user, user.check_password(password)
-    #
-    # # Hooks for Flask-Login.
-    # #
-    # # As methods, these are only valid for User instances, so the
-    # # authentication will have already happened in the view functions.
-    # #
-    # # If you prefer, you can use Flask-Login's UserMixin to get these methods.
-    #
-    # def get_id(self):
-    #     return str(self.id)
-    #
-    # def is_active(self):
-    #     return True
-    #
-    # def is_anonymous(self):
-    #     return False
-    #
-    # def is_authenticated(self):
-    #     return True
-    #
-    # def __repr__(self):
-    #     return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)
 
 class Resume(db.Model):
     """CV's."""

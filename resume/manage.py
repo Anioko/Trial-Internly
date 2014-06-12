@@ -15,6 +15,9 @@ manager = Manager(app)
 def create_tables():
     "Create relational database tables."
     db.create_all()
+
+@manager.command
+def create_roles():
     db.session.add(Role(name='ROLE_ADMIN', description='admin'))
     db.session.add(Role(name='ROLE_USER', description='user'))
     db.session.add(Role(name='ROLE_COMPANY_SILVER', description='company silver'))
