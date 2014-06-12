@@ -1,6 +1,7 @@
 """The Flask app, with initialization and view functions."""
 
 import logging
+import base64
 from functools import wraps
 
 from flask import send_from_directory
@@ -129,6 +130,21 @@ def resume_detail(resume_id):
         # Abort with Not Found.
         abort(404)
     return render_template('resume/resume_detail.html', appt=appt)
+
+
+@app.route('/resumes/preview/<resume_id>/')
+@login_required
+def resume_preview(resume_id):
+    """Provide HTML page with all details on a given resume.
+       The url is base64 encoded so no one will try to check other resumes.
+    """
+    resume_id = base64.b64decode(resume_id)
+    appt = db.session.query(Resume).get(resume_id)
+    if appt is None:
+        # Abort with Not Found.
+        abort(404)
+    # Template without edit buttons
+    return render_template('resume/resume_detail_preview.html', appt=appt)
 
 
 @app.route('/resumes_pdf/<int:resume_id>/')
@@ -262,10 +278,6 @@ def position_detail(position_id):
     return render_template('position/detail.html', appt=appt)
 
 
-
-
-
-
 @app.route('/positions/create/', methods=['GET', 'POST'])
 @login_required
 def position_create():
@@ -319,6 +331,49 @@ def position_delete(position_id):
     db.session.commit()
     return jsonify({'status': 'OK'})
 
+@app.route('/positions/<int:position_id>/apply/')
+@login_required
+def position_apply(position_id):
+    position = db.session.query(Position).get(position_id)
+    if position is None:
+        abort(404)
+    elif current_user.id is None:
+        abort(403)
+    else:
+        if current_user in position.users:
+            flash("You have <strong>already applied</strong> for this position.", 'warning')
+        else:
+            position.users.append(current_user)
+            db.session.add(position)
+            db.session.commit()
+            flash("You have <strong>successfully applied</strong> for a {0}.".format(position.position_title), 'success')
+        return redirect(url_for('all_positions'))
+
+@app.route('/positions/<int:position_id>/applicants/')
+@login_required
+def position_list_applicants(position_id):
+
+    position = db.session.query(Position).get(position_id)
+    print position.user_id
+    print current_user.id
+    if position is None:
+        abort(404)
+    elif current_user.id is None:
+        abort(403)
+    elif position.user_id != current_user.id:
+        abort(403)
+    else:
+        applicants_resumes = {}
+        applicants = position.users
+        for applicant in applicants:
+            resumes = db.session.query(Resume).filter(Resume.user_id==applicant.id).all()
+            if len(resumes) > 0:
+                # encoding each id of resume
+                resumes = [base64.b64encode(str(resume.id)) for resume in resumes ]
+                applicants_resumes[applicant.id] = resumes
+            else:
+                applicants_resumes[applicant.id] = None
+        return render_template('position/applicants.html', applicants=applicants, resumes=applicants_resumes)
 
 ###Public Views
 

@@ -4,12 +4,11 @@
   <div class="position-detail">
       {% if show_edit %}
       <div class="edit-controls"  align="right">
-        <i class="icon-pencil"></i>
-        <a href="{{ url_for('position_edit', position_id=appt.id) }}">Edit</a>
+        <a href="{{ url_for('position_edit', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</button></a>
         <span class="inline-pad"></span>
-        <i class="icon-trash"></i>
-        <a class="position-delete-link" href="#" data-delete-url="{{ url_for('position_delete', position_id=appt.id) }}">Delete</a>
-      </div>
+        <a class="resume-delete-link" href="{{ url_for('position_delete', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i> Delete</button></a>
+        <a href="{{ url_for('position_list_applicants', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-list"></i> Show applicants</button></a>
+    </div>
     {% endif %}
 
     {% if link_title %} 
@@ -80,16 +79,7 @@
         <!------</p>
       </div>--------->
        {% endif %}
-		 
-    {% if show_edit %}
-      <div class="edit-controls"  align="right">
-        <i class="icon-pencil"></i>
-        <a href="{{ url_for('position_edit', position_id=appt.id) }}">Edit</a>
-        <span class="inline-pad"></span>
-        <i class="icon-trash"></i>
-        <a class="position-delete-link" href="#" data-delete-url="{{ url_for('position_delete', position_id=appt.id) }}">Delete</a>
-      </div>
-    {% endif %}
+
   </div>
 {% endmacro %}
 

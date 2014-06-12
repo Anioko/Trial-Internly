@@ -60,6 +60,9 @@ class User(db.Model, UserMixin):
 
     name = Column('name', String(200))
 
+    def __unicode__(self):
+        return "{0} uID:<{1}>".format(self.name, self.id)
+
 class Resume(db.Model):
     """CV's."""
     __tablename__ = 'resumes'
@@ -173,6 +176,9 @@ class Position(db.Model):
     required_skill_nine = Column(String(255))
     required_skill_ten = Column(String(255))
     description = Column(Text)
+
+    users = relationship('User', secondary=postions_users,
+                            backref=backref('User', lazy='dynamic'))
 
     def __repr__(self):
         return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)

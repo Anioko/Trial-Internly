@@ -9,8 +9,6 @@
     </div>
     {% endif %}
 
-
-
     {% if link_title %} 
       <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
     {% else %}
