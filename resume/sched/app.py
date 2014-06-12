@@ -53,6 +53,7 @@ admin = Admin(app, name='Internly', index_view=MyAdminIndexView())
 
 admin.add_view(AdminView(User, db.session))
 admin.add_view(AdminView(Resume, db.session))
+admin.add_view(AdminView(Position, db.session))
 
 
 @user_registered.connect_via(app)
@@ -85,7 +86,7 @@ def error_not_found(error):
 #########Views for Resume#######
 
 @app.route('/find/')
-@login_required
+@admin_required
 def all_resumes():
     """Provide HTML page listing all resumes in the database."""
     # Query: Get all Resume objects, sorted by the resume date.
@@ -98,11 +99,16 @@ def resume_details(resume_id):
     """Provide HTML page with all details on a given resume."""
     # Query: get Resume object by ID.
     appt = db.session.query(Resume).get(resume_id)
-    return render_template('resume/details.html', appt=appt)
+
+    pdf = create_pdf(render_template('resume/resume_details_pdf.html', appt=appt))
+
+    response = make_response(pdf.getvalue())
+    response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
+    response.mimetype = 'application/pdf'
+    return response
 
 
 @app.route('/dashboard/')
-@login_required
 def resumes_list():
     """Provide HTML page listing all resumes in the database."""
     # Query: Get all Resume objects, sorted by the resume date.
@@ -143,6 +149,19 @@ def resume_detail_pdf(resume_id):
     return response
 
 
+#@app.route('/resume_pdf/<int:resume_id>/')
+#@login_required
+#def resume_detail_pdf_all(resume_id):
+    #"""Provide HTML page with all details on a given resume."""
+    ## Query: get Resume object by ID.
+    #appt = db.session.query(Resume).get(resume_id)
+
+    #pdf = create_pdf(render_template('resume/resume_details_pdf.html', appt=appt))
+
+    #response = make_response(pdf.getvalue())
+    #response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
+    #response.mimetype = 'application/pdf'
+    #return response
 
 
 

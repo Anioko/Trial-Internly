@@ -13,7 +13,10 @@ import os
 class BaseConfig(object):
     PWD = os.path.abspath(os.curdir)
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///{}/sched.db'.format(PWD)
+    #SQLALCHEMY_DATABASE_URI = 'sqlite:///{}/sched.db'.format(PWD)
+    #SQLALCHEMY_DATABASE_URI = 'sqlite:////home/ziliot/webapps/appname3/sched.db'
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://ziliot:ziliot01@web437.webfaction.com:5432/internly";
+
 
 class DefaultConfig(BaseConfig):
     SECRET_KEY = 'enydM2ANhdcoKwdVa0jWvEsbPFuQpMjf' # Create your own.

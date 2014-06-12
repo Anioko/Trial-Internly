@@ -28,7 +28,7 @@
 	      <h3>{{ appt.role}}</h3>
 	      <h5>{{ appt.role_description}}</h5>
 
- <h4>{{ appt.company_name_two }}, {{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }}    {% if appt.currently %}<p> Present</p>{% else %} {{ appt.start}} {% endif %} </h4>
+ <h3>{{ appt.company_name_two }} {{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }} {% if appt.currently %}<p> Present</p> {% endif %} </h3>
 		  
            
         
@@ -38,36 +38,37 @@
 	      <h5>{{ appt.role_description_two}}</h5>
 		   <hr>
 	     <h1 align="center"> Education</h1>
-		 {{ appt.school_name_one}}
+		 <h3>{{ appt.school_name_one}}</h3>
 		 <h5>{{ appt.degree_description}}</h5>
-		 {{ appt.grading}}
-		 From {{ appt.start_date_school|datefromstring}}
+		 <h5>{{ appt.grading}}</h5>
+		 <h5>{{ appt.start_date_school|datefromstring}}</h5>
 		 To {{ appt.end_date_graduation|datefromstring if not appt.currently_three else '(now)' }}
 
-		 {{ appt.location_school}}
-		 {{ appt.city_school}}
-		 {{ appt.country_school}}
+		 <h5>{{ appt.location_school}}</h5>
+		 <h5>{{ appt.city_school}}</h5>
+		 <h5>{{ appt.country_school}}</h5>
+
 		 <br>
-		 {{ appt.school_name_two}}
-		 {{ appt.degree_description_two}}
-		 {{ appt.grading_two}}
-		 From {{ appt.start_date_one|datefromstring}}
-		 To {{ appt.end_date_two|datefromstring if not appt.currently_four  else '(now)' }}
-		 {{ appt.location_school_two}}
-		 {{ appt.city_school_two}}
-		 {{ appt.country_school_two}}		 
+		 <h3>{{ appt.school_name_two}}</h3>
+		 <h5>{{ appt.degree_description_two}}</h5>
+		 <h5>{{ appt.grading_two}}</h5>
+		 <h5> {{ appt.start_date_one|datefromstring}}</h5>
+		 <h5> {{ appt.end_date_two|datefromstring if not appt.currently_four  else '(now)' }}</h5>
+		 <h5>{{ appt.location_school_two}}</h5>
+		 <h5>{{ appt.city_school_two}}</h5>
+		 <h5>{{ appt.country_school_two}}</h5>		 
 		<hr>
 	     <h1 align="center"> Skills & Courses</h1>
-		 {{ appt.skills_one}},
-		 {{ appt.skills_two}},
-		 {{ appt.skills_three}},
-		 {{ appt.skills_four}},
-		 {{ appt.skills_five}},
-		 {{ appt.skills_six}},
-		 {{ appt.skills_seven}},
-		 {{ appt.skills_eight}},
-		 {{ appt.skills_nine}},
-		 {{ appt.skills_ten}},
+		 <h5>{{ appt.skills_one}}</h5>
+		 <h5>{{ appt.skills_two}}</h5>
+		 <h5>{{ appt.skills_three}}</h5>
+		 <h5>{{ appt.skills_four}}</h5>
+		 <h5>{{ appt.skills_five}}</h5>
+		 <h5>{{ appt.skills_six}}</h5>
+		 <h5>{{ appt.skills_seven}}</h5>
+		 <h5>{{ appt.skills_eight}}</h5>
+		 <h5>{{ appt.skills_nine}}</h5>
+		 <h5>{{ appt.skills_ten}}</h5>
 		 
 
 	  

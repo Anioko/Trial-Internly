@@ -11,36 +11,65 @@
         <a class="position-delete-link" href="#" data-delete-url="{{ url_for('position_delete', position_id=appt.id) }}">Delete</a>
       </div>
     {% endif %}
+
     {% if link_title %} 
-      <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Name)' }}</a></h3> 
+      <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a></h3> 
 	  <hr>
     {% else %}
-      <h1>{{ appt.position_title or '(No Name)' }}</h1>
-	    <h6>{{ appt.location }}, {{ appt.url }}</h6>
+      <h1 align="center">{{ appt.position_title or '(No Title)' }}</h1>
+	    <h3 align="center"> {{ appt.company_name }}, {{ appt.location }}</h3>
+           <h4 align="center">{{ appt.company_website }}</h4>
+
 	   <hr>
 
-	   <h2> Job Description</h2>
-	      <p>{{ appt.description }}</p>
+	   <h3 align="center"> Job Description</h3>
+	      <h6 align="center">{{ appt.description }}</h6>
 		  
 	 <hr>	  
     {% endif %}
-		<h3> Requirements</h3>
-		<hr>
-		 <h3>{% if show_skills %}
-		  <h3> {{ appt.required_skill_one}}</h3>
-		  <h3>{{ appt.required_skill_two}}</h3>
-		  <h3>{{ appt.required_skill_three}}</h3>
-		  <h3>{{ appt.required_skill_four}}</h3>
-		  <h3>{{ appt.required_skill_five}}</h3>
-		  <h3>{{ appt.required_skill_six}}</h3>
-		  <h3> {{ appt.required_skill_seven}}</h3>
-		  <h3> {{ appt.required_skill_eight}}</h3>
-		  <h3>{{ appt.required_skill_nine}}</h3>
+		<h5 align="center"> Requirements</h5>
+
+		 {% if show_skills %}
+             <br />
+
+		 {{ appt.required_skill_one}}
+             <br />
+
+
+		 {{ appt.required_skill_two}}
+             <br />
+
+		 {{ appt.required_skill_three}}
+             <br />
+
+		 {{ appt.required_skill_four}}
+             <br />
+
+
+		 {{ appt.required_skill_five}}
+             <br />
+
+
+		 {{ appt.required_skill_six}}
+             <br />
+
+
+		 {{ appt.required_skill_seven}}
+             <br />
+
+
+		 {{ appt.required_skill_eight}}
+             <br />
+
+
+		 {{ appt.required_skill_nine}}
 		 		 {% else %}
 				No Requirements specified
 		 {% endif %}
 		 <br>	 
 		<hr>
+
+
 
 
 		 

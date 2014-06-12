@@ -1,18 +1,15 @@
-{% macro detail(appt, link_title=false, show_edit=false, show_summary=false) %}
+{% macro detail(appt, link_title=false, show_download=true, show_summary=true) %}
   <div class="resume-detail">
-      {% if show_edit %}
-      <div class="edit-controls"  align="right">
-        <i class="icon-pencil"></i>
-        <a href="{{ url_for('resume_edit', resume_id=appt.id) }}">Edit</a>
-        <span class="inline-pad"></span>
-        <i class="icon-trash"></i>
-        <a class="resume-delete-link" href="#" data-delete-url="{{ url_for('resume_delete', resume_id=appt.id) }}">Delete</a>
-      </div>
+    {% if show_download %}
+
     {% endif %}
+
+
+
     {% if link_title %} 
-      <h3><a href="{{ url_for('resume_details', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
+      <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
     {% else %}
- <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
+      <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
 	        <h5>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h5>
 	      
 			
@@ -26,7 +23,7 @@
 	      <h3>{{ appt.role}}</h3>
 	      <h5>{{ appt.role_description}}</h5>
 
- <h4>{{ appt.company_name_two }}, {{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }}    {% if appt.currently %}<p> Present</p>{% else %} {{ appt.start}} {% endif %} </h4>
+ <h3>{{ appt.company_name_two }}{{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }}    {% if appt.currently %}<p> Present</p>{% endif %} </h3>
 		  
            
         
@@ -36,52 +33,50 @@
 	      <h5>{{ appt.role_description_two}}</h5>
 		   <hr>
 	     <h1 align="center"> Education</h1>
-		 {{ appt.school_name_one}}
+		 <h3>{{ appt.school_name_one}}</h3>
 		 <h5>{{ appt.degree_description}}</h5>
-		 {{ appt.grading}}
-		 From {{ appt.start_date_school}}
-		 To {{ appt.end_date_graduation}}
-		 {{ appt.currently_three}}
-		 {{ appt.location_school}}
-		 {{ appt.city_school}}
-		 {{ appt.country_school}}
+		 <h5>{{ appt.grading}}</h5>
+		 <h5>{{ appt.start_date_school|datefromstring}}</h5>
+		 To {{ appt.end_date_graduation|datefromstring if not appt.currently_three else '(now)' }}
+
+		 <h5>{{ appt.location_school}}</h5>
+		 <h5>{{ appt.city_school}}</h5>
+		 <h5>{{ appt.country_school}}</h5>
+
 		 <br>
-		 {{ appt.school_name_two}}
-		 {{ appt.degree_description_two}}
-		 {{ appt.grading_two}}
-		 From {{ appt.start_date_one}}
-		 To {{ appt.end_date_two}}
-		 {{ appt.currently_four}}
-		 {{ appt.location_school_two}}
-		 {{ appt.city_school_two}}
-		 {{ appt.country_school_two}}		 
+		 <h3>{{ appt.school_name_two}}</h3>
+		 <h5>{{ appt.degree_description_two}}</h5>
+		 <h5>{{ appt.grading_two}}</h5>
+		 <h5> {{ appt.start_date_one|datefromstring}}</h5>
+		 <h5> {{ appt.end_date_two|datefromstring if not appt.currently_four  else '(now)' }}</h5>
+		 <h5>{{ appt.location_school_two}}</h5>
+		 <h5>{{ appt.city_school_two}}</h5>
+		 <h5>{{ appt.country_school_two}}</h5>		 
 		<hr>
 	     <h1 align="center"> Skills & Courses</h1>
-		 {{ appt.skills_one}},
-		 {{ appt.skills_two}},
-		 {{ appt.skills_three}},
-		 {{ appt.skills_four}},
-		 {{ appt.skills_five}},
-		 {{ appt.skills_six}},
-		 {{ appt.skills_seven}},
-		 {{ appt.skills_eight}},
-		 {{ appt.skills_nine}},
-		 {{ appt.skills_ten}},
+		 <h5>{{ appt.skills_one}}</h5>
+		 <h5>{{ appt.skills_two}}</h5>
+		 <h5>{{ appt.skills_three}}</h5>
+		 <h5>{{ appt.skills_four}}</h5>
+		 <h5>{{ appt.skills_five}}</h5>
+		 <h5>{{ appt.skills_six}}</h5>
+		 <h5>{{ appt.skills_seven}}</h5>
+		 <h5>{{ appt.skills_eight}}</h5>
+		 <h5>{{ appt.skills_nine}}</h5>
+		 <h5>{{ appt.skills_ten}}</h5>
 		 
 
 	  
     {% endif %}
+	
+   {% if show_summary and appt.summary_title %}
 
-
-		 
-	   {% if show_summary and appt.summary_title %}
-      <!---<div class="row">
-        <p class="span5">----->
           {{ appt.summary_title | nl2br }}
-        <!------</p>
-      </div>--------->
-       {% endif %}
+
+    {% endif %}
+
 		 
+
     {% if show_edit %}
       <div class="edit-controls"  align="right">
         <i class="icon-pencil"></i>
@@ -93,6 +88,58 @@
     {% endif %}
   </div>
 {% endmacro %}
+
+{% macro render_field(field) -%}
+    {% set with_label = kwargs.pop('with_label', False) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="form-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="control-label">
+                {{ field.label.text }}{% if field.flags.required %} *{% endif %}:
+            </label>
+        {% endif %}
+
+        {% set class_ = kwargs.pop('class_', '') %}
+        {% if field.flags.required %}
+            {% set class_ = class_ + ' required' %}
+        {% endif %}
+
+        {% if field.type == 'BooleanField' %}
+            <div class="checkbox">
+                <label>
+                    {{ field(class_=class_, **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            </div>
+
+        {% else %}
+
+            {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                {% set class_ = class_ + ' input-xlarge form-control' %}
+
+            {% elif field.type == 'FileField' %}
+                {% set class_ = class_ + ' input-file form-control' %}
+            {% endif %}
+
+            {% if field.type == 'SelectField' %}
+                {{ field(class_=class_, **kwargs) }}
+            {% else %}
+
+            {{ field(class_=class_, placeholder=placeholder, **kwargs) }}
+            {% endif %}
+
+        {% endif %}
+        {% if field.errors %}
+            <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+        {% endif %}
+        {% if field.description %}
+            <p class="help-block">{{ field.description|safe }}</p>
+        {% endif %}
+    </div>
+{%- endmacro %}
 
 {% macro edit_field(field, catch_kwargs=true) %}
   <div class="form-group {% if field.errors %}error{% endif %}">
@@ -141,8 +188,9 @@
   </div>
 {% endmacro %}
 
+
 {% macro edit_field_old(field, catch_kwargs=true) %}
-  <div class="control-group{% if field.errors %} error{% endif%}">
+  <div class="form-group control-group{% if field.errors %} error{% endif%}">
     {{ field.label(class="control-label") }}
     <div class="controls">
       {{ field(**kwargs) }}

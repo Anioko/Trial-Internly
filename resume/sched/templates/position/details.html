@@ -1,27 +1,22 @@
-{% extends 'candidates_base.html' %}
+{% extends 'public/public.html' %}
 
 {% from 'position/commons.html' import detail %}
 
 {% block title %}{{ appt.name or '(No Name)' }}{% endblock title %}
 
 {% block main %}
-<div class="row">
-  <div class="span12">
+<div class="row" style="margin-top: 100px;">  
+  <div class="container">
     {{ detail(appt) }}
+
   </div>
 </div>
-<div style="padding-left: 100px;" class="btn-group">
-  <button class="btn btn-default disabled">
+<div style="padding-left: 35%;" class="btn-group">
+  <button class="btn btn-default disabled" >
     Share:
   </button>
 
-  <a href="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fintern.ly" title="Like On Facebook" target="_blank" class="btn btn-default">
-    <i class="fa fa-thumbs-o-up fa-lg fb"></i>
-  </a>
 
-  <a href="https://apis.google.com/_/+1/fastbutton?usegapi=1&amp;size=large&amp;hl=en&amp;url=http%3A%2F%2Fintern.ly" title="+1 On Google" target="_blank" class="btn btn-default google-plus-one">
-    <i class="fa fa-google-plus fa-2x google"></i><span class="google">1</span>
-  </a>
 
   <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fintern.ly&amp;t=Url%20Encoded%20Text" title="On Facebook" target="_blank" class="btn btn-default">
     <i class="fa fa-facebook fa-lg fb"></i>
@@ -29,11 +24,6 @@
 
   <a href="http://twitter.com/share?url=http%3A%2F%2Fintern.ly&amp;text=Url%20Encoded%20Text" title="On Twitter" target="_blank" class="btn btn-default">
     <i class="fa fa-twitter fa-lg tw"></i>
-  </a>
-
-  <a google"="" fa-lg="" fa-google-plus="" fa="" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url=http%3A%2F%2Fintern.ly
-  &gt;
-    &lt;i class=" title="On Google Plus" target="_blank" class="btn btn-default">
   </a>
 
   <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fintern.ly" title="On LinkedIn" target="_blank" class="btn btn-default">
@@ -48,17 +38,18 @@
     <i class="fa fa-pinterest fa-lg pinterest"></i>
   </a>
 
-  <a href="http://surfingbird.ru/share?url=http%3A%2F%2Fintern.ly&amp;description=Url%20Encoded%20Text&amp;screenshot=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg&amp;title=Url%20Encoded%20Title" title="Surf!" target="_blank" class="btn btn-default">
-    <i class="fa surfingbird fa-lg"></i>
-  </a>
-</div>
-  </div>
  </div>
-<footer class="bs-docs-footer" role="contentinfo">
-  <div class="container">
-    <div class="bs-docs-social">
-  <ul class="bs-docs-social-buttons">
-  </ul>
-</div>
+
+
+
+<style>
+body {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.42857;
+}
+</style>
 
 {% endblock main %}
