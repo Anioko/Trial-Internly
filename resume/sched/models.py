@@ -61,7 +61,7 @@ class User(db.Model, UserMixin):
     name = Column('name', String(200))
 
     def __unicode__(self):
-        return "{0} uID:<{1}>".format(self.name, self.id)
+        return u"{0} uID:<{1}>".format(self.name, self.id)
 
 class Resume(db.Model):
     """CV's."""
