@@ -251,7 +251,8 @@ def position_details(position_id):
     """Provide HTML page with all details on a given position."""
     # Query: get Position object by ID.
     appt = db.session.query(Position).get(position_id)
-    return render_template('position/details.html', appt=appt)
+    resume_exists = bool(db.session.query(Resume).filter(Resume.user_id==current_user.id).count()> 0)
+    return render_template('position/details.html', appt=appt, have_resume=resume_exists)
 
 
 @app.route('/position/')
