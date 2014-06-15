@@ -2,11 +2,12 @@
 
 import logging
 import base64
+import datetime
 from functools import wraps
 
 from flask import send_from_directory
 from flask import abort, jsonify, redirect, render_template, request, url_for, flash, session, make_response
-from flask.ext.login import LoginManager, current_user
+from flask.ext.login import LoginManager, current_user, login_user
 from flask.ext.login import login_user, login_required, logout_user
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.security import Security, SQLAlchemyUserDatastore
@@ -15,14 +16,19 @@ from flask.ext.admin import Admin, BaseView, expose, AdminIndexView
 from flask.ext.admin.contrib.sqla import ModelView
 
 from werkzeug import secure_filename
+from wtforms.ext.appengine import db
 
 from sched.config import DefaultConfig
 from sched import filters
 from sched.forms import ResumeForm, PositionForm, ExtendedRegisterForm
-from sched.models import User, Resume, Position, Role
+from sched.models import User, Resume, Position, Role, Client, Token, Grant
 from sched.common import app, db, security
 from sched.pdfs import create_pdf
 
+from flask_oauthlib.client import OAuth , OAuthException
+
+FACEBOOK_APP_ID = '249060078624564'
+FACEBOOK_APP_SECRET = 'c2ef65f4d7ffed2549f6b0c0646f4a86'
 
 
 app.config.from_object(DefaultConfig)
@@ -82,6 +88,87 @@ if not app.debug:
 def error_not_found(error):
     """Render a custom template when responding with 404 Not Found."""
     return render_template('error/not_found.html'), 404
+
+
+########################OAUTH#################################################
+oauth = OAuth(app)
+
+facebook = oauth.remote_app(
+    'facebook',
+    consumer_key=FACEBOOK_APP_ID,
+    consumer_secret=FACEBOOK_APP_SECRET,
+    request_token_params={'scope': 'email'},
+    base_url='https://graph.facebook.com',
+    request_token_url=None,
+    access_token_url='/oauth/access_token',
+    authorize_url='https://www.facebook.com/dialog/oauth'
+)
+
+
+@app.route('/login/fb')
+def login_fb():
+    print "login_fb"
+    callback = url_for(
+        'facebook_authorized',
+        next=request.args.get('next') or request.referrer or None,
+        _external=True
+    )
+    return facebook.authorize(callback=callback)
+
+
+@app.route('/login/fb/authorized')
+@facebook.authorized_handler
+def facebook_authorized(resp):
+    print "facebook_authorized"
+    if resp is None:
+        return 'Access denied: reason=%s error=%s' % (
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+    if isinstance(resp, OAuthException):
+        return 'Access denied: %s' % resp.message
+
+    session['oauth_token'] = (resp['access_token'], '')
+    me = facebook.get('/me')
+
+    fb_id = u"fb-id|"+me.data['id']
+    user = db.session.query(User).filter(User.email==me.data['email']).\
+        filter(User.password==fb_id).first()
+    print "USER FOUND", user.__dict__
+    lok = login_user(user)
+    print "Login user", lok
+
+    if user is None:
+        user = User()
+        user.email = me.data['email']
+        user.name = me.data['name']
+        user.password = unicode(u"fb-id|"+me.data['id'])
+        user.active = True
+        user.confirmed_at = datetime.datetime.now()
+        db.session.add(user)
+        db.session.commit()
+        #user_db = db.session.query(User).filter(User.email==me.data['email']).first()
+        default_role = user_datastore.find_role("ROLE_CANDIDATE")
+        user_datastore.add_role_to_user(user, default_role)
+        db.session.commit()
+        print "USER CREATED IN DB"
+
+    import pprint
+    print "me.__dict__",
+    pprint.pprint(me.__dict__)
+    return 'Logged in as id=%s name=%s redirect=%s' % \
+        (me.data['id'], me.data['name'], request.args.get('next'))
+
+
+@facebook.tokengetter
+def get_facebook_oauth_token():
+    print "get_facebook_oauth_token"
+    #print "acebook.tokengetter", session.get('oauth_token')
+    return session.get('oauth_token')
+
+
+########################OAUTH#################################################
+
 
 
 #########Views for Resume#######
