@@ -215,6 +215,11 @@ footer {
   padding: 100px 0;
 }
 
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
 /* -- end custom css for Bootstrap 3.x --*/
 
         </style>
@@ -229,7 +234,6 @@ footer {
 
 
 <div class="container" style="margin-top: 100px;">
-
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-6">
@@ -245,8 +249,12 @@ footer {
         {{ render_field(login_user_form.submit) }}
       </div>
     </form>
+    <h4><a href="{{url_for_security('register')}}"> Don't have an account yet? Click here to create one</a></h4>
   </div>
-  <li><a href="{{url_for_security('register')}}"> Don't have an account yet? Click here to create one</a></li>
+
+  <h3 style="text-align:center;">You can also log in using:<br/>
+      <a href="{{url_for('login_fb')}}"><i class="fa fa-facebook"></i>  Facebook</a> or <a href="{{url_for('login_ln')}}"><i class="fa fa-linkedin"></i> LinkedIn</a></h3>
+
   <div class="col-md-3">.</div>
 </div>
   </div>

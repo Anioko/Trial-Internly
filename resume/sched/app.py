@@ -21,15 +21,11 @@ from wtforms.ext.appengine import db
 from sched.config import DefaultConfig
 from sched import filters
 from sched.forms import ResumeForm, PositionForm, ExtendedRegisterForm
-from sched.models import User, Resume, Position, Role, Client, Token, Grant
+from sched.models import User, Resume, Position, Role, Oauth
 from sched.common import app, db, security
 from sched.pdfs import create_pdf
 
 from flask_oauthlib.client import OAuth , OAuthException
-
-FACEBOOK_APP_ID = '249060078624564'
-FACEBOOK_APP_SECRET = 'c2ef65f4d7ffed2549f6b0c0646f4a86'
-
 
 app.config.from_object(DefaultConfig)
 
@@ -95,8 +91,8 @@ oauth = OAuth(app)
 
 facebook = oauth.remote_app(
     'facebook',
-    consumer_key=FACEBOOK_APP_ID,
-    consumer_secret=FACEBOOK_APP_SECRET,
+    consumer_key=app.config['FACEBOOK_LOGIN_APP_ID'],
+    consumer_secret=app.config['FACEBOOK_LOGIN_APP_SECRET'],
     request_token_params={'scope': 'email'},
     base_url='https://graph.facebook.com',
     request_token_url=None,
@@ -104,6 +100,20 @@ facebook = oauth.remote_app(
     authorize_url='https://www.facebook.com/dialog/oauth'
 )
 
+linkedin = oauth.remote_app(
+    'linkedin',
+    consumer_key=app.config['LINKEDIN_LOGIN_API_KEY'],
+    consumer_secret=app.config['LINKEDIN_LOGIN_SECRET_KEY'],
+    request_token_params={
+        'scope': ['r_basicprofile', 'r_emailaddress'],
+        'state': 'RandomString',
+    },
+    base_url='https://api.linkedin.com/v1/',
+    request_token_url=None,
+    access_token_method='POST',
+    access_token_url='https://www.linkedin.com/uas/oauth2/accessToken',
+    authorize_url='https://www.linkedin.com/uas/oauth2/authorization',
+)
 
 @app.route('/login/fb')
 def login_fb():
@@ -115,57 +125,143 @@ def login_fb():
     )
     return facebook.authorize(callback=callback)
 
+@app.route('/login/ln')
+def login_ln():
+    return linkedin.authorize(callback=url_for('authorized', _external=True))
 
-@app.route('/login/fb/authorized')
-@facebook.authorized_handler
-def facebook_authorized(resp):
-    print "facebook_authorized"
-    if resp is None:
-        return 'Access denied: reason=%s error=%s' % (
-            request.args['error_reason'],
-            request.args['error_description']
-        )
-    if isinstance(resp, OAuthException):
-        return 'Access denied: %s' % resp.message
+@app.route('/login/ln/authorized')
+@linkedin.authorized_handler
+def authorized(resp):
+    if resp is None: # Authentication failure...
+        flash("There was a problem with log in using LinkedIn: {0}".format(request.args['error_description']), 'danger')
+        return render_template('layout.html')
 
-    session['oauth_token'] = (resp['access_token'], '')
-    me = facebook.get('/me')
+    # Get LinkedIn token
+    session['linkedin_token'] = (resp['access_token'], '')
+    # Load profile fields from linkedin
+    profile = linkedin.get("people/~:(id,site-standard-profile-request,email-address,first-name,last-name)")
 
-    fb_id = u"fb-id|"+me.data['id']
-    user = db.session.query(User).filter(User.email==me.data['email']).\
-        filter(User.password==fb_id).first()
-    print "USER FOUND", user.__dict__
-    lok = login_user(user)
-    print "Login user", lok
+    # Try to find user and his Oauth record in db
+    user = db.session.query(User).filter(User.email==profile.data['emailAddress']).first()
+    oauth = db.session.query(Oauth).filter(Oauth.provider_id==profile.data['id']).\
+        filter(Oauth.provider=='linkedin').first()
 
+    # User not exist? So we need to 'register' him on the site
     if user is None:
         user = User()
-        user.email = me.data['email']
-        user.name = me.data['name']
-        user.password = unicode(u"fb-id|"+me.data['id'])
+        user.email = profile.data['emailAddress']
+        user.name = profile.data['firstName'] + u" " + profile.data['lastName']
+        user.password = unicode(u"ln-id|"+profile.data['id'])   # User from OAuth have no password (we save id)
         user.active = True
         user.confirmed_at = datetime.datetime.now()
         db.session.add(user)
         db.session.commit()
-        #user_db = db.session.query(User).filter(User.email==me.data['email']).first()
         default_role = user_datastore.find_role("ROLE_CANDIDATE")
         user_datastore.add_role_to_user(user, default_role)
         db.session.commit()
-        print "USER CREATED IN DB"
 
-    import pprint
-    print "me.__dict__",
-    pprint.pprint(me.__dict__)
-    return 'Logged in as id=%s name=%s redirect=%s' % \
-        (me.data['id'], me.data['name'], request.args.get('next'))
+    # Save some data from OAuth service that might be useful sometime later
+    # This is also used when user was registered by e-mail and now he
+    # logs in using social account for the same e-mail
+    if oauth is None:
+        oauth = Oauth()
+        oauth.provider='linkedin'
+        oauth.provider_id=profile.data['id']
+        oauth.email=profile.data['emailAddress']
+        oauth.profile=profile.data['siteStandardProfileRequest']['url']
+        oauth.user=user     # Connect with user
+        # There are few fields empty...
+        db.session.add(oauth)
+        db.session.commit()
+
+    # Try to login new user
+    lok = login_user(user)
+    if lok:
+        # Show green mesaage that all went fine
+        flash("You have been successfully signed in using LinkedIn.", 'success')
+        return redirect(url_for('resumes_list'))
+    else:
+        flash("There was a problem with your logining-in", 'warning')
+        return render_template('layout.html')
 
 
+
+@app.route('/login/fb/authorized')
+@facebook.authorized_handler
+def facebook_authorized(resp):
+    if resp is None: # Authentication failure...
+        flash("There was a problem with log in using Facebook: {0}".format(request.args['error_description']), 'danger')
+        return render_template('layout.html')
+
+    # Facebook session token
+    session['oauth_token'] = (resp['access_token'], '')
+    # Load facebook profile
+    profile = facebook.get('/me')
+
+    # Try to find user and his Oauth record in db
+    user = db.session.query(User).filter(User.email==profile.data['email']).first()
+    oauth = db.session.query(Oauth).filter(Oauth.provider_id==profile.data['id']).\
+        filter(Oauth.provider=='facebook').first()
+
+    # User not exist? So we need to 'register' him on the site
+    if user is None:
+        user = User()
+        user.email = profile.data['email']
+        user.name = profile.data['first_name'] + u" " + profile.data['last_name']
+        user.password = unicode(u"fb-id|"+profile.data['id'])   # User from OAuth have no password (we save id)
+        user.active = True
+        user.confirmed_at = datetime.datetime.now()
+        db.session.add(user)
+        db.session.commit()
+        default_role = user_datastore.find_role("ROLE_CANDIDATE")
+        user_datastore.add_role_to_user(user, default_role)
+        db.session.commit()
+
+    # Save some data from OAuth service that might be useful sometime later
+    # This is also used when user was registered by e-mail and now he
+    # logs in using social account for the same e-mail
+    if oauth is None:
+        oauth = Oauth()
+        oauth.provider='facebook'
+        oauth.provider_id=profile.data['id']
+        oauth.email=profile.data['email']
+        oauth.profile=profile.data['link']
+        oauth.user=user     # Contect with user
+        # There are few fields empty...
+        db.session.add(oauth)
+        db.session.commit()
+
+    # Try to login new user
+    lok = login_user(user)
+    if lok:
+        # Show green mesaage that all went fine
+        flash("You have been successfully signed in using Facebook.", 'success')
+        return redirect(url_for('resumes_list'))
+    else:
+        flash("There was a problem with your logining-in", 'warning')
+        return render_template('layout.html')
+
+# Here goes special functions need by Flask-OAuthlib
 @facebook.tokengetter
 def get_facebook_oauth_token():
-    print "get_facebook_oauth_token"
-    #print "acebook.tokengetter", session.get('oauth_token')
     return session.get('oauth_token')
 
+@linkedin.tokengetter
+def get_linkedin_oauth_token():
+    return session.get('linkedin_token')
+
+def change_linkedin_query(uri, headers, body):
+    auth = headers.pop('Authorization')
+    headers['x-li-format'] = 'json'
+    if auth:
+        auth = auth.replace('Bearer', '').strip()
+        if '?' in uri:
+            uri += '&oauth2_access_token=' + auth
+        else:
+            uri += '?oauth2_access_token=' + auth
+    return uri, headers, body
+
+linkedin.pre_request = change_linkedin_query
 
 ########################OAUTH#################################################
 

@@ -221,6 +221,10 @@ footer {
   padding: 100px 0;
 }
 
+a:hover, a:focus {
+    text-decoration: none;
+}
+
 /* -- end custom css for Bootstrap 3.x --*/
 
         </style>
@@ -275,8 +279,10 @@ footer {
   </div>
 </div>
 </div>
-<div class="col-md-3"></div>
-  </div>
+    <h3 style="text-align:center; color:rgb(0,0,0);">You can also log in using:<br/>
+      <a href="{{url_for('login_fb')}}"><i class="fa fa-facebook"></i>  Facebook</a> or <a href="{{url_for('login_ln')}}"><i class="fa fa-linkedin"></i> LinkedIn</a></h3>
+</div>
+
 
 
 
