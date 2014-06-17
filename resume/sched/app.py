@@ -97,7 +97,8 @@ facebook = oauth.remote_app(
     base_url='https://graph.facebook.com',
     request_token_url=None,
     access_token_url='/oauth/access_token',
-    authorize_url='https://www.facebook.com/dialog/oauth'
+    authorize_url='https://www.facebook.com/dialog/oauth',
+    access_token_method='POST',
 )
 
 linkedin = oauth.remote_app(
@@ -117,7 +118,6 @@ linkedin = oauth.remote_app(
 
 @app.route('/login/fb')
 def login_fb():
-    print "login_fb"
     callback = url_for(
         'facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
@@ -538,8 +538,6 @@ def position_apply(position_id):
 def position_list_applicants(position_id):
 
     position = db.session.query(Position).get(position_id)
-    print position.user_id
-    print current_user.id
     if position is None:
         abort(404)
     elif current_user.id is None:
