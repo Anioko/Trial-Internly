@@ -9,7 +9,7 @@
   <div class="panel-heading">Resume</div>
   <div class="panel-body">
       <div class="edit-controls"  align="right">
-          <a href="{{ url_for('resume_detail_pdf', resume_id=appt.id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-file-pdf-o fa-lg"></i> Download as PDF</button></a>
+          <a href="{{ url_for('resume_preview_pdf', resume_id=appt.id|b64) }}"><button type="button" class="btn btn-primary"><i class="fa fa-file-pdf-o fa-lg"></i> Download as PDF</button></a>
       </div>
         {{ detail(appt, show_edit=false) }}
   </div>

@@ -75,7 +75,11 @@ def date_from_string(date):
     else:
       return '-'
 
+def base64_encode(value):
+    return base64.b64encode(str(value))
+
 app.jinja_env.filters['datefromstring'] = date_from_string
+app.jinja_env.filters['b64'] = base64_encode
 
 
 # Setup logging for production.
@@ -393,6 +397,25 @@ def resume_preview(resume_id):
         abort(404)
     # Template without edit buttons
     return render_template('resume/resume_detail_preview.html', appt=appt)
+
+@app.route('/resumes/preview/pdf/<resume_id>/')
+@login_required
+def resume_preview_pdf(resume_id):
+    """Provide pdf preview of resume.
+       The url is base64 encoded so no one will try to check other resumes.
+    """
+    resume_id = base64.b64decode(resume_id)
+    appt = db.session.query(Resume).get(resume_id)
+    if appt is None:
+        # Abort with Not Found.
+        abort(404)
+
+    pdf = create_pdf(render_template('resume/resume_detail_pdf.html', appt=appt))
+
+    response = make_response(pdf.getvalue())
+    response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
+    response.mimetype = 'application/pdf'
+    return response
 
 @app.route('/resumes/create/', methods=['GET', 'POST'])
 @login_required
