@@ -70,7 +70,10 @@ def user_registered_sighandler(app, user, confirm_token):
 filters.init_app(app)
 
 def date_from_string(date):
-    return date if len(date)>0 else '-'
+    if date:
+      return date if len(date)>0 else '-'
+    else:
+      return '-'
 
 app.jinja_env.filters['datefromstring'] = date_from_string
 
@@ -483,101 +486,24 @@ def resume_delete(resume_id):
 @app.route('/positions/')
 @login_required
 def all_positions():
-    """Provide HTML page listing all positions in the database."""
+    """Provide HTML page listing all positions in the database.
+
+    THIS VIEW IS FOR APPLICANTS
+    """
     # Query: Get all Position objects.
     appts = db.session.query(Position).all()
     return render_template('position/all.html', appts=appts)
 
-@app.route('/positions/<int:position_id>/')
-@login_required
-def position_details(position_id):
-    """Provide HTML page with all details on a given position."""
-    # Query: get Position object by ID.
-    appt = db.session.query(Position).get(position_id)
-    resume_exists = bool(db.session.query(Resume).filter(Resume.user_id==current_user.id).count()> 0)
-    return render_template('position/details.html', appt=appt, have_resume=resume_exists)
-
-
-@app.route('/position/')
-@login_required
-def position_list():
-    """Provide HTML page listing all rpositions in the database."""
-    # Query: Get all Position objects, sorted by the position date.
-    appts = (db.session.query(Position)
-             .filter_by(user_id=current_user.id)
-             .order_by(Position.pub_date.asc()).all())
-
-    return render_template('position/index.html', appts=appts)
-
-
-@app.route('/positions/<int:position_id>/')
-@login_required
-def position_detail(position_id):
-    """Provide HTML page with all details on a given positions."""
-    # Query: get Position object by ID.
-    appt = db.session.query(Position).get(position_id)
-    if appt is None or appt.user_id != current_user.id:
-        # Abort with Not Found.
-        abort(404)
-    return render_template('position/detail.html', appt=appt)
-
-
-@app.route('/positions/create/', methods=['GET', 'POST'])
-@login_required
-def position_create():
-    """Provide HTML form to create a new positions record."""
-    form = PositionForm(request.form)
-    if request.method == 'POST' and form.validate():
-        appt = Position(user_id=current_user.id)
-        form.populate_obj(appt)
-        db.session.add(appt)
-        db.session.commit()
-        # Success. Send the user back to the full resumes list.
-        return redirect(url_for('position_list'))
-    # Either first load or validation error at this point.
-    return render_template('position/edit.html', form=form)
-
-
-@app.route('/positions/<int:position_id>/edit/', methods=['GET', 'POST'])
-@login_required
-def position_edit(position_id):
-    """Provide HTML form to edit a given position."""
-    appt = db.session.query(Position).get(position_id)
-    if appt is None:
-        abort(404)
-    if appt.user_id != current_user.id:
-        abort(403)
-    form = PositionForm(request.form, appt)
-    if request.method == 'POST' and form.validate():
-        form.populate_obj(appt)
-        db.session.commit()
-        # Success. Send the user back to the detail view of that resume.
-        return redirect(url_for('position_detail', position_id=appt.id))
-    return render_template('position/edit.html', form=form)
-
-
-@app.route('/positions/<int:position_id>/delete/', methods=['DELETE'])
-@login_required
-def position_delete(position_id):
-    """Delete a record using HTTP DELETE, respond with JSON for JavaScript."""
-    appt = db.session.query(Position).get(position_id)
-    if appt is None:
-        # Abort with simple response indicating position not found.
-        response = jsonify({'status': 'Not Found'})
-        response.status_code = 404
-        return response
-    if appt.user_id != current_user.id:
-        # Abort with simple response indicating forbidden.
-        response = jsonify({'status': 'Forbidden'})
-        response.status_code = 403
-        return response
-    db.session.delete(appt)
-    db.session.commit()
-    return jsonify({'status': 'OK'})
-
 @app.route('/positions/<int:position_id>/apply/')
 @login_required
 def position_apply(position_id):
+    """
+    Applaying for positon by applicants.
+
+    THIS VIEW IS FOR APPLICANTS
+    :param position_id: id of position to apply
+    :return: nothing
+    """
     position = db.session.query(Position).get(position_id)
     if position is None:
         abort(404)
@@ -592,6 +518,95 @@ def position_apply(position_id):
             db.session.commit()
             flash("You have <strong>successfully applied</strong> for a {0}.".format(position.position_title), 'success')
         return redirect(url_for('all_positions'))
+
+@app.route('/positions/<int:position_id>/')
+@login_required
+def position_details(position_id):
+    """Provide HTML page with all details on a given position.
+
+    THIS VIEW IS FOR APPLICANTS
+    """
+    # Query: get Position object by ID.
+    appt = db.session.query(Position).get(position_id)
+    if current_user is None:
+        resume_exists = False
+    else:
+        resume_exists = bool(db.session.query(Resume).filter(Resume.user_id==current_user.id).count()> 0)
+    return render_template('position/details.html', appt=appt, have_resume=resume_exists)
+
+@app.route('/position/')
+@login_required
+def position_list():
+    """Provide HTML page listing all rpositions in the database.
+
+    THIS VIEW IS FOR COMPANIES
+    """
+    # Query: Get all Position objects, sorted by the position date.
+    appts = (db.session.query(Position)
+             .filter_by(user_id=current_user.id)
+             .order_by(Position.pub_date.asc()).all())
+
+    return render_template('position/index.html', appts=appts)
+
+@app.route('/positions/create/', methods=['GET', 'POST'])
+@login_required
+def position_create():
+    """Provide HTML form to create a new positions record.
+
+    THIS VIEW IS FOR COMPANIES
+    """
+    form = PositionForm(request.form)
+    if request.method == 'POST' and form.validate():
+        appt = Position(user_id=current_user.id)
+        form.populate_obj(appt)
+        db.session.add(appt)
+        db.session.commit()
+        # Success. Send the user back to the full resumes list.
+        return redirect(url_for('position_list'))
+    # Either first load or validation error at this point.
+    return render_template('position/edit.html', form=form)
+
+@app.route('/positions/<int:position_id>/edit/', methods=['GET', 'POST'])
+@login_required
+def position_edit(position_id):
+    """Provide HTML form to edit a given position.
+
+    THIS VIEW IS FOR COMPANIES
+    """
+    appt = db.session.query(Position).get(position_id)
+    if appt is None:
+        abort(404)
+    if appt.user_id != current_user.id:
+        abort(403)
+    form = PositionForm(request.form, appt)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(appt)
+        db.session.commit()
+        # Success. Send the user back to the detail view of that resume.
+        return redirect(url_for('position_detail', position_id=appt.id))
+    return render_template('position/edit.html', form=form)
+
+@app.route('/positions/<int:position_id>/delete/', methods=['DELETE'])
+@login_required
+def position_delete(position_id):
+    """Delete a record using HTTP DELETE, respond with JSON for JavaScript.
+
+    THIS VIEW IS FOR COMPANIES
+    """
+    appt = db.session.query(Position).get(position_id)
+    if appt is None:
+        # Abort with simple response indicating position not found.
+        response = jsonify({'status': 'Not Found'})
+        response.status_code = 404
+        return response
+    if appt.user_id != current_user.id:
+        # Abort with simple response indicating forbidden.
+        response = jsonify({'status': 'Forbidden'})
+        response.status_code = 403
+        return response
+    db.session.delete(appt)
+    db.session.commit()
+    return jsonify({'status': 'OK'})
 
 @app.route('/positions/<int:position_id>/applicants/')
 @login_required
