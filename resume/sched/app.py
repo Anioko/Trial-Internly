@@ -340,20 +340,22 @@ def all_resumes():
     appts = db.session.query(Resume).all()
     return render_template('resume/all.html', appts=appts)
 
-@app.route('/resume/<int:resume_id>/')
+@app.route('/resumes_pdf/<int:resume_id>/')
 @login_required
-def resume_details(resume_id):
+def resume_detail_pdf(resume_id):
     """Provide HTML page with all details on a given resume."""
     # Query: get Resume object by ID.
     appt = db.session.query(Resume).get(resume_id)
+    if appt is None or appt.user_id != current_user.id:
+        # Abort with Not Found.
+        abort(404)
 
-    pdf = create_pdf(render_template('resume/resume_details_pdf.html', appt=appt))
+    pdf = create_pdf(render_template('resume/resume_detail_pdf.html', appt=appt))
 
     response = make_response(pdf.getvalue())
     response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
     response.mimetype = 'application/pdf'
     return response
-
 
 @app.route('/dashboard/')
 def resumes_list():
@@ -391,24 +393,6 @@ def resume_preview(resume_id):
         abort(404)
     # Template without edit buttons
     return render_template('resume/resume_detail_preview.html', appt=appt)
-
-
-@app.route('/resumes_pdf/<int:resume_id>/')
-@login_required
-def resume_detail_pdf(resume_id):
-    """Provide HTML page with all details on a given resume."""
-    # Query: get Resume object by ID.
-    appt = db.session.query(Resume).get(resume_id)
-    if appt is None or appt.user_id != current_user.id:
-        # Abort with Not Found.
-        abort(404)
-
-    pdf = create_pdf(render_template('resume/resume_detail_pdf.html', appt=appt))
-
-    response = make_response(pdf.getvalue())
-    response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
-    response.mimetype = 'application/pdf'
-    return response
 
 @app.route('/resumes/create/', methods=['GET', 'POST'])
 @login_required
