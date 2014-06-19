@@ -484,7 +484,7 @@ def resume_delete(resume_id):
 #########Views for Positions#######
 
 @app.route('/positions/')
-@login_required
+#@login_required
 def all_positions():
     """Provide HTML page listing all positions in the database.
 
