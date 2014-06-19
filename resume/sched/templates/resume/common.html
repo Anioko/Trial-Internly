@@ -13,61 +13,61 @@
       <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
     {% else %}
       <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
-	        <h5>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h5>
+	        <h5>{{ appt.email|default("", True) }}, {{ appt.phone|default("", True) }},{{ appt.city|default("", True) }},{{ appt.zip|default("", True) }},{{ appt.country|default("", True) }}, {{ appt.url|default("", True) }}</h5>
 	      
 			
 	   <hr>
-	      <h1 align="center">{{ appt.summary_title }}</h1>
-	      <h5>{{ appt.summary_text }}</h5>
+	      <h1 align="center">{{ appt.summary_title|default("", True) }}</h1>
+	      <h5>{{ appt.summary_text|default("", True) }}</h5>
 	   <hr>
 	   <h1 align="center"> Experience</h1>
-	      <h3>{{ appt.company_name }}, {{ appt.location }} , {{ appt.start}}-{{ appt.end or (currently)}} </h3>
-	      <h5>{{ appt.company_summary}}</h5>
-	      <h3>{{ appt.role}}</h3>
-	      <h5>{{ appt.role_description}}</h5>
+	      <h3>{{ appt.company_name|default("", True) }}, {{ appt.location|default("", True) }} , {{ appt.start|default("", True)}}-{{ appt.end or (currently)}} </h3>
+	      <h5>{{ appt.company_summary|default("", True)}}</h5>
+	      <h3>{{ appt.role|default("", True)}}</h3>
+	      <h5>{{ appt.role_description|default("", True)}}</h5>
 
- <h3>{{ appt.company_name_two }} {{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }} {% if appt.currently %}<p> Present</p> {% endif %} </h3>
+ <h3>{{ appt.company_name_two|default("", True)}} {{ appt.location_two|default("", True)}} , {{ appt.start_date|default("", True)}}-{{ appt.end_date|default("", True) }} {% if appt.currently %}<p> Present</p> {% endif %} </h3>
 		  
            
         
 		
-     <h6>{{ appt.company_summary_two}}</h6>
-	    <h3>{{ appt.role_two}}</h3>
-	      <h5>{{ appt.role_description_two}}</h5>
+     <h6>{{ appt.company_summary_two|default("", True)}}</h6>
+	    <h3>{{ appt.role_two|default("", True)}}</h3>
+	      <h5>{{ appt.role_description_two|default("", True)}}</h5>
 		   <hr>
 	     <h1 align="center"> Education</h1>
-		 <h3>{{ appt.school_name_one}}</h3>
-		 <h5>{{ appt.degree_description}}</h5>
-		 <h5>{{ appt.grading}}</h5>
+		 <h3>{{ appt.school_name_one|default("", True)}}</h3>
+		 <h5>{{ appt.degree_description|default("", True)}}</h5>
+		 <h5>{{ appt.grading|default("", True)}}</h5>
 		 <h5>{{ appt.start_date_school|datefromstring}}</h5>
 		 To {{ appt.end_date_graduation|datefromstring if not appt.currently_three else '(now)' }}
 
-		 <h5>{{ appt.location_school}}</h5>
-		 <h5>{{ appt.city_school}}</h5>
-		 <h5>{{ appt.country_school}}</h5>
+		 <h5>{{ appt.location_school|default("", True)}}</h5>
+		 <h5>{{ appt.city_school|default("", True)}}</h5>
+		 <h5>{{ appt.country_school|default("", True)}}</h5>
 
 		 <br>
-		 <h3>{{ appt.school_name_two}}</h3>
-		 <h5>{{ appt.degree_description_two}}</h5>
-		 <h5>{{ appt.grading_two}}</h5>
+		 <h3>{{ appt.school_name_two|default("", True)}}</h3>
+		 <h5>{{ appt.degree_description_two|default("", True)}}</h5>
+		 <h5>{{ appt.grading_two|default("", True)}}</h5>
 		 <h5> {{ appt.start_date_one|datefromstring}}</h5>
 		 <h5> {{ appt.end_date_two|datefromstring if not appt.currently_four  else '(now)' }}</h5>
-		 <h5>{{ appt.location_school_two}}</h5>
-		 <h5>{{ appt.city_school_two}}</h5>
-		 <h5>{{ appt.country_school_two}}</h5>		 
+		 <h5>{{ appt.location_school_two|default("", True)}}</h5>
+		 <h5>{{ appt.city_school_two|default("", True)}}</h5>
+		 <h5>{{ appt.country_school_two|default("", True)}}</h5>
 		<hr>
 	     <h1 align="center"> Skills & Courses</h1>
-		 <h5>{{ appt.skills_one}}</h5>
-		 <h5>{{ appt.skills_two}}</h5>
-		 <h5>{{ appt.skills_three}}</h5>
-		 <h5>{{ appt.skills_four}}</h5>
-		 <h5>{{ appt.skills_five}}</h5>
-		 <h5>{{ appt.skills_six}}</h5>
-		 <h5>{{ appt.skills_seven}}</h5>
-		 <h5>{{ appt.skills_eight}}</h5>
-		 <h5>{{ appt.skills_nine}}</h5>
-		 <h5>{{ appt.skills_ten}}</h5>
-		 
+		 <h5>{{ appt.skills_one|default("", True)}}</h5>
+		 <h5>{{ appt.skills_two|default("", True)}}</h5>
+		 <h5>{{ appt.skills_three|default("", True)}}</h5>
+		 <h5>{{ appt.skills_four|default("", True)}}</h5>
+		 <h5>{{ appt.skills_five|default("", True)}}</h5>
+		 <h5>{{ appt.skills_six|default("", True)}}</h5>
+		 <h5>{{ appt.skills_seven|default("", True)}}</h5>
+		 <h5>{{ appt.skills_eight|default("", True)}}</h5>
+		 <h5>{{ appt.skills_nine|default("", True)}}</h5>
+		 <h5>{{ appt.skills_ten|default("", True)}}</h5>
+
 
 	  
     {% endif %}

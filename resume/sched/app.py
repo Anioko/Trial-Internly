@@ -26,6 +26,7 @@ from sched.common import app, db, security
 from sched.pdfs import create_pdf
 
 from flask_oauthlib.client import OAuth , OAuthException
+from sched.utils.linkedin_resume import create_linkedin_resume
 
 app.config.from_object(DefaultConfig)
 
@@ -116,6 +117,22 @@ linkedin = oauth.remote_app(
     authorize_url='https://www.linkedin.com/uas/oauth2/authorization',
 )
 
+linkedin_resume = oauth.remote_app(
+    'linkedin_resume',
+    consumer_key=app.config['LINKEDIN_FULL_PROFILE_API_KEY'],
+    consumer_secret=app.config['LINKEDIN_FULL_PROFILE_SECRET_KEY'],
+    request_token_params={
+        'scope': ['r_basicprofile','r_fullprofile', 'r_contactinfo'],
+        'state': 'RandomString',
+    },
+    base_url='https://api.linkedin.com/v1/',
+    request_token_url=None,
+    access_token_method='POST',
+    access_token_url='https://www.linkedin.com/uas/oauth2/accessToken',
+    authorize_url='https://www.linkedin.com/uas/oauth2/authorization',
+)
+
+
 @app.route('/login/fb')
 def login_fb():
     callback = url_for(
@@ -128,6 +145,12 @@ def login_fb():
 @app.route('/login/ln')
 def login_ln():
     return linkedin.authorize(callback=url_for('authorized', _external=True))
+
+@app.route('/resumes/create/linkedin')
+def create_resume_ln():
+    #session.pop('linkedin_token')
+    #session.pop('access_token')
+    return linkedin_resume.authorize(callback=url_for('linkedin_resume_authorized', _external=True))
 
 @app.route('/login/ln/authorized')
 @linkedin.authorized_handler
@@ -241,6 +264,36 @@ def facebook_authorized(resp):
         flash("There was a problem with your logining-in", 'warning')
         return render_template('layout.html')
 
+@app.route('/resumes/create/linkedin/redirect')
+@linkedin_resume.authorized_handler
+def linkedin_resume_authorized(resp):
+    print "linkedin_resume_authorized"
+    if resp is None: # Authentication failure...
+        flash("Oh! We can get your data from you Linkedin,", 'danger')
+        return redirect(url_for('resumes_list'))
+
+    # Get LinkedIn token
+    session['linkedin_full_profile_token'] = (resp['access_token'], '')
+    # Load resume fileds
+    resume_fields = linkedin.get("people/~:(id,first-name,last-name,phone-numbers,location:(name,country),site-standard-profile-request,headline,positions,skills,educations,public-profile-url)",
+                                 token=session.get('linkedin_full_profile_token'))
+
+    if hasattr(resume_fields, 'data'):
+        resume = create_linkedin_resume(resume_fields.data)
+        if resume is not None:
+            resume.user = current_user
+            resume.user_id = current_user.id
+            resume.email = current_user.email
+            db.session.add(resume)
+            db.session.commit()
+            return redirect(url_for('resumes_list'))
+        else:
+            flash("Oh! There was a problem while generating your resume :(", 'warning')
+            return redirect(url_for('resumes_list'))
+    else:
+        flash("Oh! We can get data from you Linkedin,", 'warning')
+        return redirect(url_for('resumes_list'))
+
 # Here goes special functions need by Flask-OAuthlib
 @facebook.tokengetter
 def get_facebook_oauth_token():
@@ -248,7 +301,13 @@ def get_facebook_oauth_token():
 
 @linkedin.tokengetter
 def get_linkedin_oauth_token():
+    print "get_linkedin_oauth_token", session.get('linkedin_token')
     return session.get('linkedin_token')
+
+@linkedin_resume.tokengetter
+def get_linkedin_full_profile_oauth_token():
+    print "get_linkedin_full_profile_oauth_token", session.get('linkedin_full_profile_token')
+    return session.get('linkedin_full_profile_token')
 
 def change_linkedin_query(uri, headers, body):
     auth = headers.pop('Authorization')
@@ -262,6 +321,7 @@ def change_linkedin_query(uri, headers, body):
     return uri, headers, body
 
 linkedin.pre_request = change_linkedin_query
+# linkedin_resume.pre_request = change_linkedin_query
 
 ########################OAUTH#################################################
 
