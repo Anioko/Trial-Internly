@@ -410,23 +410,6 @@ def resume_detail_pdf(resume_id):
     response.mimetype = 'application/pdf'
     return response
 
-
-#@app.route('/resume_pdf/<int:resume_id>/')
-#@login_required
-#def resume_detail_pdf_all(resume_id):
-    #"""Provide HTML page with all details on a given resume."""
-    ## Query: get Resume object by ID.
-    #appt = db.session.query(Resume).get(resume_id)
-
-    #pdf = create_pdf(render_template('resume/resume_details_pdf.html', appt=appt))
-
-    #response = make_response(pdf.getvalue())
-    #response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
-    #response.mimetype = 'application/pdf'
-    #return response
-
-
-
 @app.route('/resumes/create/', methods=['GET', 'POST'])
 @login_required
 def resume_create():
@@ -484,7 +467,6 @@ def resume_delete(resume_id):
 #########Views for Positions#######
 
 @app.route('/positions/')
-#@login_required
 def all_positions():
     """Provide HTML page listing all positions in the database.
 
@@ -520,7 +502,6 @@ def position_apply(position_id):
         return redirect(url_for('all_positions'))
 
 @app.route('/positions/<int:position_id>/')
-@login_required
 def position_details(position_id):
     """Provide HTML page with all details on a given position.
 
@@ -528,11 +509,14 @@ def position_details(position_id):
     """
     # Query: get Position object by ID.
     appt = db.session.query(Position).get(position_id)
-    if current_user is None:
+    if current_user.is_anonymous():
         resume_exists = False
+        anonymous = True
     else:
         resume_exists = bool(db.session.query(Resume).filter(Resume.user_id==current_user.id).count()> 0)
-    return render_template('position/details.html', appt=appt, have_resume=resume_exists)
+        anonymous = False
+    return render_template('position/details.html', appt=appt,
+                           have_resume=resume_exists, anonym=anonymous)
 
 @app.route('/position/')
 @login_required

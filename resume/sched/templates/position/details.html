@@ -14,10 +14,14 @@
 
 
 <div class="row edit-controls"  align="center">
-        {% if not have_resume %}
-        <h3>You have not created a resume yet. Create a resume in order to apply with it</h3>
+        {% if anonym %}
+            <h3>In order to apply just <a href="{{ url_for_security('register') }}">sign up</a> to the site!</h3>
         {% else %}
-        <a href="{{ url_for('position_apply', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-lg"><i class="fa fa-hand-o-right fa-lg"></i> Apply for this position</button></a>
+            {% if not have_resume and not anonym %}
+            <h3>You have not created a resume yet. Create a resume in order to apply with it</h3>
+            {% else %}
+            <a href="{{ url_for('position_apply', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-lg"><i class="fa fa-hand-o-right fa-lg"></i> Apply for this position</button></a>
+            {% endif %}
         {% endif %}
 <br>
 <br>
