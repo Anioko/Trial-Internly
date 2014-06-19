@@ -4,9 +4,13 @@
 <div class="container" style="margin-top: 100px;">
 <div class="row">
 
+
 <div class="panel panel-default">
   <div class="panel-heading">Resume</div>
   <div class="panel-body">
+      <div class="edit-controls"  align="right">
+          <a href="{{ url_for('resume_detail_pdf', resume_id=appt.id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-file-pdf-o fa-lg"></i> Download as PDF</button></a>
+      </div>
         {{ detail(appt, show_edit=false) }}
   </div>
 </div>
