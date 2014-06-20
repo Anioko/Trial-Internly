@@ -20,9 +20,6 @@ def create_linkedin_resume(resume_fields):
 
     resume = Resume()
 
-    import pprint
-    pprint.pprint(resume_fields)
-
     try:
 
         resume.name = u" ".join([_get_field(u"firstName"), _get_field(u"lastName")])

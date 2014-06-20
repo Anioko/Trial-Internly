@@ -274,7 +274,6 @@ def facebook_authorized(resp):
 @app.route('/resumes/create/linkedin/redirect')
 @linkedin_resume.authorized_handler
 def linkedin_resume_authorized(resp):
-    print "linkedin_resume_authorized"
     if resp is None: # Authentication failure...
         flash("Oh! We can get your data from you Linkedin,", 'danger')
         return redirect(url_for('resumes_list'))
@@ -308,12 +307,10 @@ def get_facebook_oauth_token():
 
 @linkedin.tokengetter
 def get_linkedin_oauth_token():
-    print "get_linkedin_oauth_token", session.get('linkedin_token')
     return session.get('linkedin_token')
 
 @linkedin_resume.tokengetter
 def get_linkedin_full_profile_oauth_token():
-    print "get_linkedin_full_profile_oauth_token", session.get('linkedin_full_profile_token')
     return session.get('linkedin_full_profile_token')
 
 def change_linkedin_query(uri, headers, body):
