@@ -1,0 +1,35 @@
+{% extends 'public/public.html' %}
+
+
+{% block main %}
+<body>
+<div class="container">
+<div class="row" style="margin-top: 100px;">
+
+<div class="col-xs-6 col-md-4">TEST</div>
+<div class="col-xs-6 col-md-4">TEST2
+
+        <!-- Le input -->
+<textarea id="pagedownMe" class="form-control" rows="10">
+This is the *first* editor.
+------------------------------
+
+Just plain **Markdown**, except that the input is sanitized:
+
+<marquee>I'm the ghost from the past!</marquee>
+</textarea>
+
+</div>
+</div>
+
+        <!-- Le lift -->
+<script type="text/javascript">
+(function () {
+console.log("TEST1");
+$("textarea#pagedownMe").pagedownBootstrap();
+console.log("TEST2");
+})();
+</script>
+
+</body>
+{% endblock main %}

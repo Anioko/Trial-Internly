@@ -10,10 +10,14 @@
 
     <title>Interns in Finland, Interns in Germany, Interns in UK, Interns in Estonia</title>
     <!-- Bootstrap core CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootswatch.css') }}" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
 
     <!-- Font Awesome CSS -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -23,11 +27,10 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-     <link href="{{ url_for('static', filename='css/bootswatch.css') }}" rel="stylesheet" type="text/css">
-    <style type="text/css">
-<!--
--->
-    </style>
+
+    <link href="{{ url_for('static', filename='css/jquery.pagedown-bootstrap.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.pagedown-bootstrap.combined.min.js') }}"></script>
+
 
 </head>
 
