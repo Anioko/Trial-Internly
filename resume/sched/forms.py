@@ -108,22 +108,22 @@ class ResumeForm(Form):
 
 
 class PositionForm(Form):
-    position_title = TextField('trainee_position_title', [Length(max=255)])
-    company_name = TextField('company_name', [Length(max=255)])
-    location = TextField('location', [Length(max=255)])
-    company_website = TextField('company_website', [Length(max=255)])
-    description = TextAreaField('description')
-    required_skill_one = TextField('required_skill_one', [Length(max=255)])
-    required_skill_two = TextField('required_skill_two', [Length(max=255)])
-    required_skill_three = TextField('required_skill_three', [Length(max=255)])
-    required_skill_four = TextField('required_skill_four', [Length(max=255)])
-    required_skill_five = TextField('required_skill_five', [Length(max=255)])
-    required_skill_six = TextField('required_skill_six', [Length(max=255)])
-    required_skill_seven = TextField('required_skill_seven', [Length(max=255)])
-    required_skill_eight = TextField('required_skill_eight', [Length(max=255)])
-    required_skill_nine = TextField('required_skill_nine', [Length(max=255)])
-    required_skill_ten = TextField('required_skill_ten', [Length(max=255)])
-    pub_date = DateTimeField('pub_date')
+    position_title = TextField('Position title', [Length(max=255)])
+    company_name = TextField('Company name', [Length(max=255)])
+    location = TextField('Location', [Length(max=255)])
+    company_website = TextField('Company website', [Length(max=255)])
+    description = TextAreaField('Description')
+    required_skill_one = TextField('Required skill', [Length(max=255)])
+    required_skill_two = TextField('Required skill', [Length(max=255)])
+    required_skill_three = TextField('Required skill', [Length(max=255)])
+    required_skill_four = TextField('Required skill', [Length(max=255)])
+    required_skill_five = TextField('Required skill', [Length(max=255)])
+    required_skill_six = TextField('Required skill', [Length(max=255)])
+    required_skill_seven = TextField('Required skill', [Length(max=255)])
+    required_skill_eight = TextField('Required skill', [Length(max=255)])
+    required_skill_nine = TextField('Required skill', [Length(max=255)])
+    required_skill_ten = TextField('Required skill', [Length(max=255)])
+    pub_date = DateTimeField('Publication start date')
 
 
 

@@ -3,9 +3,9 @@
 {% from 'resume/common.html' import edit_field, edit_field2 %}
 
 {% if request.endpoint.endswith('edit') %}
-  {% set title = 'Edit Resume' %}
+{% set title = 'Edit Resume' %}
 {% else %}
-  {% set title = 'Add Resume' %}
+{% set title = 'Add Resume' %}
 {% endif %}
 
 {% block title %}{{ title }}{% endblock title %}
@@ -15,380 +15,387 @@
 
 <div class="container" style="margin-top: 100px;">
 
-<div class="row">
-      <div class="col-md-3"></div> <!------Was used to center things--------->
-        <div class="col-md-6"><form method="post" class="form-control">
-      <legend>{{ title }}</legend>
+    <div class="row">
+        <div class="col-md-2"></div> <!------Was used to center things--------->
+        <div class="col-md-8"><form method="post" class="form-control">
+            <legend>{{ title }}</legend>
 
-      {{ edit_field(form.name, maxlength=255,
-                    placeholder="Your official name e.g Mark Zukerberg") }}
-      {{ edit_field(form.email, maxlength=100,
-                    placeholder="e.g Johndoe@example.com") }}
-      {{ edit_field(form.phone, maxlength=255,
-                    placeholder="+1234567890") }}
-      {{ edit_field(form.city, maxlength=100,
-                    placeholder="e.g London") }}
-      {{ edit_field(form.zip, maxlength=50,
-                    placeholder="e.g 00011 Helsinki") }}
-      {{ edit_field(form.country, maxlength=255,
-                    placeholder="e.g Finland") }}
-      {{ edit_field(form.url, maxlength=255,
-                    placeholder="e.g http://www.Linkedin.com/anioko or www.example.com") }}
-      {{ edit_field(form.citizenship, maxlength=255,
-                    placeholder="e.g Italian") }}
-
-
-
-					<p>
-      {{ edit_field(form.summary_title, maxlength=255,
-                    placeholder="e.g Financial Analysis and Reporting") }}
-      {{ edit_field(form.summary_text, maxlength=500,
-                    placeholder="e.g Some description of the way you do things.") }}
-					</p>
+            {{ edit_field(form.name, maxlength=255,
+            placeholder="Your official name e.g Mark Zukerberg") }}
+            {{ edit_field(form.email, maxlength=100,
+            placeholder="e.g Johndoe@example.com") }}
+            {{ edit_field(form.phone, maxlength=255,
+            placeholder="+1234567890") }}
+            {{ edit_field(form.city, maxlength=100,
+            placeholder="e.g London") }}
+            {{ edit_field(form.zip, maxlength=50,
+            placeholder="e.g 00011 Helsinki") }}
+            {{ edit_field(form.country, maxlength=255,
+            placeholder="e.g Finland") }}
+            {{ edit_field(form.url, maxlength=255,
+            placeholder="e.g http://www.Linkedin.com/anioko or www.example.com") }}
+            {{ edit_field(form.citizenship, maxlength=255,
+            placeholder="e.g Italian") }}
 
 
-					<p>
 
-      {{ edit_field(form.company_name, maxlength=255,
-                    placeholder="e.g Company ABC.") }}
-      {{ edit_field(form.company_summary, maxlength=255,
-                    placeholder="e.g Brief description of Company ABC.") }}
-      {{ edit_field(form.role, maxlength=255,
-                    placeholder="e.g Financial Analyst Assistant.") }}
-      {{ edit_field(form.role_description,
-                    placeholder="More explanation of what you did.") }}
-					
-      {{ edit_field(form.start, maxlength=255,
-                    placeholder="e.g 11.12.2014.") }}
-      {{ edit_field(form.end, maxlength=255,
-                    placeholder="e.g 11.12.2015.") }}
-      {{ edit_field(form.currently) }}
-      {{ edit_field(form.location, maxlength=255,
-                    placeholder="Tel Aviv") }}
-					</p>
-                    <p> 
-					
-      {{ edit_field(form.company_name_two, maxlength=255,
-                    placeholder="e.g Company ABC.") }}
-      {{ edit_field(form.company_summary_two, maxlength=255,
-                    placeholder="e.g Brief description of Company ABC.") }}
-      {{ edit_field(form.role_two, maxlength=255,
-                    placeholder="e.g Financial Analyst Assistant.") }}
-      {{ edit_field(form.role_description_two,
-                    placeholder="More explanation of what you did.") }}
-					
-      {{ edit_field(form.start_date, maxlength=255,
-                    placeholder="e.g 11.12.2014.") }}
-      {{ edit_field(form.end_date, maxlength=255,
-                    placeholder="e.g 11.12.2015.") }}
-      {{ edit_field(form.currently_two) }}
-      {{ edit_field(form.location_two, maxlength=255,
-                    placeholder="Tel Aviv") }}
-					</p>
-     {{ edit_field(form.school_name_one, maxlength=255,
-                    placeholder="e.g Stanford University .") }}
-	 {{ edit_field(form.degree_description, maxlength=255,
-                    placeholder="e.g Bachelor of Business Administration .") }}
-     {{ edit_field(form.grading, maxlength=255,
-                    placeholder="e.g Distinction .") }}
-	 {{ edit_field(form.start_date_school, maxlength=255,
-                    placeholder="e.g 25.08.2010.") }}
-     {{ edit_field(form.end_date_graduation, maxlength=255,
-                    placeholder="e.g 24.10.2013.") }}
-	 {{ edit_field(form.currently_three) }}
-	 {{ edit_field(form.location_school, maxlength=255,
-                    placeholder="e.g London.") }}
-	{{ edit_field(form.city_school, maxlength=255,
-                    placeholder="e.g Maryland.") }}
-	{{ edit_field(form.country_school, maxlength=255,
-                    placeholder="e.g Estonia.") }}
-	
-     {{ edit_field(form.school_name_two, maxlength=255,
-                    placeholder="e.g Stanford University .") }}
-	 {{ edit_field(form.degree_description_two, maxlength=255,
-                    placeholder="e.g Bachelor of Business Administration .") }}
-     {{ edit_field(form.grading_two, maxlength=255,
-                    placeholder="e.g Distinction .") }}
-	 {{ edit_field(form.start_date_one, maxlength=255,
-                    placeholder="e.g 25.08.2010.") }}
-     {{ edit_field(form.end_date_two, maxlength=255,
-                    placeholder="e.g 24.10.2013.") }}
-	 {{ edit_field(form.currently_four) }}
-	 {{ edit_field(form.location_school_two, maxlength=255,
-                    placeholder="e.g London.") }}
-	{{ edit_field(form.city_school_two, maxlength=255,
-                    placeholder="e.g Maryland.") }}
-	{{ edit_field(form.country_school_two, maxlength=255,
-                    placeholder="e.g Finland.") }}
-	
-	{{ edit_field(form.skills_one, maxlength=255,
-                    placeholder="e.g Java Programming.") }}
-					
-	{{ edit_field(form.skills_two, maxlength=255,
-                    placeholder="e.g C++ Programming.") }}
-    {{ edit_field(form.skills_three, maxlength=255,
-                    placeholder="e.g Finnish Language.") }}
-	{{ edit_field(form.skills_four, maxlength=255,
-                    placeholder="e.g Estonian Language.") }}
-	{{ edit_field(form.skills_five, maxlength=255,
-                    placeholder="e.g Internet Marketing.") }}
-	{{ edit_field(form.skills_six, maxlength=255,
-                    placeholder="e.g Blogging.") }}
-	{{ edit_field(form.skills_seven, maxlength=255,
-                    placeholder="e.g Python Programming.") }}
-	{{ edit_field(form.skills_eight, maxlength=255,
-                    placeholder="e.g PHP Programming.") }}
-	{{ edit_field(form.skills_nine, maxlength=255,
-                    placeholder="e.g Java Programming.") }}
-	{{ edit_field(form.skills_ten, maxlength=255,
-                    placeholder="e.g Social Media Marketing.") }}
-					
-	
+            <p>
+                {{ edit_field(form.summary_title, maxlength=255,
+                placeholder="e.g Financial Analysis and Reporting") }}
+                {{ edit_field(form.summary_text, maxlength=500,
+                placeholder="e.g Some description of the way you do things.") }}
+            </p>
 
-      <div class="form-actions">
-        <button type="submit" class="btn btn-default">Save</button>
-        or <a href="{{ url_for('resumes_list') }}">Cancel</a>
-      </div>
-    </form></div>
-      </div>
-	         <div class="col-md-3"></div><!-----Was used to center things---->
 
-    
-	
-	
+            <p>
+
+                {{ edit_field(form.company_name, maxlength=255,
+                placeholder="e.g Company ABC.") }}
+                {{ edit_field(form.company_summary, maxlength=255,
+                placeholder="e.g Brief description of Company ABC.") }}
+                {{ edit_field(form.role, maxlength=255,
+                placeholder="e.g Financial Analyst Assistant.") }}
+                {{ edit_field(form.role_description,
+                placeholder="More explanation of what you did.") }}
+
+                {{ edit_field(form.start, maxlength=255,
+                placeholder="e.g 11.12.2014.") }}
+                {{ edit_field(form.end, maxlength=255,
+                placeholder="e.g 11.12.2015.") }}
+                {{ edit_field(form.currently) }}
+                {{ edit_field(form.location, maxlength=255,
+                placeholder="Tel Aviv") }}
+            </p>
+            <p>
+
+                {{ edit_field(form.company_name_two, maxlength=255,
+                placeholder="e.g Company ABC.") }}
+                {{ edit_field(form.company_summary_two, maxlength=255,
+                placeholder="e.g Brief description of Company ABC.") }}
+                {{ edit_field(form.role_two, maxlength=255,
+                placeholder="e.g Financial Analyst Assistant.") }}
+                {{ edit_field(form.role_description_two,
+                placeholder="More explanation of what you did.") }}
+
+                {{ edit_field(form.start_date, maxlength=255,
+                placeholder="e.g 11.12.2014.") }}
+                {{ edit_field(form.end_date, maxlength=255,
+                placeholder="e.g 11.12.2015.") }}
+                {{ edit_field(form.currently_two) }}
+                {{ edit_field(form.location_two, maxlength=255,
+                placeholder="Tel Aviv") }}
+            </p>
+            {{ edit_field(form.school_name_one, maxlength=255,
+            placeholder="e.g Stanford University .") }}
+            {{ edit_field(form.degree_description, maxlength=255,
+            placeholder="e.g Bachelor of Business Administration .") }}
+            {{ edit_field(form.grading, maxlength=255,
+            placeholder="e.g Distinction .") }}
+            {{ edit_field(form.start_date_school, maxlength=255,
+            placeholder="e.g 25.08.2010.") }}
+            {{ edit_field(form.end_date_graduation, maxlength=255,
+            placeholder="e.g 24.10.2013.") }}
+            {{ edit_field(form.currently_three) }}
+            {{ edit_field(form.location_school, maxlength=255,
+            placeholder="e.g London.") }}
+            {{ edit_field(form.city_school, maxlength=255,
+            placeholder="e.g Maryland.") }}
+            {{ edit_field(form.country_school, maxlength=255,
+            placeholder="e.g Estonia.") }}
+
+            {{ edit_field(form.school_name_two, maxlength=255,
+            placeholder="e.g Stanford University .") }}
+            {{ edit_field(form.degree_description_two, maxlength=255,
+            placeholder="e.g Bachelor of Business Administration .") }}
+            {{ edit_field(form.grading_two, maxlength=255,
+            placeholder="e.g Distinction .") }}
+            {{ edit_field(form.start_date_one, maxlength=255,
+            placeholder="e.g 25.08.2010.") }}
+            {{ edit_field(form.end_date_two, maxlength=255,
+            placeholder="e.g 24.10.2013.") }}
+            {{ edit_field(form.currently_four) }}
+            {{ edit_field(form.location_school_two, maxlength=255,
+            placeholder="e.g London.") }}
+            {{ edit_field(form.city_school_two, maxlength=255,
+            placeholder="e.g Maryland.") }}
+            {{ edit_field(form.country_school_two, maxlength=255,
+            placeholder="e.g Finland.") }}
+
+            {{ edit_field(form.skills_one, maxlength=255,
+            placeholder="e.g Java Programming.") }}
+
+            {{ edit_field(form.skills_two, maxlength=255,
+            placeholder="e.g C++ Programming.") }}
+            {{ edit_field(form.skills_three, maxlength=255,
+            placeholder="e.g Finnish Language.") }}
+            {{ edit_field(form.skills_four, maxlength=255,
+            placeholder="e.g Estonian Language.") }}
+            {{ edit_field(form.skills_five, maxlength=255,
+            placeholder="e.g Internet Marketing.") }}
+            {{ edit_field(form.skills_six, maxlength=255,
+            placeholder="e.g Blogging.") }}
+            {{ edit_field(form.skills_seven, maxlength=255,
+            placeholder="e.g Python Programming.") }}
+            {{ edit_field(form.skills_eight, maxlength=255,
+            placeholder="e.g PHP Programming.") }}
+            {{ edit_field(form.skills_nine, maxlength=255,
+            placeholder="e.g Java Programming.") }}
+            {{ edit_field(form.skills_ten, maxlength=255,
+            placeholder="e.g Social Media Marketing.") }}
+
+
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-default">Save</button>
+                or <a href="{{ url_for('resumes_list') }}">Cancel</a>
+            </div>
+        </form></div>
+    </div>
+    <div class="col-md-2"></div><!-----Was used to center things---->
+
+
+
+
 </div>
-	  
-  
 
 
 
-        <!-- CSS code from Bootply.com editor -->
-        
-        <style type="text/css">
-            /* -- custom css for Bootstrap 3.x --*/
+
+
+<!-- CSS code from Bootply.com editor -->
+
+<style type="text/css">
+/* -- custom css for Bootstrap 3.x --*/
 
 /* move special fonts to HTML head for better performance */
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600');
 
 html,
 body {
-  height: 100%;
-  width: 100%;
-  font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+height: 100%;
+width: 100%;
+font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 body {
-    background-color: #FFFFFF;
-    color: #000000;
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 15px;
-    line-height: 1.42857;
+background-color: #FFFFFF;
+color: #000000;
+font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 15px;
+line-height: 1.42857;
 }
 
 /* fix bs3 horizontal scrollbar bug */
 .row { margin: 0; padding: 0 }
 
 h1 {
-  font-size:50px; 
+font-size:50px;
 }
 
 
 
 h4, p, h5, h6 {
-    color: #000000;
-    font-family: inherit;
-    font-weight: 300;
-    line-height: 1.1;
+color: #000000;
+font-family: inherit;
+font-weight: 300;
+line-height: 1.1;
 }
 
 img.grayscale {
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-    filter: gray; /* IE6-9 */
-    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+filter: gray; /* IE6-9 */
+-webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 }
 
 .icon-bar {
-   background-color:#fff;
+background-color:#fff;
 }
 
 .scroll-down a, .scroll-top a {
-   color:#ffffff;
+color:#ffffff;
 }
 
 .scroll-down {
-   position:fixed;
-   bottom:20%;
-   right:0%;
-   color:#f9f9f9;
+position:fixed;
+bottom:20%;
+right:0%;
+color:#f9f9f9;
 }
 
 .scroll-top {
-  background-color:#33ee67;
+background-color:#33ee67;
 }
 
 .header .btn-lg {
-   font-size:28px;
-   border-color:#eeeeee;
-   padding:15px;
-   background-color:transparent;
-   color:#ffffff;
+font-size:28px;
+border-color:#eeeeee;
+padding:15px;
+background-color:transparent;
+color:#ffffff;
 }
 
 .header .btn-lg:hover {
-   background-color:#eeeeee;
-   color:#777777;
+background-color:#eeeeee;
+color:#777777;
 }
 
 .navbar a {
-  color:#fff;
+color:#fff;
 }
 
 .navbar-bold.affix {
-  background-color:#33ee67;
+background-color:#33ee67;
 }
 
 .navbar-bold {
-  background-color:#11cc45;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+background-color:#11cc45;
+font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 .navbar-bold li a:hover {
-  background-color:#00bb34;
+background-color:#00bb34;
 }
 
 .navbar-bold li.active {
-  background-color:#00bb34;
+background-color:#00bb34;
 }
 
 .vert {
-  vertical-align: middle;
-  width:100%;
-  padding-top:4%;
+vertical-align: middle;
+width:100%;
+padding-top:4%;
 }
 
 .header h1 {
-  font-size:110px;
-  -webkit-text-stroke: 1px rgba(0,0,0,0.1);
-  color:#431a6d;
-  color:#fff;
-  margin-left:-5px;
-  margin-bottom:5px;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+font-size:110px;
+-webkit-text-stroke: 1px rgba(0,0,0,0.1);
+color:#431a6d;
+color:#fff;
+margin-left:-5px;
+margin-bottom:5px;
+font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 .header .lead {
-  color:#eeeeee;
-  font-size:25px;
+color:#eeeeee;
+font-size:25px;
 }
 
 .header {
-  height: 80%;
-  background: #2B3E50;
+height: 80%;
+background: #2B3E50;
 }
 
 .blurb {
-  padding: 120px 0;
-  background-color:#fefefe;
+padding: 120px 0;
+background-color:#fefefe;
 }
 
 .blurb .panel {
-  background-color:transparent;
+background-color:transparent;
 }
 
 .bright {
-  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
-  color:#fff;
+background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
+color:#fff;
 }
 
 .featurette {
-  background: #545455;
-  padding: 50px 0;
-  color: #ffffff;
+background: #545455;
+padding: 50px 0;
+color: #ffffff;
 }
 
 .featurette-item {
-  margin-bottom: 15px;
+margin-bottom: 15px;
 }
 
 .featurette-item > i {
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 56px;
-  width: 140px;
-  height: 140px;
-  line-height: 136px;
-  vertical-align: middle; 
-  text-align: center;
+border: 3px solid #ffffff;
+border-radius: 50%;
+display: inline-block;
+font-size: 56px;
+width: 140px;
+height: 140px;
+line-height: 136px;
+vertical-align: middle;
+text-align: center;
 }
 
 .featurette-item > i:hover {
-  font-size: 68px;
+font-size: 68px;
 }
 
 .callout {
-  color: #ffffff;
-  padding-top:7%;
-  height: 100%;
-  width: 100%;
-  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+color: #ffffff;
+padding-top:7%;
+height: 100%;
+width: 100%;
+background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
 }
 
 .gallery {
-  padding: 50px 0;
+padding: 50px 0;
 }
 
 .call-to-action {
-  background: #eeeeee;
-  padding: 50px 0;
+background: #eeeeee;
+padding: 50px 0;
 }
 
 .call-to-action .btn {
-  margin: 10px;
+margin: 10px;
 }
 
 .btn {
-    -moz-user-select: none;
-    background-color: #C85E17;
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 0;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 15px;
-    font-weight: normal;
-    line-height: 1.42857;
-    margin-bottom: 0;
-    padding: 8px 16px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-	font-color: #000000;
+-moz-user-select: none;
+background-color: #C85E17;
+border: 1px solid rgba(0, 0, 0, 0);
+border-radius: 0;
+cursor: pointer;
+display: inline-block;
+font-size: 15px;
+font-weight: normal;
+line-height: 1.42857;
+margin-bottom: 0;
+padding: 8px 16px;
+text-align: center;
+vertical-align: middle;
+white-space: nowrap;
+font-color: #000000;
 }
 
 footer {
-  padding: 100px 0;
+padding: 100px 0;
 }
 
 .panel {
-    background-color: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    margin-bottom: 21px;
+background-color: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0);
+border-radius: 0;
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+margin-bottom: 21px;
 }
 
-  .center {
-     float: none;
-     margin-left: auto;
-     margin-right: auto;
+.center {
+float: none;
+margin-left: auto;
+margin-right: auto;
 }
 
 
 /* -- end custom css for Bootstrap 3.x --*/
 
-        </style>
+</style>
+
+<script type="text/javascript">
+(function () {
+$("textarea#role_description").pagedownBootstrap();
+$("textarea#role_description_two").pagedownBootstrap();
+})();
+</script>
 
 {% endblock main %}
