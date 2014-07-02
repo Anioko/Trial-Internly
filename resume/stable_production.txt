@@ -9,6 +9,7 @@ Flask-Script==0.6.2
 Flask-Security==1.7.2
 Flask-WTF==0.9.4
 Flask-OAuthlib==0.5.0
+Flask-Misaka==0.3.0
 pycountry==1.6
 Jinja2==2.7.1
 MarkupSafe==0.18

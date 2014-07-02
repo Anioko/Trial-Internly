@@ -24,7 +24,7 @@
 	      <h3>{{ appt.company_name }}, {{ appt.location }} , {{ appt.start}}-{{ appt.end or (currently)}} </h3>
 	      <h5>{{ appt.company_summary}}</h5>
 	      <h3>{{ appt.role}}</h3>
-	      <h5>{{ appt.role_description}}</h5>
+	      <h5>{{ appt.role_description|markdown}}</h5>
 
  <h3>{{ appt.company_name_two }} {{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }} {% if appt.currently %}<p> Present</p> {% endif %} </h3>
 		  
@@ -33,7 +33,7 @@
 		
      <h6>{{ appt.company_summary_two}}</h6>
 	    <h3>{{ appt.role_two}}</h3>
-	      <h5>{{ appt.role_description_two}}</h5>
+	      <h5>{{ appt.role_description_two|markdown}}</h5>
 		   <hr>
 	     <h1 align="center"> Education</h1>
 		 <h3>{{ appt.school_name_one}}</h3>

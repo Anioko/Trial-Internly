@@ -14,6 +14,8 @@ from flask.ext.security import Security, SQLAlchemyUserDatastore
 from flask.ext.security.signals import user_registered
 from flask.ext.admin import Admin, BaseView, expose, AdminIndexView
 from flask.ext.admin.contrib.sqla import ModelView
+from flask.ext.misaka import Misaka
+from flask_oauthlib.client import OAuth , OAuthException
 
 from werkzeug import secure_filename
 from wtforms.ext.appengine import db
@@ -25,8 +27,8 @@ from sched.models import User, Resume, Position, Role, Oauth
 from sched.common import app, db, security
 from sched.pdfs import create_pdf
 
-from flask_oauthlib.client import OAuth , OAuthException
 from sched.utils.linkedin_resume import create_linkedin_resume
+
 
 app.config.from_object(DefaultConfig)
 
@@ -81,6 +83,7 @@ def base64_encode(value):
 app.jinja_env.filters['datefromstring'] = date_from_string
 app.jinja_env.filters['b64'] = base64_encode
 
+Misaka(app)
 
 # Setup logging for production.
 if not app.debug:
@@ -571,7 +574,7 @@ def position_edit(position_id):
         form.populate_obj(appt)
         db.session.commit()
         # Success. Send the user back to the detail view of that resume.
-        return redirect(url_for('position_detail', position_id=appt.id))
+        return redirect(url_for('position_details', position_id=appt.id))
     return render_template('position/edit.html', form=form)
 
 @app.route('/positions/<int:position_id>/delete/', methods=['DELETE'])
