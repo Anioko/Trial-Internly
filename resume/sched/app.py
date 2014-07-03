@@ -17,6 +17,8 @@ from flask.ext.admin import Admin, BaseView, expose, AdminIndexView
 from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.misaka import Misaka
 from flask_oauthlib.client import OAuth , OAuthException
+from flask_mail import Mail
+
 
 from werkzeug import secure_filename
 from wtforms.ext.appengine import db
@@ -98,6 +100,7 @@ app.jinja_env.filters['b62'] = dehydrate
 app.jinja_env.filters['slug'] = slug
 
 Misaka(app)
+mail = Mail(app)
 
 # Setup logging for production.
 if not app.debug:

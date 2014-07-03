@@ -38,4 +38,15 @@ class DefaultConfig(BaseConfig):
     LINKEDIN_LOGIN_SECRET_KEY = 'pxdRGQuhZe1uzW1H'
     LINKEDIN_FULL_PROFILE_API_KEY = '778wsvrftod2f0'
     LINKEDIN_FULL_PROFILE_SECRET_KEY = '7htUXCFgxiei8PCL'
+    MAIL_SERVER = 'smtp.webfaction.com'
+    MAIL_PORT = 25
+    MAIL_USE_SSL = False
+    MAIL_USERNAME = 'support_internly'
+    MAIL_PASSWORD = 'Internly+'
+    SECURITY_RECOVERABLE = True
+    SECURITY_SEND_PASSWORD_RESET_NOTICE_EMAIL = True
+    SECURITY_RESET_SALT= 'enydM2AJAdcoKwdVaMJWvEsbPLKuQpMjf'
+    DEFAULT_MAIL_SENDER = 'support@intern.ly'
+    SECURITY_EMAIL_SENDER = 'support@intern.ly'
+    MAIL_DEBUG = False
 
