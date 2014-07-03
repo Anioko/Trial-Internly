@@ -4,6 +4,7 @@ import logging
 import base64
 import datetime
 from functools import wraps
+from unicodedata import normalize
 
 from flask import send_from_directory
 from flask import abort, jsonify, redirect, render_template, request, url_for, flash, session, make_response
@@ -28,7 +29,18 @@ from sched.common import app, db, security
 from sched.pdfs import create_pdf
 
 from sched.utils.linkedin_resume import create_linkedin_resume
+from sched.utils.base62 import dehydrate, saturate
 
+
+def slug(text, encoding=None,permitted_chars='abcdefghijklmnopqrstuvwxyz0123456789-'):
+    if isinstance(text, str):
+        text = text.decode(encoding or 'ascii')
+    clean_text = text.strip().replace(' ', '-').lower()
+    while '--' in clean_text:
+        clean_text = clean_text.replace('--', '-')
+    ascii_text = normalize('NFKD', clean_text).encode('ascii', 'ignore')
+    strict_text = map(lambda x: x if x in permitted_chars else '', ascii_text)
+    return ''.join(strict_text)
 
 app.config.from_object(DefaultConfig)
 
@@ -82,6 +94,8 @@ def base64_encode(value):
 
 app.jinja_env.filters['datefromstring'] = date_from_string
 app.jinja_env.filters['b64'] = base64_encode
+app.jinja_env.filters['b62'] = dehydrate
+app.jinja_env.filters['slug'] = slug
 
 Misaka(app)
 
@@ -524,6 +538,11 @@ def position_details(position_id):
         anonymous = False
     return render_template('position/details.html', appt=appt,
                            have_resume=resume_exists, anonym=anonymous)
+
+@app.route('/apply-now/<b62id>/<title>')
+def position_apply_now(b62id, title):
+    position_id = saturate(b62id)
+    return redirect(url_for('position_details', position_id=position_id))
 
 @app.route('/position/')
 @login_required

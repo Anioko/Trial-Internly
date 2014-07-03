@@ -23,9 +23,13 @@
 
 	   <h3 align="center"> Job Description</h3>
 	      <h6 align="center">{{ appt.description }}</h6>
-		  
 	 <hr>	  
     {% endif %}
+
+      <p>
+       Positon share URL:<br/> <a href="{{ url_for('position_apply_now', b62id=appt.id|b62, title=appt.position_title|slug) }}">{{ url_for('position_apply_now', b62id=appt.id|b62, title=appt.position_title|slug, _external=True) }}</a>
+      </p>
+
 		<h5 align="center"> Requirements</h5>
 
 		 {% if show_skills %}
