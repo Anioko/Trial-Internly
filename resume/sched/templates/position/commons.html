@@ -14,13 +14,13 @@
 	  <hr>
     {% else %}
       <h1 align="center">{{ appt.position_title or '(No Title)' }}</h1>
-	    <h3 align="center"> {{ appt.company_name }}, {{ appt.location }}</h3>
-           <h4 align="center">{{ appt.company_website }}</h4>
+	    <h3 align="center"> {{ appt.company_name|default('') }}, {{ appt.location|default('') }}</h3>
+           <h4 align="center">{{ appt.company_website|default('') }}</h4>
 
 	   <hr>
 
 	   <h3 align="center"> Job Description</h3>
-	      <h4 align="center">{{ appt.description|markdown }}</h4>
+	      <h4 align="center">{{ appt.description|default('')|markdown }}</h4>
 		  
 	 <hr>	  
     {% endif %}
@@ -29,17 +29,17 @@
 		 {% if show_skills %}
              <br />
 
-		 {{ appt.required_skill_one}}
+		 {{ appt.required_skill_one|default('')}}
              <br />
 
 
-		 {{ appt.required_skill_two}}
+		 {{ appt.required_skill_two|default('')}}
              <br />
 
-		 {{ appt.required_skill_three}}
+		 {{ appt.required_skill_three|default('')}}
              <br />
 
-		 {{ appt.required_skill_four}}
+		 {{ appt.required_skill_four|default('')}}
              <br />
 
 			

@@ -35,37 +35,37 @@
 		 {% if show_skills %}
              <br />
 
-		 {{ appt.required_skill_one}}
+		 {{ appt.required_skill_one|default('')}}
              <br />
 
 
-		 {{ appt.required_skill_two}}
+		 {{ appt.required_skill_two|default('')}}
              <br />
 
-		 {{ appt.required_skill_three}}
+		 {{ appt.required_skill_three|default('')}}
              <br />
 
-		 {{ appt.required_skill_four}}
-             <br />
-
-
-		 {{ appt.required_skill_five}}
+		 {{ appt.required_skill_four|default('')}}
              <br />
 
 
-		 {{ appt.required_skill_six}}
+		 {{ appt.required_skill_five|default('')}}
              <br />
 
 
-		 {{ appt.required_skill_seven}}
+		 {{ appt.required_skill_six|default('')}}
              <br />
 
 
-		 {{ appt.required_skill_eight}}
+		 {{ appt.required_skill_seven|default('')}}
              <br />
 
 
-		 {{ appt.required_skill_nine}}
+		 {{ appt.required_skill_eight|default('')}}
+             <br />
+
+
+		 {{ appt.required_skill_nine|default('')}}
 		 		 {% else %}
 				No Requirements specified
 		 {% endif %}
