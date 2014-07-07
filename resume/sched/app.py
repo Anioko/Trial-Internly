@@ -13,6 +13,7 @@ from flask.ext.login import login_user, login_required, logout_user
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.security import Security, SQLAlchemyUserDatastore
 from flask.ext.security.signals import user_registered
+from flask.ext.security.utils import url_for_security
 from flask.ext.admin import Admin, BaseView, expose, AdminIndexView
 from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.misaka import Misaka
@@ -564,6 +565,10 @@ def position_apply_now(b62id, title):
 
 # Company views
 
+@app.route('/company/signup/', methods=['GET', 'POST'])
+def security_company_register():
+    return redirect(url_for_security('register', next=url_for('company_register')))
+
 @app.route('/company/activate/', methods=['GET', 'POST'])
 @login_required
 def company_register():
@@ -703,10 +708,11 @@ def position_list_applicants(position_id):
 
 @app.route('/')
 def landing_page():
-    
     if current_user.is_authenticated():
-        
-        return redirect(url_for('resumes_list'))
+        if current_user.company:
+            return redirect(url_for('company_register'))
+        else:
+            return redirect(url_for('resumes_list'))
     else:
         return render_template('layout.html')
 

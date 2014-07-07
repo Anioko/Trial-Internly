@@ -59,6 +59,7 @@ class User(db.Model, UserMixin):
     modified = Column(DateTime, default=datetime.now, onupdate=datetime.now)
 
     name = Column('name', String(200))
+    company = Column(Boolean(), default=False)
 
     def __unicode__(self):
         return u"{0} uID:<{1}>".format(self.name, self.id)
@@ -162,7 +163,7 @@ class Position(db.Model):
     company_website = Column(String(255))
     company_name = Column(String(255))
     location = Column(String(255))
-    pub_date = Column(DateTime, nullable=False)
+    pub_date = Column(DateTime, default=datetime.now, nullable=False)
 
     position_title = Column(String(255))
     required_skill_one = Column(String(255))
