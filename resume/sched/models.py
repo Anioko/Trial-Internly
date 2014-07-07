@@ -200,6 +200,25 @@ class Oauth(db.Model):
     user_id = db.Column(db.ForeignKey('user.id'))
     user = db.relationship('User')
 
+class CompanyUserData(db.Model):
+    __tablename__ = 'company_user_data'
+    id = Column(Integer, primary_key=True,)
+    first_name = Column(String(255))
+    last_name = Column(String(255))
+    email = Column(String(255))
+    company_name = Column(String(255))
+    company_adress = Column(String(),nullable=True)
+    phone_number = Column(String(255))
+
+    user_id = db.Column(db.ForeignKey('user.id'))
+    user = db.relationship('User')
+
+    additional_data1 = Column(String(),nullable=True)
+    additional_data2 = Column(String(),nullable=True)
+    additional_data3 = Column(String(),nullable=True)
+    additional_data4 = Column(String(),nullable=True)
+    additional_data5 = Column(String(),nullable=True)
+
 
 if __name__ == '__main__':
     from datetime import timedelta

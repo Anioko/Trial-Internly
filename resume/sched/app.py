@@ -25,8 +25,8 @@ from wtforms.ext.appengine import db
 
 from sched.config import DefaultConfig
 from sched import filters
-from sched.forms import ResumeForm, PositionForm, ExtendedRegisterForm
-from sched.models import User, Resume, Position, Role, Oauth
+from sched.forms import ResumeForm, PositionForm, ExtendedRegisterForm, RegisteCompanyForm
+from sched.models import User, Resume, Position, Role, Oauth, CompanyUserData
 from sched.common import app, db, security
 from sched.pdfs import create_pdf
 
@@ -57,6 +57,14 @@ def admin_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def company_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if current_user.has_role('ROLE_COMPANY_FREE') is False:
+            abort(404)
+        return f(*args, **kwargs)
+    return decorated_function
+
 class MyAdminIndexView(AdminIndexView):
     @login_required
     @admin_required
@@ -74,6 +82,7 @@ admin = Admin(app, name='Internly', index_view=MyAdminIndexView())
 admin.add_view(AdminView(User, db.session))
 admin.add_view(AdminView(Resume, db.session))
 admin.add_view(AdminView(Position, db.session))
+admin.add_view(AdminView(CompanyUserData, db.session))
 
 
 @user_registered.connect_via(app)
@@ -401,7 +410,7 @@ def resume_detail(resume_id):
     return render_template('resume/resume_detail.html', appt=appt)
 
 
-@app.route('/resumes/preview/<resume_id>/')
+@app.route('/company/resumes/preview/<resume_id>/')
 @login_required
 def resume_preview(resume_id):
     """Provide HTML page with all details on a given resume.
@@ -415,7 +424,7 @@ def resume_preview(resume_id):
     # Template without edit buttons
     return render_template('resume/resume_detail_preview.html', appt=appt)
 
-@app.route('/resumes/preview/pdf/<resume_id>/')
+@app.route('/company/resumes/preview/pdf/<resume_id>/')
 @login_required
 def resume_preview_pdf(resume_id):
     """Provide pdf preview of resume.
@@ -496,8 +505,14 @@ def all_positions():
 
     THIS VIEW IS FOR APPLICANTS
     """
-    # Query: Get all Position objects.
-    appts = db.session.query(Position).all()
+    # Query: Get all Position objects that don't exceed the deadline.
+
+    time_diff = datetime.datetime.today() - \
+                datetime.timedelta(
+                    days=app.config['POSITION_APPERANCE_TIME_IN_DAYS'])
+
+    appts = db.session.query(Position).filter(Position.pub_date > time_diff).all()
+
     return render_template('position/all.html', appts=appts)
 
 @app.route('/positions/<int:position_id>/apply/')
@@ -547,8 +562,30 @@ def position_apply_now(b62id, title):
     position_id = saturate(b62id)
     return redirect(url_for('position_details', position_id=position_id))
 
-@app.route('/position/')
+# Company views
+
+@app.route('/company/activate/', methods=['GET', 'POST'])
 @login_required
+def company_register():
+    form = RegisteCompanyForm(request.form)
+    if request.method == 'POST' and form.validate():
+        appt = CompanyUserData(user_id=current_user.id)
+        form.populate_obj(appt)
+        db.session.add(appt)
+
+        company_role = user_datastore.find_role("ROLE_COMPANY_FREE")
+        user_datastore.add_role_to_user(current_user, company_role)
+        db.session.commit()
+
+        # Success. Send to the postion list
+        flash("Welcome in company dashboard.", 'succes')
+        return redirect(url_for('position_list'))
+    # Either first load or validation error at this point.
+    return render_template('position/edit_company.html', form=form)
+
+@app.route('/company/positions/')
+@login_required
+@company_required
 def position_list():
     """Provide HTML page listing all rpositions in the database.
 
@@ -561,8 +598,9 @@ def position_list():
 
     return render_template('position/index.html', appts=appts)
 
-@app.route('/positions/create/', methods=['GET', 'POST'])
+@app.route('/company/positions/create/', methods=['GET', 'POST'])
 @login_required
+@company_required
 def position_create():
     """Provide HTML form to create a new positions record.
 
@@ -579,8 +617,9 @@ def position_create():
     # Either first load or validation error at this point.
     return render_template('position/edit.html', form=form)
 
-@app.route('/positions/<int:position_id>/edit/', methods=['GET', 'POST'])
+@app.route('/company/positions/<int:position_id>/edit/', methods=['GET', 'POST'])
 @login_required
+@company_required
 def position_edit(position_id):
     """Provide HTML form to edit a given position.
 
@@ -594,35 +633,39 @@ def position_edit(position_id):
     form = PositionForm(request.form, appt)
     if request.method == 'POST' and form.validate():
         form.populate_obj(appt)
+        del form.pub_date
         db.session.commit()
         # Success. Send the user back to the detail view of that resume.
         return redirect(url_for('position_details', position_id=appt.id))
     return render_template('position/edit.html', form=form)
 
-@app.route('/positions/<int:position_id>/delete/', methods=['DELETE'])
+@app.route('/company/positions/<int:position_id>/delete/', methods=['GET', 'POST'])
 @login_required
+@company_required
 def position_delete(position_id):
-    """Delete a record using HTTP DELETE, respond with JSON for JavaScript.
+    """Delete a record
 
     THIS VIEW IS FOR COMPANIES
     """
     appt = db.session.query(Position).get(position_id)
+    print position_id
     if appt is None:
         # Abort with simple response indicating position not found.
-        response = jsonify({'status': 'Not Found'})
-        response.status_code = 404
-        return response
+        flash("Wrong postion id.", 'danger')
+        return redirect(url_for('position_list'))
     if appt.user_id != current_user.id:
         # Abort with simple response indicating forbidden.
-        response = jsonify({'status': 'Forbidden'})
-        response.status_code = 403
-        return response
+        flash("You can't remove this position.", 'danger')
+        return redirect(url_for('position_list'))
     db.session.delete(appt)
     db.session.commit()
-    return jsonify({'status': 'OK'})
+    flash("Postion was removed.", 'succes')
+    return redirect(url_for('position_list'))
+    # return jsonify({'status': 'OK'})
 
-@app.route('/positions/<int:position_id>/applicants/')
+@app.route('/company/positions/<int:position_id>/applicants/')
 @login_required
+@company_required
 def position_list_applicants(position_id):
 
     position = db.session.query(Position).get(position_id)

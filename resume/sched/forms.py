@@ -127,7 +127,14 @@ class PositionForm(Form):
 
 
 
-    
+class RegisteCompanyForm(Form):
+    first_name = TextField('First name', [Length(max=255), Required()])
+    last_name = TextField('Last name', [Length(max=255), Required()])
+    email = TextField('E-mail', [Length(max=255), Required()])
+    website = TextField('Website', [Length(max=255)])
+    company_name = TextField('Company name', [Length(max=255), Required()])
+    company_adress = TextAreaField('Company adress', [Required()])
+    phone_number = TextField('Phone number', [Length(max=255), Required()])
 
 
 # class LoginForm(Form):

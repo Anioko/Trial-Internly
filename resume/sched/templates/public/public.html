@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +24,8 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <link href="{{ url_for('static', filename='css/jquery.pagedown-bootstrap.css') }}" rel="stylesheet">
@@ -34,89 +34,96 @@
 
 </head>
 
-  <body role="document">
+<body role="document">
 
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>          </button>
-          <a class="navbar-brand" href="/">Internly</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>          </button>
+            <a class="navbar-brand" href="/">Internly</a>
         </div>
-		
+
         <div class="navbar-collapse collapse">
-		  {% if current_user.is_authenticated() %}
-		   <ul class="nav navbar-nav">
-		   	<li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
-			<li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
-			<li><a href="{{ url_for('all_positions') }}">All Vacancies </a></li><!-----Public View----->
-          </ul>
-		      <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.name }} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="{{ url_for_security('logout') }}">Logout</a></li>
+            {% if current_user.is_authenticated() %}
+                {% if current_user.has_role('ROLE_COMPANY_FREE') == False %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
+                    <li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
+                    <li><a href="{{ url_for('all_positions') }}">All Vacancies </a></li><!-----Public View----->
                 </ul>
-              </li>
+                {% else %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('position_list') }}">Published positions</a></li>
+                    <li><a href="{{ url_for('position_create') }}">Create postion</a></li>
+                </ul>
+                {% endif %}
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.name }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for_security('logout') }}">Logout</a></li>
+                    </ul>
+                </li>
             </ul>
-			{% else %}
-		 <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-			<li><a href="/about">Policy</a></li>
-            <!--<li><a href="#contact">Contact</a></li>--->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pricing <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/premium">Premium Account</a></li>
-				<li><a href="/pro">Premium Pro</a></li>
-              </ul>
-            </li>
-          </ul>
-		  <ul class="nav navbar-nav navbar-right">
-            <li><a target="_blank" href="/signup">Signup</a></li>
-            <li><a target="_blank" href="/login">Login</a></li>
-          </ul>
-		  {% endif %}
+            {% else %}
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/about">Policy</a></li>
+                <!--<li><a href="#contact">Contact</a></li>--->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pricing <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/premium">Premium Account</a></li>
+                        <li><a href="/pro">Premium Pro</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a target="_blank" href="/signup">Signup</a></li>
+                <li><a target="_blank" href="/login">Login</a></li>
+            </ul>
+            {% endif %}
         </div><!--/.nav-collapse -->
-      </div>
     </div>
+</div>
 {% block main %}{% endblock main %}
 {% block content %}{% endblock %}
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/bootswatch.js') }}"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootswatch.js') }}"></script>
 
-	<style>
-	.masthead {
+<style>
+    .masthead {
     background-color: #2B3E50;
     color: #FFFFFF;
     padding: 6em 0;
     position: relative;
     text-align: center;
     }
-	h1 {
+    h1 {
     font-size: 5em;
     line-height: 1;
-     }
-	.intro-marketing {
+    }
+    .intro-marketing {
     background-color: #FFFFFF;
     padding-bottom: 3em;
-     }
-	 .bs-docs-featurette {
+    }
+    .bs-docs-featurette {
     padding-bottom: 100px;
     padding-top: 100px;
-}
-.bs-docs-featurette {
+    }
+    .bs-docs-featurette {
     background-color: #FFFFFF;
     border-bottom: 1px solid #E5E5E5;
     color: #555555;
@@ -125,26 +132,26 @@
     padding-bottom: 40px;
     padding-top: 40px;
     text-align: center;
-   }
-   .bs-docs-footer {
+    }
+    .bs-docs-footer {
     border-top: 0 none;
     margin-top: 0;
-}
-.bs-docs-footer {
+    }
+    .bs-docs-footer {
     border-top: 1px solid #E5E5E5;
-	background-color: #FFFFFF;
+    background-color: #FFFFFF;
     color: #777777;
     margin-top: 100px;
     padding-bottom: 40px;
     padding-top: 40px;
     text-align: center;
-}
-.navbar-inverse {
+    }
+    .navbar-inverse {
     background-color: #4E5D6C;
     border-color: #080808;
-}
-	</style>
+    }
+</style>
 
 
-  </body>
+</body>
 </html>

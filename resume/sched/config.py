@@ -49,4 +49,5 @@ class DefaultConfig(BaseConfig):
     DEFAULT_MAIL_SENDER = 'support@intern.ly'
     SECURITY_EMAIL_SENDER = 'support@intern.ly'
     MAIL_DEBUG = False
+    POSITION_APPERANCE_TIME_IN_DAYS=7
 
