@@ -206,6 +206,7 @@ class CompanyUserData(db.Model):
     first_name = Column(String(255))
     last_name = Column(String(255))
     email = Column(String(255))
+    website = Column(String(255))
     company_name = Column(String(255))
     company_adress = Column(String(),nullable=True)
     phone_number = Column(String(255))

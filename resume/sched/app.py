@@ -606,7 +606,18 @@ def position_create():
 
     THIS VIEW IS FOR COMPANIES
     """
+    try:
+        company_details = db.session.query(CompanyUserData
+                        ).filter_by(user_id=current_user.id).all()[0]
+    except IndexError:
+        pass
+
+
     form = PositionForm(request.form)
+    if company_details is not None:
+        form.company_name.data = company_details.company_name
+        form.company_website.data = company_details.website
+
     if request.method == 'POST' and form.validate():
         appt = Position(user_id=current_user.id)
         form.populate_obj(appt)
