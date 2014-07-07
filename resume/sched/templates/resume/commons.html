@@ -15,7 +15,7 @@
 			
 	   <hr>
 	      <h1 align="center">{{ appt.summary_title|default('') }}</h1>
-	      <h5>{{ appt.summary_text|default('') }}</h5>
+	      <h5>{{ appt.summary_text if appt.summary_text != None }}  aaaa </h5>
 	   <hr>
 	   <h1 align="center"> Experience</h1>
 	      <h3>{{ appt.company_name|default('') }}, {{ appt.location|default('') }} , {{ appt.start|default('')}}-{{ appt.end|default('') or (currently)}} </h3>

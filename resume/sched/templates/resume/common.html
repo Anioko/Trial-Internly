@@ -18,55 +18,55 @@
 			
 	   <hr>
 	      <h1 align="center">{{ appt.summary_title }}</h1>
-	      <h5>{{ appt.summary_text }}</h5>
+	      <h5>{{ appt.summary_text if appt.summary_text != None }} </h5>
 	   <hr>
 	   <h1 align="center"> Experience</h1>
-	      <h3>{{ appt.company_name }}, {{ appt.location }} , {{ appt.start}}-{{ appt.end or (currently)}} </h3>
-	      <h5>{{ appt.company_summary}}</h5>
-	      <h3>{{ appt.role}}</h3>
-	      <h5>{{ appt.role_description|markdown}}</h5>
+	      <h3>{{ appt.company_name if appt.company_name != None }}, {{ appt.location if appt.location != None  }} , {{ appt.start}}-{{ appt.end or (currently)}} </h3>
+	      <h5>{{ appt.company_summary if appt.company_summary != None  }}</h5>
+	      <h3>{{ appt.role if appt.role != None }}</h3>
+	      <h5>{{ appt.role_description|markdown if appt.role_description != None  }}</h5>
 
- <h3>{{ appt.company_name_two }} {{ appt.location_two }} , {{ appt.start_date}}-{{ appt.end_date }} {% if appt.currently %}<p> Present</p> {% endif %} </h3>
+ <h3>{{ appt.company_name_two  if appt.company_name_two != None  }} {{ appt.location_two  if appt.location_two != None  }} , {{ appt.start_date}}-{{ appt.end_date }} {% if appt.currently %}<p> Present</p> {% endif %} </h3>
 		  
            
         
 		
-     <h6>{{ appt.company_summary_two}}</h6>
-	    <h3>{{ appt.role_two}}</h3>
-	      <h5>{{ appt.role_description_two|markdown}}</h5>
+     <h6>{{ appt.company_summary_two  if appt.company_summary_two != None  }}</h6>
+	    <h3>{{ appt.role_two  if appt.role_two != None  }}</h3>
+	      <h5>{{ appt.role_description_two|markdown  if appt.role_description_two != None }}</h5>
 		   <hr>
 	     <h1 align="center"> Education</h1>
-		 <h3>{{ appt.school_name_one}}</h3>
-		 <h5>{{ appt.degree_description}}</h5>
-		 <h5>{{ appt.grading}}</h5>
+		 <h3>{{ appt.school_name_one  if appt.school_name_one != None }}</h3>
+		 <h5>{{ appt.degree_description if appt.degree_description != None }}</h5>
+		 <h5>{{ appt.grading if appt.grading != None }}</h5>
 		 <h5>{{ appt.start_date_school|datefromstring}}</h5>
 		 To {{ appt.end_date_graduation|datefromstring if not appt.currently_three else '(now)' }}
 
-		 <h5>{{ appt.location_school}}</h5>
-		 <h5>{{ appt.city_school}}</h5>
-		 <h5>{{ appt.country_school}}</h5>
+		 <h5>{{ appt.location_school if appt.location_school != None }}</h5>
+		 <h5>{{ appt.city_school if appt.city_school != None }}</h5>
+		 <h5>{{ appt.country_school if appt.country_school != None }}</h5>
 
 		 <br>
-		 <h3>{{ appt.school_name_two}}</h3>
-		 <h5>{{ appt.degree_description_two}}</h5>
-		 <h5>{{ appt.grading_two}}</h5>
+		 <h3>{{ appt.school_name_two if appt.school_name_two != None }}</h3>
+		 <h5>{{ appt.degree_description_two if appt.degree_description_two != None }}</h5>
+		 <h5>{{ appt.grading_two if appt.grading_two != None }}</h5>
 		 <h5> {{ appt.start_date_one|datefromstring}}</h5>
 		 <h5> {{ appt.end_date_two|datefromstring if not appt.currently_four  else '(now)' }}</h5>
-		 <h5>{{ appt.location_school_two}}</h5>
-		 <h5>{{ appt.city_school_two}}</h5>
-		 <h5>{{ appt.country_school_two}}</h5>		 
+		 <h5>{{ appt.location_school_two if appt.location_school_two != None }}</h5>
+		 <h5>{{ appt.location_school_two if appt.location_school_two != None }}</h5>
+		 <h5>{{ appt.country_school_two if appt.country_school_two != None }}</h5>
 		<hr>
 	     <h1 align="center"> Skills & Courses</h1>
-		 <h5>{{ appt.skills_one}}</h5>
-		 <h5>{{ appt.skills_two}}</h5>
-		 <h5>{{ appt.skills_three}}</h5>
-		 <h5>{{ appt.skills_four}}</h5>
-		 <h5>{{ appt.skills_five}}</h5>
-		 <h5>{{ appt.skills_six}}</h5>
-		 <h5>{{ appt.skills_seven}}</h5>
-		 <h5>{{ appt.skills_eight}}</h5>
-		 <h5>{{ appt.skills_nine}}</h5>
-		 <h5>{{ appt.skills_ten}}</h5>
+		 <h5>{{ appt.skills_one if appt.skills_one != None }}</h5>
+		 <h5>{{ appt.skills_two if appt.skills_two != None}}</h5>
+		 <h5>{{ appt.skills_three if appt.skills_three != None}}</h5>
+		 <h5>{{ appt.skills_four if appt.skills_four != None}}</h5>
+		 <h5>{{ appt.skills_five if appt.skills_five != None}}</h5>
+		 <h5>{{ appt.skills_six if appt.skills_six != None}}</h5>
+		 <h5>{{ appt.skills_seven if appt.skills_eight != None}}</h5>
+		 <h5>{{ appt.skills_eight if appt.country_school_two != None}}</h5>
+		 <h5>{{ appt.skills_nine if appt.skills_nine != None}}</h5>
+		 <h5>{{ appt.skills_ten if appt.skills_ten != None}}</h5>
 		 
 
 	  
