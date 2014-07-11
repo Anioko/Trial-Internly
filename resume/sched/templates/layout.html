@@ -52,6 +52,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/blog">Blog</a></li>
+
 	     <li><a href="/policy">Policy</a></li>
              <li><a href="{{ url_for('all_positions') }}">All Vacancies </a></li><!-----Public View----->
 
@@ -121,13 +122,13 @@
         <!---<img class="img-responsive" alt="" src="assets/img/sass-less.png">---->
         <h3>Companies</h3>
         <p>Get started, post internship vacancies, thesis and research vacancies. Also find students based on the interests they've added. Call us now! </p>
-		<p><a role="button" class="btn btn-primary btn-lg" href="/pro">More</a></p>
+		<p><a role="button" class="btn btn-primary btn-lg" href="/signup">Signup</a></p>
       </div>
       <div class="col-sm-4">
         <!----<img class="img-responsive" alt="" src="assets/img/devices.png">------>
         <h3>Recruiters & HR Professionals</h3>
         <p>Our premium and pro accounts are designed to reduce the time needed to go through resumes submitted. <br>Our algorithm scans and recommends the exact matches according to your requirements.</p>
-		<p><a role="button" class="btn btn-primary btn-lg" href="/premium">More</a></p>
+		<p><a role="button" class="btn btn-primary btn-lg" href="/signup">Signup</a></p>
       </div>
       <div class="col-sm-4">
         <!------<img class="img-responsive" alt="" src="assets/img/components.png">-------->
@@ -347,6 +348,7 @@
     text-align: center;
 }
 	</style>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -355,6 +357,20 @@
 
   ga('create', 'UA-49400370-1', 'intern.ly');
   ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXX-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 </script>
   </body>
