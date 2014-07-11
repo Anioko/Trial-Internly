@@ -359,7 +359,14 @@ linkedin.pre_request = change_linkedin_query
 
 ########################OAUTH#################################################
 
+#######View for site map############
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
+@app.route('/BingSiteAuth.xml')
+def static_from_root_bing():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 #########Views for Resume#######
 
