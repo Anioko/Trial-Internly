@@ -19,10 +19,10 @@
 <div class="row">
 {% if not appts %}
 <h3>
-           Create new postions using  <a href="{{ url_for('position_create') }}">create postion</a> menu option.
+           Create new positions using  <a href="{{ url_for('position_create') }}">create position</a> menu option.
     </h3>
      <h3>
-            Check for new applicatints for postions on <a href="{{ url_for('position_list') }}">published postions</a> by clicking 'show applicants'.
+            Check for new applicatints for positions on <a href="{{ url_for('position_list') }}">published positions</a> by clicking 'show applicants'.
     </h3>
 {% endif %}
 {% for appt in appts %}
