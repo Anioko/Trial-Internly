@@ -515,11 +515,14 @@ def all_positions():
     """
     # Query: Get all Position objects that don't exceed the deadline.
 
-    time_diff = datetime.datetime.today() - \
+    if current_user and current_user.has_role('ROLE_ADMIN'):
+        appts = db.session.query(Position).all()
+    else:
+        time_diff = datetime.datetime.today() - \
                 datetime.timedelta(
                     days=app.config['POSITION_APPERANCE_TIME_IN_DAYS'])
 
-    appts = db.session.query(Position).filter(Position.pub_date > time_diff).all()
+        appts = db.session.query(Position).filter(Position.pub_date > time_diff).all()
 
     return render_template('position/all.html', appts=appts)
 
@@ -604,7 +607,11 @@ def position_list():
     THIS VIEW IS FOR COMPANIES
     """
     # Query: Get all Position objects, sorted by the position date.
-    appts = (db.session.query(Position)
+    if current_user and current_user.has_role('ROLE_ADMIN'):
+        appts = (db.session.query(Position).
+                 order_by(Position.pub_date.asc()).all())
+    else:
+        appts = (db.session.query(Position)
              .filter_by(user_id=current_user.id)
              .order_by(Position.pub_date.asc()).all())
 
@@ -671,7 +678,7 @@ def position_delete(position_id):
     THIS VIEW IS FOR COMPANIES
     """
     appt = db.session.query(Position).get(position_id)
-    print position_id
+
     if appt is None:
         # Abort with simple response indicating position not found.
         flash("Wrong postion id.", 'danger')
@@ -696,7 +703,7 @@ def position_list_applicants(position_id):
         abort(404)
     elif current_user.id is None:
         abort(403)
-    elif position.user_id != current_user.id:
+    elif position.user_id != current_user.id and (not current_user.has_role('ROLE_ADMIN')):
         abort(403)
     else:
         applicants_resumes = {}
