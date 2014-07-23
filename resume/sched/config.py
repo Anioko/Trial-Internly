@@ -13,9 +13,9 @@ import os
 class BaseConfig(object):
     PWD = os.path.abspath(os.curdir)
     DEBUG = True
-    #SQLALCHEMY_DATABASE_URI = 'sqlite:///{}/sched.db'.format(PWD)
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///{}/sched.db'.format(PWD)
     #SQLALCHEMY_DATABASE_URI = 'sqlite:////home/ziliot/webapps/appname3/sched.db'
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://ziliot:ziliot01@web437.webfaction.com:5432/internly";
+    #SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://ziliot:ziliot01@web437.webfaction.com:5432/internly";
 
 
 class DefaultConfig(BaseConfig):
@@ -38,5 +38,16 @@ class DefaultConfig(BaseConfig):
     LINKEDIN_LOGIN_SECRET_KEY = '2U091SyHRoI7z0Mk'
     LINKEDIN_FULL_PROFILE_API_KEY = '775s6av414zave'
     LINKEDIN_FULL_PROFILE_SECRET_KEY = 'RhcaNOkTqhCu6NNt'
-
+    MAIL_SERVER = 'smtp.webfaction.com'
+    MAIL_PORT = 25
+    MAIL_USE_SSL = False
+    MAIL_USERNAME = 'support_internly'
+    MAIL_PASSWORD = 'Internly+'
+    SECURITY_RECOVERABLE = True
+    SECURITY_SEND_PASSWORD_RESET_NOTICE_EMAIL = True
+    SECURITY_RESET_SALT= 'enydM2AJAdcoKwdVaMJWvEsbPLKuQpMjf'
+    DEFAULT_MAIL_SENDER = 'support@intern.ly'
+    SECURITY_EMAIL_SENDER = 'support@intern.ly'
+    MAIL_DEBUG = False
+    POSITION_APPERANCE_TIME_IN_DAYS=7
 

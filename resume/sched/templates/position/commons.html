@@ -78,6 +78,10 @@
         <a class="position-delete-link" href="#" data-delete-url="{{ url_for('position_delete', position_id=appt.id) }}">Delete</a>
     </div>
     {% endif %}
+
+    <!-- Bootstrap trigger to open modal -->
+    <a data-toggle="modal" href="#rating-modal">Write a Review</a>
+
 </div>
 {% endmacro %}
 
