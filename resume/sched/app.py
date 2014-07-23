@@ -403,7 +403,10 @@ def resumes_list():
              .filter_by(user_id=current_user.id)
              .order_by(Resume.start.asc()).all())
 
-    return render_template('resume/dashboard.html', appts=appts)
+    positions = db.session.query(Position).filter(
+                Position.users.contains(current_user)).all()
+
+    return render_template('resume/dashboard.html', appts=appts, positions=positions)
 
 
 @app.route('/resumes/<int:resume_id>/')
