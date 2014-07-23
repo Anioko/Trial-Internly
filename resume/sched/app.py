@@ -18,7 +18,7 @@ from flask.ext.admin import Admin, BaseView, expose, AdminIndexView
 from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.misaka import Misaka
 from flask_oauthlib.client import OAuth , OAuthException
-from flask_mail import Mail
+from flask_mail import Mail, Message
 
 
 from werkzeug import secure_filename
@@ -26,7 +26,7 @@ from wtforms.ext.appengine import db
 
 from sched.config import DefaultConfig
 from sched import filters
-from sched.forms import ResumeForm, PositionForm, ExtendedRegisterForm, RegisteCompanyForm
+from sched.forms import ResumeForm, PositionForm, ExtendedRegisterForm, RegisteCompanyForm, ContactForm
 from sched.models import User, Resume, Position, Role, Oauth, CompanyUserData
 from sched.common import app, db, security
 from sched.pdfs import create_pdf
@@ -378,23 +378,6 @@ def all_resumes():
     appts = db.session.query(Resume).all()
     return render_template('resume/all.html', appts=appts)
 
-@app.route('/resumes_pdf/<int:resume_id>/')
-@login_required
-def resume_detail_pdf(resume_id):
-    """Provide HTML page with all details on a given resume."""
-    # Query: get Resume object by ID.
-    appt = db.session.query(Resume).get(resume_id)
-    if appt is None or appt.user_id != current_user.id:
-        # Abort with Not Found.
-        abort(404)
-
-    pdf = create_pdf(render_template('resume/resume_detail_pdf.html', appt=appt))
-
-    response = make_response(pdf.getvalue())
-    response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
-    response.mimetype = 'application/pdf'
-    return response
-
 @app.route('/dashboard/')
 def resumes_list():
     """Provide HTML page listing all resumes in the database."""
@@ -407,19 +390,6 @@ def resumes_list():
                 Position.users.contains(current_user)).all()
 
     return render_template('resume/dashboard.html', appts=appts, positions=positions)
-
-
-@app.route('/resumes/<int:resume_id>/')
-@login_required
-def resume_detail(resume_id):
-    """Provide HTML page with all details on a given resume."""
-    # Query: get Resume object by ID.
-    appt = db.session.query(Resume).get(resume_id)
-    if appt is None or appt.user_id != current_user.id:
-        # Abort with Not Found.
-        abort(404)
-    return render_template('resume/resume_detail.html', appt=appt)
-
 
 @app.route('/company/resumes/preview/<resume_id>/')
 @login_required
@@ -454,6 +424,17 @@ def resume_preview_pdf(resume_id):
     response.mimetype = 'application/pdf'
     return response
 
+@app.route('/resumes/<int:resume_id>/')
+@login_required
+def resume_detail(resume_id):
+    """Provide HTML page with all details on a given resume."""
+    # Query: get Resume object by ID.
+    appt = db.session.query(Resume).get(resume_id)
+    if appt is None or appt.user_id != current_user.id:
+        # Abort with Not Found.
+        abort(404)
+    return render_template('resume/resume_detail.html', appt=appt)
+
 @app.route('/resumes/create/', methods=['GET', 'POST'])
 @login_required
 def resume_create():
@@ -468,7 +449,6 @@ def resume_create():
         return redirect(url_for('resumes_list'))
     # Either first load or validation error at this point.
     return render_template('resume/edit.html', form=form)
-
 
 @app.route('/resumes/<int:resume_id>/edit/', methods=['GET', 'POST'])
 @login_required
@@ -500,6 +480,22 @@ def resume_delete(resume_id):
     db.session.commit()
     return redirect(url_for('resumes_list'))
 
+@app.route('/resumes_pdf/<int:resume_id>/')
+@login_required
+def resume_detail_pdf(resume_id):
+    """Provide HTML page with all details on a given resume."""
+    # Query: get Resume object by ID.
+    appt = db.session.query(Resume).get(resume_id)
+    if appt is None or appt.user_id != current_user.id:
+        # Abort with Not Found.
+        abort(404)
+
+    pdf = create_pdf(render_template('resume/resume_detail_pdf.html', appt=appt))
+
+    response = make_response(pdf.getvalue())
+    response.headers['Content-Disposition'] = "attachment; filename=resume.pdf"
+    response.mimetype = 'application/pdf'
+    return response
 
 #########Views for Positions#######
 
@@ -742,3 +738,22 @@ def about_us():
 @app.route('/policy')
 def data_policy():
     return render_template('public/policy.html')
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact_form():
+    form = ContactForm(request.form)
+    if request.method == 'POST' and form.validate():
+        #SEND E-MAIL
+        message = Message(subject=form.subject.data,
+                        sender='support@intern.ly',
+                       reply_to=current_user.email,
+                       recipients=['support@intern.ly'],
+                       body=form.text.data)
+        mail.send(message)
+
+        # Success. Send to the postion list
+        flash("Your message was send.", 'succes')
+        return redirect(url_for('resumes_list'))
+
+    # Either first load or validation error at this point.
+    return render_template('public/contact_form.html', form=form)

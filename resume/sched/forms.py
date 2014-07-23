@@ -137,6 +137,10 @@ class RegisteCompanyForm(Form):
     company_adress = TextAreaField('Company adress', [Required()])
     phone_number = TextField('Phone number', [Length(max=255), Required()])
 
+class ContactForm(Form):
+    subject = TextField('Message subject', [Length(max=255), Required()])
+    text = TextAreaField('Message text', [Required()])
+
 
 # class LoginForm(Form):
 #     """Render HTML input for user login form.
