@@ -485,24 +485,17 @@ def resume_edit(resume_id):
     return render_template('resume/edit.html', form=form)
 
 
-@app.route('/resumes/<int:resume_id>/delete/', methods=['DELETE'])
+@app.route('/resumes/<int:resume_id>/delete/', methods=['GET', 'POST'])
 @login_required
 def resume_delete(resume_id):
-    """Delete a record using HTTP DELETE, respond with JSON for JavaScript."""
     appt = db.session.query(Resume).get(resume_id)
     if appt is None:
-        # Abort with simple response indicating appointment not found.
-        response = jsonify({'status': 'Not Found'})
-        response.status_code = 404
-        return response
+        abort(404)
     if appt.user_id != current_user.id:
-        # Abort with simple response indicating forbidden.
-        response = jsonify({'status': 'Forbidden'})
-        response.status_code = 403
-        return response
+        abort(403)
     db.session.delete(appt)
     db.session.commit()
-    return jsonify({'status': 'OK'})
+    return redirect(url_for('resumes_list'))
 
 
 #########Views for Positions#######
