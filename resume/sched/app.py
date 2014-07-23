@@ -658,7 +658,7 @@ def position_edit(position_id):
     appt = db.session.query(Position).get(position_id)
     if appt is None:
         abort(404)
-    if appt.user_id != current_user.id:
+    if appt.user_id != current_user.id and (not current_user.has_role('ROLE_ADMIN')):
         abort(403)
     form = PositionForm(request.form, appt)
     if request.method == 'POST' and form.validate():
@@ -683,7 +683,7 @@ def position_delete(position_id):
         # Abort with simple response indicating position not found.
         flash("Wrong postion id.", 'danger')
         return redirect(url_for('position_list'))
-    if appt.user_id != current_user.id:
+    if appt.user_id != current_user.id and (not current_user.has_role('ROLE_ADMIN')):
         # Abort with simple response indicating forbidden.
         flash("You can't remove this position.", 'danger')
         return redirect(url_for('position_list'))
