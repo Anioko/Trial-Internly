@@ -13,9 +13,9 @@ import os
 class BaseConfig(object):
     PWD = os.path.abspath(os.curdir)
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///{}/sched.db'.format(PWD)
+    #SQLALCHEMY_DATABASE_URI = 'sqlite:///{}/sched.db'.format(PWD)
     #SQLALCHEMY_DATABASE_URI = 'sqlite:////home/ziliot/webapps/appname3/sched.db'
-    #SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://ziliot:ziliot01@web437.webfaction.com:5432/internly";
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://ziliot:ziliot01@web437.webfaction.com:5432/internly";
 
 
 class DefaultConfig(BaseConfig):
@@ -32,22 +32,11 @@ class DefaultConfig(BaseConfig):
     SECURITY_SEND_REGISTER_EMAIL = False
     SECURITY_SEND_PASSWORD_CHANGE_EMAIL = False
     SECURITY_SEND_PASSWORD_RESET_NOTICE_EMAIL = False
-    FACEBOOK_LOGIN_APP_ID = '249060078624564'
-    FACEBOOK_LOGIN_APP_SECRET = 'c2ef65f4d7ffed2549f6b0c0646f4a86'
-    LINKEDIN_LOGIN_API_KEY = '77g45zungdpieg'
-    LINKEDIN_LOGIN_SECRET_KEY = 'pxdRGQuhZe1uzW1H'
-    LINKEDIN_FULL_PROFILE_API_KEY = '778wsvrftod2f0'
-    LINKEDIN_FULL_PROFILE_SECRET_KEY = '7htUXCFgxiei8PCL'
-    MAIL_SERVER = 'smtp.webfaction.com'
-    MAIL_PORT = 25
-    MAIL_USE_SSL = False
-    MAIL_USERNAME = 'support_internly'
-    MAIL_PASSWORD = 'Internly+'
-    SECURITY_RECOVERABLE = True
-    SECURITY_SEND_PASSWORD_RESET_NOTICE_EMAIL = True
-    SECURITY_RESET_SALT= 'enydM2AJAdcoKwdVaMJWvEsbPLKuQpMjf'
-    DEFAULT_MAIL_SENDER = 'support@intern.ly'
-    SECURITY_EMAIL_SENDER = 'support@intern.ly'
-    MAIL_DEBUG = False
-    POSITION_APPERANCE_TIME_IN_DAYS=7
+    FACEBOOK_LOGIN_APP_ID = '278199585695188'
+    FACEBOOK_LOGIN_APP_SECRET = '0d79c6473c08ce32dbfcac418014e1cc'
+    LINKEDIN_LOGIN_API_KEY = '75xogitps4187w'
+    LINKEDIN_LOGIN_SECRET_KEY = '2U091SyHRoI7z0Mk'
+    LINKEDIN_FULL_PROFILE_API_KEY = '775s6av414zave'
+    LINKEDIN_FULL_PROFILE_SECRET_KEY = 'RhcaNOkTqhCu6NNt'
+
 

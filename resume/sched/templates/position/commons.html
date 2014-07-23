@@ -1,139 +1,139 @@
 {% macro detail(appt, link_title=false, show_edit=false, show_skills=true) %}
-  <div class="position-detail">
-      {% if show_edit %}
-      <div class="edit-controls"  align="right">
-        <i class="icon-pencil"></i>
-        <a href="{{ url_for('position_edit', position_id=appt.id) }}">Edit</a>
-        <span class="inline-pad"></span>
-        <i class="icon-trash"></i>
-        <a class="position-delete-link" href="#" data-delete-url="{{ url_for('position_delete', position_id=appt.id) }}">Delete</a>
-      </div>
-    {% endif %}
-    {% if link_title %} 
-      <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a></h3> 
-	  <hr>
-    {% else %}
-      <h1 align="center">{{ appt.position_title or '(No Title)' }}</h1>
-	    <h3 align="center"> {{ appt.company_name|default('') }}, {{ appt.location|default('') }}</h3>
-           <h4 align="center">{{ appt.company_website|default('') }}</h4>
-
-	   <hr>
-
-	   <h3 align="center"> Job Description</h3>
-	      <h4 align="center">{{ appt.description|default('')|markdown }}</h4>
-		  
-	 <hr>	  
-    {% endif %}
-		<h4> Requirements:</h4>
-
-		 {% if show_skills %}
-             <br />
-
-		 {{ appt.required_skill_one|default('')}}
-             <br />
-
-
-		 {{ appt.required_skill_two|default('')}}
-             <br />
-
-		 {{ appt.required_skill_three|default('')}}
-             <br />
-
-		 {{ appt.required_skill_four|default('')}}
-             <br />
-
-			
-		 {{ appt.required_skill_five  or 'No further requirements'}}
-             <br />
-
-
-		 {{ appt.required_skill_six or 'No further requirements'}}
-             <br />
-
-
-		 {{ appt.required_skill_seven or 'No further requirements'}}
-             <br />
-
-
-		 {{ appt.required_skill_eight or 'No further requirements'}}
-             <br />
-
-
-		 {{ appt.required_skill_nine or 'No further requirements'}}
-		 		 {% else %}
-				No Requirements specified
-		 {% endif %}
-		 <br>	 
-		<hr>
-
-
-		 
-		 
+<div class="position-detail">
     {% if show_edit %}
-      <div class="edit-controls"  align="right">
+    <div class="edit-controls"  align="right">
         <i class="icon-pencil"></i>
         <a href="{{ url_for('position_edit', position_id=appt.id) }}">Edit</a>
         <span class="inline-pad"></span>
         <i class="icon-trash"></i>
         <a class="position-delete-link" href="#" data-delete-url="{{ url_for('position_delete', position_id=appt.id) }}">Delete</a>
-      </div>
+    </div>
     {% endif %}
-  </div>
+    {% if link_title %}
+    <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a></h3>
+    <hr>
+    {% else %}
+    <h1 align="center">{{ appt.position_title or '(No Title)' }}</h1>
+    <h3 align="center"> {{ appt.company_name|default('') }}, {{ appt.location|default('') }}</h3>
+    <h4 align="center">{{ appt.company_website|default('') }}</h4>
+
+    <hr>
+
+    <h3 align="center"> Job Description</h3>
+    <h4 align="center">{{ appt.description|default('')|markdown }}</h4>
+
+    <hr>
+    {% endif %}
+    <h4> Requirements:</h4>
+
+    {% if show_skills %}
+    <br />
+
+    {{ appt.required_skill_one|default('')}}
+    <br />
+
+
+    {{ appt.required_skill_two|default('')}}
+    <br />
+
+    {{ appt.required_skill_three|default('')}}
+    <br />
+
+    {{ appt.required_skill_four|default('')}}
+    <br />
+
+
+    {{ appt.required_skill_five  or 'No further requirements'}}
+    <br />
+
+
+    {{ appt.required_skill_six or 'No further requirements'}}
+    <br />
+
+
+    {{ appt.required_skill_seven or 'No further requirements'}}
+    <br />
+
+
+    {{ appt.required_skill_eight or 'No further requirements'}}
+    <br />
+
+
+    {{ appt.required_skill_nine or 'No further requirements'}}
+    {% else %}
+    No Requirements specified
+    {% endif %}
+    <br>
+    <hr>
+
+
+
+
+    {% if show_edit %}
+    <div class="edit-controls"  align="right">
+        <i class="icon-pencil"></i>
+        <a href="{{ url_for('position_edit', position_id=appt.id) }}">Edit</a>
+        <span class="inline-pad"></span>
+        <i class="icon-trash"></i>
+        <a class="position-delete-link" href="#" data-delete-url="{{ url_for('position_delete', position_id=appt.id) }}">Delete</a>
+    </div>
+    {% endif %}
+</div>
 {% endmacro %}
 
 {% macro edit_field(field, catch_kwargs=true) %}
-  <div class="form-group {% if field.errors %}error{% endif %}">
+<div class="form-group {% if field.errors %}error{% endif %}">
     <label for="{{ field.id }}" class="control-label">
         {{ field.label.text }}{% if field.flags.required %} *{% endif %}:
     </label>
 
-        {% set class_ = kwargs.pop('class_', '') %}
-        {% if field.flags.required %}
-            {% set class_ = class_ + ' required' %}
-        {% endif %}
+    {% set class_ = kwargs.pop('class_', '') %}
+    {% if field.flags.required %}
+    {% set class_ = class_ + ' required' %}
+    {% endif %}
 
-        {% if field.type == 'BooleanField' %}
-            <div class="checkbox">
-                <label>
-                    {{ field(class_=class_, **kwargs) }}
-                    {{ field.label.text|safe }}
-                </label>
-            </div>
+    {% if field.type == 'BooleanField' %}
+    <div class="checkbox">
+        <label>
+            {{ field(class_=class_, **kwargs) }}
+            {{ field.label.text|safe }}
+        </label>
+    </div>
 
-        {% else %}
+    {% else %}
 
-            {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
-                {% set class_ = class_ + ' input-xlarge form-control' %}
+    {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+    {% set class_ = class_ + ' input-xlarge form-control' %}
 
-            {% elif field.type == 'FileField' %}
-                {% set class_ = class_ + ' input-file form-control' %}
-            {% endif %}
+    {% elif field.type == 'FileField' %}
+    {% set class_ = class_ + ' input-file form-control' %}
+    {% endif %}
 
-            {% if field.type == 'SelectField' %}
-                {{ field(class_=class_, **kwargs) }}
-            {% else %}
+    {% if field.type == 'SelectField' %}
+    {{ field(class_=class_, **kwargs) }}
+    {% else %}
 
-            {{ field(class_=class_,  **kwargs) }}
-            {% endif %}
+    {{ field(class_=class_,  **kwargs) }}
+    {% endif %}
 
-        {% endif %}
+    {% endif %}
 
-        {% if field.errors %}
-            <span class="error help-inline">{{ field.errors|join(', ') }}</span>
-        {% endif %}
-        {% if field.description %}
-            <p class="help-block">{{ field.description|safe }}</p>
-        {% endif %}
+    {% if field.errors %}
+    <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+    {% endif %}
+    {% if field.description %}
+    <p class="help-block">{{ field.description|safe }}</p>
+    {% endif %}
 
-  </div>
+</div>
 {% endmacro %}
 
 {% macro edit_field_old(field, catch_kwargs=true) %}
-  <div class="control-group{% if field.errors %} error{% endif%}">
+<div class="control-group{% if field.errors %} error{% endif%}">
     {{ field.label(class="control-label") }}
     <div class="controls">
-      {{ field(**kwargs) }}
-      {% for error in field.errors %}<span class="help-inline">{{ error }}</span>{% endfor %}
+        {{ field(**kwargs) }}
+        {% for error in field.errors %}<span class="help-inline">{{ error }}</span>{% endfor %}
     </div>
-  </div>
+</div>
 {% endmacro %}
