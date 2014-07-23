@@ -1,3 +1,4 @@
+<link rel="image_src" href="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-frc3/t1/10007500_219483098251971_1640217409_n.jpg" />
 {% extends 'public/public.html' %}
 
 {% from 'position/commons.html' import detail %}
@@ -13,7 +14,7 @@
 </div>
 
 
-<div class="row edit-controls"  align="center">
+<div class="row edit-controls" align="center">
         {% if anonym %}
             <h3>In order to apply just <a href="{{ url_for_security('register') }}">sign up</a> to the site!</h3>
         {% else %}
@@ -27,33 +28,91 @@
 <br>
 </div>
 
-<div style="padding-left: 35%;" class="row btn-group">
-  <button class="btn btn-default disabled" >
-    Share:
-  </button>
 
-  <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fintern.ly&amp;t=Url%20Encoded%20Text" title="On Facebook" target="_blank" class="btn btn-default">
-    <i class="fa fa-facebook fa-lg fb"></i>
+
+<!--<div style="text-align:center;" class="row btn-group">-->
+<div class="row" align="center">
+
+  <a href="http://www.facebook.com/sharer.php?u={{ url_for('position_details',position_id=appt.id,_external=True)}}" title="On Facebook" target="_blank" class="btn btn-default" style="margin-right:-10px;">
+    <i class="fa fa-facebook fa-2x"></i>
   </a>
 
-  <a href="http://twitter.com/share?url=http%3A%2F%2Fintern.ly&amp;text=Url%20Encoded%20Text" title="On Twitter" target="_blank" class="btn btn-default">
-    <i class="fa fa-twitter fa-lg tw"></i>
+  <a href="https://twitter.com/intent/tweet?url={{ url_for('position_details',position_id=appt.id,_external=True)}}&via=InternlyFinland&text={{appt.position_title}}%20-%20Find%20job%20on%20Intern.ly!&hashtags=jobs,internships,Finland" title="On Twitter" target="_blank" class="btn btn-default" style="margin-right:-10px;">
+    <i class="fa fa-twitter fa-2x"></i>
   </a>
 
-  <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fintern.ly" title="On LinkedIn" target="_blank" class="btn btn-default">
-    <i class="fa fa-linkedin fa-lg linkin"></i>
+
+  <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ url_for('position_details',position_id=appt.id,_external=True)}}&title={{appt.position_title}}&summary=Find%20job%20on%20Intern.ly!&source=http://intern.ly" title="On LinkedIn" target="_blank" class="btn btn-default" style="margin-right:-10px;">
+    <i class="fa fa-linkedin fa-2x"></i>
   </a>
 
-  <a href="http://vk.com/share.php?url=http%3A%2F%2Fintern.ly&amp;title=Url%20Encoded%20Title&amp;description=Url%20Encoded%20Text&amp;image=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="On VK.com" target="_blank" class="btn btn-default">
-    <i class="fa fa-vk fa-lg vk"></i>
+  <a href="http://vk.com/share.php?url={{ url_for('position_details',position_id=appt.id,_external=True) }}&title={{appt.position_title}}&description=Find%20job%20on%20Intern.ly!&image=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="On VK.com" target="_blank" class="btn btn-default" style="margin-right:-10px;">
+    <i class="fa fa-vk fa-2x"></i>
   </a>
 
-  <a href="http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fintern.ly&amp;description=Url%20Encoded%20Text&amp;media=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="Pin It" target="_blank" class="btn btn-default">
-    <i class="fa fa-pinterest fa-lg pinterest"></i>
+  <a data-toggle="modal" href="#share-email-modal" class="btn btn-default" style="margin-right:-10px;">
+    <i class="fa fa-share-alt fa-2x"></i>
   </a>
 
  </div>
 
+<div class="modal" id="share-email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Share postion via e-mail</h4>
+      </div>
+        <form class="form-horizontal well" data-async id="emailForm" data-target="#rating-modal" >
+      <div class="modal-body">
+          <!-- The async form to send and replace the modals content with its response -->
+        <fieldset>
+            <!-- form content -->
+          <div class="form-group">
+            <label for="email">Friends email address:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+        </fieldset>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="emailCloseBtn">Close</button>
+        <button type="button" class="btn btn-primary" id="emailSaveBtn">Send</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<script>
+    jQuery(function($) {
+    $('form[data-async] #emailSaveBtn').click(function(event) {
+        var $form = $(this);
+        var $target = $($form.attr('data-target'));
+
+        $.ajax({
+            type: 'POST',
+            url: '/some-endpoint',
+            data: { email:$('#email').val(),
+                    url:'{{ url_for('position_details', position_id=appt.id, _external=True) }}',
+                    title:'{{appt.position_title}}',
+                  },
+
+            success: function(data, status) {
+                console.log("success");
+                $('#share-email-modal').modal('hide');
+                $('#share-email-modal').modal('hide');
+                }
+
+        });
+        $('#share-email-modal').modal('hide');
+
+        event.preventDefault();
+    });
+});
+$('#share-email-modal').on('hidden.bs.modal', function (e) {
+  $('#share-email-modal').modal('hide');
+})
+</script>
 
 
 <style>

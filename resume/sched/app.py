@@ -757,3 +757,27 @@ def contact_form():
 
     # Either first load or validation error at this point.
     return render_template('public/contact_form.html', form=form)
+
+
+@app.route('/some-endpoint', methods=['POST'])
+def share_email():
+    share_text = "Your friend {0} on http://intern.ly want to recommend you this open position: {1}.\n"\
+                  "Register, and view it here: {2}."\
+                  "\n\n"\
+                  "Regards,\n"\
+                  "Intern.ly team"
+
+    formated_text = share_text.format(current_user.name, request.form['title'], request.form['url'])
+    message = Message(subject="Intern.ly - job offer recomendation!",
+                       sender='info@intern.ly',
+                       reply_to=current_user.email,
+                       recipients=[request.form['email']],
+                       body=formated_text)
+    mail.send(message)
+
+
+
+
+    print request.__dict__
+    print request.form
+    return jsonify(status='success')
