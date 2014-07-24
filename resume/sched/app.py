@@ -621,8 +621,10 @@ def position_create():
         company_details = db.session.query(CompanyUserData
                         ).filter_by(user_id=current_user.id).all()[0]
     except IndexError:
-        pass
+        return redirect(url_for('company_register'))
 
+    if company_details is None:
+        return redirect(url_for('company_register'))
 
     form = PositionForm(request.form)
     if company_details is not None:
