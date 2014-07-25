@@ -30,6 +30,7 @@
 
     <link href="{{ url_for('static', filename='css/jquery.pagedown-bootstrap.css') }}" rel="stylesheet">
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.pagedown-bootstrap.combined.min.js') }}"></script>
+    {% block head %}{% endblock head %}
 
 
 </head>
