@@ -710,7 +710,39 @@ def position_list_applicants(position_id):
                 applicants_resumes[applicant.id] = resumes
             else:
                 applicants_resumes[applicant.id] = None
-        return render_template('position/applicants.html', applicants=applicants, resumes=applicants_resumes)
+        return render_template('position/applicants.html', position_id=position_id,
+                               applicants=applicants, resumes=applicants_resumes)
+
+
+@app.route('/company/positions/<int:position_id>/applicants/send-message/', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def position_applicants_send_email(position_id):
+    """
+     View for conntacitng all aplicants of postion by e-mail.
+
+    :param position_id: id of postion that applicants will be contacted
+    :return: None
+    """
+    if current_user.id is None:
+        abort(403)
+    else:
+        form = ContactForm(request.form)
+        if request.method == 'POST' and form.validate():
+            position = db.session.query(Position).get(position_id)
+            if position is None:
+                abort(404)
+            emails = [u.email for u in position.users]
+            message = Message(subject=form.subject.data,
+                            sender='info@intern.ly',
+                           reply_to='info@intern.ly',
+                           recipients=['info@intern.ly'],
+                           bcc=emails,
+                           body=form.text.data)
+            mail.send(message)
+            flash("Message was send.", 'succes')
+            return redirect(url_for('position_list_applicants', position_id=position_id))
+        return render_template('position/message_send_form.html', form=form)
 
 ###Public Views
 

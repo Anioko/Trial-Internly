@@ -1,65 +1,33 @@
-{% extends 'public/public.html' %}
-{% from 'position/commons.html' import detail %}
-{% block title %}Aplicants{% endblock title %}
-
-{% block main %}
+{% extends "public/public.html" %}
+{% from 'common_base.html' import edit_field %}
+{% block content %}
 
 <div class="container" style="margin-top: 100px;">
     <div class="row">
-
-        {% if applicants|length == 0 %}
-        <h2>There are no aplications. <small>Please wait a bit longer time...</small></h2>
-        {% else %}
-            {% if current_user.has_role('ROLE_ADMIN') %}
-            <div class="edit-controls"  align="right">
-            <a href="{{ url_for('position_applicants_send_email', position_id=position_id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-envelope-o fa-lg"></i> Send message to applicants</button></a>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h4>Send message to all applicatns:</h4>
+            <form method="post" class="form-control">
+                {{ edit_field(form.subject, maxlength=255) }}
+                {{ edit_field(form.text) }}
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-default">Send</button>
+                </div>
+            </form>
             </div>
-            {%endif %}
-        <table class="table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>E-mail</th>
-                <th>Resume</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for user in applicants %}
-            <tr>
-                <td>{{loop.index}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                {% if not resumes[user.id] %}
-                <td> no resume avaliabe </td>
-                {% else %}
-                <td>{% for resume_id_b64 in resumes[user.id] %}
-                    <a href="{{ url_for('resume_preview', resume_id=resume_id_b64)  }}"> resume {{loop.index}} </a>,
-                    {% endfor %}
-                </td>
-                {%endif %}
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        {%endif %}
 
+        <div class="col-md-2"></div>
     </div>
 </div>
 
 
-<!-- CSS code from Bootply.com editor -->
 
+<!-- CSS code from Bootply.com editor -->
 <style type="text/css">
 /* -- custom css for Bootstrap 3.x --*/
 
 /* move special fonts to HTML head for better performance */
-@import
-url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600');
-.table a {
-    color: #df691a;
-    text-decoration: none;
-}
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600');
 
 html,
 body {
@@ -83,23 +51,16 @@ font-size:50px;
 }
 
 
-/*h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 , p{
-color: #ffffff;
+
+h4, p, h5, h6 {
+color: #000000;
 font-family: inherit;
 font-weight: 300;
 line-height: 1.1;
-}*/
+}
 
 img.grayscale {
-filter: url("data:image/svg+xml;utf8,
-<svg xmlns=\'http://www.w3.org/2000/svg\'>
-    <filter id=\'grayscale\'>
-        <feColorMatrix type=\'matrix\' values=\'0.3333
-        0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0
-        0 1 0\'/>
-    </filter>
-</svg>
-#grayscale"); /* Firefox 10+, Firefox on Android */
+filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
 filter: gray; /* IE6-9 */
 -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 }
@@ -193,8 +154,7 @@ background-color:transparent;
 }
 
 .bright {
-background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg')
-no-repeat center center fixed;
+background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
 color:#fff;
 }
 
@@ -229,8 +189,7 @@ color: #ffffff;
 padding-top:7%;
 height: 100%;
 width: 100%;
-background: url('http://www.bootply.com/assets/example/bg_suburb.jpg')
-no-repeat center center fixed;
+background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -280,8 +239,15 @@ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 margin-bottom: 21px;
 }
 
+.center {
+float: none;
+margin-left: auto;
+margin-right: auto;
+}
+
+
 /* -- end custom css for Bootstrap 3.x --*/
 
 </style>
 
-{% endblock main %}
+{% endblock %}
