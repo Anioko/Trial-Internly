@@ -221,6 +221,23 @@ class CompanyUserData(db.Model):
     additional_data4 = Column(String(),nullable=True)
     additional_data5 = Column(String(),nullable=True)
 
+class ResumeView(db.Model):
+    __tablename__ = 'resume_view'
+    id = Column(Integer, primary_key=True)
+    timestamp = Column(DateTime, default=datetime.now)
+
+    user_id = Column(Integer, ForeignKey(User.id))
+    resume_id = Column(Integer, ForeignKey(Resume.id))
+
+    user = relationship('User', foreign_keys='ResumeView.user_id')
+    resume = relationship('Resume', foreign_keys='ResumeView.resume_id')
+
+    def __init__(self, user=None, resume=None):
+        print "init", user, resume
+        self.timestamp = datetime.now()
+        self.user = user
+        self.resume = resume
+
 
 if __name__ == '__main__':
     from datetime import timedelta

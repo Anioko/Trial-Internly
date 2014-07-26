@@ -241,9 +241,9 @@ footer {
     </h3>
 
   {% else %}
-     {% for appt in appts %}
+     {% for appt, view_count in appts %}
       <h4>
-      {{ detail(appt, link_title=true, show_edit=false, show_summary=true) }}
+      {{ detail(appt, link_title=true, show_edit=false, show_summary=true, views=view_count) }}
       </h4>
       {% else %}
       <div class="page-header">

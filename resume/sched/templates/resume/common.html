@@ -1,4 +1,4 @@
-{% macro detail(appt, link_title=false, show_edit=true, show_summary=true) %}
+{% macro detail(appt, link_title=false, show_edit=true, show_summary=true, views=0) %}
   <div class="resume-detail">
     {% if show_edit %}
     <div class="edit-controls"  align="right">
@@ -10,7 +10,7 @@
     {% endif %}
 
     {% if link_title %} 
-      <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
+      <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> {% if views>0 %} <h5>Views: {{views}} </h5> {% endif %}
     {% else %}
       <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
 	        <h5>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h5>

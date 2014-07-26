@@ -5,6 +5,7 @@ import base64
 import datetime
 from functools import wraps
 from unicodedata import normalize
+from sqlalchemy import func
 
 from flask import send_from_directory
 from flask import abort, jsonify, redirect, render_template, request, url_for, flash, session, make_response
@@ -27,7 +28,7 @@ from wtforms.ext.appengine import db
 from sched.config import DefaultConfig
 from sched import filters
 from sched.forms import ResumeForm, PositionForm, ExtendedRegisterForm, RegisteCompanyForm, ContactForm
-from sched.models import User, Resume, Position, Role, Oauth, CompanyUserData
+from sched.models import User, Resume, Position, Role, Oauth, CompanyUserData, ResumeView
 from sched.common import app, db, security
 from sched.pdfs import create_pdf
 
@@ -382,9 +383,15 @@ def all_resumes():
 def resumes_list():
     """Provide HTML page listing all resumes in the database."""
     # Query: Get all Resume objects, sorted by the resume date.
-    appts = (db.session.query(Resume)
+    appts = list()
+    resumes = (db.session.query(Resume)
              .filter_by(user_id=current_user.id)
              .order_by(Resume.start.asc()).all())
+
+    for resume in resumes:
+        views_count_resume = db.session.query(ResumeView.id).filter(ResumeView.resume == resume).count() #(db.session.query(func.count((ResumeView.id).filter_by(user_id=current_user.id)))
+        appts.append((resume, views_count_resume))
+    print appts
 
     positions = db.session.query(Position).filter(
                 Position.users.contains(current_user)).all()
@@ -402,6 +409,10 @@ def resume_preview(resume_id):
     if appt is None:
         # Abort with Not Found.
         abort(404)
+    # Count the view to user resume views
+    resume_view = ResumeView(current_user, appt)
+    db.session.add(resume_view)
+    db.session.commit()
     # Template without edit buttons
     return render_template('resume/resume_detail_preview.html', appt=appt)
 
