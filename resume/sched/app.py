@@ -391,7 +391,6 @@ def resumes_list():
     for resume in resumes:
         views_count_resume = db.session.query(ResumeView.id).filter(ResumeView.resume == resume).count() #(db.session.query(func.count((ResumeView.id).filter_by(user_id=current_user.id)))
         appts.append((resume, views_count_resume))
-    print appts
 
     positions = db.session.query(Position).filter(
                 Position.users.contains(current_user)).all()

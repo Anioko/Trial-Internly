@@ -241,6 +241,9 @@ footer {
     </h3>
 
   {% else %}
+      <div class="edit-controls"  align="right">
+            <a href="{{ url_for('create_resume_ln') }}"><button data-placement="bottom" title="You can create new resume using Linkedin import and then remove the old one." type="button" class="btn btn-primary"> Import form Linked <i class="fa fa-linkedin"></i>.</h2></button></a>
+      </div>
      {% for appt, view_count in appts %}
       <h4>
       {{ detail(appt, link_title=true, show_edit=false, show_summary=true, views=view_count) }}
