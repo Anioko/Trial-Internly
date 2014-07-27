@@ -1,4 +1,4 @@
-{% macro detail(appt, link_title=false, show_edit=true, show_summary=true, views=0) %}
+{% macro detail(appt, link_title=false, show_edit=true, show_summary=true) %}
   <div class="resume-detail">
     {% if show_edit %}
     <div class="edit-controls"  align="right">
@@ -10,7 +10,7 @@
     {% endif %}
 
     {% if link_title %} 
-      <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> {% if views>0 %} <h5>Views: {{views}} </h5> {% endif %}
+      <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> 
     {% else %}
       <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
 	        <h5>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h5>
@@ -100,9 +100,9 @@
     {% endif %}
     <div class="form-group {% if field.errors %}error{% endif %}">
         {% if with_label %}
-            <label for="{{ field.id }}" class="control-label">
+            
                 {{ field.label.text }}{% if field.flags.required %} *{% endif %}:
-            </label>
+            
         {% endif %}
 
         {% set class_ = kwargs.pop('class_', '') %}
@@ -112,16 +112,16 @@
 
         {% if field.type == 'BooleanField' %}
             <div class="checkbox">
-                <label>
+                
                     {{ field(class_=class_, **kwargs) }}
                     {{ field.label.text|safe }}
-                </label>
+                
             </div>
 
         {% else %}
 
             {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
-                {% set class_ = class_ + ' input-xlarge form-control' %}
+                {% set class_ = class_ + ' input-lg form-control' %}
 
             {% elif field.type == 'FileField' %}
                 {% set class_ = class_ + ' input-file form-control' %}
@@ -145,7 +145,7 @@
 {%- endmacro %}
 
 {% macro edit_field(field, catch_kwargs=true) %}
-  <div class="form-group {% if field.errors %}error{% endif %}">
+
     <label for="{{ field.id }}" class="control-label">
         {{ field.label.text }}{% if field.flags.required %} *{% endif %}:
     </label>
@@ -166,7 +166,7 @@
         {% else %}
 
             {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
-                {% set class_ = class_ + ' input-xlarge form-control' %}
+                {% set class_ = class_ + ' input-lg form-control' %}
 
             {% elif field.type == 'FileField' %}
                 {% set class_ = class_ + ' input-file form-control' %}
@@ -188,7 +188,7 @@
             <p class="help-block">{{ field.description|safe }}</p>
         {% endif %}
 
-  </div>
+
 {% endmacro %}
 
 

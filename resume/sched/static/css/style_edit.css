@@ -1,0 +1,158 @@
+.resume_controls {
+	width:100%;
+	padding-top: 0px;
+	float: none;
+	margin-bottom: 20px;
+}
+.resume_edit {
+	padding-top: 40px;
+}
+.resume_edit form {
+	background: none;
+	box-shadow: none;
+}
+.resume_controls .btn {
+	border: 1px solid;
+	width: 45%;
+}
+.resume_edit input {
+	height: 45px;
+	padding: 0 0 0 10px;
+}
+.resume_edit textarea {
+	padding: 0 0 0 10px;
+	height: 100px;
+}
+
+.contacts input:not(:last-child) {
+	width: 200px;
+}
+
+.resume_controls .btn.delete {
+	float: right;
+}
+
+.form_fields {
+	padding-top: 10px;
+	width: 400px;
+}
+legend {
+	color: #4E5D6C;
+	border: none;
+}
+label {
+	display: none;
+}
+
+.form_fields input,
+.form_fields textarea {
+	border-radius: 0;
+	border-color: #eee;
+	outline: none;
+}
+.form_fields input::-webkit-input-placeholder,
+.form_fields textarea::-webkit-input-placeholder{
+	color: #E2E2E2;
+	font-weight: 300;
+	font-size: .9em;
+}
+.form_fields input::-moz-placeholder,
+.form_fields textarea::-moz-placeholder{
+	color: #E2E2E2;
+	font-weight: 300;
+}
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form_fields input:focus,
+.form_fields textarea:focus {	
+	box-shadow: 0 0 3px rgba(85, 134, 187, 0.63);
+	border-color: rgba(100, 123, 148, 0.64);
+}
+
+.competencies input,
+.other_skills input{
+	width: 100px;
+	display: inline-block;
+	margin-right: 10px;
+}
+.work_experience .achievements input {
+	width: 100%;
+}
+.form_fields .competencies input:last-child,
+.form_fields .competencies span:last-child {
+	margin-right: 0;
+}
+.form_fields .competencies span,
+.form_fields .work_experience .achievements span,
+.other_skills span {
+	height: auto;
+	padding: 9px 12px;
+	background: #DFDFDF;
+	margin: 0 5px 5px 0;
+	display: inline-block;
+	max-width: 100%;
+}
+.form_fields .competencies span i,
+.form_fields .work_experience .achievements span i,
+.other_skills span i {
+	cursor: pointer;
+}
+.editing_tools {
+	width: 226px;
+}
+.form_fields input,
+.form_fields textarea {
+	margin-bottom: 5px;
+}
+.form_fields .study_pace #study_period_start,
+.form_fields .study_pace #study_period_end,
+.form_fields .study_pace #currently,
+.form_fields .work_experience #work_period_start,
+.form_fields .work_experience #work_period_end,
+.form_fields .work_experience #currently {
+	display: inline-block;
+}
+
+.form_fields .study_pace #study_period_start,
+.form_fields .study_pace #study_period_end,
+.form_fields .work_experience #work_period_start,
+.form_fields .work_experience #work_period_end {
+	width: 120px;
+	margin-right: 2px;
+}
+.form_fields .study_pace {
+	margin-bottom: 20px;
+}
+.form_fields .btn {
+	
+	color: #67A26C;
+	font-weight: bold;
+	-webkit-transition: background .2s, color .1s;
+	-o-transition: background .2s, color .1s;
+	transition: background .2s, color .1s;
+	border-radius: 0;
+	padding: 5px;
+}
+
+.form_fields .btn:hover {
+	background: #447C49;
+	color: white;
+}
+
+@media (max-width: 430px) {
+	.form_fields {
+		width: 100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+

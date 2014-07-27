@@ -1,0 +1,26 @@
+.resume_edit .resume_controls {
+	width: 181px;
+}
+.resume_edit input {
+	position: relative;
+	display: none;
+}
+.resume_edit input#name {
+	height: 60px;
+	width: 320px;
+	font-size: 3em;
+	margin: 20px 0 10px 0;
+	padding-top: 0;
+}
+.resume_edit .contacts input {
+	width: 160px;
+}
+.resume_edit .contacts input#linkedin_link{
+	width: 360px;
+}
+.contacts ul li i:last-child {
+	cursor: pointer;
+}
+.user_name:hover {
+	background: #eee;
+}

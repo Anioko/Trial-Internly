@@ -8,70 +8,91 @@
 {% set title = 'Add Resume' %}
 {% endif %}
 
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_edit.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/script_edit.js') }}" type="text/javascript"></script>
+{% endblock head%}
+
 {% block title %}{{ title }}{% endblock title %}
 
 {% block main %}
 
 
-<div class="container" style="margin-top: 100px;">
-
-    <div class="row">
-        <div class="col-md-2"></div> <!------Was used to center things--------->
-        <div class="col-md-8"><form method="post" class="form-control">
+<div class="container resume_edit"><!-- CONTAINER THE WRAPS UP ALL THE CONTENT -->
+    <div class="content">
+        <form method="post" class="form-control"><!-- FORM STARTS -->
+            <div class="form_fields"><!-- WRAPS THE FORM FIELDS START -->
             <legend>{{ title }}</legend>
+            <h6>Name</h6>
+            <div class="form-group name">
+                {{ edit_field(form.name, maxlength=255,
+                placeholder="Your official name e.g John Smith") }}
+            </div>
+            <h6>Contacts</h6>
+            <div class="form-group contacts"><!-- CONTACT SECITON START -->
+                {{ edit_field(form.email, maxlength=100,
+                placeholder="Email") }}
+                
+                {{ edit_field(form.phone, maxlength=255,
+                placeholder="Phone number") }}
+                
+                {{ edit_field(form.city, maxlength=100,
+                placeholder="Location") }}
 
-            {{ edit_field(form.name, maxlength=255,
-            placeholder="Your official name e.g Mark Zukerberg") }}
-            {{ edit_field(form.email, maxlength=100,
-            placeholder="e.g Johndoe@example.com") }}
-            {{ edit_field(form.phone, maxlength=255,
-            placeholder="+1234567890") }}
-            {{ edit_field(form.city, maxlength=100,
-            placeholder="e.g London") }}
-            {{ edit_field(form.zip, maxlength=50,
-            placeholder="e.g 00011 Helsinki") }}
-            {{ edit_field(form.country, maxlength=255,
-            placeholder="e.g Finland") }}
-            {{ edit_field(form.url, maxlength=255,
-            placeholder="e.g http://www.Linkedin.com/anioko or www.example.com") }}
-            {{ edit_field(form.citizenship, maxlength=255,
-            placeholder="e.g Italian") }}
-
-
-
-            <p>
+                {{ edit_field(form.url, maxlength=255,
+                placeholder="LinkedIn Profile") }}
+            </div>
+            <!-- CONTACT SECITON END -->
+            <h6>Position</h6>
+            <div class="form-group position">
                 {{ edit_field(form.summary_title, maxlength=255,
-                placeholder="e.g Financial Analysis and Reporting") }}
+                placeholder="Position title you're applying for") }}
+            </div>   
+            <div class="form-group qualities competencies">
+                <h6>Professional qualities</h6>
                 {{ edit_field(form.summary_text, maxlength=500,
                 placeholder="e.g Some description of the way you do things.") }}
-            </p>
-
-
-            <p>
-
+                <h6>Core compitencies</h6>
+                <div>
+                    {{ edit_field(form.core_compitencies, maxlength=255,
+                    placeholder="") }}
+                </div>
+            </div>
+            <!-- WORK EXPERISNCE SECTION START -->
+            <div class="form-group work_experience">
                 {{ edit_field(form.company_name, maxlength=255,
-                placeholder="e.g Company ABC.") }}
+                placeholder="Company name") }}
+
+                {{ edit_field(form.location, maxlength=255,
+                placeholder=" e.g. Helsinki") }}
+
+                {{ edit_field(form.start, maxlength=255,
+                placeholder="Start") }}
+
+                {{ edit_field(form.end, maxlength=255,
+                placeholder="End") }}
+
+                {{ edit_field(form.currently) }}
+
                 {{ edit_field(form.company_summary, maxlength=255,
                 placeholder="e.g Brief description of Company ABC.") }}
+            </div>
+
+
+
                 {{ edit_field(form.role, maxlength=255,
                 placeholder="e.g Financial Analyst Assistant.") }}
                 {{ edit_field(form.role_description,
                 placeholder="More explanation of what you did.") }}
 
-                {{ edit_field(form.start, maxlength=255,
-                placeholder="e.g 11.12.2014.") }}
-                {{ edit_field(form.end, maxlength=255,
-                placeholder="e.g 11.12.2015.") }}
-                {{ edit_field(form.currently) }}
-                {{ edit_field(form.location, maxlength=255,
-                placeholder="Tel Aviv") }}
+
+
             </p>
             <p>
 
                 {{ edit_field(form.company_name_two, maxlength=255,
                 placeholder="e.g Company ABC.") }}
-                {{ edit_field(form.company_summary_two, maxlength=255,
-                placeholder="e.g Brief description of Company ABC.") }}
+
                 {{ edit_field(form.role_two, maxlength=255,
                 placeholder="e.g Financial Analyst Assistant.") }}
                 {{ edit_field(form.role_description_two,
@@ -145,17 +166,13 @@
 
 
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-default">Save</button>
-                or <a href="{{ url_for('resumes_list') }}">Cancel</a>
-            </div>
-        </form></div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-default">Save</button>
+                    or <a href="{{ url_for('resumes_list') }}">Cancel</a>
+                </div>
+            </div>    
+        </form>
     </div>
-    <div class="col-md-2"></div><!-----Was used to center things---->
-
-
-
-
 </div>
 
 
@@ -177,7 +194,7 @@ width: 100%;
 font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 body {
-background-color: #FFFFFF;
+background-color: #F7F7F7;
 color: #000000;
 font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 font-size: 15px;

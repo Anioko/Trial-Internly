@@ -234,19 +234,16 @@ footer {
   <div class="col-md-6">
   {% if current_user.has_role('ROLE_COMPANY_FREE') %}
     <h3>
-           Create new postions using  <a href="{{ url_for('position_create') }}">create postion</a> menu option.
+        Create new postions using  <a href="{{ url_for('position_create') }}">create postion</a> menu option.
     </h3>
      <h3>
-            Check for new applicatints for postions on <a href="{{ url_for('position_list') }}">published postions</a> by clicking 'show applicants'.
+        Check for new applicatints for postions on <a href="{{ url_for('position_list') }}">published postions</a> by clicking 'show applicants'.
     </h3>
 
   {% else %}
-      <div class="edit-controls"  align="right">
-            <a href="{{ url_for('create_resume_ln') }}"><button data-placement="bottom" title="You can create new resume using Linkedin import and then remove the old one." type="button" class="btn btn-primary"> Import form Linked <i class="fa fa-linkedin"></i>.</h2></button></a>
-      </div>
-     {% for appt, view_count in appts %}
+     {% for appt in appts %}
       <h4>
-      {{ detail(appt, link_title=true, show_edit=false, show_summary=true, views=view_count) }}
+      {{ detail(appt, link_title=true, show_edit=false, show_summary=true) }}
       </h4>
       {% else %}
       <div class="page-header">
