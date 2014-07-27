@@ -22,107 +22,105 @@
     <div class="content">
         <form method="post" class="form-control"><!-- FORM STARTS -->
             <div class="form_fields"><!-- WRAPS THE FORM FIELDS START -->
-            <legend>{{ title }}</legend>
-            <h6>Name</h6>
-            <div class="form-group name">
-                {{ edit_field(form.name, maxlength=255,
-                placeholder="Your official name e.g John Smith") }}
-            </div>
-            <h6>Contacts</h6>
-            <div class="form-group contacts"><!-- CONTACT SECITON START -->
-                {{ edit_field(form.email, maxlength=100,
-                placeholder="Email") }}
+                <legend>{{ title }}</legend>
+                <h6>Name</h6>
+                <div class="form-group name">
+                    {{ edit_field(form.name, maxlength=255,
+                    placeholder="Your official name e.g John Smith") }}
+                </div>
+                <h6>Contacts</h6>
+                <div class="form-group contacts"><!-- CONTACT SECITON START -->
+                    {{ edit_field(form.email, maxlength=100,
+                    placeholder="Email") }}
+                    
+                    {{ edit_field(form.phone, maxlength=255,
+                    placeholder="Phone number") }}
+                    
+                    {{ edit_field(form.city, maxlength=100,
+                    placeholder="Location") }}
+
+                    {{ edit_field(form.url, maxlength=255,
+                    placeholder="LinkedIn profile link") }}
+                </div>
+                <!-- CONTACT SECITON END -->
+                <h6>Position</h6>
+                <div class="form-group position">
+                    {{ edit_field(form.summary_title, maxlength=255,
+                    placeholder="Position title you're applying for") }}
+                </div>   
+                <div class="form-group qualities competencies">
+                    <h6>Professional qualities</h6>
+                    {{ edit_field(form.summary_text, maxlength=500,
+                    placeholder="e.g Some description of the way you do things.") }}
+                    <h6>Core compitencies</h6>
+                    <div>
+                        {{ edit_field(form.core_compitencies, maxlength=255,
+                        placeholder="e.g. Java") }}
+                    </div>
+                </div>
+                <!-- WORK EXPERISNCE SECTION START -->
                 
-                {{ edit_field(form.phone, maxlength=255,
-                placeholder="Phone number") }}
+                <div class="form-group work_experience">
+                <h6>Work Experience</h6>
+                    {{ edit_field(form.company_name, maxlength=255,
+                    placeholder="Company name") }}
+
+                    {{ edit_field(form.location, maxlength=255,
+                    placeholder="Company location") }}
+
+                    {{ edit_field(form.start, maxlength=255,
+                    placeholder="Start") }}
+
+                    {{ edit_field(form.end, maxlength=255,
+                    placeholder="End") }}
+
+                    {{ edit_field(form.currently) }}
+
+                    {{ edit_field(form.company_summary, maxlength=255,
+                    placeholder="Brief description of the Company") }}
+
+                    {{ edit_field(form.role, maxlength=255,
+                    placeholder="Your position") }}
+
+                    <h6>Achievements</h6>
+                    <div class="achievements">
+                    {{ edit_field(form.work1_acievement, maxlength=255,
+                    placeholder="Write a few sectence on what have you achieved") }}
+                    </div>
+                </div>
+                <a href="#" class="btn" id="add_work"><i class="fa fa-plus"></i> Add another work place</a>
                 
-                {{ edit_field(form.city, maxlength=100,
-                placeholder="Location") }}
+                
+                <div class="form-group study_pace">
+                <h6>Education</h6>
+                    {{ edit_field(form.degree_description, maxlength=255,
+                    placeholder="Name of the Degree") }}
 
-                {{ edit_field(form.url, maxlength=255,
-                placeholder="LinkedIn profile link") }}
-            </div>
-            <!-- CONTACT SECITON END -->
-            <h6>Position</h6>
-            <div class="form-group position">
-                {{ edit_field(form.summary_title, maxlength=255,
-                placeholder="Position title you're applying for") }}
-            </div>   
-            <div class="form-group qualities competencies">
-                <h6>Professional qualities</h6>
-                {{ edit_field(form.summary_text, maxlength=500,
-                placeholder="e.g Some description of the way you do things.") }}
-                <h6>Core compitencies</h6>
-                <div>
-                    {{ edit_field(form.core_compitencies, maxlength=255,
-                    placeholder="e.g. Java") }}
+                    {{ edit_field(form.school_name_one, maxlength=255,
+                    placeholder="Name of the University") }}
+
+                    {{ edit_field(form.location_school, maxlength=255,
+                    placeholder="Location") }}
+
+                    {{ edit_field(form.start_date_school, maxlength=255,
+                    placeholder="Start") }}
+
+                    {{ edit_field(form.end_date_graduation, maxlength=255,
+                    placeholder="End") }}
+
+                    {{ edit_field(form.currently_three) }}
                 </div>
-            </div>
-            <!-- WORK EXPERISNCE SECTION START -->
-            
-            <div class="form-group work_experience">
-            <h6>Work Experience</h6>
-                {{ edit_field(form.company_name, maxlength=255,
-                placeholder="Company name") }}
-
-                {{ edit_field(form.location, maxlength=255,
-                placeholder="Company location") }}
-
-                {{ edit_field(form.start, maxlength=255,
-                placeholder="Start") }}
-
-                {{ edit_field(form.end, maxlength=255,
-                placeholder="End") }}
-
-                {{ edit_field(form.currently) }}
-
-                {{ edit_field(form.company_summary, maxlength=255,
-                placeholder="Brief description of the Company") }}
-
-                {{ edit_field(form.role, maxlength=255,
-                placeholder="Your position") }}
-
-                <h6>Achievements</h6>
-                <div class="achievements">
-                {{ edit_field(form.work1_acievement, maxlength=255,
-                placeholder="Write a few sectence on what have you achieved") }}
+                <a href="#" class="btn" id="add_study"><i class="fa fa-plus"></i> Add another education place</a>
+                <h6>Other skills</h6>
+                <div class="form-group other_skills">                      
+                    <div>
+                        {{ edit_field(form.other_skills, maxlength=255,
+                        placeholder="Power Point") }}
+                    </div>
                 </div>
-            </div>
-            <a href="#" class="btn" id="add_work"><i class="fa fa-plus"></i> Add another work place</a>
-            
-            
-            <div class="form-group study_pace">
-            <h6>Education</h6>
-                {{ edit_field(form.degree_description, maxlength=255,
-                placeholder="Name of the Degree") }}
-
-                {{ edit_field(form.school_name_one, maxlength=255,
-                placeholder="Name of the University") }}
-
-                {{ edit_field(form.location_school, maxlength=255,
-                placeholder="Location") }}
-
-                {{ edit_field(form.start_date_school, maxlength=255,
-                placeholder="Start") }}
-
-                {{ edit_field(form.end_date_graduation, maxlength=255,
-                placeholder="End") }}
-
-                {{ edit_field(form.currently_three) }}
-            </div>
-            <a href="#" class="btn" id="add_study"><i class="fa fa-plus"></i> Add another education place</a>
-            <h6>Other skills</h6>
-            <div class="form-group other_skills">                      
-                <div>
-                    {{ edit_field(form.other_skills, maxlength=255,
-                    placeholder="Power Point") }}
-                </div>
-            </div>
-
-
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-default">Save</button>
-                    or <a href="{{ url_for('resumes_list') }}">Cancel</a>
+                <div class="resume_controls">
+                    <button type="submit" class="btn edit"><i class="fa fa-check"></i> Save</button>               
+                    <a href=""{{ url_for('resumes_list') }}"" class="btn delete"><i class="fa fa-times"></i> Cancel</a>
                 </div>
             </div>    
         </form>

@@ -1,9 +1,12 @@
 .resume_controls {
+	height: 33px;
 	width:100%;
 	padding-top: 0px;
 	float: none;
 	margin-bottom: 20px;
 }
+
+
 .resume_edit {
 	padding-top: 40px;
 }
@@ -89,7 +92,7 @@ label {
 
 .competencies input,
 .other_skills input{
-	width: 100px;
+	width: 110px;
 	display: inline-block;
 	margin-right: 10px;
 }
@@ -122,28 +125,16 @@ label {
 .form_fields textarea {
 	margin-bottom: 5px;
 }
-.form_fields .study_pace #study_period_start,
-.form_fields .study_pace #study_period_end,
-.form_fields .study_pace #currently,
-.form_fields .work_experience #work_period_start,
-.form_fields .work_experience #work_period_end,
-.form_fields .work_experience #currently {
-	display: inline-block;
-}
 
-.form_fields .study_pace #study_period_start,
-.form_fields .study_pace #study_period_end,
-.form_fields .work_experience #work_period_start,
-.form_fields .work_experience #work_period_end {
-	width: 120px;
-	margin-right: 2px;
-}
+
 .form_fields .study_pace {
 	margin-bottom: 20px;
 }
-.form_fields .btn {
-	
+.form_fields #add_work,
+.form_fields #add_study {
 	color: #67A26C;
+}
+.form_fields .btn {
 	font-weight: bold;
 	-webkit-transition: background .2s, color .1s;
 	-o-transition: background .2s, color .1s;
@@ -154,11 +145,23 @@ label {
 	display: block;
 }
 
-.form_fields .btn:hover {
+.form_fields #add_work:hover,
+.form_fields #add_study:hover {
 	background: #61A267;
 	color: white;
 }
-
+.resume_controls .btn:first-child {
+	float: left;
+}
+.resume_controls .btn:last-child {
+	float: right;
+}
+.resume_controls .btn {
+	display: inline-block;
+}
+.resume_controls .btn .cancel {
+	color: #c85e17;
+}
 @media (max-width: 430px) {
 	.form_fields {
 		width: 100%;
