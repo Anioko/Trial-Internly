@@ -111,12 +111,12 @@
         {% endif %}
 
         {% if field.type == 'BooleanField' %}
-            <div class="checkbox">
+          
                 
                     {{ field(class_=class_, **kwargs) }}
                     {{ field.label.text|safe }}
                 
-            </div>
+      
 
         {% else %}
 
@@ -156,12 +156,10 @@
         {% endif %}
 
         {% if field.type == 'BooleanField' %}
-            <div class="checkbox">
-                <label>
+
                     {{ field(class_=class_, **kwargs) }}
                     {{ field.label.text|safe }}
-                </label>
-            </div>
+
 
         {% else %}
 

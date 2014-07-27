@@ -41,7 +41,7 @@ class ResumeForm(Form):
 
     name = TextField('Name', [Length(max=255)])
     summary_title = TextField('Position', [Length(max=255)])
-    
+
     email = TextField('Email', [Length(max=100)])
     phone = TextField('Phone', [Length(max=255)])
     city = TextField('City', [Length(max=100)])
@@ -74,6 +74,9 @@ class ResumeForm(Form):
     
     start_date = TextField('Start')
     end_date = TextField('End')
+
+
+
     currently_two = BooleanField('Currently')
     location_two = TextField('Location', [Length(max=255)])
 
@@ -109,6 +112,70 @@ class ResumeForm(Form):
     skills_ten = TextField('Skills')
 
 
+    #NEW FIELDS TO ADD INTO THE SYSTEM
+    
+    degree_description1 = TextField('Degree Description')
+    degree_description2 = TextField('Degree Description')
+
+    school_name = TextField('Name of the School')
+    school_name1 = TextField('Name of the School')
+    school_name2 = TextField('Name of the School')
+
+    location_school1  = TextField('Location of the School')
+    location_school2  = TextField('Location of the School')
+
+    start_date_school = TextField('Start of the School')
+    start_date_school1 = TextField('Start of the School')
+    start_date_school2 = TextField('Start of the School')
+
+    end_date_school = TextField('End of the School')
+    end_date_school1 = TextField('End of the School')
+    end_date_school2 = TextField('End of the School')
+
+    company_name1 = TextField('Company name', [Length(max=255)])
+    company_name2 = TextField('Company name', [Length(max=255)])
+
+    location_company = TextField('Location of the Company', [Length(max=255)])
+    location_company1 = TextField('Location of the Company', [Length(max=255)])
+    location_company2 = TextField('Location of the Company', [Length(max=255)])
+
+    start_date_company = TextField('Start')
+    start_date_company1 = TextField('Start')
+    start_date_company2 = TextField('Start')
+
+    end_date_company = TextField('End')
+    end_date_company1 = TextField('End')
+    end_date_company2 = TextField('End')
+
+    work_currently = BooleanField('Currently')
+    work_currently1 = BooleanField('Currently')
+    work_currently2 = BooleanField('Currently')
+
+    school_currently = BooleanField('Currently')
+    school_currently1 = BooleanField('Currently')
+    school_currently2 = BooleanField('Currently')
+
+    role1 = TextField('Role', [Length(max=255)])
+    role2 = TextField('Role', [Length(max=255)])
+
+    work1_acievement = TextField('Achievement', [Length(max=255)])
+    work1_acievement_1 = TextField ('Achievement', [Length(max=255)])
+    work1_acievement_1 = TextField ('Achievement', [Length(max=255)])
+
+    work2_acievement = TextField('Achievement', [Length(max=255)])
+    work2_acievement_1 = TextField ('Achievement', [Length(max=255)])
+    work2_acievement_1 = TextField ('Achievement', [Length(max=255)])
+
+    work3_acievement = TextField('Achievement', [Length(max=255)])
+    work3_acievement_1 = TextField ('Achievement', [Length(max=255)])
+    work3_acievement_1 = TextField ('Achievement', [Length(max=255)])
+
+    other_skills = TextField('Skills')
+    other_skills1 = TextField('Skills')
+    other_skills2 = TextField('Skills')
+    other_skills3 = TextField('Skills')
+    other_skills4 = TextField('Skills')
+    other_skills5 = TextField('Skills')
 
 
 class PositionForm(Form):
