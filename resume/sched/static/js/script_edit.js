@@ -31,21 +31,20 @@ $(document).ready(function(event) {
 		}
 		else if (event.which == 13) {
 			event.preventDefault();
-			var number_of_works = $(this).parent().parent().length;
+			var number_of_works = $(this).parent().parent();
 			var value = $(this).val();
-			if ($(number_of_works) == 1) {
-				var number_of_works = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_acievement" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+			if ($(number_of_works).hasClass('work_experience')) {
+				var id_number = $(this).parent().children('input').length;
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_acievement'+(id_number-1)+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
 				$(this).css('display', 'none');
 				$('.achievements input:last-child').focus();
 			}
-			else if ($(number_of_works) == 2) {
-				var number_of_works = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_acievement1" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+			else if ($(number_of_works).hasClass('work_experience1')) {
+				var id_number = $(this).parent().children('input').length;
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work2_acievement'+(id_number-1)+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
 				$(this).css('display', 'none');
 				$('.achievements input:last-child').focus();
 			}
-
 		}
 	});
 	$(document).on('click','.achievements .fa-times',function(){
@@ -100,7 +99,8 @@ $(document).ready(function(event) {
 	//Add field set to work experience
 	$('.form_fields').on('click','#add_work', function(event){
 		event.preventDefault();
-		var field_set = '<div class="form-group work_experience">'+
+		var field_set_number = $(this).prev().length;
+		var field_set = '<div class="form-group work_experience'+field_set_number+'">'+
 						'<h6>Work Experience</h6>'+
 					    '<input type="text" class="form-control input-lg" id="company_name" placeholder="Company name" autofocus>'+
 					    '<input type="text" class="form-control input-lg" id="location_company" placeholder="Company location">'+
