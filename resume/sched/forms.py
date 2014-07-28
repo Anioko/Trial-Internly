@@ -176,17 +176,17 @@ class ResumeForm(Form):
     role1 = TextField('Role', [Length(max=255)])
     role2 = TextField('Role', [Length(max=255)])
 
-    work1_acievement = TextField('Achievement', [Length(max=255)])
-    work1_acievement1 = TextField ('Achievement', [Length(max=255)])
-    work1_acievement2 = TextField ('Achievement', [Length(max=255)])
+    work1_achievement = TextField('Achievement', [Length(max=255)])
+    work1_achievement1 = TextField ('Achievement', [Length(max=255)])
+    work1_achievement2 = TextField ('Achievement', [Length(max=255)])
 
-    work2_acievement = TextField('Achievement', [Length(max=255)])
-    work2_acievement1 = TextField ('Achievement', [Length(max=255)])
-    work2_acievement2 = TextField ('Achievement', [Length(max=255)])
+    work2_achievement = TextField('Achievement', [Length(max=255)])
+    work2_achievement1 = TextField ('Achievement', [Length(max=255)])
+    work2_achievement2 = TextField ('Achievement', [Length(max=255)])
 
-    work3_acievement = TextField('Achievement', [Length(max=255)])
-    work3_acievement1 = TextField ('Achievement', [Length(max=255)])
-    work3_acievement2 = TextField ('Achievement', [Length(max=255)])
+    work3_achievement = TextField('Achievement', [Length(max=255)])
+    work3_achievement1 = TextField ('Achievement', [Length(max=255)])
+    work3_achievement2 = TextField ('Achievement', [Length(max=255)])
 
     other_skills = TextField('Skills')
     other_skills1 = TextField('Skills')

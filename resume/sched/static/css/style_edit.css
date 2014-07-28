@@ -83,11 +83,20 @@ label {
 .form-group {
 	padding-bottom: 10px;
 }
-
+#remove_work {
+	color: #C85E17;
+}
+#remove_work:hover {
+	color: white;
+	background: #C85E17;
+}
 .form_fields input:focus,
 .form_fields textarea:focus {	
 	box-shadow: 0 0 3px rgba(85, 134, 187, 0.63);
 	border-color: rgba(100, 123, 148, 0.64);
+}
+.hidden {
+	display: none;
 }
 
 .competencies input,

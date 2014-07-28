@@ -105,22 +105,23 @@ $(document).ready(function(event) {
 	//Add field set to work experience
 	$('.form_fields').on('click','#add_work', function(event){
 		event.preventDefault();
-		var field_set_number = $(this).prev().length;
-		console.log(field_set_number);
-		var field_set = '<div class="form-group work_experience'+field_set_number+'">'+
-						'<h6>Work Experience</h6>'+
-					    '<input type="text" class="form-control input-lg" id="company_name" placeholder="Company name" autofocus>'+
-					    '<input type="text" class="form-control input-lg" id="location_company" placeholder="Company location">'+
-					    '<input type="text" class="form-control input-lg" id="start_date_company" placeholder="Beginnig">'+
-					    '<input type="text" class="form-control input-lg" id="end_date_company" placeholder="End">'+
-					    '<input type="checkbox" id="work_currently" value="y"> Currently'+
-					    '<textarea class="form-control" rows="5" id="company_summary" placeholder="Brief description of the Company"></textarea>'+
-					    '<input type="text" class="form-control input-m" id="role" placeholder="Your position">'+
-					    '<h6>Achievements</h6>'+
-					    '<div class="achievements">'+
-						'<input type="text" class="form-control input-xs" id="work'+(field_set_number + 1)+'_acievement" placeholder="Write a few sectence on what have you achieved">'+
-					    '</div>'+
-					'</div>';
-		$(this).prev().after(field_set);
+		
+		if ($(this).prev().prev().hasClass('hidden') && $(this).prev().hasClass('hidden') ) {
+			$(this).prev().prev().removeClass('hidden').addClass('visible');
+		}
+		else {
+			$(this).prev().removeClass('hidden').addClass('visible');
+			$(this).attr('id','remove_work').text('Remove last work place');
+		}
+	});
+	$('.form_fields').on('click','#remove_work', function(event){
+		event.preventDefault();		
+		if ($(this).prev().prev().hasClass('visible') && $(this).prev().hasClass('visible') ) {
+			$(this).prev().removeClass('visible').addClass('hidden');
+		}
+		else {
+			$(this).prev().prev().removeClass('visible').addClass('hidden');
+			$(this).attr('id','add_work').text('Add another work place');
+		}
 	});
 });
