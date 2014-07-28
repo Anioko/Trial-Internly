@@ -35,13 +35,19 @@ $(document).ready(function(event) {
 			var value = $(this).val();
 			if ($(number_of_works).hasClass('work_experience')) {
 				var id_number = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_acievement'+(id_number-1)+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_acievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
 				$(this).css('display', 'none');
 				$('.achievements input:last-child').focus();
 			}
 			else if ($(number_of_works).hasClass('work_experience1')) {
 				var id_number = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work2_acievement'+(id_number-1)+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work2_acievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+				$(this).css('display', 'none');
+				$('.achievements input:last-child').focus();
+			}
+			else if ($(number_of_works).hasClass('work_experience2')) {
+				var id_number = $(this).parent().children('input').length;
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work3_acievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
 				$(this).css('display', 'none');
 				$('.achievements input:last-child').focus();
 			}
@@ -100,6 +106,7 @@ $(document).ready(function(event) {
 	$('.form_fields').on('click','#add_work', function(event){
 		event.preventDefault();
 		var field_set_number = $(this).prev().length;
+		console.log(field_set_number);
 		var field_set = '<div class="form-group work_experience'+field_set_number+'">'+
 						'<h6>Work Experience</h6>'+
 					    '<input type="text" class="form-control input-lg" id="company_name" placeholder="Company name" autofocus>'+
@@ -111,7 +118,7 @@ $(document).ready(function(event) {
 					    '<input type="text" class="form-control input-m" id="role" placeholder="Your position">'+
 					    '<h6>Achievements</h6>'+
 					    '<div class="achievements">'+
-						'<input type="text" class="form-control input-xs" id="work_acievement_1" placeholder="Write a few sectence on what have you achieved">'+
+						'<input type="text" class="form-control input-xs" id="work'+(field_set_number + 1)+'_acievement" placeholder="Write a few sectence on what have you achieved">'+
 					    '</div>'+
 					'</div>';
 		$(this).prev().after(field_set);

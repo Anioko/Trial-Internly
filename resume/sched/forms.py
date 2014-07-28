@@ -113,6 +113,20 @@ class ResumeForm(Form):
 
 
     #NEW FIELDS TO ADD INTO THE SYSTEM
+    company_summary1 = TextAreaField('Company Summary', [Length(max=255)])
+    company_summary2 = TextAreaField('Company Summary', [Length(max=255)])
+
+    role1 = TextField('Role', [Length(max=255)])
+    role2 = TextField('Role', [Length(max=255)])
+
+    role_description1 = TextAreaField('Role Description')
+    role_description2 = TextAreaField('Role Description')
+
+
+    company_name1 = TextField('Company Name', [Length(max=255)])
+    company_name2 = TextField('Company Name', [Length(max=255)])
+
+
     core_compitencies1 = TextField('Core competencies', [Length(max=255)])
     core_compitencies2 = TextField('Core competencies', [Length(max=255)])
     core_compitencies3 = TextField('Core competencies', [Length(max=255)])

@@ -68,13 +68,13 @@
                     {{ edit_field(form.location, maxlength=255,
                     placeholder="Company location") }}
 
-                    {{ edit_field(form.start, maxlength=255,
+                    {{ edit_field(form.start_date_company, maxlength=255,
                     placeholder="Start") }}
 
-                    {{ edit_field(form.end, maxlength=255,
+                    {{ edit_field(form.end_date_company, maxlength=255,
                     placeholder="End") }}
 
-                    {{ edit_field(form.currently) }}
+                    {{ edit_field(form.work_currently) }}
 
                     {{ edit_field(form.company_summary, maxlength=255,
                     placeholder="Brief description of the Company") }}
@@ -96,7 +96,7 @@
                     {{ edit_field(form.degree_description, maxlength=255,
                     placeholder="Name of the Degree") }}
 
-                    {{ edit_field(form.school_name_one, maxlength=255,
+                    {{ edit_field(form.school_name, maxlength=255,
                     placeholder="Name of the University") }}
 
                     {{ edit_field(form.location_school, maxlength=255,
@@ -105,10 +105,10 @@
                     {{ edit_field(form.start_date_school, maxlength=255,
                     placeholder="Start") }}
 
-                    {{ edit_field(form.end_date_graduation, maxlength=255,
+                    {{ edit_field(form.end_date_school, maxlength=255,
                     placeholder="End") }}
 
-                    {{ edit_field(form.currently_three) }}
+                    {{ edit_field(form.school_currently) }}
                 </div>
                 <a href="#" class="btn" id="add_study"><i class="fa fa-plus"></i> Add another education place</a>
                 <h6>Other skills</h6>

@@ -104,7 +104,7 @@ label {
 	margin-right: 0;
 }
 .form_fields .competencies span,
-.form_fields .work_experience .achievements span,
+.form_fields .achievements span,
 .other_skills span {
 	height: auto;
 	padding: 9px 12px;
