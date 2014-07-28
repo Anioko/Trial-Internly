@@ -10,7 +10,8 @@ $(document).ready(function(event) {
 		else if (event.which == 13) {
 			event.preventDefault();
 			var value = $(this).val();
-			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" class="form-control input-xs" placeholder="e.g. Java">');
+			var id_number = $(this).parent().children('input').length;
+			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="core_compitencies'+id_number+'" class="form-control input-xs" placeholder="e.g. Java">');
 			$(this).css('display', 'none');
 			$('.competencies input:last-child').focus();
 		}
@@ -30,10 +31,21 @@ $(document).ready(function(event) {
 		}
 		else if (event.which == 13) {
 			event.preventDefault();
+			var number_of_works = $(this).parent().parent().length;
 			var value = $(this).val();
-			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
-			$(this).css('display', 'none');
-			$('.achievements input:last-child').focus();
+			if ($(number_of_works) == 1) {
+				var number_of_works = $(this).parent().children('input').length;
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_acievement" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+				$(this).css('display', 'none');
+				$('.achievements input:last-child').focus();
+			}
+			else if ($(number_of_works) == 2) {
+				var number_of_works = $(this).parent().children('input').length;
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_acievement1" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+				$(this).css('display', 'none');
+				$('.achievements input:last-child').focus();
+			}
+
 		}
 	});
 	$(document).on('click','.achievements .fa-times',function(){

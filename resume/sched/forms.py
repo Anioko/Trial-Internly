@@ -113,6 +113,10 @@ class ResumeForm(Form):
 
 
     #NEW FIELDS TO ADD INTO THE SYSTEM
+    core_compitencies1 = TextField('Core competencies', [Length(max=255)])
+    core_compitencies2 = TextField('Core competencies', [Length(max=255)])
+    core_compitencies3 = TextField('Core competencies', [Length(max=255)])
+    core_compitencies4 = TextField('Core competencies', [Length(max=255)])
     
     degree_description1 = TextField('Degree Description')
     degree_description2 = TextField('Degree Description')
@@ -160,15 +164,15 @@ class ResumeForm(Form):
 
     work1_acievement = TextField('Achievement', [Length(max=255)])
     work1_acievement_1 = TextField ('Achievement', [Length(max=255)])
-    work1_acievement_1 = TextField ('Achievement', [Length(max=255)])
+    work1_acievement_2 = TextField ('Achievement', [Length(max=255)])
 
     work2_acievement = TextField('Achievement', [Length(max=255)])
     work2_acievement_1 = TextField ('Achievement', [Length(max=255)])
-    work2_acievement_1 = TextField ('Achievement', [Length(max=255)])
+    work2_acievement_2 = TextField ('Achievement', [Length(max=255)])
 
     work3_acievement = TextField('Achievement', [Length(max=255)])
     work3_acievement_1 = TextField ('Achievement', [Length(max=255)])
-    work3_acievement_1 = TextField ('Achievement', [Length(max=255)])
+    work3_acievement_2 = TextField ('Achievement', [Length(max=255)])
 
     other_skills = TextField('Skills')
     other_skills1 = TextField('Skills')

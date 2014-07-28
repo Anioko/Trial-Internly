@@ -152,9 +152,20 @@ label {
 }
 .resume_controls .btn:first-child {
 	float: left;
+	color: #67A26C;
 }
+.resume_controls .btn:first-child:hover {
+	background: #67A26C;
+	color: white;
+}
+
 .resume_controls .btn:last-child {
 	float: right;
+	color: #C85E17;
+}
+.resume_controls .btn:last-child:hover {
+	background: #C85E17;
+	color: white;
 }
 .resume_controls .btn {
 	display: inline-block;
