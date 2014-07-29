@@ -2,12 +2,12 @@ $(document).ready(function(event) {
 	$('body').find('label').remove();
 	//Adding,deleting competencies
 	$('.competencies ').on('keydown','input', function(event){
+		var fields_amount = $(this).parent().children('input').length;
 		if (!$(this).val() && event.which == 13 ) {
 			event.preventDefault();
-			alert('Input something you posess');
-			
+			$(this).addClass('bad_input').focus().parent().prev().after('<p class="bad_input_message">Field cant be empty</p>');		
 		}
-		else if (event.which == 13) {
+		else if (event.which == 13 && fields_amount < 5 ) {
 			event.preventDefault();
 			var value = $(this).val();
 			var id_number = $(this).parent().children('input').length;
@@ -15,21 +15,41 @@ $(document).ready(function(event) {
 			$(this).css('display', 'none');
 			$('.competencies input:last-child').focus();
 		}
+		else if (event.which == 13 && fields_amount == 5 ) {
+			event.preventDefault();
+			var value = $(this).val();
+			var id_number = $(this).parent().children('input').length;
+			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span>');
+			$(this).css('display', 'none');
+		}
 	});
 	$('.competencies').on('click','.fa-times',function(event){
 		event.preventDefault();
-		$(this).parent().prev().remove();
-		$(this).parent().remove();
+		var span_elements_amount = $(this).parent().parent().children('span').length;
+
+		if ( span_elements_amount == 5 ) {
+
+			$(this).parent().prev().css('display', 'block').val('');
+			$(this).parent().remove();
+		}
+		else {
+			$(this).parent().prev().remove();
+			$(this).parent().remove();
+		}
+		
+		
 	});
 
 	//Adding,deleting achievements
 	$(document).on('keydown','.achievements input', function(event){
+		var fields_amount = $(this).parent().children('input').length;
+		console.log(fields_amount);
 		if (!$(this).val() && event.which == 13 ) {
 			event.preventDefault();
 			alert('Input something');
-			
+			return false;		
 		}
-		else if (event.which == 13) {
+		else if (event.which == 13 && fields_amount < 3 ) {
 			event.preventDefault();
 			var number_of_works = $(this).parent().parent();
 			var value = $(this).val();
@@ -52,31 +72,59 @@ $(document).ready(function(event) {
 				$('.achievements input:last-child').focus();
 			}
 		}
+		else if(event.which == 13 && fields_amount == 3) {
+			event.preventDefault();
+			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span>');
+			$(this).css('display', 'none');
+		}
 	});
+
 	$(document).on('click','.achievements .fa-times',function(){
-		$(this).parent().prev().remove();
-		$(this).parent().remove();
+		var span_elements_amount = $(this).parent().parent().children('span').length;
+		if ( span_elements_amount == 3 ) {
+			$(this).parent().prev().css('display', 'block').val('');
+			$(this).parent().remove();
+		}
+		else {
+			$(this).parent().prev().remove();
+			$(this).parent().remove();
+		}
+
 	});
 
 		//Adding,deleting other skills
 	$('.other_skills').on('keydown','input', function(event){
-		if (!$(this).val() && event.which == 13 ) {
-			prevent.default;
-			alert('Input something');
-			
+		var fields_amount = $(this).parent().children('input').length;
+		if (!$(this).val() && event.which == 13) {
+			event.preventDefault();
+			alert('Input some of your other skills and hit Enter');
+
 		}
-		else if (event.which == 13) {
+		else if (event.which == 13  && fields_amount < 6) {
 			event.preventDefault();
 			var value = $(this).val();
-			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" class="form-control input-xs" placeholder="I did" autofocus>');
+			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" class="form-control input-xs" placeholder="Another skill" autofocus>');
 			$(this).css('display', 'none');
 			$('.other_skills input:last-child').focus();
 		}
+		else if(event.which == 13  && fields_amount == 6) {
+			event.preventDefault();
+			var value = $(this).val();
+			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span>');
+			$(this).css('display', 'none');
+		}
 	});
 	$('.other_skills').on('click','.fa-times',function(){
-		event.preventDefault();
-		$(this).parent().prev().remove();
-		$(this).parent().remove();
+		var span_elements_amount = $(this).parent().parent().children('span').length;
+		if ( span_elements_amount == 6 ) {
+			$(this).parent().prev().css('display', 'block').val('');
+			$(this).parent().remove();				
+		}
+		else if (span_elements_amount < 6) {
+			$(this).parent().prev().remove();
+			$(this).parent().remove();	
+		}
+
 	});
 	//study period check
 	$('.form_fields').on('change','input[type="checkbox"]',function(){

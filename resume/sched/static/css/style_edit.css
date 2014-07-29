@@ -6,7 +6,13 @@
 	margin-bottom: 20px;
 }
 
-
+.bad_input {
+	background: red;
+}
+.bad_input_message {
+	display: inline-block;
+	position: relative;
+}
 .resume_edit {
 	padding-top: 40px;
 }

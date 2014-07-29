@@ -40,8 +40,6 @@ class ResumeForm(Form):
     """
 
     name = TextField('Name', [Length(max=255)])
-    summary_title = TextField('Position', [Length(max=255)])
-
     email = TextField('Email', [Length(max=100)])
     phone = TextField('Phone', [Length(max=255)])
     city = TextField('City', [Length(max=100)])
@@ -50,12 +48,11 @@ class ResumeForm(Form):
     url = TextField('Url', [Length(max=255)])
     citizenship = TextField('Country of Birth', [Length(max=255)])
 
-    
-    summary_text = TextAreaField('Professional qualities')
-    core_compitencies = TextField('Core competencies', [Length(max=255)])
+    summary_title = TextField('Summary Title', [Length(max=255)])
+    summary_text = TextField('Summary Text', [Length(max=500)])
 
-    company_name = TextField('Work Experience', [Length(max=255)])
-    company_summary = TextAreaField('Company Summary', [Length(max=255)])
+    company_name = TextField('Company Name', [Length(max=255)])
+    company_summary = TextField('Company Summary', [Length(max=255)])
     role = TextField('Role', [Length(max=255)])
     role_description = TextAreaField('Role Description')
     
@@ -74,9 +71,6 @@ class ResumeForm(Form):
     
     start_date = TextField('Start')
     end_date = TextField('End')
-
-
-
     currently_two = BooleanField('Currently')
     location_two = TextField('Location', [Length(max=255)])
 
@@ -126,7 +120,7 @@ class ResumeForm(Form):
     company_name1 = TextField('Company Name', [Length(max=255)])
     company_name2 = TextField('Company Name', [Length(max=255)])
 
-
+    core_compitencies = TextField('Core competencies', [Length(max=255)])
     core_compitencies1 = TextField('Core competencies', [Length(max=255)])
     core_compitencies2 = TextField('Core competencies', [Length(max=255)])
     core_compitencies3 = TextField('Core competencies', [Length(max=255)])
