@@ -35,19 +35,19 @@ $(document).ready(function(event) {
 			var value = $(this).val();
 			if ($(number_of_works).hasClass('work_experience')) {
 				var id_number = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_acievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_achievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
 				$(this).css('display', 'none');
 				$('.achievements input:last-child').focus();
 			}
 			else if ($(number_of_works).hasClass('work_experience1')) {
 				var id_number = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work2_acievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work2_achievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
 				$(this).css('display', 'none');
 				$('.achievements input:last-child').focus();
 			}
 			else if ($(number_of_works).hasClass('work_experience2')) {
 				var id_number = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work3_acievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
+				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work3_achievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
 				$(this).css('display', 'none');
 				$('.achievements input:last-child').focus();
 			}
@@ -91,27 +91,19 @@ $(document).ready(function(event) {
 	//Add field set to education
 	$('.form_fields ').on('click','#add_study', function(event){
 		event.preventDefault();
-		var field_set = '<div class="form-group study_pace">'+
-						'<h6>Education</h6>'+				    
-					    '<input type="text" class="form-control input-m" id="degree_description" placeholder="Name of a Degree" autofocus>'+
-					    '<input type="text" class="form-control input-m" id="school_name" placeholder="Name of a University">'+
-					    '<input type="text" class="form-control input-m" id="location_school" placeholder="Location of a University">'+
-					    '<input type="text" class="form-control input-m" id="start_date_school" placeholder="Beginnig">'+
-					    '<input type="text" class="form-control input-m" id="end_date_school" placeholder="End">'+
-					    '<input type="checkbox" id="school_currently"> Currently'+
-					    '</div>';
-		$(this).prev().after(field_set);
+		
+
 	});
 	//Add field set to work experience
 	$('.form_fields').on('click','#add_work', function(event){
 		event.preventDefault();
 		
-		if ($(this).prev().prev().hasClass('hidden') && $(this).prev().hasClass('hidden') ) {
+		if ($(this).prev().prev().hasClass('hidden') && $(this).prev().hasClass('hidden')) {
 			$(this).prev().prev().removeClass('hidden').addClass('visible');
 		}
 		else {
 			$(this).prev().removeClass('hidden').addClass('visible');
-			$(this).attr('id','remove_work').text('Remove last work place');
+			$(this).attr('id','remove_work').empty().prepend('<i class="fa fa-minus"></i> Remove last work place');
 		}
 	});
 	$('.form_fields').on('click','#remove_work', function(event){
@@ -121,7 +113,7 @@ $(document).ready(function(event) {
 		}
 		else {
 			$(this).prev().prev().removeClass('visible').addClass('hidden');
-			$(this).attr('id','add_work').text('Add another work place');
+			$(this).attr('id','add_work').empty().prepend('<i class="fa fa-plus"></i> Add another work place');
 		}
 	});
 });
