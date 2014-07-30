@@ -46,8 +46,8 @@
 	padding-left: 0;
 }
 .resume_edit textarea {
-	padding: 10px 0 0 10px;
-	height: 100px;
+	padding: 5px 0 0 10px;
+	height: 170px;
 }
 .contacts input:not(:last-child) {
 	width: 200px;
@@ -89,10 +89,12 @@ label {
 .form-group {
 	padding-bottom: 10px;
 }
-#remove_work {
+#remove_work,
+#remove_study {
 	color: #C85E17;
 }
-#remove_work:hover {
+#remove_work:hover,
+#remove_study:hover {
 	color: white;
 	background: #C85E17;
 }
@@ -104,12 +106,19 @@ label {
 .hidden {
 	display: none;
 }
+.competencies input:not(:first-child),
+.other_skills input:not(:first-child) {
+	display: none;
+}
 
 .competencies input,
 .other_skills input{
 	width: 110px;
 	display: inline-block;
 	margin-right: 10px;
+}
+.achievements input:not(:first-child) {
+	display: none;
 }
 .work_experience .achievements input {
 	width: 100%;

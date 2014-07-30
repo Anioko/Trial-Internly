@@ -7,20 +7,12 @@ $(document).ready(function(event) {
 			event.preventDefault();
 			$(this).addClass('bad_input').focus().parent().prev().after('<p class="bad_input_message">Field cant be empty</p>');		
 		}
-		else if (event.which == 13 && fields_amount < 5 ) {
+		else if (event.which == 13) {
 			event.preventDefault();
 			var value = $(this).val();
-			var id_number = $(this).parent().children('input').length;
-			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="core_compitencies'+id_number+'" class="form-control input-xs" placeholder="e.g. Java">');
+			$(this).after('<span><i class="fa fa-times"></i> '+value+'</span>');
 			$(this).css('display', 'none');
-			$('.competencies input:last-child').focus();
-		}
-		else if (event.which == 13 && fields_amount == 5 ) {
-			event.preventDefault();
-			var value = $(this).val();
-			var id_number = $(this).parent().children('input').length;
-			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span>');
-			$(this).css('display', 'none');
+			$(this).next().next().css('display', 'inline-block').focus();
 		}
 	});
 	$('.competencies').on('click','.fa-times',function(event){
@@ -28,13 +20,13 @@ $(document).ready(function(event) {
 		var span_elements_amount = $(this).parent().parent().children('span').length;
 
 		if ( span_elements_amount == 5 ) {
-
-			$(this).parent().prev().css('display', 'block').val('');
+			$(this).parent().prev().val('').css('display', 'inline-block');
 			$(this).parent().remove();
 		}
-		else {
-			$(this).parent().prev().remove();
-			$(this).parent().remove();
+		else if ( span_elements_amount < 5 ) {
+			$(this).parent().next().css('display', 'none');
+			$(this).parent().prev().val('').css('display', 'inline-block');
+			$(this).parent().remove();			
 		}
 		
 		
@@ -49,50 +41,29 @@ $(document).ready(function(event) {
 			alert('Input something');
 			return false;		
 		}
-		else if (event.which == 13 && fields_amount < 3 ) {
+		else if (event.which == 13) {
 			event.preventDefault();
-			var number_of_works = $(this).parent().parent();
 			var value = $(this).val();
-			if ($(number_of_works).hasClass('work_experience')) {
-				var id_number = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work1_achievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
-				$(this).css('display', 'none');
-				$('.achievements input:last-child').focus();
-			}
-			else if ($(number_of_works).hasClass('work_experience1')) {
-				var id_number = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work2_achievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
-				$(this).css('display', 'none');
-				$('.achievements input:last-child').focus();
-			}
-			else if ($(number_of_works).hasClass('work_experience2')) {
-				var id_number = $(this).parent().children('input').length;
-				$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" id="work3_achievement'+id_number+'" class="form-control input-xs" placeholder="Write a few sectence on what have you achieved">');
-				$(this).css('display', 'none');
-				$('.achievements input:last-child').focus();
-			}
-		}
-		else if(event.which == 13 && fields_amount == 3) {
-			event.preventDefault();
-			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span>');
+			$(this).after('<span><i class="fa fa-times"></i> '+value+'</span>');
 			$(this).css('display', 'none');
+			$(this).next().next().css('display', 'inline-block').focus();
 		}
 	});
 
 	$(document).on('click','.achievements .fa-times',function(){
 		var span_elements_amount = $(this).parent().parent().children('span').length;
 		if ( span_elements_amount == 3 ) {
-			$(this).parent().prev().css('display', 'block').val('');
+			$(this).parent().prev().val('').css('display', 'inline-block');
 			$(this).parent().remove();
 		}
-		else {
-			$(this).parent().prev().remove();
+		else if( span_elements_amount < 3 ) {
+			$(this).parent().next().css('display', 'none');
+			$(this).parent().prev().val('').css('display', 'inline-block');
 			$(this).parent().remove();
 		}
-
 	});
 
-		//Adding,deleting other skills
+	//Adding,deleting other skills
 	$('.other_skills').on('keydown','input', function(event){
 		var fields_amount = $(this).parent().children('input').length;
 		if (!$(this).val() && event.which == 13) {
@@ -100,29 +71,24 @@ $(document).ready(function(event) {
 			alert('Input some of your other skills and hit Enter');
 
 		}
-		else if (event.which == 13  && fields_amount < 6) {
+		else if (event.which == 13) {
 			event.preventDefault();
 			var value = $(this).val();
-			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span><input type="text" class="form-control input-xs" placeholder="Another skill" autofocus>');
+			$(this).after('<span><i class="fa fa-times"></i> '+value+'</span>');
 			$(this).css('display', 'none');
-			$('.other_skills input:last-child').focus();
-		}
-		else if(event.which == 13  && fields_amount == 6) {
-			event.preventDefault();
-			var value = $(this).val();
-			$(this).parent().append('<span><i class="fa fa-times"></i> ' + value + '</span>');
-			$(this).css('display', 'none');
+			$(this).next().next().css('display', 'inline-block').focus();
 		}
 	});
 	$('.other_skills').on('click','.fa-times',function(){
 		var span_elements_amount = $(this).parent().parent().children('span').length;
 		if ( span_elements_amount == 6 ) {
-			$(this).parent().prev().css('display', 'block').val('');
-			$(this).parent().remove();				
+			$(this).parent().prev().val('').css('display', 'inline-block');
+			$(this).parent().remove();	
 		}
 		else if (span_elements_amount < 6) {
-			$(this).parent().prev().remove();
-			$(this).parent().remove();	
+			$(this).parent().next().css('display', 'none');
+			$(this).parent().prev().val('').css('display', 'inline-block');
+			$(this).parent().remove();
 		}
 
 	});
@@ -139,13 +105,29 @@ $(document).ready(function(event) {
 	//Add field set to education
 	$('.form_fields ').on('click','#add_study', function(event){
 		event.preventDefault();
-		
+		if ($(this).prev().prev().hasClass('hidden') && $(this).prev().hasClass('hidden')) {
+			$(this).prev().prev().removeClass('hidden').addClass('visible');
+		}
+		else {
+			$(this).prev().removeClass('hidden').addClass('visible');
+			$(this).attr('id','remove_study').empty().prepend('<i class="fa fa-minus"></i> Remove last education place');
+		}
 
 	});
+	$('.form_fields').on('click','#remove_study', function(event){
+		event.preventDefault();		
+		if ($(this).prev().prev().hasClass('visible') && $(this).prev().hasClass('visible') ) {
+			$(this).prev().removeClass('visible').addClass('hidden');
+		}
+		else {
+			$(this).prev().prev().removeClass('visible').addClass('hidden');
+			$(this).attr('id','add_study').empty().prepend('<i class="fa fa-plus"></i> Add another study place');
+		}
+	});
+
 	//Add field set to work experience
 	$('.form_fields').on('click','#add_work', function(event){
-		event.preventDefault();
-		
+		event.preventDefault();		
 		if ($(this).prev().prev().hasClass('hidden') && $(this).prev().hasClass('hidden')) {
 			$(this).prev().prev().removeClass('hidden').addClass('visible');
 		}

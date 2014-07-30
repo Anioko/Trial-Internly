@@ -49,10 +49,10 @@ class ResumeForm(Form):
     citizenship = TextField('Country of Birth', [Length(max=255)])
 
     summary_title = TextField('Summary Title', [Length(max=255)])
-    summary_text = TextField('Summary Text', [Length(max=500)])
+    summary_text = TextAreaField('Summary Text', [Length(max=500)])
 
     company_name = TextField('Company Name', [Length(max=255)])
-    company_summary = TextField('Company Summary', [Length(max=255)])
+    company_summary = TextAreaField('Company Summary', [Length(max=255)])
     role = TextField('Role', [Length(max=255)])
     role_description = TextAreaField('Role Description')
     
