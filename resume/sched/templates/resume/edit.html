@@ -9,6 +9,7 @@
 {% endif %}
 
 {% block head%}
+<link href="{{ url_for('static', filename='css/style_resume.css') }}" rel="stylesheet">
 <link href="{{ url_for('static', filename='css/style_edit.css') }}" rel="stylesheet">
 <script src="{{ url_for('static', filename='js/script_edit.js') }}" type="text/javascript"></script>
 {% endblock head%}
@@ -94,6 +95,9 @@
                     {{ edit_field(form.role, maxlength=255,
                     placeholder="Your position") }}
 
+                    {{ edit_field(form.duties, maxlength=255,
+                    placeholder="Your duties") }}
+
                     <h6>Achievements</h6>
                     <div class="achievements">
                     {{ edit_field(form.work1_achievement, maxlength=255,
@@ -129,6 +133,9 @@
                     {{ edit_field(form.role1, maxlength=255,
                     placeholder="Your position") }}
 
+                    {{ edit_field(form.duties1, maxlength=255,
+                    placeholder="Your duties") }}
+
                     <h6>Achievements</h6>
                     <div class="achievements">
                     {{ edit_field(form.work2_achievement, maxlength=255,
@@ -163,6 +170,9 @@
 
                     {{ edit_field(form.role2, maxlength=255,
                     placeholder="Your position") }}
+
+                    {{ edit_field(form.duties2, maxlength=255,
+                    placeholder="Your duties") }}
 
                     <h6>Achievements</h6>
                     <div class="achievements">
@@ -288,7 +298,7 @@ font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 body {
 background-color: #F7F7F7;
-color: #000000;
+color: #4E5D6C;
 font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 font-size: 15px;
 line-height: 1.42857;

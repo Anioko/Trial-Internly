@@ -86,7 +86,9 @@ class ResumeForm(Form):
     #TO DELETE THESE FIELDS END
 
 
-
+    duties = TextAreaField('Your duties', [Length(max=500)])
+    duties1 = TextAreaField('Your duties', [Length(max=500)])
+    duties2 = TextAreaField('Your duties', [Length(max=500)])
 
 
     #NEW FIELDS TO ADD INTO THE SYSTEM

@@ -1,0 +1,221 @@
+body {
+	font-family: Helvetica;
+	background: #F7F7F7;
+	color: #535A5F;
+}
+h2 {
+	text-align: left;
+	font-size: 3em;
+	font-weight: 500;
+}
+h3 {
+	font-size: 2em;
+	font-weight: 500;
+}
+h4 {
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+.resume_view .cover_letter ul li {
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.resume_view {
+	padding-top: 50px;
+}
+.resume_view ul li,
+.resume_edit  ul li {
+	font-size: 1.2em;
+	font-weight: 400;
+}
+
+.content {
+	padding: 0 50px 0 50px;
+}
+.contacts ul {
+	position: relative;
+	padding:0;
+	
+}
+.contacts ul li {
+	list-style: none;
+	margin-right: 10px;
+}
+.contacts ul i{
+	margin-right: 5px;
+}
+.contacts ul li a {
+	text-decoration: underline;
+	color: #4A5C6C;
+	-webkit-transition: color .3s;
+	-o-transition: color .3s;
+	transition: color .3s;
+	font-weight: 500;
+}
+.contacts ul li a:hover {
+	color: #428bca;
+}
+.contacts,
+.cover_letter,
+.education,
+.experience {
+	border-bottom: 2px solid #eee;
+}
+.cover_letter {
+}
+p {
+	font-size: 1.2em;
+	text-align: justify;
+	font-weight: 400;
+}
+.cover_letter ul,
+.other_skills ul {
+	padding-left: 0px;
+}
+
+.experience .employee li,
+.contacts ul li,
+.study_pace ul li  {
+	display: inline-block;
+} 
+.cover_letter ul,
+.other_skills ul {
+	padding-left: 20px;
+}
+.cover_letter ul li,
+.other_skills ul li {
+	float: left;
+	font-weight: 400;
+}
+.cover_letter ul li:not(:last-child),
+.other_skills ul li:not(:last-child) {
+	margin-right: 25px;
+	
+}
+.cover_letter ul li:not(:first-child) {
+	list-style-type: disc;
+}
+.study_pace,
+.cover_letter ul {
+	margin-bottom: 40px;
+}
+.cover_letter ul li {
+	list-style: disc;
+}
+.study_pace ul {
+	padding: 0 0 0 10px;
+	margin: 0;
+	border-left: 5px solid #E4E1E1;
+}
+.study_pace ul li {
+	list-style: none;
+}
+.study_pace ul li,
+.experience .employee li {
+	font-weight: bold;	
+}
+.study_pace ul .university_name {
+	text-transform: uppercase;
+}
+.study_pace ul li:first-child,
+.study_pace .employee li:last-child{
+	display: block;
+}
+.study_pace .study_years {
+}
+
+.experience .employee {
+	padding: 0 0 0 10px;
+	margin-bottom: 5px;	
+	border-left: 5px solid #E4E1E1;
+
+}
+.experience .employee li:first-child {
+	text-transform: uppercase;
+}
+.experience .employee li {
+	font-size: 1.2em;
+}
+.experience .achievements {
+	list-style-type: disc;
+}
+.experience .achievements li {
+	margin-bottom: 10px;
+}
+.experience .achievements li:last-child {
+	margin-bottom: 0px;
+}
+.experience .job {
+	margin-bottom: 30px;
+}
+.experience .job:last-child {
+	margin-bottom: 20px;
+}
+.experience .job ul {
+	margin: 0;
+}
+.resume_controls {
+	width: 301px;
+	float: right;
+	padding-top: 14px;
+}
+.resume_controls .btn {
+	font-size: 1.3em;
+	padding: 2px 8px 2px 8px;
+	background: transparent;
+	-webkit-transition: background .5s, color .5s;
+	-o-transition: background .5s, color .5s;
+	transition: background .5s, color .5s;
+}
+.resume_controls .btn.edit:hover {
+	background: #55995B;
+	color: white;
+}
+.resume_controls .btn.save:hover {
+	background: #6386A3;
+	color: white;
+}
+.resume_controls .btn.delete:hover {
+	background: #CE655E;
+	color: white;
+}
+.resume_controls .btn.edit {
+	color: #55995B;
+	
+}
+.resume_controls .btn.save {
+	color: #6386A3;
+	
+}
+.resume_controls .btn.delete {
+	color: #CE655E;	
+}
+@media (max-width: 992px) {
+}
+@media (max-width: 768px) {
+	.content {
+		padding:0;
+	}
+	.menu {
+		margin-bottom: 0px;
+	}
+	.resume_controls .btn.save {
+		color: #6386A3;
+		
+	}
+	.resume_controls .btn.delete {
+		color: #CE655E;	
+	}
+}
+@media (max-width: 650px) {
+	.resume_controls {
+		float: none;
+		padding: 30px 0 0 0;
+		margin: auto;
+	}
+
+	h2,h3 {
+		text-align: center;
+	}
+}
+
