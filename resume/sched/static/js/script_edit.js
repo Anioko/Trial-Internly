@@ -1,11 +1,66 @@
 $(document).ready(function(event) {
+	//REMOVE ALL THE LABELS
 	$('body').find('label').remove();
+
+	//ADD REQUIRED TO INPUT FIELDS
+	$(document).find('input#name').attr('required', 'requred');
+	$(document).find('.contacts input').attr('required', 'requred');
+	$(document).find('.position input').attr('required', 'requred');
+
+	//DISPALY COMPETENCIES IF FORM IS BEING EDITED	
+	if ($(".competencies input").filter(function() { return $(this).val(); }).length > 0) {
+		$(".competencies input").each(function(){
+			$(this).css('display','inline-block');
+		});
+	}
+	if ($(".other_skills input").filter(function() { return $(this).val(); }).length > 0) {
+		$('.other_skills input').each(function(){
+			$(this).css('display','inline-block');
+		});
+	}
+	if ($(".achievements input").filter(function() { return $(this).val(); }).length > 0) {
+		$('.achievements input').each(function(){
+			$(this).css('display','inline-block');
+		});
+	}
+	//DISPALY WORK PLACES
+	if ($(".work_experience1 #company_name1").val().length > 0 ){
+		$('.work_experience1').removeClass('hidden').addClass('visible');
+	}
+	if ($(".work_experience2 #company_name2").val().length > 0 ){
+		$('.work_experience2').removeClass('hidden').addClass('visible');
+	}
+
+	//DISPALY STUDY PLACES
+	if ($(".study_pace #degree_description1").val().length > 0 ){
+		$('#degree_description1').parent().removeClass('hidden').addClass('visible');
+	}
+	if ($(".study_pace #degree_description2").val().length > 0 ){
+		$('#degree_description2').parent().removeClass('hidden').addClass('visible');
+	}
+
+	//VALIDATION
+	$('.other_skills input:first-child').on('keyup', function(event) {
+		$(this).next('p').remove();
+	});
+
+	$('button').on('click', function(event){
+		event.preventDefault();
+		if (!$('#other_skills').val()) {
+			$('#other_skills').focus().after('<p class="warning">Its recommended to specify at least few additional skills </p>');
+		}
+		else {
+			$('form').submit();
+		}
+	});
+
+//$('.other_skills input:first-child').focus().after('<p class="warning">Its recommended to specify at least few additional skills </p>');
 	//Adding,deleting competencies
 	$('.competencies ').on('keydown','input', function(event){
 		var fields_amount = $(this).parent().children('input').length;
 		if (!$(this).val() && event.which == 13 ) {
 			event.preventDefault();
-			$(this).addClass('bad_input').focus().parent().prev().after('<p class="bad_input_message">Field cant be empty</p>');		
+			alert('Add at least one competence')	
 		}
 		else if (event.which == 13) {
 			event.preventDefault();
@@ -18,7 +73,6 @@ $(document).ready(function(event) {
 	$('.competencies').on('click','.fa-times',function(event){
 		event.preventDefault();
 		var span_elements_amount = $(this).parent().parent().children('span').length;
-
 		if ( span_elements_amount == 5 ) {
 			$(this).parent().prev().val('').css('display', 'inline-block');
 			$(this).parent().remove();
@@ -93,9 +147,10 @@ $(document).ready(function(event) {
 
 	});
 	//study period check
+
 	$('.form_fields').on('change','input[type="checkbox"]',function(){
 		if ($(this).prop('checked') == true) {
-			$(this).prev().prop('disabled','true' );
+			$(this).prev().val('').prop('disabled','true' );
 		}
 		else  {
 			$(this).prev().removeAttr('disabled');
@@ -122,6 +177,7 @@ $(document).ready(function(event) {
 		else {
 			$(this).prev().prev().removeClass('visible').addClass('hidden');
 			$(this).attr('id','add_study').empty().prepend('<i class="fa fa-plus"></i> Add another study place');
+
 		}
 	});
 

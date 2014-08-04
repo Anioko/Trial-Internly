@@ -29,20 +29,50 @@
             </p>
             <h4>Core compitencies:</h4>
             <ul>
+                {% if appt.core_compitencies %}
                 <li>{{ appt.core_compitencies }}</li> 
-                <li>{{ appt.core_compitencies1 }}</li>
-                <li>{{ appt.core_compitencies2 }}</li>
-                <li>{{ appt.core_compitencies3 }}</li>
-                <li>{{ appt.core_compitencies4 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.core_compitencies1 %}
+                <li>{{ appt.core_compitencies1 }}</li> 
+                {% else %}
+                {% endif %}
+                {% if appt.core_compitencies2 %}
+                <li>{{ appt.core_compitencies2 }}</li> 
+                {% else %}
+                {% endif %}
+                {% if appt.core_compitencies3 %}
+                <li>{{ appt.core_compitencies3 }}</li> 
+                {% else %}
+                {% endif %}
+                {% if appt.core_compitencies4 %}
+                <li>{{ appt.core_compitencies4 }}</li> 
+                {% else %}
+                {% endif %}
             </ul>
         </div>
         <div class="experience">
             <h3>Experience</h3>
             <div class="job">
                 <ul class="employee">
-                    <li>{{ appt.company_name if appt.company_name != None }} •</li>
-                    <li>{{ appt.location_company if appt.location_company != None  }} •</li>
-                    <li>{{ appt.start_date_company}} - {{ appt.end_date_company or "Currently"}}</li>
+                    <li>
+                        {% if appt.company_name %}
+                        {{ appt.company_name }} •
+                        {% else %}
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if appt.location_company %}
+                        {{ appt.location_company }} •
+                        {% else %}
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if appt.start_date_company %}
+                        {{ appt.start_date_company or ""}} - {{ appt.end_date_company or "Present"}}
+                        {% else %}
+                        {% endif %}
+                    </li>
                 </ul>
                 <p class="company_description">
                     {{ appt.company_summary }}
@@ -53,15 +83,106 @@
                 </p>
                 <h4>Achievements</h4>
                 <ul class="achievements">
+                    {% if appt.work1_achievement %}
+                    <li>{{ appt.work1_achievement }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work1_achievement1 %}
+                    <li>{{ appt.work1_achievement1 }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work1_achievement2 %}
+                    <li>{{ appt.work1_achievement2 }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="job ">
+                <ul class="employee">
                     <li>
-                        {{ appt.work1_achievement }}
+                        {% if appt.company_name1 %}
+                        {{ appt.company_name1 }} •
+                        {% else %}
+                        {% endif %}
                     </li>
                     <li>
-                        {{ appt.work1_achievement1 }}
+                        {% if appt.location_company1 %}
+                        {{ appt.location_company1 }} •
+                        {% else %}
+                        {% endif %}
                     </li>
                     <li>
-                        {{ appt.work1_achievement2 }}
+                        {% if appt.start_date_company1 %}
+                        {{ appt.start_date_company1 or ""}} - {{ appt.end_date_company or "Present"}}
+                        {% else %}
+                        {% endif %}
                     </li>
+                </ul>
+                <p class="company_description">
+                    {{ appt.company_summary1 }}
+                </p>
+                <h4 class="job_title">{{ appt.role1 }}</h4>
+                <p class="job_description">
+                    Job description (duties) goes here
+                </p>
+                <h4>Achievements</h4>
+                <ul class="achievements">
+                    {% if appt.work2_achievement %}
+                    <li>{{ appt.work2_achievement }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work2_achievement1 %}
+                    <li>{{ appt.work2_achievement1 }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work2_achievement2 %}
+                    <li>{{ appt.work2_achievement2 }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="job">
+                <ul class="employee">
+                    <li>
+                        {% if appt.company_name2 %}
+                        {{ appt.company_name2 }} •
+                        {% else %}
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if appt.location_company2 %}
+                        {{ appt.location_company2 }} •
+                        {% else %}
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if appt.start_date_company2 %}
+                        {{ appt.start_date_company2 or ""}} - {{ appt.end_date_company or "Present"}}
+                        {% else %}
+                        {% endif %}
+                    </li>
+                </ul>
+                <p class="company_description">
+                    {{ appt.company_summary2 }}
+                </p>
+                <h4 class="job_title">{{ appt.role2 }}</h4>
+                <p class="job_description">
+                    Job description (duties) goes here
+                </p>
+                <h4>Achievements</h4>
+                <ul class="achievements">
+                    {% if appt.work3_achievement %}
+                    <li>{{ appt.work3_achievement }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work3_achievement1 %}
+                    <li>{{ appt.work3_achievement1 }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work3_achievement2 %}
+                    <li>{{ appt.work3_achievement2 }}</li>
+                    {% else %}
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -79,12 +200,30 @@
         <div class="other_skills">
             <h3>Other Skills</h3>
             <ul>
-                <li>{{ appt.other_skills if appt.other_skills != None }}</li>
-                <li>{{ appt.other_skills1 if appt.other_skills1 != None }}</li>
-                <li>{{ appt.other_skills2 if appt.other_skills2 != None }}</li>
-                <li>{{ appt.other_skills3 if appt.other_skills3 != None }}</li>
-                <li>{{ appt.other_skills4 if appt.other_skills4 != None }}</li>
-                <li>{{ appt.other_skills5 if appt.other_skills5 != None }}</li>
+                {% if appt.other_skills %}
+                <li>{{ appt.other_skills }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills1 %}
+                <li>{{ appt.other_skills1 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills2 %}
+                <li>{{ appt.other_skills2 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills3 %}
+                <li>{{ appt.other_skills3 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills4 %}
+                <li>{{ appt.other_skills4 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills5 %}
+                <li>{{ appt.other_skills5 }}</li>
+                {% else %}
+                {% endif %}
             </ul>
         </div>
 

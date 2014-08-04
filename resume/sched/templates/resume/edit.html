@@ -9,7 +9,6 @@
 {% endif %}
 
 {% block head%}
-<link href="{{ url_for('static', filename='css/style_resume.css') }}" rel="stylesheet">
 <link href="{{ url_for('static', filename='css/style_edit.css') }}" rel="stylesheet">
 <script src="{{ url_for('static', filename='js/script_edit.js') }}" type="text/javascript"></script>
 {% endblock head%}
@@ -17,6 +16,7 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block main %}
+
 
 
 <div class="container resume_edit"><!-- CONTAINER THE WRAPS UP ALL THE CONTENT -->
@@ -45,7 +45,7 @@
                 </div>
                 <!-- CONTACT SECITON END -->
                 <h6>Position</h6>
-                <div class="form-group position">
+                <div class="form-group position" data-toggle="tooltip" data-placement="right" title="Position you want to apply for">
                     {{ edit_field(form.summary_title, maxlength=255,
                     placeholder="Position title you're applying for") }}
                 </div>   

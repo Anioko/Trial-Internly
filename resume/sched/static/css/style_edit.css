@@ -5,6 +5,10 @@
 	float: none;
 	margin-bottom: 20px;
 }
+.popover,
+.arrow {
+	background: transparent;
+}
 
 .bad_input {
 	background: red;
@@ -113,7 +117,7 @@ label {
 
 .competencies input,
 .other_skills input{
-	width: 110px;
+	width: 130px;
 	display: inline-block;
 	margin-right: 10px;
 }
@@ -168,6 +172,10 @@ label {
 	background: none;
 	display: block;
 }
+.warning {
+	color: red;
+	font-weight: bold;
+}
 
 .form_fields #add_work:hover,
 .form_fields #add_study:hover {
@@ -177,6 +185,9 @@ label {
 .resume_controls .btn:first-child {
 	float: left;
 	color: #67A26C;
+}
+.resume_controls .btn:first-child:focus {
+	outline: none;
 }
 .resume_controls .btn:first-child:hover {
 	background: #67A26C;

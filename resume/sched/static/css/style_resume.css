@@ -22,6 +22,7 @@ h4 {
 }
 .resume_view {
 	padding-top: 50px;
+	padding-bottom: 50px;
 }
 .resume_view ul li,
 .resume_edit  ul li {
@@ -95,9 +96,11 @@ p {
 .cover_letter ul li:not(:first-child) {
 	list-style-type: disc;
 }
-.study_pace,
 .cover_letter ul {
 	margin-bottom: 40px;
+}
+.study_pace {
+	margin-bottom: 15px;
 }
 .cover_letter ul li {
 	list-style: disc;
@@ -168,7 +171,7 @@ p {
 	transition: background .5s, color .5s;
 }
 .resume_controls .btn.edit:hover {
-	background: #55995B;
+	background: #70BD77;
 	color: white;
 }
 .resume_controls .btn.save:hover {
@@ -212,6 +215,9 @@ p {
 		float: none;
 		padding: 30px 0 0 0;
 		margin: auto;
+	}
+	.cover_letter ul {
+		margin-bottom: 70px;
 	}
 
 	h2,h3 {
