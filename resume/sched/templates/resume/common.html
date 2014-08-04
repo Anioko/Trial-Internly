@@ -190,10 +190,71 @@
             <h3>Education</h3>
             <div class="study_pace">                    
                 <ul>
-                    <li class="degree_name">{{ appt.degree_description if appt.degree_description != None }}</li>
-                    <li class="university_name">{{ appt.school_name  if appt.school_name != None }} •</li>
-                    <li class="university_place">{{ appt.location_school  if appt.location_school != None }} •</li>
+                    {% if appt.degree_description %}
+                    <li class="degree_name">{{ appt.degree_description}}</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.school_name %}
+                    <li class="university_name">{{ appt.school_name}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school %}
+                    <li class="university_place">{{ appt.location_school}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school %}
                     <li class="study_years">{{ appt.start_date_school }} - {{ appt.end_date_school or "Present" }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="study_pace">                    
+                <ul>
+                    {% if appt.degree_description1 %}
+                    <li class="degree_name">{{ appt.degree_description1}}</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.school_name1 %}
+                    <li class="university_name">{{ appt.school_name1}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school1 %}
+                    <li class="university_place">{{ appt.location_school1}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school1 %}
+                    <li class="study_years">{{ appt.start_date_school1 }} - {{ appt.end_date_school1 or "Present" }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="study_pace">                    
+                <ul>
+                    {% if appt.degree_description2 %}
+                    <li class="degree_name">{{ appt.degree_description2}}</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.school_name2 %}
+                    <li class="university_name">{{ appt.school_name2}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school2 %}
+                    <li class="university_place">{{ appt.location_school2}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school2 %}
+                    <li class="study_years">{{ appt.start_date_school2 }} - {{ appt.end_date_school2 or "Present" }}</li>
+                    {% else %}
+                    {% endif %}
                 </ul>
             </div>
         </div>	

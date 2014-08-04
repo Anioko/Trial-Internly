@@ -81,8 +81,7 @@ $(document).ready(function(event) {
 			$(this).parent().next().css('display', 'none');
 			$(this).parent().prev().val('').css('display', 'inline-block');
 			$(this).parent().remove();			
-		}
-		
+		}		
 		
 	});
 

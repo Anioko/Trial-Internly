@@ -7,5 +7,10 @@ $(document).ready(function(event) {
 	      $(this).addClass('hidden');
 	  }
   });
+  $('.study_pace').each(function(){
+  	  if ( isEmpty($(this).find('ul li')) ) {
+	      $(this).addClass('hidden');
+	  }
+  });
 
 });
