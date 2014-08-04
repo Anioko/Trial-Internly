@@ -235,6 +235,9 @@ footer {
 {% endif %}
 {% endwith %}
 <div class="row">
+    <div class="add_resume col-sm-12 col-xs-12">
+      <a href="{{ url_for('resume_create') }}" class="btn"><i class="fa fa-pencil-square-o"></i> Create resume</a>
+    </div>
   {% if current_user.has_role('ROLE_COMPANY_FREE') %}
     <h3>
         Create new postions using  <a href="{{ url_for('position_create') }}">create postion</a> menu option.

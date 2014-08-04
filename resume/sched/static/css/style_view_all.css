@@ -16,7 +16,9 @@ h2 {
 	text-align: right;
 	float: right;
 	border: 1px solid;
+	border-radius: 3px;
 	color: #55995B;	
+	background: transparent;
 }
 .add_resume a {
 	color: #5A5A5A;
