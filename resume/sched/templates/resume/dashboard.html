@@ -1,4 +1,9 @@
 {% extends "public/public.html" %}
+
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_view_all.css') }}" rel="stylesheet">
+{% endblock head%}
+
 {% block content %}
 
         <!-- CSS code from Bootply.com editor -->
@@ -230,8 +235,6 @@ footer {
 {% endif %}
 {% endwith %}
 <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
   {% if current_user.has_role('ROLE_COMPANY_FREE') %}
     <h3>
         Create new postions using  <a href="{{ url_for('position_create') }}">create postion</a> menu option.
@@ -242,9 +245,24 @@ footer {
 
   {% else %}
      {% for appt, view_count in appts %}
-      <h4>
-      {{ detail(appt, link_title=true, show_edit=false, show_summary=true) }}
-      </h4>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="resume">
+              <h2><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{appt.summary_title}}</a></h2>
+              <span class="date">12 July 2014</span>
+              <div class="tools">
+                  <ul class="info">
+                      <!--<li><a href="#">Responses</a> <span class="responses">2</span></li> -->
+                      <li><a href="#">Views</a> <span class="views">10</span></li>
+                      <!--<li><a href="#">Suggestions</a> <span class="vacancies">1</span></li> -->
+                  </ul>
+              </div>
+              <ul class="actions">
+                  <li><a href="{{ url_for('resume_edit', resume_id=appt.id) }}"><i class="fa fa-pencil"></i></a></li>
+                  <!--<li><a href="#"><i class="fa fa-files-o"></i></a></li> -->
+                  <li><a href="{{ url_for('resume_delete', resume_id=appt.id) }}"><i class="fa fa-times"></i></a></li>
+              </ul>
+          </div>
+      </div>  
       {% else %}
       <div class="page-header">
       <h2>Welcome. In order to be applying for entry level jobs and internships through Internly you will need to create a one time resume to use to apply to various positions. <br/ > You can also send your CV as a pdf to info@intern.ly.<br/ > You can always edit your CV to take out certain things or add certain things as needed.<br/ >Please use this link <a href="{{ url_for('resume_create') }}"> to fill out your resume</a>.<br/>

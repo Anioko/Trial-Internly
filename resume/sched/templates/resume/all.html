@@ -3,6 +3,9 @@
 {% from 'resume/commons.html' import detail %}
 
 {% block title %}Resumes{% endblock title %}
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_view_all.css') }}" rel="stylesheet">
+{% endblock head%}
 
 {% block main %}
 
