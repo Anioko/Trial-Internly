@@ -224,6 +224,10 @@ class Resume(db.Model):
     other_skills4 = Column(Text)
     other_skills5 = Column(Text)
 
+    duties = Column(Text)
+    duties1 = Column(Text)
+    duties2 = Column(Text)
+
 
 
 

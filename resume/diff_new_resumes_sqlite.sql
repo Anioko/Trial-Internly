@@ -54,3 +54,6 @@ ALTER TABLE resumes ADD COLUMN other_skills2 TEXT;
 ALTER TABLE resumes ADD COLUMN other_skills3 TEXT;
 ALTER TABLE resumes ADD COLUMN other_skills4 TEXT;
 ALTER TABLE resumes ADD COLUMN other_skills5 TEXT;
+ALTER TABLE resumes ADD COLUMN duties TEXT;
+ALTER TABLE resumes ADD COLUMN duties1 TEXT;
+ALTER TABLE resumes ADD COLUMN duties2 TEXT;
