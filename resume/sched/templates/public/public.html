@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Find and search for perfect internships, entry level work and job opportunities across Europe by filling out resume online and apply for current openings and upcoming openings. Our online system enables companies to post trainee vacancies track the applicants also.">
+    <meta name="description" content="{% block description_b %}{% endblock description_b %} Find and search for perfect internships, entry level work and job opportunities across Europe by filling out resume online and apply for current openings and upcoming openings. Our online system enables companies to post trainee vacancies track the applicants also.">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Find Trainees, Internships & Entry Level Jobs. Hire undergraduates and entry level workers</title>
+    <title>{% block title_b %}{% endblock title_b %} Find Trainees, Internships & Entry Level Jobs. Hire undergraduates and entry level workers</title>
     <!-- Bootstrap core CSS -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootswatch.css') }}" rel="stylesheet" type="text/css">

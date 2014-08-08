@@ -3,6 +3,9 @@
 
 {% from 'position/commons.html' import detail %}
 
+{% block title_b %}Postion: {{ appt.position_title }} on Intern.ly -{% endblock title_b %}
+{% block description_b %}{{appt.description|default('')}}{% endblock description_b %}
+
 {% block title %}{{ appt.name or '(No Name)' }}{% endblock title %}
 
 {% block main %}
