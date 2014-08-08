@@ -510,6 +510,7 @@ def resume_detail_pdf(resume_id):
 #########Views for Positions#######
 
 @app.route('/positions/')
+@login_required
 def all_positions():
     """Provide HTML page listing all positions in the database.
 
