@@ -5,7 +5,8 @@
             <div class="resume_controls">
                 <a href="{{ url_for('resume_edit', resume_id=appt.id) }}" class="btn edit"><i class="fa fa-pencil"></i> Edit</a>              
                 <a href="{{ url_for('resume_delete', resume_id=appt.id) }}" class="btn delete"><i class="fa fa-times"></i> Delete</a>
-                <a href="{{ url_for('resume_detail_pdf', resume_id=appt.id) }}" class="btn save"><i class="fa fa-file-pdf-o"></i> Download</a>
+                <!--DOWNLOAD BUTTON IS COMMENTED OUT UNTIL PDF GEREATOR SCRIPT IS FIXED -->
+                <!--<a href="{{ url_for('resume_detail_pdf', resume_id=appt.id) }}" class="btn save"><i class="fa fa-file-pdf-o"></i> Download</a> -->
             </div>
    
     {% endif %}
@@ -79,7 +80,10 @@
                 </p>
                 <h4 class="job_title">{{ appt.role }}</h4>
                 <p class="job_description">
-                    Job description (duties) goes here
+                    {% if appt.duties %}
+                    {{ appt.duties }}
+                    {% else %}
+                    {% endif %}
                 </p>
                 <h4>Achievements</h4>
                 <ul class="achievements">
@@ -123,7 +127,10 @@
                 </p>
                 <h4 class="job_title">{{ appt.role1 }}</h4>
                 <p class="job_description">
-                    Job description (duties) goes here
+                    {% if appt.duties1 %}
+                    {{ appt.duties1 }}
+                    {% else %}
+                    {% endif %}
                 </p>
                 <h4>Achievements</h4>
                 <ul class="achievements">
@@ -167,7 +174,10 @@
                 </p>
                 <h4 class="job_title">{{ appt.role2 }}</h4>
                 <p class="job_description">
-                    Job description (duties) goes here
+                    {% if appt.duties2 %}
+                    {{ appt.duties2 }}
+                    {% else %}
+                    {% endif %}
                 </p>
                 <h4>Achievements</h4>
                 <ul class="achievements">
