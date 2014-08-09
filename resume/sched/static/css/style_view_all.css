@@ -5,16 +5,12 @@ h2 {
 	font-size: 1.5em;
 	width: 70%;
 }
-.add_resume {
-	height: 69px;
-}
+
 .add_resume .btn {
 	position: relative;
 	font-size: 1.7em;
-	display: block;
+	display: inline-block;
 	margin-bottom: 20px;
-	text-align: right;
-	float: right;
 	border: 1px solid;
 	border-radius: 3px;
 	color: #55995B;	

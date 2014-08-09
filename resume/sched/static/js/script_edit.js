@@ -63,11 +63,22 @@ $(document).ready(function(event) {
 			alert('Add at least one competence')	
 		}
 		else if (event.which == 13) {
-			event.preventDefault();
-			var value = $(this).val();
-			$(this).after('<span><i class="fa fa-times"></i> '+value+'</span>');
-			$(this).css('display', 'none');
-			$(this).next().next().css('display', 'inline-block').focus();
+			var element = $(this).next().next();
+			if (element.val()) {
+				console.log('next next elelment exists');
+				event.preventDefault();
+				var value = $(this).val();
+				$(this).after('<span><i class="fa fa-times"></i> '+value+'</span>');
+				$(this).css('display', 'none');
+			} 
+			else if (!element.val()) {
+				event.preventDefault();
+				var value = $(this).val();
+				$(this).after('<span><i class="fa fa-times"></i> '+value+'</span>');
+				$(this).css('display', 'none');
+				$(this).next().next().css('display', 'inline-block').focus();
+			}
+			
 		}
 	});
 	$('.competencies').on('click','.fa-times',function(event){
@@ -82,7 +93,6 @@ $(document).ready(function(event) {
 			$(this).parent().prev().val('').css('display', 'inline-block');
 			$(this).parent().remove();			
 		}		
-		
 	});
 
 	//Adding,deleting achievements
