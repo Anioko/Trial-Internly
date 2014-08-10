@@ -17,7 +17,7 @@ body {
 }
 
 /* fix bs3 horizontal scrollbar bug */
-.row { margin: 0; padding: 0 }
+.row { margin: 0; padding: 0; }
 
 h1 {
   font-size:50px; 
@@ -98,13 +98,17 @@ img.grayscale {
 }
 
 .header h1 {
-  font-size:110px;
-  -webkit-text-stroke: 1px rgba(0,0,0,0.1);
-  color:#431a6d;
-  color:#fff;
-  margin-left:-5px;
-  margin-bottom:5px;
+  font-size:4em;
+  color: #5A5A5A;
+  margin-top: 20px;
+  margin-bottom: 10px;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.header p {
+  font-size: 1.8em;
+  color: #5A5A5A;
+  line-height: 1.15em;
+  letter-spacing: .01em;
 }
 
 .header .lead {
@@ -113,8 +117,15 @@ img.grayscale {
 }
 
 .header {
-  height: 80%;
-  background: #2B3E50;
+  padding-bottom: 40px;
+background: -moz-radial-gradient(center, ellipse cover,  rgba(250,250,250,0) 0%, rgba(244,244,244,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(250,250,250,0)), color-stop(100%,rgba(244,244,244,1))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(250,250,250,0) 0%,rgba(244,244,244,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  rgba(250,250,250,0) 0%,rgba(244,244,244,1) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  rgba(250,250,250,0) 0%,rgba(244,244,244,1) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  rgba(250,250,250,0) 0%,rgba(244,244,244,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fafafa', endColorstr='#f4f4f4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 
 .blurb {
@@ -182,67 +193,33 @@ img.grayscale {
   margin: 10px;
 }
 
-footer {
-  padding: 100px 0;
+
+.center_w_margin {
+    width: 260px;
+    margin: 0 auto;
 }
-
-/* -- end custom css for Bootstrap 3.x --*/
-
-        </style>
-    </head>
-    
-    <!-- HTML code from Bootply.com editor -->
-    
-    <body  >
+.center_w_margin .btn-group .btn {
+  padding: 8px 10px;
+}
+</style>
         
         
 
 
-<div class="header vert" style="height: 450px; padding-top: 55px;">
+<div class="header vert about">
   <div class="container">
     
-    <h1>About us</h1>
-      <p class="lead">Who we are </p>
-      <div>&nbsp;</div>
+    <h1>What Internly is</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, ab? Voluptas eos tempora harum dolore sit rerum voluptate, fugit? Neque totam, sequi numquam fugiat perspiciatis voluptatem nam eius error! Eveniet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam necessitatibus</p>
       <!---<a href="#" class="btn btn-default btn-lg">+358443629957</a>-->
   </div>
 </div>
 
 <div id="sec1" class="blurb">
   <div class="container">
-    <!---<div class="row">
 
-  <div class="col-sm-6 col-md-4" align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-     <!----------- <div class="caption">
-        <h3>Aniekan Okono</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-    <div class="col-sm-6 col-md-4"align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-      <!--------<div class="caption">
-        <h3>Jarmo Hakulinen</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-    </div>
-    <div class="col-sm-6 col-md-4"align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-      <!---<div class="caption">
-        <h3>Friend</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-    </div>---------->
+
+
 	<h4>Aniekan Okono (Cofounder) </h4>
       <p>Currently lives in Helsinki, Finland. He is enthusiastic about solving problems. He plays football during his spare time </p>
 	 <br>
@@ -255,7 +232,34 @@ footer {
 
 
 
+<div class="center_w_margin">
+  <div class="btn-group">
+    <button class="btn btn-default disabled">
+      Share:
+    </button>
 
+    <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fintern.ly&amp;t=Url%20Encoded%20Text" title="On Facebook" target="_blank" class="btn btn-default">
+      <i class="fa fa-facebook fa-lg fb"></i>
+    </a>
+
+    <a href="http://twitter.com/share?url=http%3A%2F%2Fintern.ly&amp;text=Url%20Encoded%20Text" title="On Twitter" target="_blank" class="btn btn-default">
+      <i class="fa fa-twitter fa-lg tw"></i>
+    </a>
+
+
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fintern.ly" title="On LinkedIn" target="_blank" class="btn btn-default">
+      <i class="fa fa-linkedin fa-lg linkin"></i>
+    </a>
+
+    <a href="http://vk.com/share.php?url=http%3A%2F%2Fintern.ly&amp;title=Url%20Encoded%20Title&amp;description=Url%20Encoded%20Text&amp;image=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="On VK.com" target="_blank" class="btn btn-default">
+      <i class="fa fa-vk fa-lg vk"></i>
+    </a>
+
+    <a href="http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fintern.ly&amp;description=Url%20Encoded%20Text&amp;media=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="Pin It" target="_blank" class="btn btn-default">
+      <i class="fa fa-pinterest fa-lg pinterest"></i>
+    </a>
+  </div>
+</div>
 
  <footer role="contentinfo" class="bs-docs-footer">
   <div class="container">
@@ -266,7 +270,7 @@ footer {
 
 
     <!--<p>Designed and built with all the love in the world by <a target="_blank" href="http://twitter.com/mdo">@mdo</a> and <a target="_blank" href="http://twitter.com/fat">@fat</a>.</p>
-    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>----->
+    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>-->
     <p>Product of Konor Dev.co<a target="_blank" href="#"></a> Made in  Finland <a href="#">2014</a>.</p>
     <!---<ul class="bs-docs-footer-links muted">
       <li>Currently v3.1.1</li>

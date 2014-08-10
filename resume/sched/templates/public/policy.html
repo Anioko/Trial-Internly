@@ -24,10 +24,17 @@ h1 {
 }
 
 h4, p {
-    color: #000000;
+    color: #5A5A5A;
     font-family: inherit;
     font-weight: 300;
-    line-height: 1.1;
+    line-height: 1.2;
+}
+h4 {
+  font-weight: bold;
+}
+p {
+  font-size: 1.1em;
+  font-weight: 300;
 }
 
 img.grayscale {
@@ -96,13 +103,17 @@ img.grayscale {
 }
 
 .header h1 {
-  font-size:110px;
-  -webkit-text-stroke: 1px rgba(0,0,0,0.1);
-  color:#431a6d;
-  color:#fff;
-  margin-left:-5px;
-  margin-bottom:5px;
+  font-size:4em;
+  color: #5A5A5A;
+  margin-top: 40px;
+  margin-bottom: 10px;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.header p {
+  font-size: 1.8em;
+  color: #5A5A5A;
+  line-height: 1.15em;
+  letter-spacing: .01em;
 }
 
 .header .lead {
@@ -111,12 +122,19 @@ img.grayscale {
 }
 
 .header {
-  height: 80%;
-  background: #2B3E50;
+  padding-bottom: 20px;
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(250,250,250,0) 0%, rgba(244,244,244,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(250,250,250,0)), color-stop(100%,rgba(244,244,244,1))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(250,250,250,0) 0%,rgba(244,244,244,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  rgba(250,250,250,0) 0%,rgba(244,244,244,1) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  rgba(250,250,250,0) 0%,rgba(244,244,244,1) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  rgba(250,250,250,0) 0%,rgba(244,244,244,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fafafa', endColorstr='#f4f4f4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 
 .blurb {
-  padding: 120px 0;
+  padding: 60px 0 0 0;
   background-color:#fefefe;
 }
 
@@ -180,8 +198,13 @@ img.grayscale {
   margin: 10px;
 }
 
-footer {
-  padding: 100px 0;
+
+.center_w_margin {
+    width: 260px;
+    margin: 30px auto 0 auto;
+}
+.center_w_margin .btn-group .btn {
+  padding: 8px 10px;
 }
 
 /* -- end custom css for Bootstrap 3.x --*/
@@ -196,70 +219,91 @@ footer {
         
 
 
-<div class="header vert" style="height: 300px; padding-top: 55px;">
+<div class="header vert policy">
   <div class="container">
     
     <h1>Privacy Policy</h1>
-      <p class="lead">How we use your personal data. </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus voluptate accusamus ut ea temporibus aut ratione cumque quo nisi soluta, suscipit, fugiat. Incidunt voluptatibus illum perspiciatis voluptates quis laboriosam excepturi.</p>
       <div>&nbsp;</div>
-      <!-----<a href="#" class="btn btn-default btn-lg">+358443629957</a>------->
-  </div>
-</div>
-
-<div id="sec1" class="blurb">
-  <div class="container">
-  <p>Intern.ly  is operated in Europe by or on behalf of Konor Dev. Co, a company incorporated in Finland with registered company number FI2423652-8 , our office at Arkadiankatu 28, 00100, Helsinki Finland, 5th floor.  
-This policy is designed to protect your privacy and to help you understand, how we collect and use your personal information. 
-By submitting a job application, the applicant approves the storing and use of the submitted data. Personal data protection in accordance with Section 10 of the Personal Data Act (HetiL 10§). </p>
-
-<h4>Right of access:</h4>
-
-<p>In accordance with Section 26§ of the Personal Data Act, everyone has the right to inspect what information related to their person has been stored in the register. Any request to inspect the register shall be delivered in writing, with the requesting party’s signature to  info@intern.ly</p>
-
-<h4>Purpose of processing of personal data:</h4>
-<p>The register is intended for receiving, processing and storing the job applications of persons interested in pursuing a career with our client companies.  Applicants may apply for a particular position or fill out their resumes for search by our clients and human resources personnel may also process an application in connection with other suitable positions.
-Job application data is kept in an applicant register for three (4) years and may be retrieved in connection with other positions.</p> <p>Job application data is always confidential and is never disclosed to persons outside the recruitment process. Confidentiality refers to the fact that job application data is only available to persons authorized to process the data.
-Konor Dev.co may at its discretion remove any job application with incomplete information. <p>An application may also be removed or altered at the applicant’s request. Any request to remove or alter an application shall be delivered in writing to the controller or presented in person at the controller’s address.</p>
-
-<h4>Registered data:</h4>
-<p>Applicant’s basic information (name, contact information, date of birth)</p>
-<p>Applicant’s education and work experience</p>
-<p>Applicant’s preferences regarding future employment</p>
-<p>Description of applicant’s experience </p>
-<p>Additional information provided by the applicant</p>
-<h4>Sources of data:</h4>
-<p>Job applicants</p>
-<h4>Regular transfers of disclosed data:</h4>
-<p>The data will be disclosed to clients outside Konor Dev.co .</p>
-<h4>Transfer of data outside the EU/EEA:</h4>
-<p>The data will be transferred clients outside the European Union or the European Economic Area.</p>
- <h4>Principles of data protection:</h4>
-<p>A. Hard copies</p>
-<p>Printed paper versions of CVs are stored together with other recruitment material.</p>
-<h4>B. Electronically stored data:</h4>
-<p>The registered data are protected using passwords. Only employees and clients of Konor Dev.co or its subsidiaries have access to personal data stored in the register. </p>
-
-</p>
-    <div class="row">
-
+      <!--<a href="#" class="btn btn-default btn-lg">+358443629957</a>-->
     </div>
   </div>
+
+  <div id="sec1" class="blurb">
+    <div class="container">
+    <p>Intern.ly  is operated in Europe by or on behalf of Konor Dev. Co, a company incorporated in Finland with registered company number FI2423652-8 , our office at Arkadiankatu 28, 00100, Helsinki Finland, 5th floor.  
+  This policy is designed to protect your privacy and to help you understand, how we collect and use your personal information. 
+  By submitting a job application, the applicant approves the storing and use of the submitted data. Personal data protection in accordance with Section 10 of the Personal Data Act (HetiL 10§). </p>
+
+  <h4>Right of access:</h4>
+
+  <p>In accordance with Section 26§ of the Personal Data Act, everyone has the right to inspect what information related to their person has been stored in the register. Any request to inspect the register shall be delivered in writing, with the requesting party’s signature to  info@intern.ly</p>
+
+  <h4>Purpose of processing of personal data:</h4>
+  <p>The register is intended for receiving, processing and storing the job applications of persons interested in pursuing a career with our client companies.  Applicants may apply for a particular position or fill out their resumes for search by our clients and human resources personnel may also process an application in connection with other suitable positions.
+  Job application data is kept in an applicant register for three (4) years and may be retrieved in connection with other positions.</p> <p>Job application data is always confidential and is never disclosed to persons outside the recruitment process. Confidentiality refers to the fact that job application data is only available to persons authorized to process the data.
+  Konor Dev.co may at its discretion remove any job application with incomplete information. <p>An application may also be removed or altered at the applicant’s request. Any request to remove or alter an application shall be delivered in writing to the controller or presented in person at the controller’s address.</p>
+
+  <h4>Registered data:</h4>
+  <p>Applicant’s basic information (name, contact information, date of birth)</p>
+  <p>Applicant’s education and work experience</p>
+  <p>Applicant’s preferences regarding future employment</p>
+  <p>Description of applicant’s experience </p>
+  <p>Additional information provided by the applicant</p>
+  <h4>Sources of data:</h4>
+  <p>Job applicants</p>
+  <h4>Regular transfers of disclosed data:</h4>
+  <p>The data will be disclosed to clients outside Konor Dev.co .</p>
+  <h4>Transfer of data outside the EU/EEA:</h4>
+  <p>The data will be transferred clients outside the European Union or the European Economic Area.</p>
+   <h4>Principles of data protection:</h4>
+  <p>A. Hard copies</p>
+  <p>Printed paper versions of CVs are stored together with other recruitment material.</p>
+  <h4>B. Electronically stored data:</h4>
+  <p>The registered data are protected using passwords. Only employees and clients of Konor Dev.co or its subsidiaries have access to personal data stored in the register. </p>
+
+  </p>
+      
+  </div>
 </div>
 
+<div class="center_w_margin">
+  <div class="btn-group">
+    <button class="btn btn-default disabled">
+      Share:
+    </button>
 
+    <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fintern.ly&amp;t=Url%20Encoded%20Text" title="On Facebook" target="_blank" class="btn btn-default">
+      <i class="fa fa-facebook fa-lg fb"></i>
+    </a>
+
+    <a href="http://twitter.com/share?url=http%3A%2F%2Fintern.ly&amp;text=Url%20Encoded%20Text" title="On Twitter" target="_blank" class="btn btn-default">
+      <i class="fa fa-twitter fa-lg tw"></i>
+    </a>
+
+
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fintern.ly" title="On LinkedIn" target="_blank" class="btn btn-default">
+      <i class="fa fa-linkedin fa-lg linkin"></i>
+    </a>
+
+    <a href="http://vk.com/share.php?url=http%3A%2F%2Fintern.ly&amp;title=Url%20Encoded%20Title&amp;description=Url%20Encoded%20Text&amp;image=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="On VK.com" target="_blank" class="btn btn-default">
+      <i class="fa fa-vk fa-lg vk"></i>
+    </a>
+
+    <a href="http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fintern.ly&amp;description=Url%20Encoded%20Text&amp;media=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="Pin It" target="_blank" class="btn btn-default">
+      <i class="fa fa-pinterest fa-lg pinterest"></i>
+    </a>
+  </div>
+</div>
 
 
 
  <footer role="contentinfo" class="bs-docs-footer">
-  <div class="container">
-    <div class="bs-docs-social">
-  <ul class="bs-docs-social-buttons">
-  </ul>
-</div>
+
 
 
     <!--<p>Designed and built with all the love in the world by <a target="_blank" href="http://twitter.com/mdo">@mdo</a> and <a target="_blank" href="http://twitter.com/fat">@fat</a>.</p>
-    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>----->
+    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>-->
     <p>Product of Konor Dev.co<a target="_blank" href="#"></a> Made in  Finland <a href="#">2014</a>.</p>
     <!---<ul class="bs-docs-footer-links muted">
       <li>Currently v3.1.1</li>
@@ -271,18 +315,10 @@ Konor Dev.co may at its discretion remove any job application with incomplete in
       <li><a href="/blog">Blog</a></li>
       <li><a href="">Issues</a></li>
       <li><a href="">Releases</a></li>
-    </ul>----->
+    </ul>-->
   </div>
 </footer>
-
-<ul class="nav pull-right scroll-down">
-  <li><a href="#" title="Scroll down"><i class="icon-chevron-down icon-3x"></i></a></li>
-</ul>
-<ul class="nav pull-right scroll-top">
-  <li><a href="#" title="Scroll to top"><i class="icon-chevron-up icon-3x"></i></a></li>
-</ul>
-
-        
+       
         <!-- JavaScript jQuery code from Bootply.com editor -->
         
         <script type='text/javascript'>

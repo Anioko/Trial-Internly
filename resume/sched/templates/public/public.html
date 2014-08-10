@@ -30,6 +30,8 @@
 
     <link href="{{ url_for('static', filename='css/jquery.pagedown-bootstrap.css') }}" rel="stylesheet">
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.pagedown-bootstrap.combined.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script_publick.js') }}"></script>
+
     {% block head %}{% endblock head %}
 
 
@@ -83,9 +85,9 @@
                 </li>
             </ul>
             {% else %}
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navigation">
                 <li><a href="/">Home</a></li>
-                <li class="active"><a href="/about">About</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="policy">Policy</a></li>
                 <!--<li><a href="#contact">Contact</a></li>-->
@@ -148,17 +150,15 @@
     margin-top: 0;
     }
     .bs-docs-footer {
-    border-top: 1px solid #E5E5E5;
-    background-color: #FFFFFF;
-    color: #777777;
-    margin-top: 100px;
-    padding-bottom: 40px;
-    padding-top: 40px;
-    text-align: center;
+        background-color: #FFFFFF;
+        color: #777777;
+        padding-bottom: 40px;
+        padding-top: 40px;
+        text-align: center;
     }
     .navbar-inverse {
-    background-color: #5B6C7E;
-    border-color: #5B6C7E;
+        background-color: #5B6C7E;
+        border-color: #5B6C7E;
     }
 </style>
 
