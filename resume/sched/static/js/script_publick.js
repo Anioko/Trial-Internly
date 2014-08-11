@@ -10,9 +10,12 @@ $(document).ready(function(event) {
   else if ($('body').find('.container').hasClass('signup')) {
     $('body').addClass('blue_background');
   }
+  else if ($('body').find('.container').hasClass('login')) {
+    $('body').addClass('green_background');
+  }
 
   //CHANGE BACKGROUND ON SIGN UP FORM
-  $('.checkbox').on('change','input[type="checkbox"]',function(){
+  $('.signup .checkbox').on('change','input[type="checkbox"]',function(){
     if ($(this).prop('checked') == true) {
       $('#submit').removeClass('hover_blue');
       $('body').removeClass('blue_background');
