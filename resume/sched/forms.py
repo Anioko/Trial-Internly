@@ -8,7 +8,7 @@ from flask_security.forms import RegisterForm
 
 class ExtendedRegisterForm(RegisterForm):
     name = TextField('Name', [Required()])
-    company = BooleanField('Company account',)
+    company = BooleanField('This is company account',)
 
 
 # # Custom validators to check if user or email already exists

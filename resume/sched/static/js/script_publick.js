@@ -7,4 +7,23 @@ $(document).ready(function(event) {
     $('body').find('.navigation li').removeClass('active');
     $('body').find('.navigation li:nth-child(4)').addClass('active');
   }
+  else if ($('body').find('.container').hasClass('signup')) {
+    $('body').addClass('blue_background');
+  }
+
+  //CHANGE BACKGROUND ON SIGN UP FORM
+  $('.checkbox').on('change','input[type="checkbox"]',function(){
+    if ($(this).prop('checked') == true) {
+      $('#submit').removeClass('hover_blue');
+      $('body').removeClass('blue_background');
+      $('body').addClass('green_background');
+      $('#submit').addClass('hover_green');
+    }
+    else  {
+      $('#submit').removeClass('hover_green');
+      $('body').removeClass('green_background');
+      $('body').addClass('blue_background');
+      $('#submit').addClass('hover_blue');
+    }
+  });
 });
