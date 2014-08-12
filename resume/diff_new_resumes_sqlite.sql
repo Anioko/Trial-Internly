@@ -1,5 +1,5 @@
-ALTER TABLE resumes ADD COLUMN company_summary1 VARCHAR(255);
-ALTER TABLE resumes ADD COLUMN company_summary2 VARCHAR(255);
+ALTER TABLE resumes ADD COLUMN company_summary1 text;
+ALTER TABLE resumes ADD COLUMN company_summary2 text;
 ALTER TABLE resumes ADD COLUMN role_description1 TEXT;
 ALTER TABLE resumes ADD COLUMN role_description2 TEXT;
 ALTER TABLE resumes ADD COLUMN core_compitencies TEXT;
