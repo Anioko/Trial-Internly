@@ -18,13 +18,11 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 body {
     background-color: #ffffff;
-    color: #000000;
+    color: #4E5D6C;
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 15px;
     line-height: 1.42857;
 }
 
@@ -38,7 +36,7 @@ h1 {
 
 
 h4, p, h5, h6 {
-    color: #000000;
+    color: #4E5D6C;
     font-family: inherit;
     font-weight: 300;
     line-height: 1.1;
@@ -268,9 +266,19 @@ footer {
       </div>  
       {% else %}
       <div class="page-header">
-      <h2>Welcome. In order to be applying for entry level jobs and internships through Internly you will need to create a one time resume to use to apply to various positions. <br/ > You can also send your CV as a pdf to info@intern.ly.<br/ > You can always edit your CV to take out certain things or add certain things as needed.<br/ >Please use this link <a href="{{ url_for('resume_create') }}"> to fill out your resume</a>.<br/>
-      You can import some data using your <a href="{{ url_for('create_resume_ln') }}">Linkedin</a> account.</h2>
-      <h3>If you are a company representaive, please acitivate you free company membership here: <a href="{{ url_for('company_register') }}">company membership activation</a></h3>
+      <h2>Welcome!</h3>
+      <p>
+        In order to be applying for entry level jobs and internships through Internly you will need to create a resume that you can use to apply to various positions.
+      </p>
+      <p>
+       You can also send your CV as a pdf to <a href="mailto:info@intern.ly"><i class="fa fa-envelope-o"></i> info@intern.ly</a>. You can always edit your CV to take out certain things or add certain things as needed.
+      </p>
+      <p>
+        You can import some data using your <a href="{{ url_for('create_resume_ln') }}">Linkedin</a> account.
+      </p>
+      <p>
+        If you are a company representaive, please acitivate you free company membership here: <a href="{{ url_for('company_register') }}"><i class="fa fa-briefcase"></i> company membership activation</a>
+      </p>
       </div>
       <h3 class="span12"></h3>
 	  </div>

@@ -5,6 +5,31 @@ h2 {
 	font-size: 1.5em;
 	text-align: left;
 }
+h1,h2,h3,h4,h5,h6,p,ul {
+	color: #5B6C7E;
+}
+.page-header {
+	padding: 0 15px;
+}
+.page-header a {
+	font-weight: 600;
+	color: #5B6C7E;
+	-webkit-transition: color .4s;
+	-o-transition: color .4s;
+	transition: color .4s;
+}
+.page-header a:hover {
+	color: #D36219;
+	text-decoration: none;
+}
+.page-header h2 {
+	font-size: 2.5em;
+	margin-bottom: 20px;
+}
+.page-header p {
+	font-size: 1.5em;
+	font-weight: 200;
+}
 
 .add_resume .btn {
 	position: relative;
