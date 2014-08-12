@@ -32,155 +32,15 @@ h1 {
 h4, p, h5, h6 {
     color: #5A5A5A;
     font-family:'Lato',sans-serif;
-    font-weight: 300;
+    font-weight: 200;
     line-height: 1.1;
 }
 p {
   font-size: 1.25em;
 }
 
-img.grayscale {
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-    filter: gray; /* IE6-9 */
-    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-}
-
-.icon-bar {
-   background-color:#fff;
-}
-
-.scroll-down a, .scroll-top a {
-   color:#ffffff;
-}
-
-.scroll-down {
-   position:fixed;
-   bottom:20%;
-   right:0%;
-   color:#f9f9f9;
-}
-
-.scroll-top {
-  background-color:#33ee67;
-}
-
-.header .btn-lg {
-   font-size:28px;
-   border-color:#eeeeee;
-   padding:15px;
-   background-color:transparent;
-   color:#ffffff;
-}
-
-.header .btn-lg:hover {
-   background-color:#eeeeee;
-   color:#777777;
-}
-
-.navbar a {
-  color:#fff;
-}
-
-.navbar-bold.affix {
-  background-color:#33ee67;
-}
-
-.navbar-bold {
-  background-color:#11cc45;s
-}
-
-.navbar-bold li a:hover {
-  background-color:#00bb34;
-}
-
-.navbar-bold li.active {
-  background-color:#00bb34;
-}
-
-.vert {
-  vertical-align: middle;
-  width:100%;
-  padding-top:4%;
-}
 
 
-
-.header .lead {
-  color:#eeeeee;
-  font-size:25px;
-}
-
-
-
-
-.blurb .panel {
-  background-color:transparent;
-}
-
-.bright {
-  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
-  color:#fff;
-}
-
-.featurette {
-  background: #545455;
-  padding: 50px 0;
-  color: #ffffff;
-}
-
-.featurette-item {
-  margin-bottom: 15px;
-}
-
-.featurette-item > i {
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 56px;
-  width: 140px;
-  height: 140px;
-  line-height: 136px;
-  vertical-align: middle; 
-  text-align: center;
-}
-
-.featurette-item > i:hover {
-  font-size: 68px;
-}
-
-.callout {
-  color: #ffffff;
-  padding-top:7%;
-  height: 100%;
-  width: 100%;
-  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.gallery {
-  padding: 50px 0;
-}
-
-.call-to-action {
-  background: #eeeeee;
-  padding: 50px 0;
-}
-
-.call-to-action .btn {
-  margin: 10px;
-}
-
-
-.center_w_margin {
-    width: 260px;
-    margin: 0 auto;
-}
-.center_w_margin .btn-group .btn {
-  padding: 8px 10px;
-}
 </style>
         
         
@@ -190,25 +50,50 @@ img.grayscale {
   <div class="container">
     
     <h1>What Internly is</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, ab? Voluptas eos tempora harum dolore sit rerum voluptate, fugit? Neque totam, sequi numquam fugiat perspiciatis voluptatem nam eius error! Eveniet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam necessitatibus</p>
+    <p>
+      <strong>Internly</strong> is an online recruitment portal, which is match-making companies, and people in need of work. Our vision is to become #1 in Europe when it comes recruiting interns, entry- level workers and experienced professionals. We make it easier for companies to find applicants for their needs.
+    </p>
+    <p>
+      <strong>Why?</strong> It takes average of 6 seconds for recruiter to read a resumé, or CV. When there are hundreds or even thousands of applicants, it will take huge amount of time to go through them. We shorten that time, and only show the best fitting applicants for recruiters.
+    </p>
+    <p>
+      <strong>How?</strong> Applicant creates a CV, which only has the most necessary information for recruiters. Applicants use one-click ”Apply Now” system, to numerous open positions. The recruiter sees only those, who are fitting for the position, and can download all CVs that seems interesting for their needs.
+    </p>
       <!---<a href="#" class="btn btn-default btn-lg">+358443629957</a>-->
   </div>
 </div>
 
-<div id="sec1" class="blurb">
-  <div class="container">
-
-
-
-	<h4>Aniekan Okono (Cofounder) </h4>
+<div class="container">
+  <div class="cofounder">
+    <div class="col-md-2">
+      <img src="{{ url_for('static', filename='img/ani.png') }}" alt="Aniekan Okono">
+    </div>
+    <div class="col-md-10">
+  	  <h4>Aniekan Okono (Cofounder)</h4>
+      <div class="btn-group">
+        <a href="https://twitter.com/anioko1" target="_blank"><i class="fa fa-twitter-square"></i></a>
+        <a href="https://www.facebook.com/aokono" target="_blank"><i class="fa fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/pub/aniekan-okono/2b/b72/686" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+      </div>
       <p>Currently lives in Helsinki, Finland. He is enthusiastic about solving problems. He plays football during his spare time </p>
-	 <br>
-	
-	<h4>Jarmo Hakulinen(Cofounder) </h4>
-	 <p>A Finn, involved in several export companies and products. Always selling or providing solutions. He is an entrepreneur and a father. </p>
-	 <p><p/>
+    </div>
+  </div>
+  <div class="cofounder">
+    <div class="col-md-2">
+      <img src="{{ url_for('static', filename='img/jarmo.png') }}" alt="Jarmo Hakulinen">
+    </div>
+    <div class="col-md-10">
+      <h4>Jarmo Hakulinen (Cofounder)</h4>
+      <div class="btn-group">
+        <a href="https://twitter.com/jarmohak" target="_blank"><i class="fa fa-twitter-square"></i></a>
+        <a href="https://www.facebook.com/jarmo.hakulinen" target="_blank"><i class="fa fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/in/jarmohakulinen" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+      </div>
+      <p>Jarmo works as a team leader and CFO in Internly. He's enthusiastic about technology, innovations and new businesses. He has been an entrepreneur since 2010.</p>
+    </div>
   </div>
 </div>
+
 
 
 
