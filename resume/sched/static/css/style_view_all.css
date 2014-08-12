@@ -3,7 +3,7 @@ h2 {
 	font-weight: 400;
 	margin: 0;
 	font-size: 1.5em;
-	width: 70%;
+	text-align: left;
 }
 
 .add_resume .btn {
@@ -61,7 +61,7 @@ h4 {
 	text-decoration: none;
 	background: #55995B;
 	color: white;
-	border: none;
+	border: 1px solid #55995B;
 	font-weight: 300;
 }
 .tools {

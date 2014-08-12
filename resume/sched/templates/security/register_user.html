@@ -2,6 +2,9 @@
 {% from "security/_macros.html" import render_field_with_errors, render_field %}
 {% from "security/common.html" import edit_field %}
 
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_public.css') }}" rel="stylesheet">
+{% endblock head%}
 
 {% extends "public/public.html" %}
 {% block content %}
@@ -278,44 +281,44 @@ input#submit:hover {
 
 
 <div class="container signup">
-<div class="row">
-<div class="col-md-12">
-  <div class="login well">
-    <form action="{{ url_for_security('register') }}" method="POST" name="register_user_form" class="form-horizontal">
-    {{ register_user_form.hidden_tag() }}
-    <h2>Sign up</h2>
-    <div class="control-group">
-        <div class="controls">
-            {{ edit_field(register_user_form.company) }}
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="controls">
-            {{ edit_field(register_user_form.email, placeholder="Email") }}
-        </div>
-    </div>
+  <div class="row">
+  <div class="col-md-12">
+    <div class="login well">
+      <form action="{{ url_for_security('register') }}" method="POST" name="register_user_form" class="form-horizontal">
+      {{ register_user_form.hidden_tag() }}
+      <h2>Sign up</h2>
+      <div class="control-group">
+          <div class="controls">
+              {{ edit_field(register_user_form.company) }}
+          </div>
+      </div>
+      <div class="control-group">
+          <div class="controls">
+              {{ edit_field(register_user_form.email, placeholder="Email") }}
+          </div>
+      </div>
 
-    <div class="control-group">
-        <div class="controls">
-            {{ edit_field(register_user_form.name, placeholder="Name") }}
-        </div>
+      <div class="control-group">
+          <div class="controls">
+              {{ edit_field(register_user_form.name, placeholder="Name") }}
+          </div>
+      </div>
+
+      <div class="control-group">
+          <div class="controls">
+              {{ edit_field(register_user_form.password, placeholder="Password") }}
+              {% if register_user_form.password_confirm %}
+              {{ edit_field(register_user_form.password_confirm, placeholder="Confirm Password") }}
+              {% endif %}
+          </div>
+      </div>
+
+            <!--<button type="submit" class="btn btn-success">Signup</button>-->
+      {{ render_field(register_user_form.submit) }}
+
+    </form>
     </div>
-
-    <div class="control-group">
-        <div class="controls">
-            {{ edit_field(register_user_form.password, placeholder="Password") }}
-            {% if register_user_form.password_confirm %}
-            {{ edit_field(register_user_form.password_confirm, placeholder="Confirm Password") }}
-            {% endif %}
-        </div>
-    </div>
-
-          <!--<button type="submit" class="btn btn-success">Signup</button>-->
-    {{ render_field(register_user_form.submit) }}
-
-  </form>
   </div>
-</div>
 </div>
     <h3 style="text-align:center; color:rgb(0,0,0);">You can also log in using:<br/>
       <a href="{{url_for('login_fb')}}"><i class="fa fa-facebook"></i>  Facebook</a> or <a href="{{url_for('login_ln')}}"><i class="fa fa-linkedin"></i> LinkedIn</a></h3>
@@ -323,37 +326,6 @@ input#submit:hover {
 
 
 
-
-
-
-<div class="center_w_margin">
-  <div class="btn-group">
-    <button class="btn btn-default disabled">
-      Share:
-    </button>
-
-    <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fintern.ly&amp;t=Url%20Encoded%20Text" title="On Facebook" target="_blank" class="btn btn-default">
-      <i class="fa fa-facebook fa-lg fb"></i>
-    </a>
-
-    <a href="http://twitter.com/share?url=http%3A%2F%2Fintern.ly&amp;text=Url%20Encoded%20Text" title="On Twitter" target="_blank" class="btn btn-default">
-      <i class="fa fa-twitter fa-lg tw"></i>
-    </a>
-
-
-    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fintern.ly" title="On LinkedIn" target="_blank" class="btn btn-default">
-      <i class="fa fa-linkedin fa-lg linkin"></i>
-    </a>
-
-    <a href="http://vk.com/share.php?url=http%3A%2F%2Fintern.ly&amp;title=Url%20Encoded%20Title&amp;description=Url%20Encoded%20Text&amp;image=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="On VK.com" target="_blank" class="btn btn-default">
-      <i class="fa fa-vk fa-lg vk"></i>
-    </a>
-
-    <a href="http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fintern.ly&amp;description=Url%20Encoded%20Text&amp;media=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="Pin It" target="_blank" class="btn btn-default">
-      <i class="fa fa-pinterest fa-lg pinterest"></i>
-    </a>
-  </div>
-</div>
  <footer role="contentinfo" >
   <div class="container">  
     <p>Product of Konor Dev.co<a target="_blank" href="#"></a> Made in  Finland <a href="#">2014</a>.</p>

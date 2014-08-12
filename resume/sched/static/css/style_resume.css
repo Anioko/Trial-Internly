@@ -16,6 +16,11 @@ h4 {
 	font-weight: 600;
 	margin-bottom: 5px;
 }
+h1, h2, h3, h4, p, .form-control, label, ul {
+    color: #4A5C6C;
+    font-family:'Lato',sans-serif;
+    line-height: 1.1;
+}
 .resume_view .cover_letter ul li {
 	text-transform: uppercase;
 	font-weight: 500;
