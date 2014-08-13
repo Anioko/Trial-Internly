@@ -22,11 +22,8 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 body {
-    background-color: #FFFFFF;
-    color: #000000;
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 15px;
     line-height: 1.42857;
@@ -42,11 +39,11 @@ h1 {
 
 
 h4, p, h5, h6 {
-    color: #000000;
     font-family: inherit;
     font-weight: 300;
     line-height: 1.1;
 }
+
 
 img.grayscale {
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
@@ -201,7 +198,7 @@ img.grayscale {
 
 input#submit:hover {
   background: white;
-  color: #57AD6B;
+  color: #8AC644;
   box-shadow: 0 0 15px rgba(250,250,250,.5);
 }
 .form-control::-webkit-input-placeholder{
@@ -251,8 +248,10 @@ a:hover, a:focus {
         {{ render_field(login_user_form.submit) }}
       </div>
     </form>
-    <h4><a href="{{url_for_security('register')}}"> Don't have an account yet? Register </a> ||
-        <a href="{{url_for_security('forgot_password')}}"> Forgot password?</a></h4>
+    <span>
+      <a href="{{url_for_security('register')}}"> I dont have an account yet</a> ||
+      <a href="{{url_for_security('forgot_password')}}"> Forgot the password?</a>
+    </span>
   </div>
 
   <h3 style="text-align:center;">You can also log in using:<br/>
@@ -265,7 +264,7 @@ a:hover, a:focus {
  <footer role="contentinfo">
 
 
-    <p>Product of Konor Dev.co<a target="_blank" href="#"></a> Made in  Finland <a href="#">2014</a>.</p>
+    <p>Product of Konor Dev.co. Made in  Finland <a href="#">2014</a>.</p>
     
 
 </footer>

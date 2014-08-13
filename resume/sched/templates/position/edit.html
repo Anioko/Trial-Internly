@@ -9,8 +9,12 @@
 {% endif %}
 
 
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_company.css') }}" rel="stylesheet">
+{% endblock head%}
+
 {% block main %}
-<div class="container" style="margin-top: 100px;">
+<div class="container create_position" style="margin-top: 100px;">
 
     <div class="row">
 
@@ -18,7 +22,6 @@
 
         <div class="col-md-8">
             <form method="post" class="form-control">
-
                 {{ edit_field(form.position_title, maxlength=255,
                 placeholder=" Title of position") }}
                 {{ edit_field(form.company_name,

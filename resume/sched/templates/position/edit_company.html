@@ -8,6 +8,11 @@
 {% set title = 'Company details' %}
 {% endif %}
 
+
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_company.css') }}" rel="stylesheet">
+{% endblock head%}
+
 {% block main %}
 <div class="container company_details" style="margin-top: 100px;">
 

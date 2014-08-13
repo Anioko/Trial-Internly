@@ -4,38 +4,43 @@
 
 {% block title %}Position{% endblock title %}
 
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_company.css') }}" rel="stylesheet">
+{% endblock head%}
+
 {% block main %}
 
 
 
 <div class="container company_details" style="margin-top: 100px;">
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-<div class="alert alert-{{ category }} alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{ message|safe }}</div>
-{% endfor %}
-{% endif %}
-{% endwith %}
-<div class="row">
-{% if not appts %}
-<h3>
-           Create new positions using  <a href="{{ url_for('position_create') }}">create position</a> menu option.
-    </h3>
-     <h3>
-            Check for new applicatints for positions on <a href="{{ url_for('position_list') }}">published positions</a> by clicking 'show applicants'.
-    </h3>
-{% endif %}
-{% for appt in appts %}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <h5>{{ detail(appt, link_title=true, show_edit=true) }}</h5>
-        <!---<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>----->
-      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="{{ url_for('position_create') }}" class="add_button"><i class="fa fa-plus"></i> Add vacancy</a>
     </div>
   </div>
-    {% endfor %}
-</div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  <div class="alert alert-{{ category }} alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{ message|safe }}</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <div class="created_vacancies">
+    <div class="row">
+    {% if not appts %}
+        
+        <h3>Here you will see all the vacancies you've created. It looks like you dont have any yet. Go ahead, <a href="{{ url_for('position_create') }}">create</a> one!</h3>
+
+    {% endif %}
+    {% for appt in appts %}
+      <div class="col-md-6 col-sm-12">
+        <div class="vacancy_card">
+            <h5>{{ detail(appt, link_title=true, show_edit=true) }}</h5>
+        </div>
+      </div>
+        {% endfor %}
+    </div>
+  </div>
 </div>
 
 

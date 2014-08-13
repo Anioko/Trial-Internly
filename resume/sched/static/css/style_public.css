@@ -7,6 +7,50 @@ h1, h2, h3, h4, p, .form-control, label, ul {
 h1 {
   font-weight: 500;
 }
+
+span {
+  color: white;
+}
+.login a,
+.signup a {
+  color: white;
+  -webkit-transition: border .2s;
+  -o-transition: border .2s;
+  transition: border .2s;
+}
+.login h3,
+.signup h3  {
+  line-height: 1.5em;
+}
+.login h3 a,
+.signup h3 a {
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 0 5px;
+  -webkit-transition: border .2s, box-shadow .3s;
+  -o-transition: border .2s, box-shadow .3s;
+  transition: border .2s, box-shadow .3s;
+}
+.login a:hover,
+.signup a:hover {
+  border-bottom: 2px solid;
+}
+.login h3 a:hover,
+.signup h3 a:hover {
+ border-bottom: 3px solid;
+ box-shadow: inset 0 0 5px rgba(250,250,250,.7);
+}
+footer p {
+  color: white;
+}
+footer a {
+  font-weight: bold;
+  color: white;
+}
+footer a:hover {
+  color: white;
+  border-bottom: 2px solid;
+}
 .navbar-brand {
   font-family: 'Amatic SC', sans-serif;
 }
@@ -27,8 +71,14 @@ h1 {
   line-height: 1.15em;
   letter-spacing: .01em;
 }
+.cofounder p {
+  font-size: 1.1em;
+}
 .cofounder .btn-group {
   padding: 0 0 5px 10px;
+}
+.cofounder .col-md-10 {
+  padding-top: 5px;
 }
 .cofounder .btn-group a {
   font-size: 1.7em;
@@ -129,14 +179,14 @@ label {
   display: none;
 }
 .green_background {
-   background: -moz-radial-gradient(center, ellipse cover,  rgba(80,170,101,0.59) 0%, rgba(80,170,101,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(80,170,101,0.59)), color-stop(100%,rgba(80,170,101,1))); /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover,  rgba(80,170,101,0.59) 0%,rgba(80,170,101,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover,  rgba(80,170,101,0.59) 0%,rgba(80,170,101,1) 100%); /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover,  rgba(80,170,101,0.59) 0%,rgba(80,170,101,1) 100%); /* IE10+ */
-    background: radial-gradient(ellipse at center,  rgba(80,170,101,0.59) 0%,rgba(80,170,101,1) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9650aa65', endColorstr='#50aa65',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%, rgba(153,206,88,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(153,206,88,0.8)), color-stop(100%,rgba(153,206,88,1))); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* IE10+ */
+  background: radial-gradient(ellipse at center,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc99ce58', endColorstr='#99ce58',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    
 }
 .blue_background {
     background: -moz-radial-gradient(center, ellipse cover,  rgba(117,167,204,0.59) 0%, rgba(117,167,204,1) 100%); /* FF3.6+ */

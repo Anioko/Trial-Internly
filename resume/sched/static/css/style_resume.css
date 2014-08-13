@@ -68,6 +68,7 @@ h1, h2, h3, h4, p, .form-control, label, ul {
 	border-bottom: 2px solid #eee;
 }
 .cover_letter {
+	padding-bottom: 20px;
 }
 p {
 	font-size: 1.2em;
@@ -154,7 +155,10 @@ p {
 	margin-bottom: 0px;
 }
 .experience .job {
-	margin-bottom: 30px;
+	margin-bottom: 20px;
+}
+.experience .job .employee {
+	margin-bottom: 10px;
 }
 .experience .job:last-child {
 	margin-bottom: 20px;
@@ -163,7 +167,7 @@ p {
 	margin: 0;
 }
 .resume_controls {
-	width: 175px;
+	width: 301px;
 	float: right;
 	padding-top: 14px;
 }
@@ -198,6 +202,10 @@ p {
 .resume_controls .btn.delete {
 	color: #CE655E;	
 }
+.contacts ul li {
+	margin-bottom: 5px;
+	word-break:break-all;
+}
 @media (max-width: 992px) {
 }
 @media (max-width: 768px) {
@@ -224,9 +232,52 @@ p {
 	.cover_letter ul {
 		margin-bottom: 70px;
 	}
+	.cover_letter {
+		padding-bottom: 35px;
+	}
 
 	h2,h3 {
 		text-align: center;
+	}
+}
+/* FOR PDF PRINTING */
+@media print {
+	h2 {
+		text-align: left;
+		font-size: 22px;
+		font-weight: bold;
+		color: red;
+	}
+	h3 {
+		font-size: 18px;
+		font-weight: bold;
+		text-align: left;
+	}
+	h4 {
+		font-weight: 600;
+		margin-bottom: 5px;
+		text-align: left;
+		font-size: 12px;
+	}
+	h1, h2, h3, h4, p, .form-control, label, ul {
+	    color: #4A5C6C;
+	    font-family:'Lato',sans-serif;
+	    line-height: 1.1;
+	}
+	p, ul ,li {
+		font-size: 12px;
+	}
+	.resume_controls {
+		display: none;
+	}
+	.resume_view {
+		padding-top: 0px;
+	}
+	.cover_letter ul {
+		margin-bottom: 30px;
+	}
+	.cover_letter  {
+		padding-bottom: 45px;
 	}
 }
 

@@ -1,90 +1,62 @@
-
-
 {% macro detail(appt, link_title=false, show_edit=true, show_summary=false, show_skills=true) %}
-  <div class="position-detail">
+
+    <div class="position-detail">
       {% if show_edit %}
-      <div class="edit-controls"  align="right">
-        <a href="{{ url_for('position_edit', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</button></a>
-        <span class="inline-pad"></span>
-        <a class="resume-delete-link" href="{{ url_for('position_delete', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i> Delete</button></a>
-        <a href="{{ url_for('position_list_applicants', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-list"></i> Show applicants</button></a>
-    </div>
+      <div class="edit-controls">
+        <a href="{{ url_for('position_edit', position_id=appt.id) }}"><i class="fa fa-pencil"></i></a>
+        <a class="resume-delete-link" href="{{ url_for('position_delete', position_id=appt.id) }}"><i class="fa fa-times"></i></a>
+        <a href="{{ url_for('position_list_applicants', position_id=appt.id) }}"><i class="fa fa-user"></i> <span class="applicants_applied">3</span></a>
+      </div>
     {% endif %}
 
     {% if link_title %} 
       <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a></h3> 
-	  <hr>
     {% else %}
       <h1 align="center">{{ appt.position_title or '(No Title)' }}</h1>
-	    <h3 align="center"> {{ appt.company_name }}, {{ appt.location }}</h3>
-           <h4 align="center">{{ appt.company_website }}</h4>
+      <h3 align="center"> {{ appt.company_name }}, {{ appt.location }}</h3>
+      <h4 align="center">{{ appt.company_website }}</h4>
 
-	   <hr>
+     <hr>
 
-	   <h3 align="center"> Job Description</h3>
-	      <h6 align="center">{{ appt.description }}</h6>
-	 <hr>	  
+     <h3 align="center"> Job Description</h3>
+      <h6 align="center">{{ appt.description }}</h6>
+   <hr>   
     {% endif %}
-
-      <p>
-       Positon share URL:<br/> <a href="{{ url_for('position_apply_now', b62id=appt.id|b62, title=appt.position_title|slug) }}">{{ url_for('position_apply_now', b62id=appt.id|b62, title=appt.position_title|slug, _external=True) }}</a>
-      </p>
-
-		<h5 align="center"> Requirements</h5>
-
-		 {% if show_skills %}
-             <br />
-
-		 {{ appt.required_skill_one|default('')}}
-             <br />
-
-
-		 {{ appt.required_skill_two|default('')}}
-             <br />
-
-		 {{ appt.required_skill_three|default('')}}
-             <br />
-
-		 {{ appt.required_skill_four|default('')}}
-             <br />
-
-
-		 {{ appt.required_skill_five|default('')}}
-             <br />
-
-
-		 {{ appt.required_skill_six|default('')}}
-             <br />
-
-
-		 {{ appt.required_skill_seven|default('')}}
-             <br />
-
-
-		 {{ appt.required_skill_eight|default('')}}
-             <br />
-
-
-		 {{ appt.required_skill_nine|default('')}}
-		 		 {% else %}
-				No Requirements specified
-		 {% endif %}
-		 <br>	 
-		<hr>
+      <div class="date_published">
+        <h4>Published</h4>
+        <span>{{appt.created.strftime('%d.%m.%Y ')}}</span>
+      </div>
+      <div class="requirements">
+        <h4> Required skills</h4>
+        {% if show_skills %}
+        <ul>
+          <li>{{ appt.required_skill_one|default('')}}</li>
+          <li>{{ appt.required_skill_two|default('')}}</li>
+          <li>{{ appt.required_skill_three|default('')}}</li>
+          <li>{{ appt.required_skill_four|default('')}}</li>
+          <li>{{ appt.required_skill_five|default('')}}</li>
+          <li> {{ appt.required_skill_six|default('')}}</li>
+        </ul>
+          {% else %}
+          No Requirements specified
+       {% endif %}
+     </div>
 
 
 
 
-		 
-	   {% if show_summary and appt.summary_title %}
+     
+     {% if show_summary and appt.summary_title %}
       <!---<div class="row">
-        <p class="span5">----->
+        <p class="span5">-->
           {{ appt.summary_title | nl2br }}
-        <!------</p>
-      </div>--------->
+        <!--</p>
+      </div>-->
        {% endif %}
 
-  </div>
+</div>
+
+
 {% endmacro %}
 
 {% macro render_field(field) -%}
