@@ -17,7 +17,7 @@
 {% endblock head%}
 
 {% block main %}
-<div class="container create_position" style="margin-top: 100px;">
+<div class="container create_position">
     <div class="row">
         <div class="col-md-12">
             <h3>Create vacancy</h3>
@@ -29,9 +29,10 @@
                 {{ edit_field(form.company_website, maxlength=255,
                 placeholder="Insert URL link") }}
                 {{ edit_field(form.location, maxlength=255,
-                placeholder="Where are you located? or where is the job taking place?") }}
+                placeholder="Location") }}
                 {{ edit_field(form.description,
                 placeholder="Provide descriptions and other information of this position.") }}
+                <h4>Skills needed for this job</h4>
                 {{ edit_field(form.required_skill_one, maxlength=255,
                 placeholder="Name one skill needed") }}
                 {{ edit_field(form.required_skill_two, maxlength=255,
@@ -44,6 +45,7 @@
                 placeholder="Name one skill needed") }}
                 {{ edit_field(form.required_skill_six, maxlength=255,
                 placeholder="Name one skill needed") }}
+                <h4>Publish date</h4>
                 <div id="datepicker" class="input-append date">
                     {% if form.pub_date.data != None %}
                         {{ edit_field(form.pub_date, disabled=True, type="datetime",
@@ -57,8 +59,8 @@
                     </span>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-default">Save</button>
-                    or <a href="{{ url_for('position_list') }}">Cancel</a>
+                    <button type="submit" class="btn submit">Save</button>
+                    <a href="{{ url_for('position_list') }}" class="btn cancel">Cancel</a>
                 </div>
             </form>
         </div>
@@ -252,23 +254,7 @@ padding: 50px 0;
 margin: 10px;
 }
 
-.btn {
--moz-user-select: none;
-background-color: #C85E17;
-border: 1px solid rgba(0, 0, 0, 0);
-border-radius: 0;
-cursor: pointer;
-display: inline-block;
-font-size: 15px;
-font-weight: normal;
-line-height: 1.42857;
-margin-bottom: 0;
-padding: 8px 16px;
-text-align: center;
-vertical-align: middle;
-white-space: nowrap;
-font-color: #000000;
-}
+
 
 footer {
 padding: 100px 0;

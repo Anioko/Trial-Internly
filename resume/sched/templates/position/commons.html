@@ -1,5 +1,5 @@
 {% macro detail(appt, link_title=false, show_edit=false, show_skills=true) %}
-<div class="position-detail">
+<div class="created_position">
     {% if show_edit %}
     <div class="edit-controls"  align="right">
         <i class="icon-pencil"></i>
@@ -13,14 +13,14 @@
     <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a></h3>
     <hr>
     {% else %}
-    <h1 align="center">{{ appt.position_title or '(No Title)' }}</h1>
-    <h3 align="center"> {{ appt.company_name|default('') }}, {{ appt.location|default('') }}</h3>
-    <h4 align="center">{{ appt.company_website|default('') }}</h4>
+    <h1>{{ appt.position_title or '(No Title)' }}</h1>
+    <h3> {{ appt.company_name|default('') }}, {{ appt.location|default('') }}</h3>
+    <h4>{{ appt.company_website|default('') }}</h4>
 
     <hr>
 
-    <h3 align="center"> Job Description</h3>
-    <h4 align="center">{{ appt.description|default('')|markdown }}</h4>
+    <h3> Job Description</h3>
+    <h4>{{ appt.description|default('')|markdown }}</h4>
 
     <hr>
     {% endif %}
