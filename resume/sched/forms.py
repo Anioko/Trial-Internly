@@ -203,7 +203,7 @@ class PositionForm(Form):
 
 
 class RegisteCompanyForm(Form):
-    first_name = TextField('First name', [Length(max=255), Required()])
+    first_name = TextField('Your name', [Length(max=255), Required()])
     last_name = TextField('Last name', [Length(max=255), Required()])
     email = TextField('E-mail', [Length(max=255), Required()])
     website = TextField('Website', [Length(max=255)])

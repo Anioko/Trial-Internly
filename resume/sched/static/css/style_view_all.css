@@ -80,7 +80,7 @@ h4 {
 }
 .resume a:hover {
 	text-decoration: none;
-	color: #6386A3;
+	color: #EC5805;
 }
 .add_resume a:hover {
 	text-decoration: none;
@@ -165,14 +165,21 @@ h4 {
 	display: inline-block;
 	background: #4A5C6C;
 	color: white;
-	height: 16px;
-	width: 16px;
 	border-radius: 10px;
 	font-size: .7em;
 	text-align: center;
-	padding-top: 1px;
-	padding-right: 1px;
+	padding: 1px 2px;
 	box-shadow: inset 1px 0 2px rgba(40,40,40,.1);
+}
+ol li a {
+	color: #5A5A5A;
+	font-weight: bold;
+	-webkit-transition: color .2s;
+	-o-transition: color .2s;
+	transition: color .2s;
+}
+ol li a:hover {
+	text-decoration: none;
 }
 
 /** RESUME VIEW **/

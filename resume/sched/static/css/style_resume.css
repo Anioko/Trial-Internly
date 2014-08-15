@@ -21,6 +21,19 @@ h1, h2, h3, h4, p, .form-control, label, ul {
     font-family:'Lato',sans-serif;
     line-height: 1.1;
 }
+.preview_resume {
+	padding-top: 60px;
+	padding-bottom: 20px;
+}
+.preview_resume p,
+.preview_resume ul li {
+	font-size: 1.3em;
+}
+.preview_resume p,
+.preview_resume h4 {
+	color: #4A5C6C;
+}
+
 .resume_view .cover_letter ul li {
 	text-transform: uppercase;
 	font-weight: 500;
@@ -59,7 +72,7 @@ h1, h2, h3, h4, p, .form-control, label, ul {
 	font-weight: 500;
 }
 .contacts ul li a:hover {
-	color: #428bca;
+	color: #EC5805;
 }
 .contacts,
 .cover_letter,

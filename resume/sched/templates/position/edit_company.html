@@ -15,23 +15,24 @@
 
 {% block main %}
 <div class="container company_details" style="margin-top: 100px;">
-
     <div class="row">
-
-        <div class="col-md-2"></div>
-
-        <div class="col-md-8">
-            <h3>Please provide your company details</h3>
-            <form method="post" class="form-control">
-                {{ edit_field(form.first_name, maxlength=255) }}
-                {{ edit_field(form.last_name) }}
-                {{ edit_field(form.company_name) }}
-                {{ edit_field(form.email, maxlength=255) }}
-                {{ edit_field(form.website, maxlength=255) }}
-                {{ edit_field(form.company_adress, maxlength=255) }}
-                {{ edit_field(form.phone_number, maxlength=255) }}
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-default">Save</button>
+        <div class="col-md-12">
+            <h3>Welcome! Please provide your company details to get started</h3>
+            <form method="post" class="form-control activate">
+                <div class="col-md-6">
+                    {{ edit_field(form.company_name, placeholder="Company name")}}
+                    {{ edit_field(form.email, maxlength=255, placeholder="Email") }}
+                    {{ edit_field(form.website, maxlength=255, placeholder="Company's website") }}
+                </div>
+                <div class="col-md-6">
+                    {{ edit_field(form.company_adress, maxlength=255, placeholder="Company adress") }}
+                    {{ edit_field(form.phone_number, maxlength=255, placeholder="Phone number") }}
+                    {{ edit_field(form.first_name, maxlength=255, placeholder="Representative's First and Last name") }}
+                </div>
+                <div class="col-md-12">
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-default">Save</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -51,7 +52,7 @@ html,
 body {
 height: 100%;
 width: 100%;
-font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+
 }
 body {
 background-color: #FFFFFF;
@@ -71,7 +72,7 @@ font-size:50px;
 
 
 h4, p, h5, h6 {
-color: #000000;
+
 font-family: inherit;
 font-weight: 300;
 line-height: 1.1;

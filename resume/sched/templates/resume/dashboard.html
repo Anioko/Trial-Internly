@@ -20,7 +20,7 @@ body {
   width: 100%;
 }
 body {
-    background-color: #ffffff;
+
     color: #4E5D6C;
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     line-height: 1.42857;
@@ -280,18 +280,22 @@ footer {
         If you are a company representaive, please acitivate you free company membership here: <a href="{{ url_for('company_register') }}"><i class="fa fa-briefcase"></i> company membership activation</a>
       </p>
       </div>
-      <h3 class="span12"></h3>
 	  </div>
-      <div class="col-md-3"></div>
+
      {% endfor %}
 
     {% if positions %}
-     Positions you have already applied:
+      <div class="col-md-12">
+      <h3>Positions you have already applied for:</h3>
+       <ol>
      {% for position in positions %}
-     <h4>
-        {{loop.index}}) <a href="{{ url_for('position_details',position_id=position.id)}}">{{ position.position_title}} </a>
-     </h4>
+    
+     <li>
+        <a href="{{ url_for('position_details',position_id=position.id)}}">{{ position.position_title}} </a>
+     </li>
      {% endfor %}
+      </ol>
+      </div>
     {% endif %}
 
   {% endif %}
