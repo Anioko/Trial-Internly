@@ -14,8 +14,10 @@
     <hr>
     {% else %}
     <h1>{{ appt.position_title or '(No Title)' }}</h1>
-    <h3> {{ appt.company_name|default('') }}, {{ appt.location|default('') }}</h3>
-    <h4>{{ appt.company_website|default('') }}</h4>
+    <h2>{{ appt.company_name|default('') }}</h2>
+    <h3><a href="{{ appt.company_website|default('') }}">{{ appt.company_website|default('') }}</a></h3>
+    <h3>{{ appt.location|default('') }}</h3>
+
 
     <hr>
 

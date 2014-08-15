@@ -235,6 +235,8 @@ footer {
 <div class="row">
     <div class="add_resume col-sm-12 col-xs-12">
       <a href="{{ url_for('resume_create') }}" class="btn"><i class="fa fa-pencil-square-o"></i> Create resume</a>
+      <br>
+       <a href="{{ url_for('create_resume_ln') }}" class="btn ln"><i class="fa fa-angle-double-down"></i> Import form LinkedIn</a>
     </div>
   {% if current_user.has_role('ROLE_COMPANY_FREE') %}
     <h3>
