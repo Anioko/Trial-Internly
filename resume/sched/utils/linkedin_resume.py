@@ -91,7 +91,7 @@ def create_linkedin_resume(resume_fields):
             # Someone has more that 2 job so we set data for company three
             if int(_get_field('_total',resume_fields['positions']))>2:
                 pos_values = resume_fields['positions']['values']
-                company3= resume_fields['positions']['values'][1]
+                company3= resume_fields['positions']['values'][2]
 
                 resume.company_name2 = _get_field('name',company3['company'])[:254]
                 resume.company_summary2 = _get_field('industry',company3['company'])[:254]
