@@ -1,0 +1,42 @@
+.all {
+	padding-top: 70px;
+	padding-bottom: 30px;
+}
+.all .vacancy .requirements ul {
+	padding-left: 20px;
+	position: relative;
+	margin: 0;
+}
+.all .vacancy .requirements {
+	margin-top: 20px;
+	position: relative;
+}
+.all .vacancy .requirements ul li {
+	margin-right: 22px;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.all .vacancy {
+	background: #eee;
+	padding: 10px;
+	margin-bottom: 20px;
+	color: #5A5A5A;
+}
+.all .vacancy a {
+	color: #5A5A5A;
+	font-weight: 500;
+	-webkit-transition: color .2s;
+	-o-transition: color .2s;
+	transition: color .2s;
+}
+.all .vacancy a:hover {
+	color: #EC5805;
+	text-decoration: none;
+}
+.all .vacancy h3 {
+	margin: 0 0 5px 0;
+	font-size: 1.5em;
+}
+.all .vacancy h4 {
+	font-size: 1.2em;
+}

@@ -2073,9 +2073,13 @@ fieldset[disabled] .btn-default.active {
   background-color: #ffffff;
 }
 .btn-primary {
-  color: #ffffff;
-  background-color: #df691a;
-  border-color: transparent;
+  color: #df691a;
+  background-color: transparent;
+  border-color: #df691a;
+  border-radius: 3px;
+  -webkit-transition: background 3s., color .3s;
+  -o-transition: background 3s., color .3s;
+  transition: background 3s., color .3s;
 }
 .btn-primary:hover,
 .btn-primary:focus,

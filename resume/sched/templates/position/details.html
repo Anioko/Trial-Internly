@@ -16,27 +16,31 @@
 {% endblock head%}
 
 {% block main %}
-<div class="row">  
+
   <div class="container company_details ">
     {{ detail(appt) }}
-  </div>
-</div>
 
 
-<div class="row edit-controls" align="center">
+    <div class="row edit-controls" align="center">
   {% if anonym %}
       <h3>In order to apply just <a href="{{ url_for_security('register') }}">sign up</a> to the site!</h3>
   {% else %}
       {% if not have_resume and not anonym %}
-      <h3>You have not created a resume yet. Create a resume in order to apply with it</h3>
+      <h3 style="max-width: 90%;">You have not created a resume yet. Create a resume in order to apply with it</h3>
       {% else %}
-      <a href="{{ url_for('position_apply', position_id=appt.id) }}"><button type="button" class="btn btn-primary btn-lg"><i class="fa fa-hand-o-right fa-lg"></i> Apply for this position</button></a>
+      <a href="{{ url_for('position_apply', position_id=appt.id) }}"><button  style="margin-bottom: 20px;" type="button" class="btn btn-primary btn-lg"><i class="fa fa-hand-o-right fa-lg"></i> Apply for this position</button></a>
       {% endif %}
   {% endif %}
-</div>
+  </div>
+
+  </div>
 
 
 
+
+
+
+<div class="container">
 <!--<div style="text-align:center;" class="row btn-group">-->
 <div class="row" align="center">
 
@@ -89,7 +93,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <script>
     jQuery(function($) {
     $('form[data-async] #emailSaveBtn').click(function(event) {

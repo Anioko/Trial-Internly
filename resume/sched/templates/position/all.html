@@ -4,9 +4,16 @@
 
 {% block title %}Position{% endblock title %}
 
+{% block head%}
+
+<link href="{{ url_for('static', filename='css/style_list_position.css') }}" rel="stylesheet">
+
+
+{% endblock head%}
+
 {% block main %}
 
-<div class="container all" style="margin-top: 100px;">
+<div class="container all">
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
 {% for category, message in messages %}
@@ -16,12 +23,10 @@
 {% endwith %}
 <div class="row">
 {% for appt in appts %}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <h5>{{ detail(appt, link_title=true, show_edit=false) }}</h5>
+  <div class="col-md-6">
+      <div class="vacancy">
+        {{ detail(appt, link_title=true, show_edit=false) }}
       </div>
-    </div>
   </div>
     {% endfor %}
 </div>

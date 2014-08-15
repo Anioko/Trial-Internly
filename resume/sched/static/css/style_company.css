@@ -77,6 +77,12 @@ a:hover {
 	-o-transition: color .2s;
 	transition: color .2s;
 }
+.url > a {
+	border-bottom: 2px solid;
+}
+.url {
+	margin-bottom: 20px;
+}
 .company_details a:hover {
 	color: #EC5805;
 }

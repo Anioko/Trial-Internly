@@ -240,7 +240,7 @@ footer {
     </div>
   {% if current_user.has_role('ROLE_COMPANY_FREE') %}
     <h3>
-        Create new postions using  <a href="{{ url_for('position_create') }}">create postion</a> menu option.
+        Create new vacancies using  <a href="{{ url_for('position_create') }}">create postion</a> menu option.
     </h3>
      <h3>
         Check for new applicatints for postions on <a href="{{ url_for('position_list') }}">published postions</a> by clicking 'show applicants'.
@@ -285,7 +285,7 @@ footer {
 
     {% if positions %}
       <div class="col-md-12">
-      <h3>Positions you have already applied for:</h3>
+      <h3><i class="fa fa-check-square-o"></i> Positions you have already applied for:</h3>
        <ol>
      {% for position in positions %}
     

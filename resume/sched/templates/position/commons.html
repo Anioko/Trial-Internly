@@ -11,66 +11,32 @@
     {% endif %}
     {% if link_title %}
     <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a></h3>
-    <hr>
+    <h4><a href="{{ appt.company_website|default('') }}" target="_blank"><i class="fa fa-briefcase"></i> {{ appt.company_name|default('') }}</a></h4>
     {% else %}
     <h1>{{ appt.position_title or '(No Title)' }}</h1>
     <h2>{{ appt.company_name|default('') }}</h2>
-    <h3><a href="{{ appt.company_website|default('') }}">{{ appt.company_website|default('') }}</a></h3>
-    <h3>{{ appt.location|default('') }}</h3>
-
-
+    <h3><i class="fa fa-globe"></i> <a href="{{ appt.company_website|default('') }}">{{ appt.company_website|default('') }}</a></h3>
+    <h3><i class="fa fa-map-marker"></i> {{ appt.location|default('') }}</h3>
     <hr>
-
-    <h3> Job Description</h3>
-    <h4>{{ appt.description|default('')|markdown }}</h4>
-
+    <h4> Job Description</h4>
+    <div class="description">{{ appt.description|default('')|markdown }}</div>
     <hr>
     {% endif %}
-    <h4> Requirements:</h4>
-
-    {% if show_skills %}
-    <br />
-
-    {{ appt.required_skill_one|default('')}}
-    <br />
-
-
-    {{ appt.required_skill_two|default('')}}
-    <br />
-
-    {{ appt.required_skill_three|default('')}}
-    <br />
-
-    {{ appt.required_skill_four|default('')}}
-    <br />
-
-
-    {{ appt.required_skill_five  or 'No further requirements'}}
-    <br />
-
-
-    {{ appt.required_skill_six or 'No further requirements'}}
-    <br />
-
-
-    {{ appt.required_skill_seven or 'No further requirements'}}
-    <br />
-
-
-    {{ appt.required_skill_eight or 'No further requirements'}}
-    <br />
-
-
-    {{ appt.required_skill_nine or 'No further requirements'}}
-    {% else %}
-    No Requirements specified
-    {% endif %}
-    <br>
-    <hr>
-
-
-
-
+    <div class="requirements">
+        <h4> Required skills</h4>
+        {% if show_skills %}
+        <ul>
+            <li>{{ appt.required_skill_one|default('')}}</li>
+            <li>{{ appt.required_skill_two|default('')}}</li>
+            <li>{{ appt.required_skill_three|default('')}}</li>
+            <li>{{ appt.required_skill_four|default('')}}</li>
+            <li>{{ appt.required_skill_five }}</li>
+            <li>{{ appt.required_skill_six}}</li>
+        </ul>
+        {% else %}
+        <p>No Requirements were specified</p>
+        {% endif %}
+    </div>
     {% if show_edit %}
     <div class="edit-controls"  align="right">
         <i class="icon-pencil"></i>
