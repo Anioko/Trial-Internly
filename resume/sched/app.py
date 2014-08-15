@@ -584,6 +584,16 @@ def security_company_register():
 @app.route('/company/activate/', methods=['GET', 'POST'])
 @login_required
 def company_register():
+    company_details = None
+    try:
+        company_details = db.session.query(CompanyUserData
+                        ).filter_by(user_id=current_user.id).all()[0]
+    except IndexError:
+        pass
+
+    if company_details:
+        return redirect(url_for('position_list'))
+
     form = RegisteCompanyForm(request.form)
     if request.method == 'POST' and form.validate():
         appt = CompanyUserData(user_id=current_user.id)

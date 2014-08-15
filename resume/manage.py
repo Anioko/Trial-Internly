@@ -1,7 +1,7 @@
 from flask.ext.script import Manager
 
 from sched.app import app, db, user_datastore
-from sched.models import Role
+from sched.models import Role, Resume
 
 # By default, Flask-Script adds the 'runserver' and 'shell' commands to
 # interact with the Flask application. Add additional commands using the
@@ -40,6 +40,57 @@ def add_admin(id):
     role = user_datastore.find_role('ROLE_ADMIN')
     user_datastore.add_role_to_user(user, role)
     db.session.commit()
+
+@manager.command
+def upgrade_resumes():
+    resumes = db.session.query(Resume).all()
+    print resumes
+
+    for resume in resumes:
+        if resume.other_skills:
+            continue
+
+        print "Upgrading resume.id: ", resume.id
+
+        resume.city = resume.country
+        resume.start_date_company = resume.start
+        resume.end_date_company  = resume.end
+        resume.work_currently = resume.currently
+        resume.location_company = resume.location
+
+
+        resume.start_date_company1 = resume.company_name_two
+        resume.company_name1 = resume.company_name_two
+        resume.company_summary1 = resume.company_summary_two
+        resume.role1 = resume.role_two
+        resume.role_description1 = resume.role_description_two
+        resume.start_date_company1 = resume.start_date
+        resume.end_date_company1  = resume.end_date
+        resume.work_currently1 = resume.currently_two
+        resume.location_company1 = resume.currently_two
+
+        resume.school_name = resume.school_name_one
+        resume.start_date_school = resume.start_date_school
+        resume.end_date_school = resume.end_date_graduation
+        resume.school_currently = resume.currently_three
+
+        resume.school_name1 = resume.school_name_two
+        resume.degree_description1 = resume.degree_description_two
+        resume.start_date_school1 = resume.end_date_two
+        resume.end_date_school1 = resume.end_date_graduation
+        resume.school_currently1 = resume.currently_four
+        resume.location_school1 = resume.location_school_two
+
+        resume.other_skills = resume.skills_one
+        resume.other_skills1 = resume.skills_two
+        resume.other_skills2 = resume.skills_three
+        resume.other_skills3 = resume.skills_four
+        resume.other_skills4 = resume.skills_five
+        resume.other_skills5 = resume.skills_six
+
+        db.session.add(resume)
+        db.session.commit()
+
 
 if __name__ == '__main__':
     manager.run()
