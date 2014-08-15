@@ -22,6 +22,8 @@
       <h6 align="center">{{ appt.description }}</h6>
    <hr>   
     {% endif %}
+
+    <!-- CREATED POSITIONS VIEW -->
       <div class="date_published">
         <h4>Published</h4>
         <span>{{appt.created.strftime('%d.%m.%Y ')}}</span>
@@ -30,12 +32,35 @@
         <h4> Required skills</h4>
         {% if show_skills %}
         <ul>
-          <li>{{ appt.required_skill_one|default('')}}</li>
-          <li>{{ appt.required_skill_two|default('')}}</li>
-          <li>{{ appt.required_skill_three|default('')}}</li>
-          <li>{{ appt.required_skill_four|default('')}}</li>
-          <li>{{ appt.required_skill_five|default('')}}</li>
-          <li> {{ appt.required_skill_six|default('')}}</li>
+          {% if appt.required_skill_one %}
+            <li>{{ appt.required_skill_one|default('')}}</li>
+          {% else %}
+          {% endif %}
+
+          {% if appt.required_skill_two %}
+            <li>{{ appt.required_skill_two|default('')}}</li>
+          {% else %}
+          {% endif %}
+
+          {% if appt.required_skill_three %}
+            <li>{{ appt.required_skill_three|default('')}}</li>
+          {% else %}
+          {% endif %}
+
+          {% if appt.required_skill_four %}
+            <li>{{ appt.required_skill_four|default('')}}</li>
+          {% else %}
+          {% endif %}
+          
+          {% if appt.required_skill_five %}
+            <li>{{ appt.required_skill_five|default('')}}</li>
+          {% else %}
+          {% endif %}
+
+          {% if appt.required_skill_six %}
+            <li>{{ appt.required_skill_six|default('')}}</li>
+          {% else %}
+          {% endif %}
         </ul>
           {% else %}
           No Requirements specified
