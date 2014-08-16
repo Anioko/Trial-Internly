@@ -1,6 +1,5 @@
 
 .created_position {
-	padding: 50px 0 30px 0;
 	font-family:'Lato',sans-serif;
 	color: #5B6C7E;
 }
@@ -51,11 +50,24 @@
 	font-weight: 500;
 }
 .company_details {
-	padding: 0 20px;
+	padding: 60px 15px 10px 15px;
 }
 
+.share {
+	padding-bottom: 40px;
+}
 
-
+@media (max-width: 768px) {
+	.created_position h1 {
+		font-size: 2.7em;
+	}
+	.created_position h2 {
+		font-size: 2em;
+	}
+	.created_position h3 {
+		font-size: 1.4em;
+	}
+}
 
 
 

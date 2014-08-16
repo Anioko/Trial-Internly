@@ -47,7 +47,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>          </button>
-          <a class="navbar-brand" href="#">Internly</a>
+          <a class="navbar-brand" href="/">Internly</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -81,8 +81,8 @@
             </ul>
 			{% else %}
 		  <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ url_for_security('register') }}">Signup</a></li>
-            <li><a href="{{ url_for_security('login') }}">Login</a></li>
+            <li><a href="{{ url_for_security('register') }}">Sign up</a></li>
+            <li><a href="{{ url_for_security('login') }}"><i class="fa fa-unlock"></i> Login</a></li>
           </ul>
 		  {% endif %}
         </div><!--/.nav-collapse -->

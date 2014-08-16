@@ -61,29 +61,33 @@ footer a:hover {
 }
 .header h1 {
   font-size:4em;
-  color: #5A5A5A;
+  color: #5B6C7E;
   margin-top: 40px;
   margin-bottom: 10px;
 
 }
+.blurb p,
+.blurb h4 {
+  color: #5B6C7E;
+}
+
 .header p {
   font-size: 1.6em;
-  color: #5A5A5A;
+  color: #5B6C7E;
   line-height: 1.15em;
   letter-spacing: .01em;
 }
 .cofounder p {
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
 .cofounder .btn-group {
   padding: 0 0 5px 10px;
 }
 .cofounder .col-md-10 {
-  padding-top: 5px;
 }
 .cofounder .btn-group a {
   font-size: 1.7em;
-  color: #5A5A5A;
+  color: #5B6C7E;
   -webkit-transition: color .3s;
   -o-transition: color .3s;
   transition: color .3s;

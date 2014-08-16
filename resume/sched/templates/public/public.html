@@ -65,27 +65,27 @@
                 </ul>
                 {% elif current_user.has_role('ROLE_COMPANY_FREE') == False %}
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('resumes_list') }}"> My Resume</a></li>
-                    <li><a href="{{ url_for('resume_create') }}">Create Resume</a></li>
-                    <li><a href="{{ url_for('all_positions') }}">All Vacancies </a></li>
+                    <li><a href="{{ url_for('resumes_list') }}"><i class="fa fa-check"></i> My Resume</a></li>
+                    <li><a href="{{ url_for('resume_create') }}"><i class="fa fa-plus"></i> Create Resume</a></li>
+                    <li><a href="{{ url_for('all_positions') }}"><i class="fa fa-briefcase"></i> All Vacancies </a></li>
                     <!---Public View-->
                     <li><a href="/blog">Blog</a></li>
-                    <li><a href="{{ url_for('contact_form') }}">Contact</a></li>
+                    <li><a href="{{ url_for('contact_form') }}"><i class="fa fa-envelope"></i> Contact</a></li>
                 </ul>
                 {% else %}
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('position_list') }}"><i class="fa fa-check"></i> Published vacancies</a></li>
                     <li><a href="{{ url_for('position_create') }}"><i class="fa fa-plus"></i> Add vacancy</a></li>
                     <li><a href="/blog">Blog</a></li>
-                    <li><a href="{{ url_for('contact_form') }}">Contact</a></li>
+                    <li><a href="{{ url_for('contact_form') }}"><i class="fa fa-envelope"></i> Contact</a></li>
 
                 </ul>
                 {% endif %}
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.name }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock"></i> {{ current_user.name }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url_for_security('logout') }}">Logout</a></li>
+                        <li><a href="{{ url_for_security('logout') }}"><i class="fa fa-sign-out"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -98,8 +98,8 @@
                 <!--<li><a href="#contact">Contact</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/signup">Signup</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Sign up</a></li>
+                <li><a href="/login"><i class="fa fa-unlock"></i> Login</a></li>
             </ul>
             {% endif %}
         </div><!--/.nav-collapse -->

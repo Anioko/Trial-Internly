@@ -224,7 +224,7 @@ footer {
     <body  >
         
 {% from 'resume/common.html' import detail %}
-<div class="container" style="margin-top: 100px;">
+<div class="container dashboard">
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
 {% for category, message in messages %}
@@ -236,7 +236,7 @@ footer {
     <div class="add_resume col-sm-12 col-xs-12">
       <a href="{{ url_for('resume_create') }}" class="btn"><i class="fa fa-pencil-square-o"></i> Create resume</a>
       <br>
-       <a href="{{ url_for('create_resume_ln') }}" class="btn ln"><i class="fa fa-angle-double-down"></i> Import form LinkedIn</a>
+       <a href="{{ url_for('create_resume_ln') }}" class="ln"><i class="fa fa-angle-double-down"></i> Import form LinkedIn</a>
     </div>
   {% if current_user.has_role('ROLE_COMPANY_FREE') %}
     <h3>
@@ -270,12 +270,12 @@ footer {
       <div class="page-header">
       <h2>Welcome!</h2>
       <p>
-        In order to be applying for entry level jobs and internships through Internly you will need to create a resume that you can use to apply to various positions.
+        To apply for entry level jobs and internships through Internly you will need to <a href="{{ url_for('resume_create') }}">create</a> a resume.
       </p>
       <p>
         You can import some data using your <a href="{{ url_for('create_resume_ln') }}">Linkedin</a> account.
       </p>
-      <p>
+      <p style="font-size: 1.1em;">
         If you are a company representative, please activate your free company membership here: <a href="{{ url_for('company_register') }}"><i class="fa fa-briefcase"></i> company membership activation</a>
       </p>
       </div>

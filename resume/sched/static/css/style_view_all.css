@@ -18,19 +18,24 @@ h1,h2,h3,h4,h5,h6,p,ul {
 	-o-transition: color .4s;
 	transition: color .4s;
 }
+.dashboard {
+	padding: 60px 15px;
+}
 .page-header a:hover {
 	color: #D36219;
 	text-decoration: none;
 }
 .page-header h2 {
 	font-size: 2.5em;
-	margin-bottom: 20px;
+	margin: 20px 0;
 }
 .page-header p {
 	font-size: 1.5em;
 	font-weight: 200;
 }
-
+.add_resume {
+	margin-bottom: 20px;
+}
 .add_resume .btn {
 	position: relative;
 	font-size: 1.7em;
@@ -44,14 +49,16 @@ h1,h2,h3,h4,h5,h6,p,ul {
 .add_resume .ln {
 	font-size: 1em;
 	margin-bottom: 20px;
-	color: #B4B3B3;
-	border: 1px solid;
+	color: #488EC0;
 	padding: 5px 10px;
+	font-weight: 500;
+	margin-top: 10px;
 }
 .add_resume .ln:hover {
-	background: #488EC0;
-	color: white;
-	border-color: #488EC0;
+	color: #37A1EC;
+	background: none;
+	border: none;
+	font-weight: 500;
 }
 
 .add_resume a {
@@ -229,6 +236,11 @@ ol li a:hover {
 	}
 	.actions li {
 		margin-right: 10px;
+	}
+	.add_resume .ln  {
+		display: block;
+		text-align: center;
+		margin: 0;
 	}
 
 }
