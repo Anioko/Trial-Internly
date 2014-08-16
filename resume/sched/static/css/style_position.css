@@ -9,18 +9,17 @@
 	font-weight: 600;
 }
 .created_position h2 {
-	margin: 5px 0;
 	font-size: 2.5em;
 	font-weight: 400;
 }
 .created_position h3 {
 	font-size: 1.6em;
-	margin: 10px 0;
+	margin: 10px 0 15px 0;
 	font-weight: 500;
 }
 .created_position h4 {
 	font-size: 1.6em;
-	font-weight: 500;
+	font-weight: bold;
 }
 .created_position p,
 .created_position li {

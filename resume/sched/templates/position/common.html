@@ -23,7 +23,7 @@
      <hr>
 
      <h3 align="center"> Job Description</h3>
-      <h6 align="center">{{ appt.description }}</h6>
+     <h6 align="center">{{ appt.description }}</h6>
    <hr>   
     {% endif %}
 
@@ -33,11 +33,11 @@
         <span><i class="fa fa-calendar"></i> {{appt.created.strftime('%d.%m.%Y ')}}</span>
       </div>
       <div class="url">
-        <h4>Positon share URL:</h4>
+        <h4><i class="fa fa-external-link-square"></i> Positon share URL:</h4>
         <a href="{{ url_for('position_apply_now', b62id=appt.id|b62, title=appt.position_title|slug) }}">{{ url_for('position_apply_now', b62id=appt.id|b62, title=appt.position_title|slug, _external=True) }}</a>
       </div>
       <div class="requirements">
-        <h4> Required skills:</h4>
+        <h4><i class="fa fa-list"></i> Required skills:</h4>
         {% if show_skills %}
         <ul>
           {% if appt.required_skill_one %}
