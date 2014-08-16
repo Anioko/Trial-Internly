@@ -21,6 +21,7 @@ span {
 .login h3,
 .signup h3  {
   line-height: 1.5em;
+  font-size: 1.5em;
 }
 .login h3 a,
 .signup h3 a {

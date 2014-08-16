@@ -18,12 +18,12 @@
     <h3><i class="fa fa-globe"></i> <a href="{{ appt.company_website|default('') }}">{{ appt.company_website|default('') }}</a></h3>
     <h3><i class="fa fa-map-marker"></i> {{ appt.location|default('') }}</h3>
     <hr>
-    <h4> Job Description</h4>
+    <h4>Job Description</h4>
     <div class="description">{{ appt.description|default('')|markdown }}</div>
     <hr>
     {% endif %}
     <div class="requirements">
-        <h4> Required skills</h4>
+        <h4>Required skills:</h4>
         {% if show_skills %}
         <ul>
             <li>{{ appt.required_skill_one|default('')}}</li>

@@ -34,17 +34,17 @@
                 placeholder="Provide descriptions and other information of this position.") }}
                 <h4>Skills needed for this job</h4>
                 {{ edit_field(form.required_skill_one, maxlength=255,
-                placeholder="Name one skill needed") }}
+                placeholder="E.g. Java") }}
                 {{ edit_field(form.required_skill_two, maxlength=255,
-                placeholder="Name one skill needed") }}
+                placeholder="E.g. PHP") }}
                 {{ edit_field(form.required_skill_three, maxlength=255,
-                placeholder="Name one skill needed") }}
+                placeholder="E.g. HTML") }}
                 {{ edit_field(form.required_skill_four, maxlength=255,
-                placeholder="Name one skill needed") }}
+                placeholder="E.g. Ruby") }}
                 {{ edit_field(form.required_skill_five, maxlength=255,
-                placeholder="Name one skill needed") }}
+                placeholder="E.g. Objective C") }}
                 {{ edit_field(form.required_skill_six, maxlength=255,
-                placeholder="Name one skill needed") }}
+                placeholder="E.g. Git") }}
                 <h4>Publish date</h4>
                 <div id="datepicker" class="input-append date">
                     {% if form.pub_date.data != None %}

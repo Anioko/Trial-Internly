@@ -21,13 +21,13 @@
 {% endfor %}
 {% endif %}
 {% endwith %}
+<h3>Published vacancies</h3>
 <div class="row">
 {% for appt in appts %}
-  <div class="col-md-6">
       <div class="vacancy">
         {{ detail(appt, link_title=true, show_edit=false) }}
       </div>
-  </div>
+
     {% endfor %}
 </div>
 </div>

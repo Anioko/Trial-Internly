@@ -9,8 +9,12 @@
       </div>
     {% endif %}
 
-    {% if link_title %} 
-      <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a></h3> 
+    {% if link_title %}
+      <div class="position_title">
+        <h3>
+          <a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a>
+        </h3>
+      </div>
     {% else %}
       <h1 align="center">{{ appt.position_title or '(No Title)' }}</h1>
       <h3 align="center"> {{ appt.company_name }}, {{ appt.location }}</h3>
@@ -25,15 +29,15 @@
 
     <!-- CREATED POSITIONS VIEW -->
       <div class="date_published">
-        <h4>Published</h4>
-        <span>{{appt.created.strftime('%d.%m.%Y ')}}</span>
+        <h4>Published:</h4>
+        <span><i class="fa fa-calendar"></i> {{appt.created.strftime('%d.%m.%Y ')}}</span>
       </div>
       <div class="url">
-        <h4>Positon share URL</h4>
+        <h4>Positon share URL:</h4>
         <a href="{{ url_for('position_apply_now', b62id=appt.id|b62, title=appt.position_title|slug) }}">{{ url_for('position_apply_now', b62id=appt.id|b62, title=appt.position_title|slug, _external=True) }}</a>
       </div>
       <div class="requirements">
-        <h4> Required skills</h4>
+        <h4> Required skills:</h4>
         {% if show_skills %}
         <ul>
           {% if appt.required_skill_one %}
