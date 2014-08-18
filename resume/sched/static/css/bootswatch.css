@@ -4017,7 +4017,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #ebebeb;
 }
 .navbar-brand {
-    font-family: 'Amatic SC', cursive;
+    font-family: 'Amatic';
+}
+@-moz-document url-prefix() {
+  .navbar-brand {
+    padding-top: 12px;
+  }
 }
 .navbar-inverse {
   background-color: #df691a;
@@ -4039,6 +4044,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-nav > li > a {
   color: #FAFAFA;
   font-size: 1.2em;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {

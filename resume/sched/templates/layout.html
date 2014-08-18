@@ -13,7 +13,6 @@
     <!---<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">-->
 
     <!-- Font Awesome CSS -->
-   <link href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -26,6 +25,7 @@
     <![endif]-->
     
 	<link href="{{ url_for('static', filename='css/bootswatch.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static', filename='css/amatic.css') }}" rel="stylesheet">
     <script type="text/javascript">
     var FHChat = {product_id: "9e238e5e5331"};
     FHChat.properties={};FHChat.set=function(key,data){this.properties[key]=data};!function(){var a,b;return b=document.createElement("script"),a=document.getElementsByTagName("script")[0],b.src="https://chat-client-js.firehoseapp.com/chat-min.js",b.async=!0,a.parentNode.insertBefore(b,a)}();
@@ -270,17 +270,15 @@ No hassle, no re-typing and no time consuming remembering of things.</p>
     }
 
   .masthead.company {
-background: -moz-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%, rgba(153,206,88,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(153,206,88,0.8)), color-stop(100%,rgba(153,206,88,1))); /* Chrome,Safari4+ */
-background: -webkit-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* Opera 12+ */
-background: -ms-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* IE10+ */
-background: radial-gradient(ellipse at center,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc99ce58', endColorstr='#99ce58',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-
-
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%, rgba(153,206,88,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(153,206,88,0.8)), color-stop(100%,rgba(153,206,88,1))); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center,  rgba(153,206,88,0.8) 0%,rgba(153,206,88,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc99ce58', endColorstr='#99ce58',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   }
+
   /** NEW STYLING BEGIN **/
   .masthead .btn {
     color: white;
