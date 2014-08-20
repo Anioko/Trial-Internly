@@ -5843,7 +5843,7 @@ body {
   box-shadow: none;
 }
 .dropdown-menu > li > a {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
 }
 .btn-group.open .dropdown-toggle {

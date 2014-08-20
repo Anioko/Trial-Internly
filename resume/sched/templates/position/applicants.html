@@ -1,10 +1,15 @@
 {% extends 'public/public.html' %}
 {% from 'position/commons.html' import detail %}
 {% block title %}Aplicants{% endblock title %}
+{% block head%}
 
+<link href="{{ url_for('static', filename='css/style_position.css') }}" rel="stylesheet">
+
+
+{% endblock head%}
 {% block main %}
 
-<div class="container" style="margin-top: 100px;">
+<div class="container applicants" style="margin-top: 100px;">
     <div class="row">
 
         {% if applicants|length == 0 %}
@@ -34,7 +39,7 @@
                 <td> no resume avaliabe </td>
                 {% else %}
                 <td>{% for resume_id_b64 in resumes[user.id] %}
-                    <a href="{{ url_for('resume_preview', resume_id=resume_id_b64)  }}"> resume {{loop.index}} </a>,
+                    <a href="{{ url_for('resume_preview', resume_id=resume_id_b64)  }}"> resume {{loop.index}} </a>
                     {% endfor %}
                 </td>
                 {%endif %}

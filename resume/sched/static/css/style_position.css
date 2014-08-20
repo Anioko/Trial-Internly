@@ -1,4 +1,7 @@
-
+.applicants table {
+	font-size: 1.2em;
+	color: #5B6C7E;
+}
 .created_position {
 	font-family:'Lato',sans-serif;
 	color: #5B6C7E;
