@@ -8,11 +8,6 @@ h1, h2, h3, h4, p, .form-control, label, ul {
 	position: relative;
 	float: right;
 }
-
-
-
-
-
 .requirements ul  {
 	margin: 0;
 	padding: 0 0 0 20px;
@@ -43,8 +38,15 @@ a:hover {
 .company_details h3 {
 	color: #5A5A5A;
 	text-align: left;
+	font-size: 3em;
 }
-
+.company_details h3 a {
+	color: #5A5A5A;
+	font-weight: bold;
+	-webkit-transition: color .2s;
+	-o-transition: color .2s;
+	transition: color .2s;
+}
 .position-detail  h3 {
 	font-size: 1.5em;
 	margin: 10px 0;

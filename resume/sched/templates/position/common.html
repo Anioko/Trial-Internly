@@ -5,7 +5,7 @@
       <div class="edit-controls">
         <a href="{{ url_for('position_edit', position_id=appt.id) }}"><i class="fa fa-pencil"></i></a>
         <a class="resume-delete-link" href="{{ url_for('position_delete', position_id=appt.id) }}"><i class="fa fa-times"></i></a>
-        <a href="{{ url_for('position_list_applicants', position_id=appt.id) }}"><i class="fa fa-user"></i> <span class="applicants_applied">3</span></a>
+        <a href="{{ url_for('position_list_applicants', position_id=appt.id) }}"><i class="fa fa-user"></i> <!--<span class="applicants_applied">3</span> --></a>
       </div>
     {% endif %}
 
