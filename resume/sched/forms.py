@@ -204,7 +204,7 @@ class PositionForm(Form):
 
 class RegisteCompanyForm(Form):
     first_name = TextField('Your name', [Length(max=255), Required()])
-    last_name = TextField('Last name', [Length(max=255), Required()])
+    #last_name = TextField('Last name', [Length(max=255), Required()])
     email = TextField('E-mail', [Length(max=255), Required()])
     website = TextField('Website', [Length(max=255)])
     company_name = TextField('Company name', [Length(max=255), Required()])

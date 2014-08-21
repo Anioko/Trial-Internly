@@ -597,6 +597,8 @@ def company_register():
     form = RegisteCompanyForm(request.form)
     if request.method == 'POST' and form.validate():
         appt = CompanyUserData(user_id=current_user.id)
+        if not appt.last_name:
+            appt.last_name = ""
         form.populate_obj(appt)
         db.session.add(appt)
 
