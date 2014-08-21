@@ -26,10 +26,12 @@
     
 	<link href="{{ url_for('static', filename='css/bootswatch.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ url_for('static', filename='css/amatic.css') }}" rel="stylesheet">
+  
     <script type="text/javascript">
     var FHChat = {product_id: "9e238e5e5331"};
     FHChat.properties={};FHChat.set=function(key,data){this.properties[key]=data};!function(){var a,b;return b=document.createElement("script"),a=document.getElementsByTagName("script")[0],b.src="https://chat-client-js.firehoseapp.com/chat-min.js",b.async=!0,a.parentNode.insertBefore(b,a)}();
   </script>
+  
     <!---<link href="file:///C|/Documents and Settings/Anioko1/Omat tiedostot/Trial/Intern_reg/static/css/bootswatch.css" rel="stylesheet" type="text/css">-->
     <style type="text/css">
 
@@ -146,7 +148,7 @@ No hassle, no re-typing and no time consuming remembering of things.</p>
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Find employees for entry level positions and interns for your company</h1>
-                    <h3>Hundreds of applicants are already looking to work for you</h3>
+                    <h3>Hundreds of applicants are already looking to work for you!</h3>
                     <h4>Basic account is free</h4>
                     </p>
                     <p><a role="button" class="btn btn-primary btn-lg" href="/signup">Create account</a></p>
@@ -344,7 +346,8 @@ No hassle, no re-typing and no time consuming remembering of things.</p>
 }
 .bs-docs-featurette p {
   text-align:justify;
-  text-justify:inter-word;
+  font-size: 1.1em;
+
 }
 
 .bs-docs-footer {
@@ -375,12 +378,18 @@ No hassle, no re-typing and no time consuming remembering of things.</p>
   .masthead h1 {
     margin-top: 0;
     font-size: 3.7em;
+    text-align: left;
   }
   .masthead h3 {
     font-size: 1.25em;
+    text-align: left;
   }
   .masthead h4 {
     font-size: 1.1em;
+    text-align: left;
+  }
+  .masthead .btn {
+    width: 100%;
   }
   .masthead {
     padding: 60px 0 30px 0;
@@ -390,6 +399,9 @@ No hassle, no re-typing and no time consuming remembering of things.</p>
   }
   .masthead.company .btn {
     padding: 10px 40px;
+  }
+  .bs-docs-featurette h3 {
+    text-align: left;
   }
 }
 </style>

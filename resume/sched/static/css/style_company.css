@@ -39,6 +39,7 @@ a:hover {
 	color: #5A5A5A;
 	text-align: left;
 	font-size: 3em;
+	padding: 0 25px;
 }
 .company_details h3 a {
 	color: #5A5A5A;
@@ -185,6 +186,32 @@ a:hover {
 	border: 1px solid #C4C4C4;
 	height: 45px;
 	border-radius: 3px;
+}
+.company_details .activate input,
+.company_details .activate textarea {
+	color: #5A5A5A;
+	font-weight: 500;
+	font-size: 1.2em;
+}
+.company_details .activate input::-webkit-input-placeholder {
+   color: #D5D5D5;
+   font-size: .9em;
+   font-weight: 300;
+}
+.company_details .activate textarea::-webkit-input-placeholder {
+	color: #D5D5D5;
+	font-size: 1.1em;
+	font-weight: 300;
+}
+.company_details .activate input::-moz-placeholder {
+	color: #D5D5D5;
+	font-size: .9em;
+	font-weight: 300;
+}
+.company_details .activate textarea::-moz-placeholder {
+	color: #D5D5D5;
+	font-size: .9em;
+	font-weight: 300;
 }
 .company_details .activate .btn {
 	color: #55995B;
