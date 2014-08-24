@@ -5,9 +5,8 @@
             <div class="resume_controls">
                 <a href="{{ url_for('resume_edit', resume_id=appt.id) }}" class="btn edit"><i class="fa fa-pencil"></i> Edit</a>              
                 <a href="{{ url_for('resume_delete', resume_id=appt.id) }}" class="btn delete"><i class="fa fa-times"></i> Delete</a>
-                <!--DOWNLOAD BUTTON IS COMMENTED OUT UNTIL PDF GEREATOR SCRIPT IS FIXED 
-                <a href="{{ url_for('resume_detail_pdf', resume_id=appt.id) }}" class="btn save"><i class="fa fa-file-pdf-o"></i> Download</a> 
-                -->
+               <!-- "{{ url_for('resume_detail_pdf', resume_id=appt.id) }}"-->
+                <a href="javascript:window.print()" class="btn save"><i class="fa fa-print"></i> Save</a> 
             </div>
    
     {% endif %}

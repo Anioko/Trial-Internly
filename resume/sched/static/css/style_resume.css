@@ -47,7 +47,9 @@ h1, h2, h3, h4, p, .form-control, label, ul {
 	font-size: 1.2em;
 	font-weight: 400;
 }
-
+.contacts {
+	padding-bottom: 10px;
+}
 .content {
 	padding: 0 50px 0 50px;
 }
@@ -81,7 +83,7 @@ h1, h2, h3, h4, p, .form-control, label, ul {
 	border-bottom: 2px solid #eee;
 }
 .cover_letter {
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 }
 p {
 	font-size: 1.2em;
@@ -97,7 +99,10 @@ p {
 .contacts ul li,
 .study_pace ul li  {
 	display: inline-block;
-} 
+}
+.study_pace ul li:not(:last-child) {
+	margin-bottom: 5px;
+}
 .cover_letter ul,
 .other_skills ul {
 	padding-left: 20px;
@@ -180,7 +185,7 @@ p {
 	margin: 0;
 }
 .resume_controls {
-	width: 175px;
+	width: 305px;
 	float: right;
 	padding-top: 14px;
 }
@@ -242,11 +247,8 @@ p {
 		padding: 30px 0 0 0;
 		margin: auto;
 	}
-	.cover_letter ul {
-		margin-bottom: 70px;
-	}
 	.cover_letter {
-		padding-bottom: 35px;
+		padding-bottom: 15px;
 	}
 
 	h2,h3 {
@@ -257,12 +259,12 @@ p {
 @media print {
 	h2 {
 		text-align: left;
-		font-size: 22px;
+		font-size: 26px;
 		font-weight: bold;
 		color: red;
 	}
 	h3 {
-		font-size: 18px;
+		font-size: 20px;
 		font-weight: bold;
 		text-align: left;
 	}
@@ -270,7 +272,7 @@ p {
 		font-weight: 600;
 		margin-bottom: 5px;
 		text-align: left;
-		font-size: 12px;
+		font-size: 14px;
 	}
 	h1, h2, h3, h4, p, .form-control, label, ul {
 	    color: #4A5C6C;
@@ -278,7 +280,7 @@ p {
 	    line-height: 1.1;
 	}
 	p, ul ,li {
-		font-size: 12px;
+		font-size: 14px;
 	}
 	.resume_controls {
 		display: none;
@@ -287,10 +289,15 @@ p {
 		padding-top: 0px;
 	}
 	.cover_letter ul {
-		margin-bottom: 30px;
+		margin-bottom:25px;
 	}
-	.cover_letter  {
-		padding-bottom: 45px;
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	a:link:after, a:visited:after {
+	    content: "";
+
 	}
 }
 

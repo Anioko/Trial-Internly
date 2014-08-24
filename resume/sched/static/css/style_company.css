@@ -39,7 +39,6 @@ a:hover {
 	color: #5A5A5A;
 	text-align: left;
 	font-size: 3em;
-	padding: 0 25px;
 }
 .company_details h3 a {
 	color: #5A5A5A;
@@ -48,11 +47,13 @@ a:hover {
 	-o-transition: color .2s;
 	transition: color .2s;
 }
-.position-detail  h3 {
+.position_title  h3 {
 	font-size: 1.5em;
 	margin: 10px 0;
 	width: 70%;
 	font-weight: bold;
+	padding-left: 0;
+	word-break: break-all;
 }
 .position_title {
 

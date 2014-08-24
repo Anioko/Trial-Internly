@@ -1,4 +1,7 @@
-
+.resume h2 {
+	width: 80%;
+	word-break:break-all;
+}
 h2 {
 	font-weight: 400;
 	margin: 0;
