@@ -214,6 +214,14 @@ a:hover {
 	font-size: .9em;
 	font-weight: 300;
 }
+.company_details .activate input:focus,
+.company_details .activate textarea:focus {
+	border: 1px solid #D6D6D6;
+	box-shadow: inset 0 0 5px #D6D6D6;
+}
+
+
+
 .company_details .activate .btn {
 	color: #55995B;
 	background: transparent;
