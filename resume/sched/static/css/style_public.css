@@ -115,13 +115,13 @@ footer a:hover {
   margin-bottom: 25px;
 }
 .cofounder img {
-  width:100px;
+  width:120px;
   border-radius: 60px;
   margin: 0 auto;
   display: block;
 }
 .cofounder {
-  height: 100px;
+  height: 120px;
 }
 .cofounder h4 {
   font-weight: 600;
@@ -261,9 +261,10 @@ footer p {
     padding-top: 60px;
   }
 }
+
 @media (max-width: 991px) {
   .cofounder {
-    height: 270px;
+    height: 300px;
   }
   .cofounder img {
     width: 150px;
@@ -276,7 +277,7 @@ footer p {
   }
   .cofounder .btn-group {
     padding: 0;
-    width: 102px;
+    width: 140px;
     display: block;
     margin: 0 auto;
   }
@@ -289,8 +290,13 @@ footer p {
     }
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .cofounder {
     height: 320px;
+  }
+}
+@media (max-width: 400px) {
+  .cofounder {
+    height: 360px;
   }
 }
