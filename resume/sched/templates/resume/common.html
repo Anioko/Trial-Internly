@@ -70,7 +70,7 @@
                     </li>
                     <li>
                         {% if appt.start_date_company %}
-                        {{ appt.start_date_company or ""}} - {{ appt.end_date_company or "Present"}}
+                        {{ appt.start_date_company or " "}} - {{ appt.end_date_company or "Present"}}
                         {% else %}
                         {% endif %}
                     </li>
@@ -117,7 +117,7 @@
                     </li>
                     <li>
                         {% if appt.start_date_company1 %}
-                        {{ appt.start_date_company1 or ""}} - {{ appt.end_date_company or "Present"}}
+                        {{ appt.start_date_company1 or " "}} - {{ appt.end_date_company1 or "Present"}}
                         {% else %}
                         {% endif %}
                     </li>
@@ -164,7 +164,7 @@
                     </li>
                     <li>
                         {% if appt.start_date_company2 %}
-                        {{ appt.start_date_company2 or ""}} - {{ appt.end_date_company or "Present"}}
+                        {{ appt.start_date_company2 or ""}} - {{ appt.end_date_company2 or "Present"}}
                         {% else %}
                         {% endif %}
                     </li>

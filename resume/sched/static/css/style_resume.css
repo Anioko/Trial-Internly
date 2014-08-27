@@ -246,6 +246,7 @@ p {
 		float: none;
 		padding: 30px 0 0 0;
 		margin: auto;
+		width: 255px;
 	}
 	.cover_letter {
 		padding-bottom: 15px;
