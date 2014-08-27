@@ -9,11 +9,10 @@
 {% block main %}
 <div class="container preview_resume">
 <div class="row">
-  <!--DOWNLOAD BUTTON
+  
   <div class="edit-controls"  align="right">
-      <a href="{{ url_for('resume_preview_pdf', resume_id=appt.id|b64) }}"><button type="button" class="btn btn-primary"><i class="fa fa-file-pdf-o fa-lg"></i> Download as PDF</button></a>
+      <a href="javascript:window.print()" class="btn save"><i class="fa fa-print"></i> Save</a> 
   </div>
-  -->
     {{ detail(appt, show_edit=false) }}
 </div>
 </div>
