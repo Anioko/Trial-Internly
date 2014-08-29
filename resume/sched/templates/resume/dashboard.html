@@ -27,7 +27,7 @@ body {
 }
 
 /* fix bs3 horizontal scrollbar bug */
-.row { margin: 0; padding: 0 }
+.row { margin: 0; padding: 0; }
 
 h1 {
   font-size:50px; 
@@ -284,16 +284,15 @@ footer {
      {% endfor %}
 
     {% if positions %}
-      <div class="col-md-12">
-      <h3><i class="fa fa-check-square-o"></i> Positions you have already applied for:</h3>
-       <ol>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <h3><i class="fa fa-check-square-o"></i> Positions you have already applied for:</h3>
+        <ol>
      {% for position in positions %}
-    
-     <li>
-        <a href="{{ url_for('position_details',position_id=position.id)}}">{{ position.position_title}} </a>
-     </li>
+          <li>
+            <a href="{{ url_for('position_details',position_id=position.id)}}">{{ position.position_title}} </a>
+          </li>
      {% endfor %}
-      </ol>
+        </ol>
       </div>
     {% endif %}
 
