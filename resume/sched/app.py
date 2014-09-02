@@ -486,6 +486,12 @@ def resume_delete(resume_id):
         abort(404)
     if appt.user_id != current_user.id:
         abort(403)
+
+    resume_views = db.session.query(ResumeView).filter(ResumeView.resume == appt)
+    for record in resume_views:
+        db.session.delete(record)
+    db.session.commit()
+
     db.session.delete(appt)
     db.session.commit()
     return redirect(url_for('resumes_list'))
