@@ -75,6 +75,8 @@ class MyAdminIndexView(AdminIndexView):
         return self.render('admin/index.html')
 
 class AdminView(ModelView):
+    column_searchable_list = (User.name, User.email)
+    column_exclude_list = ('created', 'modified','password', 'active', 'confirmed_at','company')
     def is_accessible(self):
         return current_user.has_role('ROLE_ADMIN')
 
