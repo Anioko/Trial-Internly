@@ -2,11 +2,9 @@
 
 from wtforms import Form, BooleanField, DateTimeField, PasswordField
 from wtforms import TextAreaField, TextField
-from wtforms.validators import Length, required, Required, EqualTo
+from wtforms.validators import Length, required, Required, EqualTo, URL
 from flask_security.forms import RegisterForm
 
-reg= Regexp(r'[http://]',
-               message='Url should start http://')
 class ExtendedRegisterForm(RegisterForm):
     name = TextField('Name', [Required()])
     company = BooleanField('This is company account',)
@@ -97,7 +95,7 @@ class ResumeForm(Form):
     email = TextField('Email', [Length(max=100)])
     phone = TextField('Phone', [Length(max=255)])
     city = TextField('City', [Length(max=100)])
-    url = TextField('Url', [Length(max=255), reg])
+    url = TextField('Url', [Length(max=255), URL()])
     summary_title = TextField('Summary Title', [Length(max=255)])
     summary_text = TextAreaField('Summary Text', [Length(max=500)])
 
@@ -207,7 +205,7 @@ class RegisteCompanyForm(Form):
     first_name = TextField('Your name', [Length(max=255), Required()])
     #last_name = TextField('Last name', [Length(max=255), Required()])
     email = TextField('E-mail', [Length(max=255), Required()])
-    website = TextField('Website', [Length(max=255), reg])
+    website = TextField('Website', [Length(max=255), URL()])
     company_name = TextField('Company name', [Length(max=255), Required()])
     company_adress = TextAreaField('Company adress', [Required()])
     phone_number = TextField('Phone number', [Length(max=255), Required()])
