@@ -75,6 +75,7 @@ class MyAdminIndexView(AdminIndexView):
         return self.render('admin/index.html')
 
 class AdminView(ModelView):
+
     column_searchable_list = (User.name, User.email, User.created)
     column_searchable_list = (Resume.name, Resume.email, Resume.title, Resume.city, Resume.country, 
         Resume.summary_title, Resume.summary_text,Resume.company_name,
