@@ -1,0 +1,252 @@
+.resume h2 {
+	width: 80%;
+	word-break:break-all;
+	line-height:0.8em;
+	margin-bottom:5px;
+}
+h2 {
+	font-weight: 400;
+	margin: 0;
+	font-size: 1.5em;
+	text-align: left;
+}
+h1,h2,h3,h4,h5,h6,p,ul {
+	color: #5B6C7E;
+}
+.page-header {
+	padding: 0 15px;
+}
+.page-header a {
+	font-weight: 600;
+	color: #5B6C7E;
+	-webkit-transition: color .4s;
+	-o-transition: color .4s;
+	transition: color .4s;
+}
+.dashboard {
+	padding: 60px 15px;
+}
+.page-header a:hover {
+	color: #D36219;
+	text-decoration: none;
+}
+.page-header h2 {
+	font-size: 2.5em;
+	margin: 20px 0;
+}
+.page-header p {
+	font-size: 1.5em;
+	font-weight: 200;
+}
+.add_resume {
+	margin-bottom: 20px;
+}
+.add_resume .btn {
+	position: relative;
+	font-size: 1.7em;
+	display: inline-block;
+	margin-bottom: 5px;
+	border: 1px solid;
+	border-radius: 3px;
+	color: #55995B;	
+	background: transparent;
+}
+.add_resume .ln {
+	font-size: 1em;
+	margin-bottom: 20px;
+	color: #488EC0;
+	padding: 5px 10px;
+	font-weight: 500;
+	margin-top: 10px;
+}
+.add_resume .ln:hover {
+	color: #37A1EC;
+	background: none;
+	border: none;
+	font-weight: 500;
+}
+
+.add_resume a {
+	color: #5A5A5A;
+	-webkit-transition: color .2s;
+	-o-transition: color .2s;
+	transition: color .2s;
+}
+.date {
+	font-weight: 200;
+	margin: 0;
+	font-size: 1em;
+}
+h4 {
+	font-weight: 200;
+	font-size: 1em;
+	padding: 5px 0 0 5px;
+	margin: 0;
+}
+
+.resume {
+	position: relative;
+	height: 112px;
+	margin: 0 auto 30px auto;
+	padding: 5px 7px;
+	background: #eee;
+	box-shadow: 0px 1px 2px rgba(60,60,60,0.1);
+	border-radius: 3px;
+	border: 1px solid #EBEBEB;
+
+}
+.resume a {
+	color: #5A5A5A;
+	text-shadow: 0 -1px 0 white;
+	background: transparent;
+	-webkit-transition: color .2s, background .3s;
+	-o-transition: color .2s, background .3s;
+	transition: color .2s, background .3s;
+}
+.resume a:hover {
+	text-decoration: none;
+	color: #EC5805;
+}
+.add_resume a:hover {
+	text-decoration: none;
+	background: #55995B;
+	color: white;
+	border: 1px solid #55995B;
+	font-weight: 300;
+}
+.tools {
+	position: absolute;
+	height: 25px;
+	bottom: 0;
+	width: 100%;
+}
+.tools a {
+	border-bottom: none;
+	font-size: 1em;
+}
+.info {
+	display: inline-block;
+	position: relative;
+	padding: 2px 0 0 0;
+	margin: 0;
+}
+.info li {
+	list-style: none;
+	display: inline-block;
+	margin-right: 9px;
+	position: relative;
+}
+
+.actions {
+	right:0;
+	top:0;
+	position: absolute;
+	max-height: 100%;
+	margin: 0px;
+	padding: 5px 10px 5px 20px;
+	
+}
+.actions li {
+	margin-right: 7px;
+	font-weight: 500;
+	list-style: none;
+	display: inline-block;
+}
+.actions li a {
+	border-bottom: none;
+	font-size: 1.4em;
+	text-align: center;
+	-webkit-transition: color .3s, -webkit-transform .3s;
+	-o-transition: color .3s, -o-transform .3s;
+	transition: color .3s, transform .3s;
+}
+.actions li a:hover {
+	color: #55995B;
+}
+.actions li:nth-child(2) a:hover {
+	color: #6386A3;
+}
+.actions li:last-child a:hover {
+	color: #CE655E;
+}
+.actions a {
+	color: #5A5A5A;
+	text-shadow: 0 -1px 0 white;
+	-webkit-transition: color .2s;
+	-o-transition: color .2s;
+	transition: color .2s;
+}
+
+.actions li:last-child,
+.info li:last-child {
+	margin-right: 0;
+	margin-bottom: 0;
+}
+.info .responses,
+.info .views,
+.info .vacancies {
+	position: relative;
+	bottom: 5px;
+	display: inline-block;
+	background: #4A5C6C;
+	color: white;
+	border-radius: 10px;
+	font-size: .7em;
+	text-align: center;
+	padding: 1px 5px;
+	box-shadow: inset 1px 0 2px rgba(40,40,40,.1);
+}
+ol li a {
+	color: #4E5D6C;
+	font-weight: bold;
+	-webkit-transition: color .2s;
+	-o-transition: color .2s;
+	transition: color .2s;
+}
+ol li a:hover {
+	text-decoration: none;
+}
+
+/** RESUME VIEW **/
+
+@media (max-width: 992px) {
+	.add_resume .btn {
+		width: 689px;
+		text-align: center;
+		width: 690px;
+		margin-right: auto;
+		color: #55995B;
+		border: 1px solid #55995B;
+	}
+	.add_resume a:hover {
+		background: none;
+		color: #55995B;
+		border: 1px solid #55995B;
+		font-weight: normal;
+	}
+}
+@media (max-width: 767px) {
+	.add_resume .btn {
+		width: 100%;
+		color: #55995B;
+	}
+}
+
+@media (max-width: 600px) {
+	.container {
+		width: 100%;
+	}
+	.col-xs-12 {
+		padding: 0;
+	}
+	.actions li {
+		margin-right: 10px;
+	}
+	.add_resume .ln  {
+		display: block;
+		text-align: center;
+		margin: 0;
+	}
+
+}
+

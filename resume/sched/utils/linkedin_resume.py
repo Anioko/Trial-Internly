@@ -41,7 +41,7 @@ def create_linkedin_resume(resume_fields):
             # Place sliced to 50 characters (model has this limitation)
             try:
                 city_location = _get_field('name', resume_fields['location'])
-                resume.city = city_location[:49]
+                resume.city = city_location[:49] + " " + resume.country
             except KeyError:
                 pass
 
@@ -58,45 +58,66 @@ def create_linkedin_resume(resume_fields):
             resume.role = _get_field('title',company1)
             resume.role_description =_get_field('summary',company1)
 
-            resume.start = u"/".join([_get_field('month',company1['startDate']),
+            resume.start_date_company = u"/".join([_get_field('month',company1['startDate']),
                                       _get_field('year',company1['startDate'])])
             # When it is current postion the endDate key not extsis
             try:
-                resume.end = u"/".join([_get_field('month',company1['endDate']),
+                resume.end_date_company = u"/".join([_get_field('month',company1['endDate']),
                                       _get_field('year',company1['endDate'])])
             except KeyError:
                 pass
-            resume.currently = bool(company1['isCurrent'])
+            resume.work_currently = bool(company1['isCurrent'])
 
             # Someone has more that 1 job so we set data for company two
             if int(_get_field('_total',resume_fields['positions']))>1:
                 pos_values = resume_fields['positions']['values']
                 company2 = resume_fields['positions']['values'][1]
 
-                resume.company_name_two = _get_field('name',company2['company'])[:254]
-                resume.company_summary_two = _get_field('industry',company2['company'])[:254]
-                resume.role_two = _get_field('title',company2)
-                resume.role_description_two =_get_field('summary',company2)
+                resume.company_name1 = _get_field('name',company2['company'])[:254]
+                resume.company_summary1 = _get_field('industry',company2['company'])[:254]
+                resume.role1 = _get_field('title',company2)
+                resume.role_description1 =_get_field('summary',company2)
 
-                resume.start_date = u"/".join([_get_field('month',company2['startDate']),
+                resume.start_date_company1 = u"/".join([_get_field('month',company2['startDate']),
                                       _get_field('year',company2['startDate'])])
                 # When it is current postion the endDate key not extsis
                 try:
-                    resume.end_date = u"/".join([_get_field('month',company2['endDate']),
+                    resume.end_date_company1 = u"/".join([_get_field('month',company2['endDate']),
                                       _get_field('year',company2['endDate'])])
                 except KeyError:
                     pass
-                resume.currently_two = bool(company2['isCurrent'])
+                resume.work_currently1 = bool(company2['isCurrent'])
+
+            # Someone has more that 2 job so we set data for company three
+            if int(_get_field('_total',resume_fields['positions']))>2:
+                pos_values = resume_fields['positions']['values']
+                company3= resume_fields['positions']['values'][2]
+
+                resume.company_name2 = _get_field('name',company3['company'])[:254]
+                resume.company_summary2 = _get_field('industry',company3['company'])[:254]
+                resume.role2 = _get_field('title',company3)
+                resume.role_description2 =_get_field('summary',company3)
+
+                resume.start_date_company2 = u"/".join([_get_field('month',company3['startDate']),
+                                      _get_field('year',company3['startDate'])])
+                # When it is current postion the endDate key not extsis
+                try:
+                    resume.end_date_company2 = u"/".join([_get_field('month',company3['endDate']),
+                                      _get_field('year',company3['endDate'])])
+                except KeyError:
+                    pass
+                resume.work_currently2 = bool(company3['isCurrent'])
+
 
         if 'educations' in resume_fields:
             school1 = resume_fields['educations']['values'][0]
 
-            resume.school_name_one = _get_field('schoolName',school1)[:254]
+            resume.school_name = _get_field('schoolName',school1)[:254]
             resume.degree_description = _get_field('degree',school1)[:254]
             resume.start_date_school = _get_field('year',school1['startDate'])[:254]
             resume.grading = _get_field('fieldOfStudy',school1)[:254]
             try:
-                resume.end_date_graduation = _get_field('year',school1['endDate'])[:254]
+                resume.end_date_school = _get_field('year',school1['endDate'])[:254]
             except KeyError:
                 pass
 
@@ -104,36 +125,50 @@ def create_linkedin_resume(resume_fields):
             if int(_get_field('_total',resume_fields['educations']))>1:
                 school2 = resume_fields['educations']['values'][1]
 
-                resume.school_name_two = _get_field('schoolName',school2)[:254]
-                resume.degree_description_two = _get_field('degree',school2)[:254]
-                resume.start_date_one = _get_field('year',school2['startDate'])[:254]
+                resume.school_name1 = _get_field('schoolName',school2)[:254]
+                resume.degree_description1 = _get_field('degree',school2)[:254]
+                resume.start_date_school1 = _get_field('year',school2['startDate'])[:254]
                 resume.grading_two = _get_field('fieldOfStudy',school2)[:254]
                 try:
-                    resume.end_date_two = _get_field('year',school2['endDate'])[:254]
+                    resume.end_date_school1 = _get_field('year',school2['endDate'])[:254]
                 except KeyError:
                     pass
+
+            # Someone has three degrees
+            if int(_get_field('_total',resume_fields['educations']))>2:
+                school3 = resume_fields['educations']['values'][2]
+
+                resume.school_name2 = _get_field('schoolName',school3)[:254]
+                resume.degree_description2 = _get_field('degree',school3)[:254]
+                resume.start_date_school2 = _get_field('year',school3['startDate'])[:254]
+                #resume.grading_two = _get_field('fieldOfStudy',school3)[:254]
+                try:
+                    resume.end_date_school2 = _get_field('year',school3['endDate'])[:254]
+                except KeyError:
+                    pass
+
         if 'skills' in resume_fields:
             skills = resume_fields['skills']['values']
             #resume.skills_one = _get_field('name',skills[0]['skill'])[:254]
 
             # Skills one
             if int(_get_field('_total',resume_fields['skills']))>1:
-                resume.skills_one = _get_field('name',skills[0]['skill'])[:254]
+                resume.other_skills = _get_field('name',skills[0]['skill'])[:254]
             # Skills two
             if int(_get_field('_total',resume_fields['skills']))>2:
-                resume.skills_two = _get_field('name',skills[1]['skill'])[:254]
+                resume.other_skills1 = _get_field('name',skills[1]['skill'])[:254]
             # skills_three
             if int(_get_field('_total',resume_fields['skills']))>3:
-                resume.skills_three = _get_field('name',skills[2]['skill'])[:254]
+                resume.other_skills2 = _get_field('name',skills[2]['skill'])[:254]
             # skills_four
             if int(_get_field('_total',resume_fields['skills']))>4:
-                resume.skills_four = _get_field('name',skills[3]['skill'])[:254]
+                resume.other_skills3 = _get_field('name',skills[3]['skill'])[:254]
             # skills_five
             if int(_get_field('_total',resume_fields['skills']))>5:
-                resume.skills_five = _get_field('name',skills[4]['skill'])[:254]
+                resume.other_skills4 = _get_field('name',skills[4]['skill'])[:254]
             # skills_six
             if int(_get_field('_total',resume_fields['skills']))>6:
-                resume.skills_six = _get_field('name',skills[5]['skill'])[:254]
+                resume.other_skills5 = _get_field('name',skills[5]['skill'])[:254]
             # skills_seven
             if int(_get_field('_total',resume_fields['skills']))>7:
                 resume.skills_seven = _get_field('name',skills[6]['skill'])[:254]

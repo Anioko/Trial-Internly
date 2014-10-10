@@ -2,6 +2,9 @@
 {% from "security/_macros.html" import render_field_with_errors, render_field %}
 {% from "security/common.html" import edit_field %}
 
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_public.css') }}" rel="stylesheet">
+{% endblock head%}
 
 {% extends "public/public.html" %}
 {% block content %}
@@ -28,26 +31,59 @@ body {
     line-height: 1.42857;
 }
 
-button, input, optgroup, select, textarea {
-    color: #000000;
-    margin: 0;
-}
+
 
 /* fix bs3 horizontal scrollbar bug */
-.row { margin: 0; padding: 0 }
+.row { margin: 0; padding: 0; }
 
-h1 {
-  font-size:50px;
+.well {
+  padding: 20px 40px;
+  border-radius: 3px;
+  border: 3px solid white;
+  background: transparent;
+  box-shadow: 0 0 15px rgba(250,250,250,.5);
 }
 
 
-
-h4, p, h5, h6 {
-    color: #000000;
-    font-family: inherit;
-    font-weight: 300;
-    line-height: 1.1;
+.form-control {
+  border: 1px solid white;
+  background: transparent;
+  height: 45px;
+  box-shadow: none;
+  max-width: 100%;
+  border-radius: 3px;
+  color: white;
+  font-weight: 500;
+  font-size: 1.2em;
+  display: table-cell;
+  vertical-align: center;
 }
+
+.form-control:active,
+.form-control:focus {
+  border: 2px solid white;
+  box-shadow: none;
+  box-shadow: 0 0 10px rgba(255,255,255,.6);
+}
+
+.form-control::-webkit-input-placeholder{
+ 
+  font-weight: 200;
+  font-size: .8em;
+  color: rgba(255, 255, 255, .9);
+  padding-top: 3px;
+}
+.form-control::-moz-placeholder {
+ 
+  color: rgba(255, 255, 255, .9);
+  font-weight: 200;
+  font-size: .8em;
+}
+.form-horizontal .form-group {
+  margin-right: 0;
+  margin-left: 0;
+}
+
 
 img.grayscale {
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
@@ -199,123 +235,101 @@ img.grayscale {
   margin: 10px;
 }
 
-.btn {
-    -moz-user-select: none;
-    background-color: #C85E17;
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 0;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 15px;
-    font-weight: normal;
-    line-height: 1.42857;
-    margin-bottom: 0;
-    padding: 8px 16px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-	font-color: #000000;
-}
 
-footer {
-  padding: 100px 0;
-}
+
 
 a:hover, a:focus {
     text-decoration: none;
 }
+label {
+  display: none;
+}
+
+input#submit {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background: none;
+  outline: none;
+  box-shadow: none;
+  border: 2px solid white;
+  color: white;
+  font-size: 1.4em;
+  font-weight: 500;
+  -webkit-transition: background .3s, color .3s;
+  -o-transition: background .3s, color .3s;
+  transition: background .3s, color .3s;
+  border-radius: 3px;
+}
+input#submit:hover {
+  background: white;
+  color: #8DB6D5;
+  box-shadow: 0 0 15px rgba(250,250,250,.5);
+}
+.checkbox label {
+  color: white;
+}
+
 
 /* -- end custom css for Bootstrap 3.x --*/
 
         </style>
     </head>
 
-    <!-- HTML code from Bootply.com editor -->
-
-    <body  >
 
 
 
 
+<div class="container signup">
+  <div class="row">
+  <div class="col-md-12">
+    <div class="login well">
+      <form action="{{ url_for_security('register') }}" method="POST" name="register_user_form" class="form-horizontal">
+      {{ register_user_form.hidden_tag() }}
+      <h2>Sign up</h2>
+      <div class="control-group">
+          <div class="controls">
+              {{ edit_field(register_user_form.company) }}
+          </div>
+      </div>
+      <div class="control-group">
+          <div class="controls">
+              {{ edit_field(register_user_form.email, placeholder="Email") }}
+          </div>
+      </div>
 
-<div class="container">
-<div class="row" style="margin-top: 100px;">
-<div class="col-md-3"></div>
-<div class="col-md-6">
-  <div class="login well offset2 span8">
-    <form action="{{ url_for_security('register') }}" method="POST" name="register_user_form" class="form-horizontal">
-    {{ register_user_form.hidden_tag() }}
-    <h2>Sign up</h2>
-    <div class="control-group">
-        <div class="controls">
-            {{ edit_field(register_user_form.email) }}
-        </div>
+      <div class="control-group">
+          <div class="controls">
+              {{ edit_field(register_user_form.name, placeholder="Name") }}
+          </div>
+      </div>
+
+      <div class="control-group">
+          <div class="controls">
+              {{ edit_field(register_user_form.password, placeholder="Password") }}
+              {% if register_user_form.password_confirm %}
+              {{ edit_field(register_user_form.password_confirm, placeholder="Confirm Password") }}
+              {% endif %}
+          </div>
+      </div>
+
+            <!--<button type="submit" class="btn btn-success">Signup</button>-->
+      {{ render_field(register_user_form.submit) }}
+
+    </form>
     </div>
-
-    <div class="control-group">
-        <div class="controls">
-            {{ edit_field(register_user_form.name) }}
-        </div>
-    </div>
-
-    <div class="control-group">
-        <div class="controls">
-            {{ edit_field(register_user_form.password) }}
-            {% if register_user_form.password_confirm %}
-            {{ edit_field(register_user_form.password_confirm) }}
-            {% endif %}
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="controls">
-            {{ edit_field(register_user_form.company) }}
-        </div>
-    </div>
-
-
-
-    <div class="control-group">
-        <div class="controls">
-          <!--<button type="submit" class="btn btn-success">Signup</button>-->
-            {{ render_field(register_user_form.submit) }}
-        </div>
-    </div>
-  </form>
   </div>
 </div>
-</div>
-    <h3 style="text-align:center; color:rgb(0,0,0);">You can also log in using:<br/>
+    <h3 style="text-align:center;">You can also log in using:<br/>
       <a href="{{url_for('login_fb')}}"><i class="fa fa-facebook"></i>  Facebook</a> or <a href="{{url_for('login_ln')}}"><i class="fa fa-linkedin"></i> LinkedIn</a></h3>
 </div>
 
 
 
-
-
-
-
- <footer role="contentinfo" class="bs-docs-footer">
-  <div class="container">
-    <div class="bs-docs-social">
-  <ul class="bs-docs-social-buttons">
-  </ul>
-</div>
-
-
-    <!--<p>Designed and built with all the love in the world by <a target="_blank" href="http://twitter.com/mdo">@mdo</a> and <a target="_blank" href="http://twitter.com/fat">@fat</a>.</p>
-    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>----->
+ <footer role="contentinfo" >
+  <div class="container">  
     <p>Product of Konor Dev.co<a target="_blank" href="#"></a> Made in  Finland <a href="#">2014</a>.</p>
-    <!---<ul class="bs-docs-footer-links muted">
-      <li>Currently v3.1.1</li>
-      <li><a href="#">GitHub</a></li>
-      <li><a href="#">Examples</a></li>
-      <li><a href="#">v2.3.2 docs</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Expo</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="">Issues</a></li>
-      <li><a href="">Releases</a></li>
-    </ul>----->
+
   </div>
 </footer>
 

@@ -141,6 +141,95 @@ class Resume(db.Model):
     skills_nine = Column(String(255), default="")
     skills_ten = Column(String(255), default="")
 
+    # NEW FIELDS with new resume tempate
+    company_summary1 = Column(String(255), default="")
+    company_summary2 = Column(String(255), default="")
+
+    role1 = Column(String(255), default="")
+    role2 = Column(String(255), default="")
+
+    role_description1 = Column(Text)
+    role_description2 = Column(Text)
+
+
+    company_name1 = Column(Text)
+    company_name2 = Column(Text)
+
+    core_compitencies = Column(Text)
+    core_compitencies1 = Column(Text)
+    core_compitencies2 = Column(Text)
+    core_compitencies3 = Column(Text)
+    core_compitencies4 = Column(Text)
+
+    degree_description1 = Column(Text)
+    degree_description2 = Column(Text)
+
+    school_name = Column(Text)
+    school_name1 = Column(Text)
+    school_name2 = Column(Text)
+
+    location_school1  = Column(Text)
+    location_school2  = Column(Text)
+
+    start_date_school = Column(Text)
+    start_date_school1 = Column(Text)
+    start_date_school2 = Column(Text)
+
+    end_date_school = Column(Text)
+    end_date_school1 = Column(Text)
+    end_date_school2 = Column(Text)
+
+    company_name1 = Column(Text)
+    company_name2 = Column(Text)
+
+    location_company = Column(Text)
+    location_company1 = Column(Text)
+    location_company2 = Column(Text)
+
+    start_date_company = Column(Text)
+    start_date_company1 = Column(Text)
+    start_date_company2 = Column(Text)
+
+    end_date_company = Column(Text)
+    end_date_company1 = Column(Text)
+    end_date_company2 = Column(Text)
+
+    work_currently = Column(Boolean, default=False)
+    work_currently1 = Column(Boolean, default=False)
+    work_currently2 = Column(Boolean, default=False)
+
+    school_currently = Column(Boolean, default=False)
+    school_currently1 = Column(Boolean, default=False)
+    school_currently2 = Column(Boolean, default=False)
+
+    role1 = Column(Text)
+    role2 = Column(Text)
+
+    work1_achievement = Column(Text)
+    work1_achievement1 = Column(Text)
+    work1_achievement2 = Column(Text)
+
+    work2_achievement = Column(Text)
+    work2_achievement1 = Column(Text)
+    work2_achievement2 = Column(Text)
+
+    work3_achievement = Column(Text)
+    work3_achievement1 = Column(Text)
+    work3_achievement2 = Column(Text)
+
+    other_skills = Column(Text)
+    other_skills1 = Column(Text)
+    other_skills2 = Column(Text)
+    other_skills3 = Column(Text)
+    other_skills4 = Column(Text)
+    other_skills5 = Column(Text)
+
+    duties = Column(Text)
+    duties1 = Column(Text)
+    duties2 = Column(Text)
+
+
+
 
     def __repr__(self):
         return u'<{self.__class__.__name__}: {self.id}>'.format(self=self)

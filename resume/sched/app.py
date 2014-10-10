@@ -75,9 +75,18 @@ class MyAdminIndexView(AdminIndexView):
         return self.render('admin/index.html')
 
 class AdminView(ModelView):
+    column_searchable_list = (User.name, User.email, User.created)
+    column_searchable_list = (Resume.name, Resume.email, Resume.title, Resume.city, Resume.country, 
+        Resume.summary_title, Resume.summary_text,Resume.company_name,
+        Resume.company_summary, Resume.role, Resume.role_description, 
+        Resume.summary_title_two, Resume.summary_text_two,Resume.company_name_two,
+        Resume.company_summary_two, Resume.role_two, Resume.role_description_two,
+        Resume.core_compitencies,Resume.core_compitencies1,Resume.core_compitencies2, Resume.core_compitencies3, 
+        Resume.core_compitencies4, Resume.other_skills, Resume.other_skills1, Resume.other_skills2,Resume.other_skills3, 
+        Resume.other_skills4 , Resume.other_skills5)
+    column_exclude_list = ('modified','password', 'active', 'confirmed_at','company')
     def is_accessible(self):
         return current_user.has_role('ROLE_ADMIN')
-
 # Flask-Admin
 admin = Admin(app, name='Internly', index_view=MyAdminIndexView())
 
@@ -112,6 +121,16 @@ app.jinja_env.filters['slug'] = slug
 
 Misaka(app)
 mail = Mail(app)
+
+def validate_browser(): 
+    browser = request.user_agent.browser
+    version = request.user_agent.version and int(request.user_agent.version.split('.')[0])
+    platform = request.user_agent.platform
+    uas = request.user_agent.string
+    if (browser == 'msie' and version < 9): 
+        return "error"
+    elif (browser == 'firefox' and version < 10):
+        return "warning"
 
 # Setup logging for production.
 if not app.debug:
@@ -383,6 +402,12 @@ def all_resumes():
 def resumes_list():
     """Provide HTML page listing all resumes in the database."""
     # Query: Get all Resume objects, sorted by the resume date.
+    browser = validate_browser()
+    if (browser == 'error'): 
+        return render_template("error/error_browser.html")
+    elif (browser == 'warning'):
+        flash("This website works better with the latest version of Firefox or"+ 
+            " try to install Chrome. Thanks!", 'warning')
     appts = list()
     resumes = (db.session.query(Resume)
              .filter_by(user_id=current_user.id)
@@ -486,6 +511,12 @@ def resume_delete(resume_id):
         abort(404)
     if appt.user_id != current_user.id:
         abort(403)
+
+    resume_views = db.session.query(ResumeView).filter(ResumeView.resume == appt)
+    for record in resume_views:
+        db.session.delete(record)
+    db.session.commit()
+
     db.session.delete(appt)
     db.session.commit()
     return redirect(url_for('resumes_list'))
@@ -585,9 +616,21 @@ def security_company_register():
 @app.route('/company/activate/', methods=['GET', 'POST'])
 @login_required
 def company_register():
+    company_details = None
+    try:
+        company_details = db.session.query(CompanyUserData
+                        ).filter_by(user_id=current_user.id).all()[0]
+    except IndexError:
+        pass
+
+    if company_details:
+        return redirect(url_for('position_list'))
+
     form = RegisteCompanyForm(request.form)
     if request.method == 'POST' and form.validate():
         appt = CompanyUserData(user_id=current_user.id)
+        if not appt.last_name:
+            appt.last_name = ""
         form.populate_obj(appt)
         db.session.add(appt)
 

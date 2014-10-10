@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/style_header.css">
+<link rel="stylesheet" href="../css/style_resume.css">
+<link rel="stylesheet" href="../css/style_edit.css">
+<title>Internly. Edit resume</title>
+<body>
+	<div class="menu">
+		<h1>Internly</h1>
+		<ul class="menu_items">
+			<li><a href="#" class="active"><i class="fa fa-files-o"> My Resume</i></a></li>
+			<li><a href="#"><i class="fa fa-users"> All Vacancies</i></a></li>
+			<li><a href="#"><i class="fa fa-list-alt"> Blog</i></a></li>
+		</ul>
+		<span class="user">
+			<ul>
+				<li><img src="../img/user.jpg" alt="User image"></li>
+			</ul>
+		</span>
+	</div>
+	<div class="container resume_edit">
+		<div class="content">
+			<form action="">				
+				<div class="form_fields">
+				<label for="name">Name</label>
+					<div class="form-group name">					    
+					    <input type="text" class="form-control input-lg" id="name" placeholder="Sergey Dubovik">
+					</div>
+					<label for="position">Position</label>
+					<div class="form-group position">					    
+					    <input type="text" class="form-control input-lg" id="position" placeholder="Web Developer">
+					</div>
+					<label for="qualities">Professional qualities</label>
+					<div class="form-group qualities">					   
+					    <textarea class="form-control" id="qualities" rows="5" placeholder="Write a few sentences about what kind of specialist are you"></textarea>
+					</div>
+					<label for="competencies">Core competencies</label>
+					<div class="form-group competencies">					    
+					    <div>
+						    <input type="text" class="form-control input-xs" placeholder="HTML5">
+					    </div>
+					</div>
+					<hr>
+					<label>Education</label>
+					<div class="form-group study_pace">					    
+					    <input type="text" class="form-control input-m" id="degree_name" placeholder="Name of a Degree">
+					    <input type="text" class="form-control input-m" id="university_name" placeholder="Name of a University">
+					    <input type="text" class="form-control input-m" id="university_location" placeholder="Location of a University">
+					    <input type="text" class="form-control input-m" id="study_period_start" placeholder="Beginnig">
+					    <input type="text" class="form-control input-m" id="study_period_end" placeholder="End">
+					    <label><input type="checkbox"> Currently</label>
+					</div>
+					<a href="#" class="btn" id="add_study"><i class="fa fa-plus"></i> Add another education place</a>
+					<hr>
+					<label for="qualities">Work Experience</label>
+					<div class="form-group work_experience">
+					    <input type="text" class="form-control input-m" id="company_name" placeholder="Company name">
+					    <input type="text" class="form-control input-m" id="company_place" placeholder="Company location">
+					    <input type="text" class="form-control input-m" id="work_period_start" placeholder="Beginnig">
+					    <input type="text" class="form-control input-m" id="work_period_end" placeholder="End">
+					    <label><input type="checkbox"> Currently</label>
+					    <textarea class="form-control" rows="5" placeholder="Write a few sentences about that company"></textarea>
+					    <input type="text" class="form-control input-m" placeholder="Your position">
+					    <label><strong>Achievements</strong></label>
+					    <div class="achievements">
+						    <input type="text" class="form-control input-xs" placeholder="I did">
+					    </div>
+					</div>
+					<a href="#" class="btn" id="add_work"><i class="fa fa-plus"></i> Add another work place</a>
+					<hr>
+					<label for="other_skills">Other Skills</label>
+					<div class="form-group other_skills">					    
+					    <div>
+						    <input type="text" class="form-control input-xs" placeholder="Skill">
+					    </div>
+					</div>
+					<div class="resume_controls">
+						<a href="#" class="btn edit"><i class="fa fa-check"></i> Save</a>				
+						<a href="#" class="btn delete"><i class="fa fa-times"></i> Cancel</a>
+					</div>
+				</div>
+		 	</form>
+		</div>
+	</div>
+	<script src="../js/jquery-2.0.3.min.js" type="text/javascript"></script>
+	<script src="../js/script_edit.js" type="text/javascript"></script>
+</body>
+</html>

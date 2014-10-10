@@ -1,4 +1,9 @@
 {% extends "public/public.html" %}
+
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_public.css') }}" rel="stylesheet">
+{% endblock head%}
+
 {% block content %}
 
         <!-- CSS code from Bootply.com editor -->
@@ -13,11 +18,10 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 /* fix bs3 horizontal scrollbar bug */
-.row { margin: 0; padding: 0 }
+.row { margin: 0; padding: 0; }
 
 h1 {
   font-size:50px; 
@@ -25,269 +29,108 @@ h1 {
 
 
 
-h4, p, h5, h6 {
-    color: #000000;
-    font-family: inherit;
-    font-weight: 300;
+h4, p, h5, h6, p {
+     color: #5B6C7E;
+    font-family:'Lato',sans-serif;
+    font-weight: 200;
     line-height: 1.1;
 }
 
-img.grayscale {
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-    filter: gray; /* IE6-9 */
-    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-}
 
-.icon-bar {
-   background-color:#fff;
-}
-
-.scroll-down a, .scroll-top a {
-   color:#ffffff;
-}
-
-.scroll-down {
-   position:fixed;
-   bottom:20%;
-   right:0%;
-   color:#f9f9f9;
-}
-
-.scroll-top {
-  background-color:#33ee67;
-}
-
-.header .btn-lg {
-   font-size:28px;
-   border-color:#eeeeee;
-   padding:15px;
-   background-color:transparent;
-   color:#ffffff;
-}
-
-.header .btn-lg:hover {
-   background-color:#eeeeee;
-   color:#777777;
-}
-
-.navbar a {
-  color:#fff;
-}
-
-.navbar-bold.affix {
-  background-color:#33ee67;
-}
-
-.navbar-bold {
-  background-color:#11cc45;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-}
-
-.navbar-bold li a:hover {
-  background-color:#00bb34;
-}
-
-.navbar-bold li.active {
-  background-color:#00bb34;
-}
-
-.vert {
-  vertical-align: middle;
-  width:100%;
-  padding-top:4%;
-}
-
-.header h1 {
-  font-size:110px;
-  -webkit-text-stroke: 1px rgba(0,0,0,0.1);
-  color:#431a6d;
-  color:#fff;
-  margin-left:-5px;
-  margin-bottom:5px;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-}
-
-.header .lead {
-  color:#eeeeee;
-  font-size:25px;
-}
-
-.header {
-  height: 80%;
-  background: #2B3E50;
-}
-
-.blurb {
-  padding: 120px 0;
-  background-color:#fefefe;
-}
-
-.blurb .panel {
-  background-color:transparent;
-}
-
-.bright {
-  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
-  color:#fff;
-}
-
-.featurette {
-  background: #545455;
-  padding: 50px 0;
-  color: #ffffff;
-}
-
-.featurette-item {
-  margin-bottom: 15px;
-}
-
-.featurette-item > i {
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 56px;
-  width: 140px;
-  height: 140px;
-  line-height: 136px;
-  vertical-align: middle; 
-  text-align: center;
-}
-
-.featurette-item > i:hover {
-  font-size: 68px;
-}
-
-.callout {
-  color: #ffffff;
-  padding-top:7%;
-  height: 100%;
-  width: 100%;
-  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.gallery {
-  padding: 50px 0;
-}
-
-.call-to-action {
-  background: #eeeeee;
-  padding: 50px 0;
-}
-
-.call-to-action .btn {
-  margin: 10px;
-}
-
-footer {
-  padding: 100px 0;
-}
-
-/* -- end custom css for Bootstrap 3.x --*/
-
-        </style>
-    </head>
-    
-    <!-- HTML code from Bootply.com editor -->
-    
-    <body  >
+</style>
         
         
 
 
-<div class="header vert" style="height: 450px; padding-top: 55px;">
+<div class="header vert about">
   <div class="container">
     
-    <h1>About us</h1>
-      <p class="lead">Who we are </p>
-      <div>&nbsp;</div>
-      <!-----<a href="#" class="btn btn-default btn-lg">+358443629957</a>------>
+    <h1>What is Internly</h1>
+    <p>
+      <strong>Internly</strong> is an online recruitment portal, which is match-making companies, and people in need of work. Our vision is to become #1 in Europe when it comes recruiting interns, entry- level workers and experienced professionals. We make it easier for companies to find applicants for their needs.
+    </p>
+    <p>
+      <strong>Why?</strong> It takes average of 6 seconds for recruiter to read a resume, or CV. When there are hundreds or even thousands of applicants, it will take huge amount of time to go through them. We shorten that time, and only show the best fitting applicants for recruiters.
+    </p>
+    <p>
+      <strong>How?</strong> Applicant creates a CV, which only has the most necessary information for recruiters. Applicants use one-click ”Apply Now” system, to numerous open positions. The recruiter sees only those, who are fitting for the position, and can download all CVs that seems interesting for their needs.
+    </p>
+      <!---<a href="#" class="btn btn-default btn-lg">+358443629957</a>-->
   </div>
 </div>
 
-<div id="sec1" class="blurb">
-  <div class="container">
-    <!--------<div class="row">
+<div class="container">
+  <div class="cofounder">
+    <div class="col-md-2">
+      <img src="{{ url_for('static', filename='img/ani.png') }}" alt="Aniekan Okono">
+    </div>
+    <div class="col-md-10">
+  	  <h4>Aniekan Okono (Cofounder)</h4>
+      <div class="btn-group">
+        <a href="https://twitter.com/anioko1" target="_blank"><i class="fa fa-twitter-square"></i></a>
+        <a href="https://www.facebook.com/aokono" target="_blank"><i class="fa fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/pub/aniekan-okono/2b/b72/686" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+        <a href="mailto:info@intern.ly"><i class="fa fa-envelope-square"></i></a>
+      </div>
+      <p>Aniekan has been an entrepreneur for a while, he currently lives in Helsinki, Finland. He is enthusiastic about the use of technology to solve problems. He plays football during his spare time.</p>
 
-  <div class="col-sm-6 col-md-4" align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-     <!----------- <div class="caption">
-        <h3>Aniekan Okono</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
     </div>
   </div>
-    <div class="col-sm-6 col-md-4"align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-      <!--------<div class="caption">
-        <h3>Jarmo Hakulinen</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+  <div class="cofounder">
+    <div class="col-md-2">
+      <img src="{{ url_for('static', filename='img/jarmo.png') }}" alt="Jarmo Hakulinen">
+    </div>
+    <div class="col-md-10">
+      <h4>Jarmo Hakulinen (Cofounder)</h4>
+      <div class="btn-group">
+        <a href="https://twitter.com/jarmohak" target="_blank"><i class="fa fa-twitter-square"></i></a>
+        <a href="https://www.facebook.com/jarmo.hakulinen" target="_blank"><i class="fa fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/in/jarmohakulinen" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+        <a href="mailto:Jarmo.hakulinen@intern.ly"><i class="fa fa-envelope-square"></i></a>
       </div>
+      <p>Jarmo works as a team leader and CFO in Internly. He's enthusiastic about technology, innovations and new businesses. He has been an entrepreneur since 2010.</p>
     </div>
-    </div>
-    <div class="col-sm-6 col-md-4"align="center">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="..."> <!------Replace with images----->
-      <!---<div class="caption">
-        <h3>Friend</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-    </div>---------->
-	<h4>Aniekan Okono (Cofounder) </h4>
-      <p>Currently lives in Helsinki, Finland. He is enthusiastic about solving problems. He plays football during his spare time </p>
-	 <br>
-	
-	<h4>Jarmo Hakulinen(Cofounder) </h4>
-	 <p>A Finn, involved in several export companies and products. Always selling or providing solutions. He is an entrepreneur and a father. </p>
-	 <p><p/>
   </div>
 </div>
 
 
 
 
+<div class="center_w_margin">
+  <div class="btn-group">
+    <button class="btn btn-default disabled">
+      Share:
+    </button>
+
+    <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fintern.ly&amp;t=Url%20Encoded%20Text" title="On Facebook" target="_blank" class="btn btn-default">
+      <i class="fa fa-facebook fa-lg fb"></i>
+    </a>
+
+    <a href="http://twitter.com/share?url=http%3A%2F%2Fintern.ly&amp;text=Url%20Encoded%20Text" title="On Twitter" target="_blank" class="btn btn-default">
+      <i class="fa fa-twitter fa-lg tw"></i>
+    </a>
+
+
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fintern.ly" title="On LinkedIn" target="_blank" class="btn btn-default">
+      <i class="fa fa-linkedin fa-lg linkin"></i>
+    </a>
+
+    <a href="http://vk.com/share.php?url=http%3A%2F%2Fintern.ly&amp;title=Url%20Encoded%20Title&amp;description=Url%20Encoded%20Text&amp;image=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="On VK.com" target="_blank" class="btn btn-default">
+      <i class="fa fa-vk fa-lg vk"></i>
+    </a>
+
+    <a href="http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fintern.ly&amp;description=Url%20Encoded%20Text&amp;media=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="Pin It" target="_blank" class="btn btn-default">
+      <i class="fa fa-pinterest fa-lg pinterest"></i>
+    </a>
+  </div>
+</div>
 
  <footer role="contentinfo" class="bs-docs-footer">
-  <div class="container">
-    <div class="bs-docs-social">
-  <ul class="bs-docs-social-buttons">
-  </ul>
-</div>
 
-
-    <!--<p>Designed and built with all the love in the world by <a target="_blank" href="http://twitter.com/mdo">@mdo</a> and <a target="_blank" href="http://twitter.com/fat">@fat</a>.</p>
-    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>----->
     <p>Product of Konor Dev.co<a target="_blank" href="#"></a> Made in  Finland <a href="#">2014</a>.</p>
-    <!---<ul class="bs-docs-footer-links muted">
-      <li>Currently v3.1.1</li>
-      <li><a href="#">GitHub</a></li>
-      <li><a href="#">Examples</a></li>
-      <li><a href="#">v2.3.2 docs</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Expo</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="">Issues</a></li>
-      <li><a href="">Releases</a></li>
-    </ul>----->
-  </div>
+
 </footer>
 
-<ul class="nav pull-right scroll-down">
-  <li><a href="#" title="Scroll down"><i class="icon-chevron-down icon-3x"></i></a></li>
-</ul>
-<ul class="nav pull-right scroll-top">
-  <li><a href="#" title="Scroll to top"><i class="icon-chevron-up icon-3x"></i></a></li>
-</ul>
 
         
         <!-- JavaScript jQuery code from Bootply.com editor -->

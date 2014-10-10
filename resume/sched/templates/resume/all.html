@@ -3,6 +3,9 @@
 {% from 'resume/commons.html' import detail %}
 
 {% block title %}Resumes{% endblock title %}
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_view_all.css') }}" rel="stylesheet">
+{% endblock head%}
 
 {% block main %}
 
@@ -38,8 +41,7 @@ body {
   font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 body {
-    background-color: #FFFFFF;
-    color: #000000;
+
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 15px;
     line-height: 1.42857;

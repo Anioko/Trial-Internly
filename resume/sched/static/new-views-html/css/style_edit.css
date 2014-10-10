@@ -1,0 +1,119 @@
+.resume_controls {
+	width:100%;
+	padding-top: 0px;
+	float: none;
+	margin-bottom: 20px;
+}
+.resume_controls .btn {
+	border: 1px solid;
+	width: 45%;
+}
+
+.resume_controls .btn.delete {
+	float: right;
+}
+
+.form_fields {
+	padding-top: 10px;
+	width: 400px;
+}
+label {
+	display: block;
+}
+.form_fields input,
+.form_fields textarea {
+	border-radius: 0;
+	border-color: #eee;
+	outline: none;
+}
+.form_fields input:focus,
+.form_fields textarea:focus {	
+	box-shadow: 0 0 3px rgba(85, 134, 187, 0.63);
+	border-color: rgba(100, 123, 148, 0.64);
+}
+
+.competencies input,
+.work_experience .achievements input,
+.other_skills input{
+	width: 100px;
+	display: inline-block;
+	margin-right: 10px;
+	
+
+}
+.form_fields .competencies input:last-child,
+.form_fields .competencies span:last-child {
+	margin-right: 0;
+}
+.form_fields .competencies span,
+.form_fields .work_experience .achievements span,
+.other_skills span {
+	height: 34px;
+	padding: 9px 12px;
+	background: #DFDFDF;
+	margin: 0 5px 5px 0;
+	display: inline-block;
+}
+.form_fields .competencies span i {
+	cursor: pointer;
+}
+.editing_tools {
+	width: 226px;
+}
+.form_fields input,
+.form_fields textarea {
+	margin-bottom: 5px;
+}
+.form_fields .study_pace #study_period_start,
+.form_fields .study_pace #study_period_end,
+.form_fields .study_pace #currently,
+.form_fields .work_experience #work_period_start,
+.form_fields .work_experience #work_period_end,
+.form_fields .work_experience #currently {
+	display: inline-block;
+}
+.form_fields .work_experience label,
+.form_fields .study_pace label {
+	display: inline-block;
+	font-weight: normal;
+}
+.form_fields .study_pace #study_period_start,
+.form_fields .study_pace #study_period_end,
+.form_fields .work_experience #work_period_start,
+.form_fields .work_experience #work_period_end {
+	width: 120px;
+	margin-right: 2px;
+}
+.form_fields .study_pace {
+	margin-bottom: 20px;
+}
+.form_fields .btn {
+	
+	color: #67A26C;
+	font-weight: bold;
+	-webkit-transition: background .2s, color .1s;
+	-o-transition: background .2s, color .1s;
+	transition: background .2s, color .1s;
+	border-radius: 0;
+}
+
+.form_fields .btn:hover {
+	background: #447C49;
+	color: white;
+}
+
+@media (max-width: 430px) {
+	.form_fields {
+		width: 100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,225 @@
+.resume_controls {
+	height: 33px;
+	width:100%;
+	padding-top: 0px;
+	float: none;
+	margin-bottom: 20px;
+}
+.popover,
+.arrow {
+	background: transparent;
+}
+
+.bad_input {
+	background: red;
+}
+.bad_input_message {
+	display: inline-block;
+	position: relative;
+}
+.resume_edit {
+	padding-top: 40px;
+}
+.resume_edit h6 {
+	font-size: 1em;
+	font-weight: bold;
+	color:  #4E5D6C;
+}
+.resume_edit form {
+	background: none;
+	box-shadow: none;
+}
+.resume_controls .btn {
+	border: 1px solid;
+	width: 45%;
+}
+.resume_edit input {
+	height: 45px;
+	padding: 0 0 0 10px;
+}
+.resume_edit input[type="checkbox"]
+ {
+	height: auto;
+}
+.resume_edit input[id*='start'],
+.resume_edit input[id*='end'] {
+	display: inline-block;
+	width: 130px;
+	margin-right: 5px;
+	text-align: center;
+	padding-left: 0;
+}
+.resume_edit textarea {
+	padding: 5px 0 0 10px;
+	height: 170px;
+}
+.contacts input:not(:last-child) {
+	width: 200px;
+}
+
+.resume_controls .btn.delete {
+	float: right;
+}
+
+.form_fields {
+	padding: 20px 0 40px;
+	width: 400px;
+}
+legend {
+	color: #4E5D6C;
+	border: none;
+}
+label {
+	display: none;
+}
+
+.form_fields input,
+.form_fields textarea {
+	border-radius: 0;
+	border-color: #eee;
+	outline: none;
+}
+.form_fields input::-webkit-input-placeholder,
+.form_fields textarea::-webkit-input-placeholder{
+	color: #E2E2E2;
+	font-weight: 300;
+	font-size: .9em;
+}
+.form_fields input::-moz-placeholder,
+.form_fields textarea::-moz-placeholder{
+	color: #E2E2E2;
+	font-weight: 300;
+}
+.form-group {
+	padding-bottom: 10px;
+}
+#remove_work,
+#remove_study {
+	color: #C85E17;
+}
+#remove_work:hover,
+#remove_study:hover {
+	color: white;
+	background: #C85E17;
+}
+.form_fields input:focus,
+.form_fields textarea:focus {	
+	box-shadow: 0 0 3px rgba(85, 134, 187, 0.63);
+	border-color: rgba(100, 123, 148, 0.64);
+}
+.hidden {
+	display: none;
+}
+.competencies input:not(:first-child),
+.other_skills input:not(:first-child) {
+	display: none;
+}
+
+.competencies input,
+.other_skills input{
+	width: 130px;
+	display: inline-block;
+	margin-right: 10px;
+}
+.achievements input:not(:first-child) {
+	display: none;
+}
+.work_experience .achievements input {
+	width: 100%;
+}
+.form_fields .competencies input:last-child,
+.form_fields .competencies span:last-child {
+	margin-right: 0;
+}
+.form_fields .competencies span,
+.form_fields .achievements span,
+.other_skills span {
+	height: auto;
+	padding: 9px 12px;
+	background: #DFDFDF;
+	margin: 0 5px 5px 0;
+	display: inline-block;
+	max-width: 100%;
+}
+.form_fields .competencies span i,
+.form_fields .work_experience .achievements span i,
+.other_skills span i {
+	cursor: pointer;
+}
+.editing_tools {
+	width: 226px;
+}
+.form_fields input,
+.form_fields textarea {
+	margin-bottom: 5px;
+}
+
+
+.form_fields .study_pace {
+	margin-bottom: 20px;
+}
+.form_fields #add_work,
+.form_fields #add_study {
+	color: #67A26C;
+}
+.form_fields .btn {
+	font-weight: bold;
+	-webkit-transition: background .2s, color .1s;
+	-o-transition: background .2s, color .1s;
+	transition: background .2s, color .1s;
+	border-radius: 0;
+	padding: 5px 10px;
+	background: none;
+	display: block;
+}
+.warning {
+	color: red;
+	font-weight: bold;
+}
+
+.form_fields #add_work:hover,
+.form_fields #add_study:hover {
+	background: #61A267;
+	color: white;
+}
+.resume_controls .btn:first-child {
+	float: left;
+	color: #67A26C;
+}
+.resume_controls .btn:first-child:focus {
+	outline: none;
+}
+.resume_controls .btn:first-child:hover {
+	background: #67A26C;
+	color: white;
+}
+
+.resume_controls .btn:last-child {
+	float: right;
+	color: #C85E17;
+}
+.resume_controls .btn:last-child:hover {
+	background: #C85E17;
+	color: white;
+}
+.resume_controls .btn {
+	display: inline-block;
+}
+.resume_controls .btn .cancel {
+	color: #c85e17;
+}
+@media (max-width: 430px) {
+	.form_fields {
+		width: 100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+

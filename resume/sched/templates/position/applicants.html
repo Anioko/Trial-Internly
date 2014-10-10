@@ -1,14 +1,19 @@
 {% extends 'public/public.html' %}
 {% from 'position/commons.html' import detail %}
 {% block title %}Aplicants{% endblock title %}
+{% block head%}
 
+<link href="{{ url_for('static', filename='css/style_position.css') }}" rel="stylesheet">
+
+
+{% endblock head%}
 {% block main %}
 
-<div class="container" style="margin-top: 100px;">
+<div class="container applicants" style="margin-top: 100px;">
     <div class="row">
 
         {% if applicants|length == 0 %}
-        <h2>There are no aplications. <small>Please wait a bit longer time...</small></h2>
+        <h2>There are no applications. <small>Please wait a bit longer time...</small></h2>
         {% else %}
             {% if current_user.has_role('ROLE_ADMIN') %}
             <div class="edit-controls"  align="right">
@@ -34,7 +39,7 @@
                 <td> no resume avaliabe </td>
                 {% else %}
                 <td>{% for resume_id_b64 in resumes[user.id] %}
-                    <a href="{{ url_for('resume_preview', resume_id=resume_id_b64)  }}"> resume {{loop.index}} </a>,
+                    <a href="{{ url_for('resume_preview', resume_id=resume_id_b64)  }}"> resume {{loop.index}} </a>
                     {% endfor %}
                 </td>
                 {%endif %}
@@ -65,11 +70,9 @@ html,
 body {
 height: 100%;
 width: 100%;
-font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+
 }
 body {
-background-color: #FFFFFF;
-color: #000000;
 font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 font-size: 15px;
 line-height: 1.42857;
@@ -83,12 +86,7 @@ font-size:50px;
 }
 
 
-/*h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 , p{
-color: #ffffff;
-font-family: inherit;
-font-weight: 300;
-line-height: 1.1;
-}*/
+
 
 img.grayscale {
 filter: url("data:image/svg+xml;utf8,

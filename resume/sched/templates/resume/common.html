@@ -1,82 +1,348 @@
-{% macro detail(appt, link_title=false, show_edit=true, show_summary=true, views=0) %}
-  <div class="resume-detail">
+
+{% macro detail(appt, link_title=false, show_edit=true, show_summary=true) %}
     {% if show_edit %}
-    <div class="edit-controls"  align="right">
-        <a href="{{ url_for('resume_edit', resume_id=appt.id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-pencil fa-lg"></i> Edit</button></a>
-        <span class="inline-pad"></span>
-        <a class="resume-delete-link" href="{{ url_for('resume_delete', resume_id=appt.id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-trash-o fa-lg"></i> Delete</button></a>
-        <a href="{{ url_for('resume_detail_pdf', resume_id=appt.id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-file-pdf-o fa-lg"></i> Download as PDF</button></a>
-    </div>
+
+            <div class="resume_controls">
+                <a href="{{ url_for('resume_edit', resume_id=appt.id) }}" class="btn edit"><i class="fa fa-pencil"></i> Edit</a>              
+                <a href="{{ url_for('resume_delete', resume_id=appt.id) }}" class="btn delete"><i class="fa fa-times"></i> Delete</a>
+               <!-- "{{ url_for('resume_detail_pdf', resume_id=appt.id) }}"-->
+                <a href="javascript:window.print()" class="btn save"><i class="fa fa-print"></i> Save</a> 
+            </div>
+   
     {% endif %}
 
     {% if link_title %} 
-      <h3><a href="{{ url_for('resume_detail', resume_id=appt.id) }}">{{ appt.name or '(No Name)' }}</a></h3> {% if views>0 %} <h5>Views: {{views}} </h5> {% endif %}
+    
     {% else %}
-      <h1 align="center">{{ appt.name or '(No Name)' }}</h1>
-	        <h5>{{ appt.email }}, {{ appt.phone }},{{ appt.city }},{{ appt.zip }},{{ appt.country }}, {{ appt.url }}</h5>
-	      
-			
-	   <hr>
-	      <h1 align="center">{{ appt.summary_title }}</h1>
-	      <h5>{{ appt.summary_text if appt.summary_text != None }} </h5>
-	   <hr>
-	   <h1 align="center"> Experience</h1>
-	      <h3>{{ appt.company_name if appt.company_name != None }}, {{ appt.location if appt.location != None  }} , {{ appt.start}}-{{ appt.end or (currently)}} </h3>
-	      <h5>{{ appt.company_summary if appt.company_summary != None  }}</h5>
-	      <h3>{{ appt.role if appt.role != None }}</h3>
-	      <h5>{{ appt.role_description|markdown if appt.role_description != None  }}</h5>
+        <div class="contacts">
+            <h2>{{ appt.name or '(No Name)' }}</h2>
+            <ul>
+                {% if appt.email %}
+                <li><i class="fa fa-envelope-o"></i><a href="mailto:{{ appt.email }}">{{ appt.email }}</a></li>
+                {% else %}
+                {% endif %}
 
- <h3>{{ appt.company_name_two  if appt.company_name_two != None  }} {{ appt.location_two  if appt.location_two != None  }} , {{ appt.start_date}}-{{ appt.end_date }} {% if appt.currently %}<p> Present</p> {% endif %} </h3>
-		  
-           
-        
-		
-     <h6>{{ appt.company_summary_two  if appt.company_summary_two != None  }}</h6>
-	    <h3>{{ appt.role_two  if appt.role_two != None  }}</h3>
-	      <h5>{{ appt.role_description_two|markdown  if appt.role_description_two != None }}</h5>
-		   <hr>
-	     <h1 align="center"> Education</h1>
-		 <h3>{{ appt.school_name_one  if appt.school_name_one != None }}</h3>
-		 <h5>{{ appt.degree_description if appt.degree_description != None }}</h5>
-		 <h5>{{ appt.grading if appt.grading != None }}</h5>
-		 <h5>{{ appt.start_date_school|datefromstring}}</h5>
-		 To {{ appt.end_date_graduation|datefromstring if not appt.currently_three else '(now)' }}
+                {% if appt.phone %}
+                <li><i class="fa fa-phone"></i>{{ appt.phone }}</li>
+                {% else %}
+                {% endif %}
 
-		 <h5>{{ appt.location_school if appt.location_school != None }}</h5>
-		 <h5>{{ appt.city_school if appt.city_school != None }}</h5>
-		 <h5>{{ appt.country_school if appt.country_school != None }}</h5>
+                {% if appt.city %}
+                <li><i class="fa fa-map-marker"></i>{{ appt.city }}</li>
+                {% else %}
+                {% endif %}
 
-		 <br>
-		 <h3>{{ appt.school_name_two if appt.school_name_two != None }}</h3>
-		 <h5>{{ appt.degree_description_two if appt.degree_description_two != None }}</h5>
-		 <h5>{{ appt.grading_two if appt.grading_two != None }}</h5>
-		 <h5> {{ appt.start_date_one|datefromstring}}</h5>
-		 <h5> {{ appt.end_date_two|datefromstring if not appt.currently_four  else '(now)' }}</h5>
-		 <h5>{{ appt.location_school_two if appt.location_school_two != None }}</h5>
-		 <h5>{{ appt.location_school_two if appt.location_school_two != None }}</h5>
-		 <h5>{{ appt.country_school_two if appt.country_school_two != None }}</h5>
-		<hr>
-	     <h1 align="center"> Skills & Courses</h1>
-		 <h5>{{ appt.skills_one if appt.skills_one != None }}</h5>
-		 <h5>{{ appt.skills_two if appt.skills_two != None}}</h5>
-		 <h5>{{ appt.skills_three if appt.skills_three != None}}</h5>
-		 <h5>{{ appt.skills_four if appt.skills_four != None}}</h5>
-		 <h5>{{ appt.skills_five if appt.skills_five != None}}</h5>
-		 <h5>{{ appt.skills_six if appt.skills_six != None}}</h5>
-		 <h5>{{ appt.skills_seven if appt.skills_eight != None}}</h5>
-		 <h5>{{ appt.skills_eight if appt.country_school_two != None}}</h5>
-		 <h5>{{ appt.skills_nine if appt.skills_nine != None}}</h5>
-		 <h5>{{ appt.skills_ten if appt.skills_ten != None}}</h5>
-		 
+                {% if appt.url %}
+                <li><i class="fa fa-globe"></i><a href="{{ appt.url }}" target="_blank">{{ appt.url }}</a></li>
+                {% else %}
+                {% endif %}
+            </ul>
+        </div>
+        <div class="cover_letter">
+            <h2 class="job_title">{{ appt.summary_title }}</h2>
+            <p>
+                {{ appt.summary_text }}
+            </p>
+            <h4>Core competencies:</h4>
+            <ul>
+                {% if appt.core_compitencies %}
+                <li>{{ appt.core_compitencies }}</li> 
+                {% else %}
+                {% endif %}
+                {% if appt.core_compitencies1 %}
+                <li>{{ appt.core_compitencies1 }}</li> 
+                {% else %}
+                {% endif %}
+                {% if appt.core_compitencies2 %}
+                <li>{{ appt.core_compitencies2 }}</li> 
+                {% else %}
+                {% endif %}
+                {% if appt.core_compitencies3 %}
+                <li>{{ appt.core_compitencies3 }}</li> 
+                {% else %}
+                {% endif %}
+                {% if appt.core_compitencies4 %}
+                <li>{{ appt.core_compitencies4 }}</li> 
+                {% else %}
+                {% endif %}
+            </ul>
+        </div>
+        <div class="experience">
+            <h3>Experience</h3>
+            <div class="job">
+                <ul class="employee">
+                    {% if appt.company_name %}
+                    <li>
+                        {{ appt.company_name }} •
+                    </li>
+                    {% else %}
+                    {% endif %}
 
-	  
+                    {% if appt.location_company %}
+                    <li>                        
+                        {{ appt.location_company }} •                        
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.start_date_company %}
+                    <li>
+                        {{ appt.start_date_company or " "}} - {{ appt.end_date_company or "Present"}}
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                </ul>
+                <p class="company_description">
+                {% if appt.company_summary %}
+                    {{ appt.company_summary }}   
+                {% else %}
+                {% endif %}             
+                </p>
+                <h4 class="job_title">{{ appt.role }}</h4>
+                <p class="job_description">
+                    {% if appt.duties %}
+                    {{ appt.duties }}
+                    {% else %}
+                    {% endif %}
+                </p>
+                <h4>Achievements</h4>
+                <ul class="achievements">
+                    {% if appt.work1_achievement %}
+                    <li>{{ appt.work1_achievement }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work1_achievement1 %}
+                    <li>{{ appt.work1_achievement1 }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work1_achievement2 %}
+                    <li>{{ appt.work1_achievement2 }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="job ">
+                <ul class="employee">
+                    {% if appt.company_name1 %}
+                    <li>
+                        {{ appt.company_name1 }} •
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_company1 %}
+                    <li>                        
+                        {{ appt.location_company1 }} •                        
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.start_date_company1 %}
+                    <li>
+                        {{ appt.start_date_company1 or " "}} - {{ appt.end_date_company1 or "Present"}}
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                </ul>
+                <p class="company_description">
+                {% if appt.company_summary1 %}
+                    {{ appt.company_summary1 }}
+                {% else %}
+                {% endif %}
+                </p>
+                <h4 class="job_title">{{ appt.role1 }}</h4>
+                <p class="job_description">
+                {% if appt.duties1 %}
+                    {{ appt.duties1 }}
+                {% else %}
+                {% endif %}
+                </p>
+                <h4>Achievements</h4>
+                <ul class="achievements">
+                    {% if appt.work2_achievement %}
+                    <li>{{ appt.work2_achievement }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work2_achievement1 %}
+                    <li>{{ appt.work2_achievement1 }}</li>
+                    {% else %}
+                    {% endif %}
+                    {% if appt.work2_achievement2 %}
+                    <li>{{ appt.work2_achievement2 }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="job">
+                <ul class="employee">
+                    {% if appt.company_name2 %}
+                    <li>
+                        {{ appt.company_name2 }} •
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_company2 %}
+                    <li>                        
+                        {{ appt.location_company2 }} •                        
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.start_date_company2 %}
+                    <li>
+                        {{ appt.start_date_company2 or " "}} - {{ appt.end_date_company2 or "Present"}}
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                </ul>
+                <p class="company_description">
+                    {% if appt.company_summary2 %}
+                    {{ appt.company_summary2 }}
+                    {% else %}
+                    {% endif %}
+                }
+                </p>
+                <h4 class="job_title">{{ appt.role2 }}</h4>
+                <p class="job_description">
+                    {% if appt.duties2 %}
+                    {{ appt.duties2 }}
+                    {% else %}
+                    {% endif %}
+                </p>
+                <h4>Achievements</h4>
+                <ul class="achievements">
+                    {% if appt.work3_achievement %}
+                    <li>{{ appt.work3_achievement }}</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.work3_achievement1 %}
+                    <li>{{ appt.work3_achievement1 }}</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.work3_achievement2 %}
+                    <li>{{ appt.work3_achievement2 }}</li>
+                    {% else %}
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+        <div class="education">
+            <h3>Education</h3>
+            <div class="study_pace">
+                <ul>
+                    {% if appt.degree_description %}
+                    <li class="degree_name">{{ appt.degree_description}}</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.school_name %}
+                    <li class="university_name">{{ appt.school_name}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school %}
+                    <li class="university_place">{{ appt.location_school}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school %}
+                    <li class="study_years">{{ appt.start_date_school }} - {{ appt.end_date_school or "Present" }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="study_pace">
+                <ul>
+                    {% if appt.degree_description1 %}
+                    <li class="degree_name">{{ appt.degree_description1}}</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.school_name1 %}
+                    <li class="university_name">{{ appt.school_name1}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school1 %}
+                    <li class="university_place">{{ appt.location_school1}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school1 %}
+                    <li class="study_years">{{ appt.start_date_school1 }} - {{ appt.end_date_school1 or "Present" }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="study_pace">
+                <ul>
+                    {% if appt.degree_description2 %}
+                    <li class="degree_name">{{ appt.degree_description2}}</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.school_name2 %}
+                    <li class="university_name">{{ appt.school_name2}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school2 %}
+                    <li class="university_place">{{ appt.location_school2}} •</li>
+                    {% else %}
+                    {% endif %}
+
+                    {% if appt.location_school2 %}
+                    <li class="study_years">{{ appt.start_date_school2 }} - {{ appt.end_date_school2 or "Present" }}</li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>	
+        <div class="other_skills">
+            <h3>Other Skills</h3>
+            <ul>
+                {% if appt.other_skills %}
+                <li>{{ appt.other_skills }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills1 %}
+                <li>{{ appt.other_skills1 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills2 %}
+                <li>{{ appt.other_skills2 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills3 %}
+                <li>{{ appt.other_skills3 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills4 %}
+                <li>{{ appt.other_skills4 }}</li>
+                {% else %}
+                {% endif %}
+                {% if appt.other_skills5 %}
+                <li>{{ appt.other_skills5 }}</li>
+                {% else %}
+                {% endif %}
+            </ul>
+        </div>
+
     {% endif %}
 	
-   {% if show_summary and appt.summary_title %}
+    <!--{% if show_summary and appt.summary_title %}
 
           {{ appt.summary_title | nl2br }}
 
     {% endif %}
+
 
 		 
 
@@ -89,6 +355,7 @@
         <a class="resume-delete-link" href="#" data-delete-url="{{ url_for('resume_delete', resume_id=appt.id) }}">Delete</a>
       </div>
     {% endif %}
+     -->
   </div>
 {% endmacro %}
 
@@ -100,9 +367,9 @@
     {% endif %}
     <div class="form-group {% if field.errors %}error{% endif %}">
         {% if with_label %}
-            <label for="{{ field.id }}" class="control-label">
+            
                 {{ field.label.text }}{% if field.flags.required %} *{% endif %}:
-            </label>
+            
         {% endif %}
 
         {% set class_ = kwargs.pop('class_', '') %}
@@ -111,17 +378,17 @@
         {% endif %}
 
         {% if field.type == 'BooleanField' %}
-            <div class="checkbox">
-                <label>
+          
+                
                     {{ field(class_=class_, **kwargs) }}
                     {{ field.label.text|safe }}
-                </label>
-            </div>
+                
+      
 
         {% else %}
 
             {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
-                {% set class_ = class_ + ' input-xlarge form-control' %}
+                {% set class_ = class_ + ' input-lg form-control' %}
 
             {% elif field.type == 'FileField' %}
                 {% set class_ = class_ + ' input-file form-control' %}
@@ -145,7 +412,7 @@
 {%- endmacro %}
 
 {% macro edit_field(field, catch_kwargs=true) %}
-  <div class="form-group {% if field.errors %}error{% endif %}">
+
     <label for="{{ field.id }}" class="control-label">
         {{ field.label.text }}{% if field.flags.required %} *{% endif %}:
     </label>
@@ -156,17 +423,15 @@
         {% endif %}
 
         {% if field.type == 'BooleanField' %}
-            <div class="checkbox">
-                <label>
+
                     {{ field(class_=class_, **kwargs) }}
                     {{ field.label.text|safe }}
-                </label>
-            </div>
+
 
         {% else %}
 
             {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
-                {% set class_ = class_ + ' input-xlarge form-control' %}
+                {% set class_ = class_ + ' input-lg form-control' %}
 
             {% elif field.type == 'FileField' %}
                 {% set class_ = class_ + ' input-file form-control' %}
@@ -188,7 +453,7 @@
             <p class="help-block">{{ field.description|safe }}</p>
         {% endif %}
 
-  </div>
+
 {% endmacro %}
 
 

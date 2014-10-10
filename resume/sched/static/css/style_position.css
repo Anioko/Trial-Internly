@@ -1,0 +1,84 @@
+.applicants table {
+	font-size: 1.2em;
+	color: #5B6C7E;
+}
+.created_position {
+	font-family:'Lato',sans-serif;
+	color: #5B6C7E;
+}
+.created_position h1 {
+	font-size: 4em;
+	font-weight: 600;
+}
+.created_position h2 {
+	font-size: 2.5em;
+	font-weight: 400;
+}
+.created_position h3 {
+	font-size: 1.6em;
+	margin: 10px 0 15px 0;
+	font-weight: 500;
+}
+.created_position h4 {
+	font-size: 1.6em;
+	font-weight: bold;
+}
+.created_position p,
+.created_position li {
+	font-size: 1.3em;
+}
+.created_position a {
+	color: #5B6C7E;
+	text-decoration: none;
+	-webkit-transition: color .3s;
+	-o-transition: color .3s;
+	transition: color .3s;
+	font-weight: 500;
+	border-bottom: 2px solid;
+}
+.created_position a:hover {
+	color: #EC5805;
+	text-decoration: none;
+}
+
+.created_position h1,
+.created_position h2,
+.created_position h3 {
+	text-align: center;
+}
+
+.created_position .requirements ul li{
+	position: relative;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.company_details {
+	padding: 60px 15px 10px 15px;
+}
+
+.share {
+	padding-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+	.created_position h1 {
+		font-size: 2.7em;
+	}
+	.created_position h2 {
+		font-size: 2em;
+	}
+	.created_position h3 {
+		font-size: 1.4em;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+

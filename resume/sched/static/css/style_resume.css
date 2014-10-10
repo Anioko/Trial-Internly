@@ -1,0 +1,338 @@
+body {
+	font-family: Helvetica;
+	background: #F7F7F7;
+	color: #535A5F;
+}
+h2 {
+	text-align: left;
+	font-size: 3em;
+	font-weight: 500;
+}
+h3 {
+	font-size: 2em;
+	font-weight: 500;
+}
+h4 {
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+h1, h2, h3, h4, p, .form-control, label, ul {
+    color: #4A5C6C;
+    font-family:'Lato',sans-serif;
+    line-height: 1.1;
+}
+.preview_resume {
+	padding-top: 60px;
+	padding-bottom: 20px;
+}
+.preview_resume p,
+.preview_resume ul li {
+	font-size: 1.3em;
+}
+.preview_resume p,
+.preview_resume h4 {
+	color: #4A5C6C;
+}
+.preview_resume h4 {
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+.preview_resume .edit-controls {
+	display: inline-block;
+	float: right;
+	margin-top: 30px;
+}
+
+.resume_view .cover_letter ul li,
+.preview_resume .cover_letter ul li {
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.resume_view {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.resume_view ul li,
+.resume_edit  ul li {
+	font-size: 1.2em;
+	font-weight: 400;
+}
+.contacts {
+	padding-bottom: 10px;
+}
+.content {
+	padding: 0 50px 0 50px;
+}
+.contacts ul {
+	position: relative;
+	padding:0;
+	
+}
+.contacts ul li {
+	list-style: none;
+	margin-right: 10px;
+}
+.contacts ul i{
+	margin-right: 5px;
+}
+.contacts ul li a {
+	text-decoration: underline;
+	color: #4A5C6C;
+	-webkit-transition: color .3s;
+	-o-transition: color .3s;
+	transition: color .3s;
+	font-weight: 500;
+}
+.contacts ul li a:hover {
+	color: #EC5805;
+}
+.contacts,
+.cover_letter,
+.education,
+.experience {
+	border-bottom: 2px solid #eee;
+}
+.cover_letter {
+	padding-bottom: 10px;
+}
+p {
+	font-size: 1.2em;
+	text-align: justify;
+	font-weight: 400;
+}
+.cover_letter ul,
+.other_skills ul {
+	padding-left: 0px;
+}
+
+.experience .employee li,
+.contacts ul li,
+.study_pace ul li  {
+	display: inline-block;
+}
+.study_pace ul li:not(:last-child) {
+	margin-bottom: 5px;
+}
+.cover_letter ul,
+.other_skills ul {
+	padding-left: 20px;
+}
+.cover_letter ul li,
+.other_skills ul li {
+	float: left;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.cover_letter ul li:not(:last-child),
+.other_skills ul li:not(:last-child) {
+	margin-right: 25px;
+	
+}
+.cover_letter ul li:not(:first-child) {
+	list-style-type: disc;
+}
+.cover_letter ul {
+	margin-bottom: 40px;
+}
+.study_pace {
+	margin-bottom: 15px;
+}
+.cover_letter ul li {
+	list-style: disc;
+}
+.study_pace ul {
+	padding: 0 0 0 10px;
+	margin: 0;
+	border-left: 5px solid #E4E1E1;
+}
+.study_pace ul li {
+	list-style: none;
+}
+.study_pace ul li,
+.experience .employee li {
+	font-weight: bold;	
+}
+.study_pace ul .university_name {
+	text-transform: uppercase;
+}
+.study_pace ul li:first-child,
+.study_pace .employee li:last-child{
+	display: block;
+}
+
+
+.experience .employee {
+	padding: 0 0 0 10px;
+	margin-bottom: 5px;	
+	border-left: 5px solid #E4E1E1;
+
+}
+.experience .employee li:first-child {
+	text-transform: uppercase;
+}
+.experience .employee li {
+	font-size: 1.2em;
+}
+.experience .achievements {
+	list-style-type: disc;
+}
+.experience .achievements li {
+	margin-bottom: 10px;
+}
+.experience .achievements li:last-child {
+	margin-bottom: 0px;
+}
+.experience .job {
+	margin-bottom: 20px;
+}
+.experience .job .employee {
+	margin-bottom: 10px;
+}
+.experience .job:last-child {
+	margin-bottom: 20px;
+}
+.experience .job ul {
+	margin: 0;
+}
+.resume_controls {
+	width: 305px;
+	float: right;
+	padding-top: 14px;
+}
+.resume_controls .btn {	
+	color: #428BCA;
+	font-size: 1.3em;
+	padding: 2px 8px 2px 8px;
+	background: transparent;
+	-webkit-transition: background .5s, color .5s;
+	-o-transition: background .5s, color .5s;
+	transition: background .5s, color .5s;
+}
+.preview_resume .edit-controls .btn  {
+	font-size: 1.6em;
+	padding: 5px 25px;
+	border-radius: 3px;
+	background: transparent;
+	-webkit-transition: background .5s, color .5s;
+	-o-transition: background .5s, color .5s;
+	transition: background .5s, color .5s;
+}
+.resume_controls .btn.edit:hover {
+	background: #70BD77;
+	color: white;
+}
+.resume_controls .btn.save:hover,
+.preview_resume .edit-controls .btn:hover {
+	background: #428BCA;
+	color: white;
+	border-color: transparent;
+}
+.resume_controls .btn.delete:hover {
+	background: #CE655E;
+	color: white;
+}
+.resume_controls .btn.edit {
+	color: #55995B;
+	
+}
+.resume_controls .btn.save {
+	color: #6386A3;
+	
+}
+.resume_controls .btn.delete {
+	color: #CE655E;	
+}
+.contacts ul li {
+	margin-bottom: 5px;
+	word-break:break-all;
+}
+@media (max-width: 992px) {
+}
+@media (max-width: 768px) {
+	.content {
+		padding:0;
+	}
+	.menu {
+		margin-bottom: 0px;
+	}
+	.resume_controls .btn.save {
+		color: #6386A3;
+		
+	}
+	.resume_controls .btn.delete {
+		color: #CE655E;	
+	}
+}
+@media (max-width: 650px) {
+	.resume_controls {
+		float: none;
+		margin: auto;
+		width: 255px;
+	}
+	.cover_letter {
+		padding-bottom: 15px;
+	}
+
+	h2,h3 {
+		text-align: center;
+		margin-top: 5px;
+		margin-bottom: 20px;
+	}
+	.preview_resume .edit-controls {
+		float: none;
+		display: block;
+		width: 145px;
+		margin: 0 auto;
+	}
+	.preview_resume .edit-controls .btn {
+		border: 2px solid;
+	}
+}
+/* FOR PDF PRINTING */
+@media print {
+	h2 {
+		text-align: left;
+		font-size: 26px;
+		font-weight: bold;
+		color: red;
+	}
+	h3 {
+		font-size: 20px;
+		font-weight: bold;
+		text-align: left;
+	}
+	h4 {
+		font-weight: 600;
+		margin-bottom: 5px;
+		text-align: left;
+		font-size: 14px;
+	}
+	h1, h2, h3, h4, p, .form-control, label, ul {
+	    color: #4A5C6C;
+	    font-family:'Lato',sans-serif;
+	    line-height: 1.1;
+	}
+	p, ul ,li {
+		font-size: 14px;
+	}
+	.resume_controls,
+	.preview_resume .edit-controls{
+		display: none;
+	}
+	.resume_view,
+	.preview_resume {
+		padding-top: 0px;
+	}
+	.cover_letter ul {
+		margin-bottom:25px;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	a:link:after, a:visited:after {
+	    content: "";
+
+	}
+}
+

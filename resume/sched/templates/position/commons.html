@@ -1,5 +1,5 @@
 {% macro detail(appt, link_title=false, show_edit=false, show_skills=true) %}
-<div class="position-detail">
+<div class="created_position">
     {% if show_edit %}
     <div class="edit-controls"  align="right">
         <i class="icon-pencil"></i>
@@ -11,64 +11,55 @@
     {% endif %}
     {% if link_title %}
     <h3><a href="{{ url_for('position_details', position_id=appt.id) }}">{{ appt.position_title or '(No Title)' }}</a></h3>
-    <hr>
+    <h4><a href="{{ appt.company_website|default('') }}" target="_blank"><i class="fa fa-briefcase"></i> {{ appt.company_name|default('') }}</a></h4>
     {% else %}
-    <h1 align="center">{{ appt.position_title or '(No Title)' }}</h1>
-    <h3 align="center"> {{ appt.company_name|default('') }}, {{ appt.location|default('') }}</h3>
-    <h4 align="center">{{ appt.company_website|default('') }}</h4>
-
+    <h1>{{ appt.position_title or '(No Title)' }}</h1>
+    <h2>{{ appt.company_name|default('') }}</h2>
+    <h3><i class="fa fa-globe"></i> <a href="{{ appt.company_website|default('') }}">{{ appt.company_website|default('') }}</a></h3>
+    <h3><i class="fa fa-map-marker"></i> {{ appt.location|default('') }}</h3>
     <hr>
-
-    <h3 align="center"> Job Description</h3>
-    <h4 align="center">{{ appt.description|default('')|markdown }}</h4>
-
+    <h4>Job Description</h4>
+    <div class="description">{{ appt.description|default('')|markdown }}</div>
     <hr>
     {% endif %}
-    <h4> Requirements:</h4>
+    <div class="requirements">
+        <h4>Required skills:</h4>
+        {% if show_skills %}
+        <ul>
+          {% if appt.required_skill_one %}
+            <li>{{ appt.required_skill_one|default('')}}</li>
+          {% else %}
+          {% endif %}
 
-    {% if show_skills %}
-    <br />
+          {% if appt.required_skill_two %}
+            <li>{{ appt.required_skill_two|default('')}}</li>
+          {% else %}
+          {% endif %}
 
-    {{ appt.required_skill_one|default('')}}
-    <br />
+          {% if appt.required_skill_three %}
+            <li>{{ appt.required_skill_three|default('')}}</li>
+          {% else %}
+          {% endif %}
 
+          {% if appt.required_skill_four %}
+            <li>{{ appt.required_skill_four|default('')}}</li>
+          {% else %}
+          {% endif %}
+          
+          {% if appt.required_skill_five %}
+            <li>{{ appt.required_skill_five|default('')}}</li>
+          {% else %}
+          {% endif %}
 
-    {{ appt.required_skill_two|default('')}}
-    <br />
-
-    {{ appt.required_skill_three|default('')}}
-    <br />
-
-    {{ appt.required_skill_four|default('')}}
-    <br />
-
-
-    {{ appt.required_skill_five  or 'No further requirements'}}
-    <br />
-
-
-    {{ appt.required_skill_six or 'No further requirements'}}
-    <br />
-
-
-    {{ appt.required_skill_seven or 'No further requirements'}}
-    <br />
-
-
-    {{ appt.required_skill_eight or 'No further requirements'}}
-    <br />
-
-
-    {{ appt.required_skill_nine or 'No further requirements'}}
-    {% else %}
-    No Requirements specified
-    {% endif %}
-    <br>
-    <hr>
-
-
-
-
+          {% if appt.required_skill_six %}
+            <li>{{ appt.required_skill_six|default('')}}</li>
+          {% else %}
+          {% endif %}
+        </ul>
+        {% else %}
+        <p>No Requirements were specified</p>
+        {% endif %}
+    </div>
     {% if show_edit %}
     <div class="edit-controls"  align="right">
         <i class="icon-pencil"></i>

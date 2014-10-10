@@ -3,10 +3,11 @@
 {% from 'resume/common.html' import detail %}
 
 {% block title %}{{ appt.name or '(No Name)' }}{% endblock title %}
-
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_resume.css') }}" rel="stylesheet">
+{% endblock head%}
 {% block main %}
 <div class="panel panel-default">
-  <div class="panel-heading">Resume</div>
   <div class="panel-body">
         {{ detail(appt) }}
   </div>

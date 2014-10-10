@@ -1,4 +1,9 @@
 {% extends "public/public.html" %}
+
+{% block head%}
+<link href="{{ url_for('static', filename='css/style_public.css') }}" rel="stylesheet">
+{% endblock head%}
+
 {% block content %}
 
         <!-- CSS code from Bootply.com editor -->
@@ -13,7 +18,6 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 /* fix bs3 horizontal scrollbar bug */
@@ -23,166 +27,25 @@ h1 {
   font-size:50px; 
 }
 
-h4, p {
-    color: #000000;
-    font-family: inherit;
+h4, p, h5, h6 {
+    color: #5A5A5A;
+    font-family:'Lato',sans-serif;
     font-weight: 300;
     line-height: 1.1;
 }
-
-img.grayscale {
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-    filter: gray; /* IE6-9 */
-    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+p {
+  font-size: 1.25em;
+}
+h4 {
+  font-weight: bold;
+}
+p {
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.5em;
 }
 
-.icon-bar {
-   background-color:#fff;
-}
 
-.scroll-down a, .scroll-top a {
-   color:#ffffff;
-}
-
-.scroll-down {
-   position:fixed;
-   bottom:20%;
-   right:0%;
-   color:#f9f9f9;
-}
-
-.scroll-top {
-  background-color:#33ee67;
-}
-
-.header .btn-lg {
-   font-size:28px;
-   border-color:#eeeeee;
-   padding:15px;
-   background-color:transparent;
-   color:#ffffff;
-}
-
-.header .btn-lg:hover {
-   background-color:#eeeeee;
-   color:#777777;
-}
-
-.navbar a {
-  color:#fff;
-}
-
-.navbar-bold.affix {
-  background-color:#33ee67;
-}
-
-.navbar-bold {
-  background-color:#11cc45;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-}
-
-.navbar-bold li a:hover {
-  background-color:#00bb34;
-}
-
-.navbar-bold li.active {
-  background-color:#00bb34;
-}
-
-.vert {
-  vertical-align: middle;
-  width:100%;
-  padding-top:4%;
-}
-
-.header h1 {
-  font-size:110px;
-  -webkit-text-stroke: 1px rgba(0,0,0,0.1);
-  color:#431a6d;
-  color:#fff;
-  margin-left:-5px;
-  margin-bottom:5px;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-}
-
-.header .lead {
-  color:#eeeeee;
-  font-size:25px;
-}
-
-.header {
-  height: 80%;
-  background: #2B3E50;
-}
-
-.blurb {
-  padding: 120px 0;
-  background-color:#fefefe;
-}
-
-.blurb .panel {
-  background-color:transparent;
-}
-
-.bright {
-  background: #7fbbda url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
-  color:#fff;
-}
-
-.featurette {
-  background: #545455;
-  padding: 50px 0;
-  color: #ffffff;
-}
-
-.featurette-item {
-  margin-bottom: 15px;
-}
-
-.featurette-item > i {
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 56px;
-  width: 140px;
-  height: 140px;
-  line-height: 136px;
-  vertical-align: middle; 
-  text-align: center;
-}
-
-.featurette-item > i:hover {
-  font-size: 68px;
-}
-
-.callout {
-  color: #ffffff;
-  padding-top:7%;
-  height: 100%;
-  width: 100%;
-  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.gallery {
-  padding: 50px 0;
-}
-
-.call-to-action {
-  background: #eeeeee;
-  padding: 50px 0;
-}
-
-.call-to-action .btn {
-  margin: 10px;
-}
-
-footer {
-  padding: 100px 0;
-}
 
 /* -- end custom css for Bootstrap 3.x --*/
 
@@ -196,70 +59,88 @@ footer {
         
 
 
-<div class="header vert" style="height: 300px; padding-top: 55px;">
+<div class="header vert policy">
   <div class="container">
     
     <h1>Privacy Policy</h1>
-      <p class="lead">How we use your personal data. </p>
-      <div>&nbsp;</div>
-      <!-----<a href="#" class="btn btn-default btn-lg">+358443629957</a>------->
-  </div>
-</div>
-
-<div id="sec1" class="blurb">
-  <div class="container">
-  <p>Intern.ly  is operated in Europe by or on behalf of Konor Dev. Co, a company incorporated in Finland with registered company number FI2423652-8 , our office at Arkadiankatu 28, 00100, Helsinki Finland, 5th floor.  
-This policy is designed to protect your privacy and to help you understand, how we collect and use your personal information. 
-By submitting a job application, the applicant approves the storing and use of the submitted data. Personal data protection in accordance with Section 10 of the Personal Data Act (HetiL 10§). </p>
-
-<h4>Right of access:</h4>
-
-<p>In accordance with Section 26§ of the Personal Data Act, everyone has the right to inspect what information related to their person has been stored in the register. Any request to inspect the register shall be delivered in writing, with the requesting party’s signature to  info@intern.ly</p>
-
-<h4>Purpose of processing of personal data:</h4>
-<p>The register is intended for receiving, processing and storing the job applications of persons interested in pursuing a career with our client companies.  Applicants may apply for a particular position or fill out their resumes for search by our clients and human resources personnel may also process an application in connection with other suitable positions.
-Job application data is kept in an applicant register for three (4) years and may be retrieved in connection with other positions.</p> <p>Job application data is always confidential and is never disclosed to persons outside the recruitment process. Confidentiality refers to the fact that job application data is only available to persons authorized to process the data.
-Konor Dev.co may at its discretion remove any job application with incomplete information. <p>An application may also be removed or altered at the applicant’s request. Any request to remove or alter an application shall be delivered in writing to the controller or presented in person at the controller’s address.</p>
-
-<h4>Registered data:</h4>
-<p>Applicant’s basic information (name, contact information, date of birth)</p>
-<p>Applicant’s education and work experience</p>
-<p>Applicant’s preferences regarding future employment</p>
-<p>Description of applicant’s experience </p>
-<p>Additional information provided by the applicant</p>
-<h4>Sources of data:</h4>
-<p>Job applicants</p>
-<h4>Regular transfers of disclosed data:</h4>
-<p>The data will be disclosed to clients outside Konor Dev.co .</p>
-<h4>Transfer of data outside the EU/EEA:</h4>
-<p>The data will be transferred clients outside the European Union or the European Economic Area.</p>
- <h4>Principles of data protection:</h4>
-<p>A. Hard copies</p>
-<p>Printed paper versions of CVs are stored together with other recruitment material.</p>
-<h4>B. Electronically stored data:</h4>
-<p>The registered data are protected using passwords. Only employees and clients of Konor Dev.co or its subsidiaries have access to personal data stored in the register. </p>
-
-</p>
-    <div class="row">
-
     </div>
   </div>
+
+  <div id="sec1" class="blurb">
+    <div class="container">
+    <p>Intern.ly  is operated in Europe by or on behalf of Konor Dev. Co, a company incorporated in Finland with registered company number FI2423652-8 , our office at Arkadiankatu 28, 00100, Helsinki Finland, 5th floor.  
+  This policy is designed to protect your privacy and to help you understand, how we collect and use your personal information. 
+  By submitting a job application, the applicant approves the storing and use of the submitted data. Personal data protection in accordance with Section 10 of the Personal Data Act (HetiL 10§). </p>
+
+  <h4>Right of access:</h4>
+
+  <p>In accordance with Section 26§ of the Personal Data Act, everyone has the right to inspect what information related to their person has been stored in the register. Any request to inspect the register shall be delivered in writing, with the requesting party’s signature to  info@intern.ly</p>
+
+  <h4>Purpose of processing of personal data:</h4>
+  <p>The register is intended for receiving, processing and storing the job applications of persons interested in pursuing a career with our client companies.  Applicants may apply for a particular position or fill out their resumes for search by our clients and human resources personnel may also process an application in connection with other suitable positions.
+  Job application data is kept in an applicant register for three (4) years and may be retrieved in connection with other positions.</p> <p>Job application data is always confidential and is never disclosed to persons outside the recruitment process. Confidentiality refers to the fact that job application data is only available to persons authorized to process the data.
+  Konor Dev.co may at its discretion remove any job application with incomplete information. <p>An application may also be removed or altered at the applicant’s request. Any request to remove or alter an application shall be delivered in writing to the controller or presented in person at the controller’s address.</p>
+
+  <h4>Registered data:</h4>
+  <p>Applicant’s basic information (name, contact information, date of birth)</p>
+  <p>Applicant’s education and work experience</p>
+  <p>Applicant’s preferences regarding future employment</p>
+  <p>Description of applicant’s experience </p>
+  <p>Additional information provided by the applicant</p>
+  <h4>Sources of data:</h4>
+  <p>Job applicants</p>
+  <h4>Regular transfers of disclosed data:</h4>
+  <p>The data will be disclosed to clients outside Konor Dev.co .</p>
+  <h4>Transfer of data outside the EU/EEA:</h4>
+  <p>The data will be transferred clients outside the European Union or the European Economic Area.</p>
+   <h4>Principles of data protection:</h4>
+  <p>A. Hard copies</p>
+  <p>Printed paper versions of CVs are stored together with other recruitment material.</p>
+  <h4>B. Electronically stored data:</h4>
+  <p>The registered data are protected using passwords. Only employees and clients of Konor Dev.co or its subsidiaries have access to personal data stored in the register. </p>
+
+  </p>
+      
+  </div>
 </div>
 
+<div class="center_w_margin">
+  <div class="btn-group">
+    <button class="btn btn-default disabled">
+      Share:
+    </button>
 
+    <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fintern.ly&amp;t=Url%20Encoded%20Text" title="On Facebook" target="_blank" class="btn btn-default">
+      <i class="fa fa-facebook fa-lg fb"></i>
+    </a>
+
+    <a href="http://twitter.com/share?url=http%3A%2F%2Fintern.ly&amp;text=Url%20Encoded%20Text" title="On Twitter" target="_blank" class="btn btn-default">
+      <i class="fa fa-twitter fa-lg tw"></i>
+    </a>
+
+
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fintern.ly" title="On LinkedIn" target="_blank" class="btn btn-default">
+      <i class="fa fa-linkedin fa-lg linkin"></i>
+    </a>
+
+    <a href="http://vk.com/share.php?url=http%3A%2F%2Fintern.ly&amp;title=Url%20Encoded%20Title&amp;description=Url%20Encoded%20Text&amp;image=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="On VK.com" target="_blank" class="btn btn-default">
+      <i class="fa fa-vk fa-lg vk"></i>
+    </a>
+
+    <a href="http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fintern.ly&amp;description=Url%20Encoded%20Text&amp;media=https%3A%2F%2Ffbcdn-sphotos-g-a.akamaihd.net%2Fhphotos-ak-frc3%2Ft1%2F10007500_219483098251971_1640217409_n.jpg" title="Pin It" target="_blank" class="btn btn-default">
+      <i class="fa fa-pinterest fa-lg pinterest"></i>
+    </a>
+  </div>
+</div>
 
 
 
  <footer role="contentinfo" class="bs-docs-footer">
-  <div class="container">
-    <div class="bs-docs-social">
-  <ul class="bs-docs-social-buttons">
-  </ul>
-</div>
+
 
 
     <!--<p>Designed and built with all the love in the world by <a target="_blank" href="http://twitter.com/mdo">@mdo</a> and <a target="_blank" href="http://twitter.com/fat">@fat</a>.</p>
-    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>----->
+    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>-->
     <p>Product of Konor Dev.co<a target="_blank" href="#"></a> Made in  Finland <a href="#">2014</a>.</p>
     <!---<ul class="bs-docs-footer-links muted">
       <li>Currently v3.1.1</li>
@@ -271,18 +152,10 @@ Konor Dev.co may at its discretion remove any job application with incomplete in
       <li><a href="/blog">Blog</a></li>
       <li><a href="">Issues</a></li>
       <li><a href="">Releases</a></li>
-    </ul>----->
+    </ul>-->
   </div>
 </footer>
-
-<ul class="nav pull-right scroll-down">
-  <li><a href="#" title="Scroll down"><i class="icon-chevron-down icon-3x"></i></a></li>
-</ul>
-<ul class="nav pull-right scroll-top">
-  <li><a href="#" title="Scroll to top"><i class="icon-chevron-up icon-3x"></i></a></li>
-</ul>
-
-        
+       
         <!-- JavaScript jQuery code from Bootply.com editor -->
         
         <script type='text/javascript'>
